@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Sie - Marketing oparty na danych</title>
+<meta name="description" content="Zautomatyzuj Sie - agencja marketingu cyfrowego oparta na danych. SEO, strony WWW, social media, AI Search.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#E8520F;--primary-hover:#D4442A;--success:#10B981;
+  --bg:#FAFAF8;--card-white:#FFFFFF;--card-alt:#F5F3F0;
+  --text:#1A1A2E;--text-sec:#5A5A6E;--border:#E5E5E5;
+  --section-pad:80px;--card-pad:24px;--gap:16px;
+  --radius:16px;--radius-sm:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-size:16px;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-weight:700;letter-spacing:-0.02em;line-height:1.2}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:var(--section-pad) 0}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.revealed{opacity:1;transform:translateY(0)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius-sm);font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;transition:all 0.3s ease;border:none;text-align:center}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,82,15,0.3)}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+
+/* Pill badge */
+.pill{display:inline-block;padding:6px 18px;border-radius:100px;background:rgba(232,82,15,0.08);color:var(--primary);font-size:0.85rem;font-weight:500}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:all 0.3s ease}
+.nav.scrolled{background:rgba(250,250,248,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 0}
+.nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:700;font-size:1.3rem;letter-spacing:-0.02em}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:0.9rem;color:var(--text-sec);transition:color 0.2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta .btn{padding:10px 24px;font-size:0.9rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(250,250,248,0.98);backdrop-filter:blur(12px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{font-size:1.2rem;font-weight:500}
+.mobile-close{position:absolute;top:20px;right:24px;font-size:2rem;cursor:pointer;background:none;border:none;color:var(--text)}
+
+/* HERO */
+.hero{padding-top:140px;padding-bottom:80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(232,82,15,0.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,82,15,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-content{max-width:800px;text-align:center;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.5rem,5vw,4rem);margin:20px 0;background:linear-gradient(135deg,#E8520F,#D4442A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.25rem;color:var(--text-sec);max-width:640px;margin:0 auto 32px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;padding-top:48px;border-top:1px solid var(--border)}
+.stat-item{text-align:center}
+.stat-num{font-size:2rem;font-weight:800;color:var(--primary);letter-spacing:-0.02em}
+.stat-label{font-size:0.85rem;color:var(--text-sec);margin-top:4px}
+
+/* PROBLEM */
+.problem{background:var(--card-white)}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:40px}
+.problem-card{padding:var(--card-pad);border-radius:var(--radius);background:var(--bg);border-top:3px solid var(--primary);transition:all 0.3s}
+.problem-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-color:var(--primary)}
+.problem-icon{font-size:1.5rem;margin-bottom:12px;color:var(--primary)}
+.problem-card h4{margin-bottom:8px}
+.problem-card p{font-size:0.95rem;color:var(--text-sec)}
+.solution-box{margin-top:32px;padding:24px 32px;background:rgba(16,185,129,0.06);border-left:4px solid var(--success);border-radius:0 var(--radius) var(--radius) 0}
+.solution-box p{color:var(--text);font-weight:500}
+
+/* SERVICES */
+.services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:40px}
+.service-card{padding:var(--card-pad);border-radius:var(--radius);background:var(--card-white);border:1px solid var(--border);transition:all 0.3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-color:var(--primary)}
+.service-icon{width:48px;height:48px;border-radius:50%;background:rgba(232,82,15,0.08);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:16px;color:var(--primary)}
+.service-card h4{margin-bottom:8px}
+.service-card p{font-size:0.9rem;color:var(--text-sec)}
+
+/* PROCESS */
+.process{background:var(--card-white)}
+.process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px;position:relative}
+.process-timeline::before{content:'';position:absolute;top:24px;left:10%;right:10%;height:2px;background:var(--border)}
+.process-step{text-align:center;position:relative;z-index:1}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.process-step h4{margin-bottom:8px}
+.process-step p{font-size:0.9rem;color:var(--text-sec)}
+.process-note{text-align:center;margin-top:40px;font-style:italic;color:var(--text-sec)}
+
+/* CASE STUDIES */
+.cases{background:var(--bg)}
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.case-card{padding:32px;border-radius:var(--radius);background:var(--card-white);border:1px solid var(--border)}
+.case-badge{display:inline-block;padding:4px 12px;border-radius:100px;background:rgba(232,82,15,0.08);color:var(--primary);font-size:0.8rem;font-weight:600;margin-bottom:12px}
+.case-card h4{margin-bottom:16px;font-size:1.1rem}
+.case-lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.case-list h5{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px}
+.case-list.before h5{color:#999}
+.case-list.after h5{color:var(--success)}
+.case-list li{font-size:0.85rem;color:var(--text-sec);list-style:none;padding:3px 0}
+.case-list.before li::before{content:"\2013 ";color:#ccc}
+.case-list.after li::before{content:"\2713 ";color:var(--success)}
+.case-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.case-stat{text-align:center;padding:10px 4px;background:var(--bg);border-radius:8px}
+.case-stat strong{display:block;font-size:0.85rem;color:var(--primary)}
+.case-stat span{font-size:0.7rem;color:var(--text-sec)}
+.case-quote{font-style:italic;color:var(--text-sec);font-size:0.95rem;border-left:3px solid var(--primary);padding-left:16px;margin-top:12px}
+
+/* WHY US */
+.why{background:var(--card-white)}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);margin-top:40px}
+.why-card{padding:var(--card-pad);border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);transition:all 0.3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-color:var(--primary)}
+.why-icon{font-size:1.5rem;margin-bottom:12px;color:var(--primary)}
+.why-card h4{margin-bottom:8px}
+.why-card p{font-size:0.9rem;color:var(--text-sec)}
+
+/* PRICING */
+.pricing{background:var(--bg)}
+.pricing-grid{display:flex;gap:16px;margin-top:40px;align-items:flex-start;overflow-x:auto;padding-bottom:16px}
+.pricing-card{flex:1;min-width:220px;padding:var(--card-pad);border-radius:var(--radius);background:var(--card-white);border:1px solid var(--border);transition:all 0.3s;position:relative}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08)}
+.pricing-card.featured{transform:scale(1.05);border:2px solid var(--primary);z-index:2}
+.pricing-card.featured:hover{transform:scale(1.05) translateY(-4px);box-shadow:0 16px 40px rgba(232,82,15,0.15)}
+.pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:4px 16px;border-radius:100px;background:var(--primary);color:#fff;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.pricing-card h4{margin-bottom:4px}
+.pricing-price{font-size:1.8rem;font-weight:800;color:var(--primary);margin-bottom:8px;letter-spacing:-0.02em}
+.pricing-desc{font-size:0.85rem;color:var(--text-sec);margin-bottom:16px}
+.pricing-features{list-style:none;margin-bottom:20px}
+.pricing-features li{font-size:0.8rem;color:var(--text-sec);padding:4px 0;padding-left:18px;position:relative}
+.pricing-features li::before{content:"\2713";position:absolute;left:0;color:var(--success);font-weight:700}
+.pricing-card .btn{width:100%;justify-content:center;padding:12px 20px;font-size:0.85rem}
+
+/* GUARANTEE */
+.guarantee{background:var(--card-white)}
+.guarantee-inner{text-align:center;max-width:700px;margin:0 auto}
+.guarantee-shield{width:72px;height:72px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem;color:var(--success)}
+.guarantee h3{font-size:1.6rem;margin-bottom:12px}
+.guarantee p{color:var(--text-sec);margin-bottom:24px}
+.guarantee-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.guarantee-option{padding:20px;border-radius:var(--radius);border:2px solid rgba(16,185,129,0.3);background:rgba(16,185,129,0.04)}
+.guarantee-option strong{color:var(--success);font-size:1.1rem}
+.guarantee-footer{color:var(--text-sec);font-style:italic}
+
+/* FAQ */
+.faq{background:var(--bg)}
+.faq-list{max-width:800px;margin:40px auto 0}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden;background:var(--card-white)}
+.faq-q{padding:18px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:0.95rem;transition:color 0.2s}
+.faq-q:hover{color:var(--primary)}
+.faq-q span{transition:transform 0.3s;font-size:1.2rem;color:var(--text-sec)}
+.faq-item.active .faq-q span{transform:rotate(45deg);color:var(--primary)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;padding:0 24px}
+.faq-a p{padding-bottom:18px;color:var(--text-sec);font-size:0.9rem}
+
+/* CTA FINAL */
+.cta-final{background:var(--text);color:#fff;text-align:center}
+.cta-final h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:12px;color:#fff}
+.cta-final p{color:rgba(255,255,255,0.7);margin-bottom:32px;font-size:1.1rem}
+.cta-final .sub{margin-top:24px;color:rgba(255,255,255,0.5);font-size:0.9rem}
+.cta-final .sub a{color:var(--primary);text-decoration:underline}
+.social-links{display:flex;gap:16px;justify-content:center;margin-top:12px}
+.social-links a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:all 0.3s;font-size:0.85rem}
+.social-links a:hover{border-color:var(--primary);color:var(--primary)}
+
+/* FOOTER */
+.footer{background:var(--card-alt);padding:48px 0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:32px}
+.footer-col h5{font-weight:600;margin-bottom:12px;font-size:0.9rem}
+.footer-col p,.footer-col a{font-size:0.85rem;color:var(--text-sec)}
+.footer-col a{display:block;padding:3px 0;transition:color 0.2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-logo{font-weight:700;font-size:1.1rem;margin-bottom:6px}
+.footer-tagline{color:var(--text-sec);font-size:0.85rem;margin-bottom:12px}
+.footer-social{display:flex;gap:8px}
+.footer-social a{width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--text-sec);transition:all 0.3s}
+.footer-social a:hover{background:var(--primary);color:#fff}
+.footer-bottom{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:0.8rem;color:var(--text-sec)}
+
+.section-title{text-align:center;margin-bottom:12px;font-size:clamp(1.5rem,3vw,2.2rem)}
+.section-sub{text-align:center;color:var(--text-sec);max-width:600px;margin:0 auto}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .pricing-grid{flex-wrap:wrap}
+  .pricing-card{min-width:calc(50% - 16px);flex:unset}
+  .pricing-card.featured{transform:scale(1.02)}
+}
+@media(max-width:768px){
+  :root{--section-pad:48px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .problem-grid,.services-grid,.why-grid,.cases-grid,.guarantee-options{grid-template-columns:1fr}
+  .process-timeline{grid-template-columns:repeat(2,1fr)}
+  .process-timeline::before{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .pricing-card{min-width:100%}
+  .pricing-card.featured{transform:none}
+  .case-lists{grid-template-columns:1fr}
+  .case-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-btns{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .process-timeline{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-logo">Zautomatyzuj Sie</div>
+    <div class="nav-links">
+      <a href="#uslugi">Uslugi</a>
+      <a href="#proces">Jak Dzialamy</a>
+      <a href="#case-study">Case Study</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta"><a href="#kontakt" class="btn btn-primary" style="border-radius:100px">Rozpocznij wspolprace</a></div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <a href="#uslugi" onclick="closeMobile()">Uslugi</a>
+  <a href="#proces" onclick="closeMobile()">Jak Dzialamy</a>
+  <a href="#case-study" onclick="closeMobile()">Case Study</a>
+  <a href="#cennik" onclick="closeMobile()">Cennik</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#kontakt" onclick="closeMobile()">Kontakt</a>
+  <a href="#kontakt" class="btn btn-primary" style="border-radius:100px;margin-top:12px" onclick="closeMobile()">Rozpocznij wspolprace</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="pill">Marketing oparty na danych &middot; 2026</div>
+      <h1>Twoja firma. Widoczna.</h1>
+      <p>Laczymy najnowsze badania z marketingiem cyfrowym, zeby Twoja firma byla widoczna w Google, social media i w glowach klientow.</p>
+      <div class="hero-btns">
+        <a href="#kontakt" class="btn btn-primary">Bezplatna analiza firmy</a>
+        <a href="#case-study" class="btn btn-outline">Zobacz efekty</a>
+      </div>
+    </div>
+    <div class="stats-bar reveal">
+      <div class="stat-item"><div class="stat-num" data-target="1089">0</div><div class="stat-label">zrodel w bazie wiedzy</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="543">0</div><div class="stat-label">potwierdzonych wnioskow</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="154">0</div><div class="stat-label">zrodel monitorowanych codziennie</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="30">0</div><div class="stat-label">dni do pierwszych efektow</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <h2 class="section-title reveal">Czy Twoja firma istnieje w internecie?</h2>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="problem-icon">&times;</div>
+        <h4>Brak strony WWW</h4>
+        <p>83% klientow szuka firm w Google. Jesli Cie tam nie ma &mdash; nie istniejesz.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-icon">?</div>
+        <h4>Brak widocznosci</h4>
+        <p>Twoja konkurencja jest na pierwszej stronie. Ty jestes na dziesiatej.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-icon">&darr;</div>
+        <h4>Social bez efektow</h4>
+        <p>Publikujesz posty, ale nikt ich nie widzi? Algorytm Cie zignorowal.</p>
+      </div>
+    </div>
+    <div class="solution-box reveal">
+      <p>My to naprawiamy. Przeanalizujemy wszystko &mdash; od Google, przez social media, po konkurencje &mdash; i damy Ci plan gotowy do wdrozenia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="uslugi">
+  <div class="container">
+    <h2 class="section-title reveal">Co robimy</h2>
+    <p class="section-sub reveal">Kompleksowe uslugi marketingu cyfrowego oparte na najnowszych badaniach.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">&equiv;</div>
+        <h4>Pelna analiza firmy w sieci</h4>
+        <p>Audyt strony WWW, SEO, Google Business Profile, opinii oraz Instagrama, Facebooka i TikToka &mdash; minimum 100 ostatnich postow kazdej platformy. Plus pelna analiza konkurencji.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9675;</div>
+        <h4>Strony WWW od zera</h4>
+        <p>Budujemy strony oparte na badaniach UX z 2026 roku &mdash; zoptymalizowane pod Google i nowe wyszukiwarki AI od pierwszego dnia.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9906;</div>
+        <h4>Pozycjonowanie SEO i AI Search</h4>
+        <p>Wyprowadzamy Cie wyzej w Google, mapach oraz w odpowiedziach wyszukiwarek AI &mdash; ChatGPT, Google AI Mode, Perplexity, Claude, Gemini.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9632;</div>
+        <h4>Social media &mdash; Twoje i konkurencji</h4>
+        <p>Deep dive Twojego Instagrama, Facebooka i TikToka oraz 5-10 konkurentow na kazdej platformie. Strategia tresci oparta na badaniach.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9881;</div>
+        <h4>Re-audyt po wdrozeniu</h4>
+        <p>Po 14-30 dniach sprawdzamy co sie zmienilo. Tabela PRZED i PO z liczbami, gotowa do publikacji w social media.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#9733;</div>
+        <h4>Stale prowadzenie firmy</h4>
+        <p>Comiesieczne raporty, ciagla aktualizacja strategii. Reagujemy na zmiany algorytmow w czasie rzeczywistym.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proces">
+  <div class="container">
+    <h2 class="section-title reveal">Jak dzialamy</h2>
+    <p class="section-sub reveal">Od konsultacji do realnych wynikow w 4 prostych krokach.</p>
+    <div class="process-timeline">
+      <div class="process-step reveal">
+        <div class="step-num">1</div>
+        <h4>Bezplatna konsultacja</h4>
+        <p>Rozmawiamy o Twojej firmie. Bez zobowiazan.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">2</div>
+        <h4>Pelna analiza</h4>
+        <p>W oparciu o najnowsze badania analizujemy Twoja obecnosc online, konkurencje i szanse na wzrost.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">3</div>
+        <h4>Plan dzialania</h4>
+        <p>Dostajesz konkretny raport: co zrobic, dlaczego i jak.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">4</div>
+        <h4>Wdrozenie + Efekty</h4>
+        <p>Wdrazamy zmiany i monitorujemy wyniki. Widzisz postepy w czasie rzeczywistym.</p>
+      </div>
+    </div>
+    <p class="process-note reveal">Opieramy sie na rozwiazaniach budowanych autorsko przez nasz zespol &mdash; to nasza przewaga.</p>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases" id="case-study">
+  <div class="container">
+    <h2 class="section-title reveal">Efekty naszej pracy</h2>
+    <p class="section-sub reveal">Realne wyniki dla realnych firm.</p>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <span class="case-badge">7 dni</span>
+        <h4>Zajecia dla dzieci, Kielce</h4>
+        <div class="case-lists">
+          <div class="case-list before">
+            <h5>Przed</h5>
+            <ul><li>0 stron w Google</li><li>Brak widocznosci</li><li>Brak strony</li><li>Tylko Instagram</li></ul>
+          </div>
+          <div class="case-list after">
+            <h5>Po</h5>
+            <ul><li>16 stron zaindeksowanych</li><li>Top 3 w Google Maps</li><li>Top 5 organic</li><li>Blog firmowy</li></ul>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><strong>0&rarr;16</strong><span>stron</span></div>
+          <div class="case-stat"><strong>Top 3</strong><span>Maps</span></div>
+          <div class="case-stat"><strong>Top 5</strong><span>organic</span></div>
+          <div class="case-stat"><strong>5.0&#9733;</strong><span>89 opinii</span></div>
+        </div>
+        <div class="case-quote">&ldquo;Od zera do lidera w Google w 7 dni.&rdquo;</div>
+      </div>
+      <div class="case-card reveal">
+        <span class="case-badge">30 dni</span>
+        <h4>Salon kosmetyczny, Warszawa</h4>
+        <div class="case-lists">
+          <div class="case-list before">
+            <h5>Przed</h5>
+            <ul><li>Strona z 2019</li><li>0 fraz w Top 10</li><li>IG: 340 obserwujacych</li><li>2-3 klientow/msc z netu</li></ul>
+          </div>
+          <div class="case-list after">
+            <h5>Po</h5>
+            <ul><li>Nowa strona + Schema</li><li>3 frazy Top 10</li><li>IG: 460 (+35%)</li><li>5-6 klientow/msc</li></ul>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><strong>+35%</strong><span>IG</span></div>
+          <div class="case-stat"><strong>3 frazy</strong><span>Top 10</span></div>
+          <div class="case-stat"><strong>Top 5</strong><span>Maps</span></div>
+          <div class="case-stat"><strong>4.9&#9733;</strong><span>Google</span></div>
+        </div>
+        <div class="case-quote">&ldquo;Klientki zaczely same nas znajdowac w Google.&rdquo;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="container">
+    <h2 class="section-title reveal">Dlaczego Zautomatyzuj Sie?</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">&uarr;</div>
+        <h4>Dane, nie opinie</h4>
+        <p>Kazda rekomendacja poparta analiza ponad 1089 zrodel branzowych &mdash; codziennie monitorujemy 154 publikacji z 2026 roku.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">&#10022;</div>
+        <h4>Konkurencja na dwoch torach</h4>
+        <p>Analizujemy konkurencje nie tylko w Google, ale na kazdej platformie spolecznosciowej. 5-10 konkurentow, minimum 100 postow kazdego.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">&#9678;</div>
+        <h4>Kompletny pakiet</h4>
+        <p>Audyt + strona + SEO + social media + Google Business + AI Search + re-audyty co 30 dni. Jedno miejsce, jeden partner.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">&hearts;</div>
+        <h4>Bez umow</h4>
+        <p>Miesiac do miesiaca. Nie jestes zadowolony? Odchodzisz. Bez kar, bez drobnego druku.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="cennik">
+  <div class="container">
+    <h2 class="section-title reveal">Ile to kosztuje?</h2>
+    <p class="section-sub reveal">Przejrzyste ceny. Bez ukrytych kosztow.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <h4>Konsultacja</h4>
+        <div class="pricing-price">0 zl</div>
+        <p class="pricing-desc">Porozmawiajmy o Twojej firmie.</p>
+        <ul class="pricing-features">
+          <li>30 min rozmowy</li>
+          <li>Przedstawienie mozliwosci</li>
+          <li>Odpowiedzi na pytania</li>
+          <li>Zero zobowiazan</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-outline">Umow rozmowe</a>
+      </div>
+      <div class="pricing-card reveal">
+        <h4>Audyt firmy</h4>
+        <div class="pricing-price">1 299 zl</div>
+        <p class="pricing-desc">Dowiedz sie co dziala, co nie i dlaczego klienci trafiaja do konkurencji.</p>
+        <ul class="pricing-features">
+          <li>Analiza widocznosci Google</li>
+          <li>Analiza social media</li>
+          <li>Audyt Google Business</li>
+          <li>Analiza konkurencji</li>
+          <li>Audyt strony WWW</li>
+          <li>Raport HTML z danymi</li>
+          <li>Lista problemow od najwazniejszego</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary">Zamow audyt</a>
+      </div>
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Najpopularniejszy</div>
+        <h4>Audyt + Plan wdrozenia</h4>
+        <div class="pricing-price">1 999 zl</div>
+        <p class="pricing-desc">Pelna analiza + gotowy plan krok po kroku.</p>
+        <ul class="pricing-features">
+          <li>Wszystko z Audytu</li>
+          <li>Plan wdrozenia krok po kroku</li>
+          <li>Priorytetyzacja dzialan</li>
+          <li>Tabela celow 30/60/90 dni</li>
+          <li>Godzinna konsultacja online</li>
+          <li>Pytania po konsultacji (email)</li>
+          <li>Re-audyt po 30 dniach</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary" style="padding:14px 24px;font-size:0.95rem">Wybierz plan</a>
+      </div>
+      <div class="pricing-card reveal">
+        <h4>Budowa od zera</h4>
+        <div class="pricing-price">3 499 zl</div>
+        <p class="pricing-desc">Strona + SEO + social media + plan na 90 dni.</p>
+        <ul class="pricing-features">
+          <li>Strategia marki na 90 dni</li>
+          <li>Strona WWW (UX 2026)</li>
+          <li>Optymalizacja Google + AI Search</li>
+          <li>Google Business Profile</li>
+          <li>Plan tresci social media</li>
+          <li>Gotowe szablony postow</li>
+          <li>10 backlinkow lokalnych</li>
+          <li>Plan na 3 miesiace</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary">Zacznij budowe</a>
+      </div>
+      <div class="pricing-card reveal">
+        <h4>Stale prowadzenie</h4>
+        <div class="pricing-price">od 1 999 zl<span style="font-size:0.7rem;font-weight:400;color:var(--text-sec)">/msc</span></div>
+        <p class="pricing-desc">Comiesieczne raporty + reagowanie na algorytmy.</p>
+        <ul class="pricing-features">
+          <li>Miesieczny raport wynikow</li>
+          <li>Aktualizacja strategii</li>
+          <li>Reagowanie na zmiany algorytmow</li>
+          <li>Nowe tresci i rekomendacje</li>
+          <li>Re-audyt co 30 dni</li>
+          <li>Priorytetowe wsparcie</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-outline">Umow rozmowe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-shield">&#10003;</div>
+      <h3>Realne efekty albo zwrot pieniedzy</h3>
+      <p>Nie obiecujemy cudow &mdash; obiecujemy mierzalne wyniki. Jesli po 90 dniach wspolpracy nie zobaczysz wzrostu widocznosci:</p>
+      <div class="guarantee-options">
+        <div class="guarantee-option"><strong>1. Zwracamy 100% pieniedzy</strong></div>
+        <div class="guarantee-option"><strong>2. Pracujemy za darmo kolejne 30 dni</strong></div>
+      </div>
+      <p class="guarantee-footer">Zero ryzyka po Twojej stronie. Calkowite zaufanie po naszej.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title reveal">Najczesciej zadawane pytania</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Jak wyglada proces wspolpracy?<span>+</span></div>
+        <div class="faq-a"><p>Zaczynamy od krotkiego briefu. W ciagu 2-5 dni przygotowujemy pelna analize z trzema raportami. Po wdrozeniu robimy re-audyt co 30 dni.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Czym rozniicie sie od typowych agencji?<span>+</span></div>
+        <div class="faq-a"><p>Kazda rekomendacja poparta konkretnym badaniem z liczbami i data. Nie zgadujemy. Codziennie aktualizujemy baze wiedzy o 154 zrodla.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Dla jakiego typu firm pracujecie?<span>+</span></div>
+        <div class="faq-a"><p>Lokalne firmy uslugowe, male sklepy, specjalisci, konsultanci, firmy startujace. Pomagamy byc najlepszym w swojej niszy.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Ile kosztuja Wasze uslugi?<span>+</span></div>
+        <div class="faq-a"><p>Od bezplatnej konsultacji po stale prowadzenie. Kazda wycena indywidualna &mdash; zalezy od branzy, konkurencji i zakresu.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Co dokladnie dostaje po analizie?<span>+</span></div>
+        <div class="faq-a"><p>Trzy raporty: pelen z dowodami, czysty bez zargonu i plan wdrozeniowy krok po kroku. Plus tabele porownawcza z konkurencja.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Czy moge sam wdrozyc rekomendacje?<span>+</span></div>
+        <div class="faq-a"><p>Tak. Raport jest napisany krok po kroku. Ale jesli wolisz &mdash; wdrazamy za Ciebie.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Co to jest re-audyt?<span>+</span></div>
+        <div class="faq-a"><p>Porownanie PRZED/PO co 30 dni. Sprawdzamy pozycje, analizujemy zmiany u konkurencji, planujemy kolejne 30 dni.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Czy obslugujecie wyszukiwarki AI?<span>+</span></div>
+        <div class="faq-a"><p>Tak. Optymalizujemy pod ChatGPT Search, Google AI Mode, Perplexity, Claude i Gemini.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="kontakt">
+  <div class="container">
+    <div class="reveal">
+      <h2>Gotowy zeby Twoja firma byla widoczna?</h2>
+      <p>Bezplatna analiza. Bez zobowiazan. Realne efekty albo zwrot pieniedzy.</p>
+      <a href="mailto:zautomatyzujsie@gmail.com" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px">Bezplatna analiza firmy</a>
+      <div class="sub">Lub napisz: <a href="mailto:zautomatyzujsie@gmail.com">zautomatyzujsie@gmail.com</a></div>
+      <div class="social-links">
+        <a href="https://instagram.com/zautomatyzujsie" target="_blank" aria-label="Instagram">IG</a>
+        <a href="https://facebook.com/zautomatyzujsie" target="_blank" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Zautomatyzuj Sie</div>
+        <p class="footer-tagline">Twoja firma. Widoczna.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/zautomatyzujsie" target="_blank" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/zautomatyzujsie" target="_blank" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Uslugi</h5>
+        <a href="#uslugi">Analiza firmy</a>
+        <a href="#uslugi">Strony WWW</a>
+        <a href="#uslugi">SEO</a>
+        <a href="#uslugi">Social Media</a>
+        <a href="#uslugi">Automatyzacja</a>
+      </div>
+      <div class="footer-col">
+        <h5>Firma</h5>
+        <a href="#case-study">Case Study</a>
+        <a href="#proces">O Nas</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <a href="mailto:zautomatyzujsie@gmail.com">zautomatyzujsie@gmail.com</a>
+        <a href="https://instagram.com/zautomatyzujsie" target="_blank">@zautomatyzujsie (IG)</a>
+        <a href="https://facebook.com/zautomatyzujsie" target="_blank">Zautomatyzuj Sie (FB)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Zautomatyzuj Sie. Wszelkie prawa zastrzezone.</div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
+mobileClose.addEventListener('click', closeMobile);
+function closeMobile() { mobileMenu.classList.remove('active'); }
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// Counter animation
+let counterDone = false;
+const statsBar = document.querySelector('.stats-bar');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !counterDone) {
+      counterDone = true;
+      document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 1500;
+        const start = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target) + (target > 100 ? '+' : '');
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+if (statsBar) counterObs.observe(statsBar);
+
+// FAQ accordion
+function toggleFaq(q) {
+  const item = q.parentElement;
+  const wasActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('active');
+    i.querySelector('.faq-a').style.maxHeight = null;
+  });
+  if (!wasActive) {
+    item.classList.add('active');
+    const answer = item.querySelector('.faq-a');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+</script>
+</body>
+</html>
