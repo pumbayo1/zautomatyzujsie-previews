@@ -3,430 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zautomatyzuj Się — Marketing oparty na danych</title>
-<link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<title>Zautomatyzuj Się — Twoja firma. Widoczna.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26;--warm-bg:#f5efe6}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
+:root{--orange:#E8520F;--hover:#D4442A;--green:#10B981;--bg:#FAFAF8;--heading:#1A1A2E;--body:#5A5A6E;--white:#fff}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--heading);background:var(--bg);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Outfit',sans-serif;color:var(--heading);line-height:1.2}
+a{text-decoration:none;color:inherit}
+
+/* P8 SPLIT LAYOUT — 50/50 alternating text|visual, strong vertical rhythm */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:auto;align-items:center}
+.split-reverse{direction:rtl}.split-reverse>*{direction:ltr}
+.split-text{padding:64px 60px}
+.split-visual{padding:64px 48px;background:rgba(232,82,15,.03);display:flex;flex-direction:column;justify-content:center;position:relative}
+.split-visual::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:3px;background:linear-gradient(180deg,var(--orange),transparent)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,247,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,111,71,.1)}
-nav .logo{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--dark)}
-nav .logo svg{flex-shrink:0}
-nav ul{list-style:none;display:flex;gap:28px}
-nav a{text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:color .2s}
-nav a:hover{color:var(--primary)}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.96);backdrop-filter:blur(14px);padding:0 60px;border-bottom:1px solid rgba(232,82,15,.08)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0;max-width:1400px;margin:0 auto}
+.nav-brand{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.25rem;display:flex;align-items:center;gap:8px}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.85rem;color:var(--body);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.btn-primary{background:var(--orange);color:#fff;padding:11px 28px;border-radius:6px;font-weight:600;font-size:.85rem;border:none;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--hover)}
+.btn-outline{border:1.5px solid var(--orange);color:var(--orange);padding:10px 28px;border-radius:6px;font-weight:600;font-size:.85rem;background:transparent;cursor:pointer;transition:all .2s}
+.btn-outline:hover{background:var(--orange);color:#fff}
+.label{font-size:.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--orange);font-weight:700;margin-bottom:12px}
 
-/* SPLIT SECTION */
-.split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
-.split.reverse{direction:rtl}
-.split.reverse>*{direction:ltr}
-.split-text{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
-.split-visual{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.section-label{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
+/* HERO SPLIT */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;align-items:center}
+.hero-text{padding:80px 60px}
+.hero-text h1{font-size:3.4rem;font-weight:700;margin-bottom:20px}
+.hero-text h1 span{background:linear-gradient(135deg,var(--orange),var(--hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-text p{color:var(--body);font-size:1.05rem;max-width:480px;margin-bottom:32px}
+.hero-btns{display:flex;gap:14px}
+.hero-visual{background:linear-gradient(135deg,rgba(232,82,15,.05),rgba(232,82,15,.02));padding:80px 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.hero-visual::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--orange),var(--hover))}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:360px}
+.stat-box{background:var(--white);padding:24px;border-radius:8px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.stat-box strong{font-family:'Outfit',sans-serif;font-size:1.6rem;color:var(--heading);display:block}
+.stat-box span{font-size:.72rem;color:var(--body);text-transform:uppercase;letter-spacing:1px}
 
-/* HERO */
-.hero-bg{background:linear-gradient(135deg,var(--dark) 0%,#5a4530 50%,var(--primary) 100%)}
-.hero-text{color:#fff}
-.hero-text h1{font-family:Georgia,serif;font-size:52px;line-height:1.15;margin-bottom:24px}
-.hero-text h1 em{font-style:italic;color:var(--accent)}
-.hero-text p{font-size:17px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:20px;max-width:460px}
-.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.hero-badge{padding:5px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:30px;font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
-.btn-split{display:inline-block;padding:16px 40px;background:var(--accent);color:var(--dark);font-weight:700;font-size:15px;text-decoration:none;border-radius:4px;transition:all .3s}
-.btn-split:hover{background:#fff;transform:translateY(-2px)}
-.hero-visual-bg{background:var(--warm-bg);padding:40px}
+/* PROBLEM SPLIT */
+.problem-list{display:flex;flex-direction:column;gap:20px}
+.prob-item{background:var(--white);padding:24px;border-radius:8px;border-left:3px solid var(--orange);box-shadow:0 1px 6px rgba(0,0,0,.03)}
+.prob-item h3{font-size:1rem;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.prob-item p{color:var(--body);font-size:.88rem}
+.solution-block{background:var(--orange);color:#fff;border-radius:8px;padding:28px;margin-top:16px}
+.solution-block h3{color:#fff;margin-bottom:6px}
+.solution-block p{color:rgba(255,255,255,.85);font-size:.9rem}
 
-/* SERVICES SPLIT */
-.svc-bg-left{background:#fff}
-.svc-bg-right{background:linear-gradient(135deg,var(--primary),var(--dark))}
-.svc-list{list-style:none}
-.svc-list li{padding:24px 0;border-bottom:1px solid rgba(0,0,0,.08);display:flex;align-items:flex-start;gap:20px}
-.svc-list li:last-child{border-bottom:none}
-.svc-list h3{font-size:18px;font-weight:700;margin-bottom:6px}
-.svc-list p{font-size:14px;color:#666;line-height:1.6}
+/* SERVICES GRID on visual side */
+.srv-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.srv-mini{background:var(--white);padding:20px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.03);transition:border-color .3s;border:1px solid transparent}
+.srv-mini:hover{border-color:var(--orange)}
+.srv-mini-icon{font-size:1.2rem;margin-bottom:8px;display:block}
+.srv-mini h3{font-size:.9rem;margin-bottom:4px}
+.srv-mini p{color:var(--body);font-size:.78rem}
 
-/* AUDIT AREAS */
-.audit-section{min-height:auto;padding:80px 48px;background:var(--warm-bg)}
-.audit-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:16px}
-.audit-subtitle{text-align:center;color:#888;font-size:15px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
-.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
-.audit-card{background:#fff;border-radius:16px;padding:28px 24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .3s,box-shadow .3s;border:1px solid rgba(139,111,71,.08)}
-.audit-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(139,111,71,.12)}
-.audit-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--dark)}
-.audit-card p{font-size:12px;color:#999;line-height:1.5}
+/* PROCESS */
+.proc-list{display:flex;flex-direction:column;gap:24px}
+.proc-step{display:flex;gap:16px;align-items:flex-start}
+.proc-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:700;color:var(--orange);opacity:.25;min-width:48px;line-height:1}
+.proc-step h3{font-size:.95rem;margin-bottom:4px}
+.proc-step p{color:var(--body);font-size:.85rem}
 
-/* COMPARISON TABLE */
-.comp-section{min-height:auto;padding:80px 48px;background:var(--dark)}
-.comp-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px;color:#fff}
-.comp-table{width:100%;max-width:900px;margin:0 auto;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05)}
-.comp-table th,.comp-table td{padding:16px 24px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
-.comp-table thead th{background:rgba(255,255,255,.08);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.8)}
-.comp-table tbody td{color:rgba(255,255,255,.6)}
-.comp-table tbody td:first-child{font-weight:600;color:rgba(255,255,255,.9)}
-.comp-table .us{color:#4ade80;font-weight:600}
-.comp-table .them{color:rgba(255,255,255,.35)}
-.comp-table tbody tr:last-child td{border-bottom:none}
+/* CASES */
+.case-stack{display:flex;flex-direction:column;gap:16px}
+.cs-card{background:var(--white);border-radius:8px;padding:20px;box-shadow:0 1px 6px rgba(0,0,0,.03);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.cs-card h3{font-size:.9rem;margin-bottom:4px}
+.cs-details{font-size:.8rem;color:var(--body)}
+.cs-badge{background:var(--green);color:#fff;font-size:.65rem;padding:3px 10px;border-radius:20px;font-weight:600;white-space:nowrap}
+.cs-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.cs-metric{font-size:.82rem;color:var(--body)}
+.cs-metric strong{color:var(--heading);display:block;font-size:.9rem}
 
-/* DELIVERABLES */
-.deliv-section{min-height:auto;padding:80px 48px;background:#fff}
-.deliv-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px}
-.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
-.deliv-card{background:var(--warm-bg);border-radius:16px;padding:32px 24px;text-align:center;border:1px solid rgba(139,111,71,.08)}
-.deliv-card .num{font-family:Georgia,serif;font-size:32px;font-weight:700;color:var(--accent);margin-bottom:8px}
-.deliv-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--dark)}
-.deliv-card p{font-size:13px;color:#888;line-height:1.5}
+/* WHY */
+.why-stack{display:flex;flex-direction:column;gap:16px}
+.why-item{padding:20px;border-left:2px solid var(--orange);background:var(--white);border-radius:0 8px 8px 0}
+.why-item h3{font-size:.95rem;margin-bottom:4px}
+.why-item p{color:var(--body);font-size:.85rem}
 
-/* CLIENTS */
-.clients-section{min-height:auto;padding:80px 48px;background:var(--warm-bg)}
-.clients-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px}
-.clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto}
-.client-card{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;border:1px solid rgba(139,111,71,.08);transition:transform .3s}
-.client-card:hover{transform:translateY(-4px)}
-.client-card h3{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px}
-.client-card p{font-size:12px;color:#888;line-height:1.5}
+/* PRICING */
+.pricing-section{padding:80px 60px;max-width:1400px;margin:0 auto}
+.pricing-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
+.pr-card{background:var(--white);border:1px solid #eee;border-radius:8px;padding:28px 20px;text-align:center;transition:border-color .3s}
+.pr-card:hover{border-color:var(--orange)}
+.pr-card.featured{border:2px solid var(--orange);position:relative}
+.pr-card.featured::before{content:'\2605 POPULARNY';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:.62rem;padding:3px 12px;border-radius:20px;font-weight:700;white-space:nowrap}
+.pr-name{font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:8px}
+.pr-price{font-size:1.8rem;font-weight:700;color:var(--orange)}
+.pr-period{font-size:.75rem;color:var(--body);display:block;margin-bottom:16px}
+.pr-features{list-style:none;text-align:left;margin-bottom:20px}
+.pr-features li{font-size:.78rem;color:var(--body);padding:4px 0;border-bottom:1px solid #f5f5f5}
+.pr-features li::before{content:'\2713 ';color:var(--green)}
 
-/* STATS SPLIT */
-.stats-bg{background:linear-gradient(135deg,var(--green),#3a6349)}
-.stats-content{color:#fff}
-.stat-item{margin-bottom:48px}
-.stat-item:last-child{margin-bottom:0}
-.stat-item .num{font-family:Georgia,serif;font-size:72px;font-weight:700;line-height:1}
-.stat-item .label{font-size:15px;color:rgba(255,255,255,.7);margin-top:4px}
-.stats-visual{background:var(--bg)}
+/* GUARANTEE SPLIT */
+.guar-center{text-align:center;max-width:500px}
+.guar-icon{font-size:3.5rem;margin-bottom:16px}
+.guar-center h2{font-size:1.8rem;margin-bottom:12px}
+.guar-center p{color:var(--body);margin-bottom:20px}
+.guar-opts{display:flex;flex-direction:column;gap:12px}
+.guar-opt{border:1px solid var(--orange);border-radius:8px;padding:16px 20px;text-align:left}
+.guar-opt strong{color:var(--orange);display:block;margin-bottom:2px}
+.guar-opt span{color:var(--body);font-size:.85rem}
 
-/* PROCESS SPLIT */
-.process-bg{background:#fff}
-.process-visual-bg{background:linear-gradient(135deg,var(--rose),#a07060)}
-.process-steps{counter-reset:proc}
-.process-steps .pstep{counter-increment:proc;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.08);display:flex;gap:20px;align-items:flex-start}
-.process-steps .pstep:last-child{border-bottom:none}
-.process-steps .pstep::before{content:counter(proc,decimal-leading-zero);font-family:Georgia,serif;font-size:36px;color:var(--accent);font-weight:700;min-width:60px}
-.pstep-content h3{font-size:18px;font-weight:700;margin-bottom:4px}
-.pstep-content p{font-size:14px;color:#666;line-height:1.6}
+/* FAQ */
+.faq-section{padding:80px 60px;max-width:900px;margin:0 auto}
+.faq-item{border-bottom:1px solid #eee}
+.faq-q{padding:18px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.95rem}
+.faq-q .icon{color:var(--orange);font-size:1.2rem;transition:transform .3s}
+.faq-q.active .icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s;color:var(--body);font-size:.9rem}
+.faq-a.open{max-height:300px;padding-bottom:16px}
 
-/* PRICING SECTION */
-.pricing-section{min-height:auto;padding:80px 0;background:var(--dark)}
-.pricing-inner{max-width:1200px;margin:0 auto;padding:0 48px}
-.pricing-title{font-family:Georgia,serif;font-size:48px;color:#fff;text-align:center;margin-bottom:60px}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.p-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:40px 32px;color:#fff;transition:transform .3s}
-.p-card:hover{transform:translateY(-6px)}
-.p-card.featured{background:rgba(255,255,255,.12);border-color:var(--accent)}
-.p-card h3{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.5);margin-bottom:16px}
-.p-card .price{font-family:Georgia,serif;font-size:44px;font-weight:700;margin-bottom:6px}
-.p-card .price-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px}
-.p-card ul{list-style:none;margin-bottom:32px}
-.p-card ul li{font-size:14px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.75)}
-.p-card ul li:last-child{border-bottom:none}
-.btn-price{display:block;text-align:center;padding:14px;background:var(--accent);color:var(--dark);font-weight:700;border-radius:6px;text-decoration:none;transition:background .3s}
-.btn-price:hover{background:#fff}
-
-/* CTA */
-.cta-split{min-height:60vh}
-.cta-bg{background:var(--accent)}
-.cta-content h2{font-family:Georgia,serif;font-size:44px;line-height:1.2;margin-bottom:20px}
-.cta-content p{font-size:16px;color:rgba(45,42,38,.7);margin-bottom:32px;max-width:400px}
-.btn-dark{display:inline-block;padding:16px 40px;background:var(--text);color:#fff;font-weight:700;font-size:15px;text-decoration:none;border-radius:4px;transition:all .3s}
-.btn-dark:hover{background:var(--dark);transform:translateY(-2px)}
-.cta-visual-side{background:var(--dark)}
+/* CTA FINAL SPLIT */
+.cta-text{text-align:left}
+.cta-text h2{font-size:2.2rem;margin-bottom:16px}
+.cta-text p{color:var(--body);margin-bottom:28px;font-size:1rem;max-width:420px}
+.cta-contacts{display:flex;flex-direction:column;gap:8px;margin-top:20px;color:var(--body);font-size:.88rem}
+.cta-visual-inner{display:flex;flex-direction:column;align-items:center;gap:16px}
+.cta-big-email{font-family:'Outfit',sans-serif;font-size:1.1rem;color:var(--orange);font-weight:600}
+.cta-social{font-size:.9rem;color:var(--body)}
 
 /* FOOTER */
-footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:center;background:var(--text);color:rgba(255,255,255,.4);font-size:13px}
+footer{background:var(--heading);color:#ccc;padding:56px 60px}
+.footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-grid h4{color:#fff;font-family:'Outfit',sans-serif;margin-bottom:14px;font-size:.95rem}
+.footer-grid p,.footer-grid a{color:#999;font-size:.84rem;line-height:2;display:block}
+.footer-grid a:hover{color:var(--orange)}
+.footer-copy{text-align:center;margin-top:36px;padding-top:20px;border-top:1px solid #333;font-size:.78rem;color:#666;max-width:1400px;margin-left:auto;margin-right:auto}
 
-@media(max-width:900px){
-  .split{grid-template-columns:1fr}
-  .split.reverse{direction:ltr}
-  .split-text{padding:60px 32px}
-  .split-visual{min-height:50vh}
-  .pricing-grid,.audit-grid,.deliv-grid,.clients-grid{grid-template-columns:1fr}
-  nav ul{display:none}
-  nav{padding:16px 24px}
-  .hero-text h1{font-size:36px}
-  .audit-section,.comp-section,.deliv-section,.clients-section{padding:60px 24px}
-  .comp-table th,.comp-table td{padding:10px 14px;font-size:12px}
+@media(max-width:768px){
+.hero-split,.split{grid-template-columns:1fr}
+.split-reverse{direction:ltr}
+.split-text,.split-visual,.hero-text,.hero-visual{padding:48px 24px}
+.hero-text h1{font-size:2.2rem}
+nav{padding:0 20px}
+.nav-links{display:none}
+.pricing-section,.faq-section{padding:48px 20px}
+.pricing-row{grid-template-columns:1fr 1fr}
+.stat-grid{max-width:100%}
+.srv-mini-grid{grid-template-columns:1fr}
+.split-visual::before{display:none}
+.hero-visual::before{display:none}
+.footer-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">
-    <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/><circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".2"/><path d="M12 14h12l-12 14h12" stroke="#8b6f47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="#6b5435" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="12" cy="14" r="2" fill="#8b6f47"/><circle cx="24" cy="14" r="2" fill="#b89773"/><circle cx="12" cy="28" r="2" fill="#b89773"/><circle cx="24" cy="28" r="2" fill="#8b6f47"/><circle cx="8" cy="21" r="1.2" fill="#b89773" opacity=".6"/><circle cx="40" cy="21" r="1.2" fill="#8b6f47" opacity=".6"/></svg>
-    Zautomatyzuj Się
-  </div>
-  <ul>
-    <li><a href="#uslugi">Usługi</a></li>
-    <li><a href="#audyt">Audyt</a></li>
-    <li><a href="#proces">Proces</a></li>
-    <li><a href="#cennik">Cennik</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
-</nav>
+<nav><div class="nav-inner">
+<div class="nav-brand"><span class="nav-dot"></span> Zautomatyzuj Się</div>
+<div class="nav-links">
+<a href="#uslugi">Usługi</a><a href="#proces">Jak Działamy</a><a href="#case">Case Study</a><a href="#cennik">Cennik</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a>
+<button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Rozpocznij współpracę</button>
+</div>
+</div></nav>
 
-<!-- HERO -->
-<section class="split">
-  <div class="split-text hero-text hero-bg" style="padding-top:120px">
-    <div class="section-label" style="color:var(--accent)">Marketing oparty na danych</div>
-    <h1>Nie zgadujemy.<br><em>Analizujemy.</em></h1>
-    <p>150+ źródeł badawczych dziennie. 9 obszarów audytu. Każda rekomendacja poparta realnymi badaniami, nie intuicją. Twoja firma zasługuje na więcej niż "best practices".</p>
-    <div class="hero-badges">
-      <span class="hero-badge">9 obszarów audytu</span>
-      <span class="hero-badge">100+ postów analizy</span>
-      <span class="hero-badge">AI Search</span>
-      <span class="hero-badge">Re-audyt 30 dni</span>
-    </div>
-    <a href="#cennik" class="btn-split">Sprawdź ofertę</a>
-  </div>
-  <div class="split-visual hero-visual-bg">
-    <!-- Data automation SVG -->
-    <svg width="360" height="400" viewBox="0 0 360 400" fill="none">
-      <!-- Dashboard frame -->
-      <rect x="20" y="30" width="320" height="340" rx="16" stroke="#8b6f47" stroke-width="2" fill="none"/>
-      <rect x="20" y="30" width="320" height="40" rx="16" fill="#8b6f47" opacity=".08"/>
-      <!-- Window dots -->
-      <circle cx="44" cy="50" r="5" fill="#c08e7d" opacity=".6"/>
-      <circle cx="60" cy="50" r="5" fill="#b89773" opacity=".6"/>
-      <circle cx="76" cy="50" r="5" fill="#4a7c59" opacity=".6"/>
-      <!-- Chart bars -->
-      <rect x="50" y="200" width="40" height="140" rx="4" fill="#b89773" opacity=".3"/>
-      <rect x="50" y="250" width="40" height="90" rx="4" fill="#b89773"/>
-      <rect x="110" y="200" width="40" height="140" rx="4" fill="#4a7c59" opacity=".3"/>
-      <rect x="110" y="220" width="40" height="120" rx="4" fill="#4a7c59"/>
-      <rect x="170" y="200" width="40" height="140" rx="4" fill="#c08e7d" opacity=".3"/>
-      <rect x="170" y="260" width="40" height="80" rx="4" fill="#c08e7d"/>
-      <rect x="230" y="200" width="40" height="140" rx="4" fill="#8b6f47" opacity=".3"/>
-      <rect x="230" y="210" width="40" height="130" rx="4" fill="#8b6f47"/>
-      <rect x="290" y="200" width="40" height="140" rx="4" fill="#4a7c59" opacity=".3"/>
-      <rect x="290" y="230" width="40" height="110" rx="4" fill="#4a7c59"/>
-      <!-- Trend line -->
-      <path d="M70 240L130 210L190 255L250 200L310 220" stroke="#6b5435" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <circle cx="70" cy="240" r="4" fill="#6b5435"/>
-      <circle cx="130" cy="210" r="4" fill="#6b5435"/>
-      <circle cx="190" cy="255" r="4" fill="#6b5435"/>
-      <circle cx="250" cy="200" r="4" fill="#6b5435"/>
-      <circle cx="310" cy="220" r="4" fill="#6b5435"/>
-      <!-- KPI cards -->
-      <rect x="50" y="90" width="120" height="80" rx="10" fill="#fff" stroke="#b89773" stroke-width="1" opacity=".8"/>
-      <text x="68" y="118" font-size="10" fill="#8b6f47" font-family="Inter" font-weight="600">SEO Score</text>
-      <text x="68" y="150" font-size="28" fill="#6b5435" font-weight="900" font-family="Inter">94%</text>
-      <rect x="190" y="90" width="140" height="80" rx="10" fill="#fff" stroke="#4a7c59" stroke-width="1" opacity=".8"/>
-      <text x="208" y="118" font-size="10" fill="#4a7c59" font-family="Inter" font-weight="600">Organic Traffic</text>
-      <text x="208" y="150" font-size="28" fill="#4a7c59" font-weight="900" font-family="Inter">+147%</text>
-      <!-- Circuit dots -->
-      <circle cx="30" cy="380" r="3" fill="#b89773" opacity=".4"/>
-      <circle cx="350" cy="380" r="3" fill="#b89773" opacity=".4"/>
-      <line x1="30" y1="370" x2="30" y2="377" stroke="#b89773" stroke-width="1" opacity=".3"/>
-      <line x1="350" y1="370" x2="350" y2="377" stroke="#b89773" stroke-width="1" opacity=".3"/>
-    </svg>
-  </div>
-</section>
+<div class="hero-split">
+<div class="hero-text">
+<div class="label">AI-Powered Marketing</div>
+<h1><span>Twoja firma.</span><br><span>Widoczna.</span></h1>
+<p>Łączymy sztuczną inteligencję z marketingiem cyfrowym, żeby Twoja firma była #1 w Google, social media i w głowach klientów.</p>
+<div class="hero-btns">
+<button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Bezpłatna konsultacja</button>
+<button class="btn-outline" onclick="document.getElementById('cennik').scrollIntoView({behavior:'smooth'})">Zobacz cennik</button>
+</div>
+</div>
+<div class="hero-visual">
+<div class="stat-grid">
+<div class="stat-box"><strong>1089+</strong><span>źródeł danych</span></div>
+<div class="stat-box"><strong>543+</strong><span>wniosków AI</span></div>
+<div class="stat-box"><strong>154</strong><span>monitorowanych</span></div>
+<div class="stat-box"><strong>#1</strong><span>pozycje Google</span></div>
+</div>
+</div>
+</div>
 
-<!-- SERVICES -->
-<section class="split reverse" id="uslugi">
-  <div class="split-text svc-bg-left">
-    <div class="section-label">Co robimy</div>
-    <h2 style="font-family:Georgia,serif;font-size:40px;margin-bottom:36px">Usługi dopasowane<br>do Twojego biznesu</h2>
-    <ul class="svc-list">
-      <li>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M6 34L14 18L22 26L30 10L34 6" stroke="#8b6f47" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="34" cy="6" r="3" fill="#b89773"/></svg>
-        <div><h3>Audyt SEO</h3><p>Kompleksowa analiza widoczności w wyszukiwarkach z konkretnym planem działania. Badamy techniczne SEO, treści, linki zwrotne i strukturę witryny. Każda rekomendacja poparta badaniami.</p></div>
-      </li>
-      <li>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" rx="6" stroke="#8b6f47" stroke-width="2.5" fill="none"/><line x1="12" y1="14" x2="28" y2="14" stroke="#b89773" stroke-width="2"/><line x1="12" y1="20" x2="24" y2="20" stroke="#b89773" stroke-width="2"/><line x1="12" y1="26" x2="20" y2="26" stroke="#b89773" stroke-width="2"/></svg>
-        <div><h3>Budowa stron</h3><p>Strony zoptymalizowane pod konwersję i widoczność od pierwszego dnia. Responsywne, szybkie, zgodne z Core Web Vitals.</p></div>
-      </li>
-      <li>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#8b6f47" stroke-width="2.5" fill="none"/><path d="M14 18C14 18 16 14 20 14S26 18 26 18" stroke="#b89773" stroke-width="2" fill="none"/><path d="M14 24C14 24 16 28 20 28S26 24 26 24" stroke="#b89773" stroke-width="2" fill="none"/></svg>
-        <div><h3>Social Media</h3><p>Instagram, Facebook, TikTok z taką samą rygorem jak SEO. 100+ postów analizy, 5-10 konkurentów. Strategia oparta na danych, nie na trendach.</p></div>
-      </li>
-      <li>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 4L36 12V28L20 36L4 28V12Z" stroke="#8b6f47" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="5" fill="#4a7c59" opacity=".4"/></svg>
-        <div><h3>AI Search + Re-audyt</h3><p>Optymalizacja pod ChatGPT, Perplexity, Claude, Gemini plus comiesięczna weryfikacja postępów. Ciągłe doskonalenie, nie jednorazowa akcja.</p></div>
-      </li>
-    </ul>
-  </div>
-  <div class="split-visual svc-bg-right" style="padding:60px">
-    <svg width="300" height="340" viewBox="0 0 300 340" fill="none">
-      <circle cx="150" cy="170" r="120" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none"/>
-      <circle cx="150" cy="170" r="80" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none"/>
-      <circle cx="150" cy="170" r="40" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none"/>
-      <circle cx="150" cy="50" r="12" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
-      <circle cx="250" cy="130" r="10" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
-      <circle cx="230" cy="270" r="14" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
-      <circle cx="60" cy="240" r="11" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
-      <circle cx="150" cy="170" r="8" fill="rgba(255,255,255,.4)"/>
-      <!-- Connection lines -->
-      <line x1="150" y1="58" x2="150" y2="130" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-      <line x1="158" y1="170" x2="240" y2="130" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-      <line x1="155" y1="178" x2="225" y2="260" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-      <line x1="142" y1="175" x2="70" y2="235" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-      <text x="128" y="16" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">SEO</text>
-      <text x="255" y="135" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">AI</text>
-      <text x="210" y="300" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">SOCIAL</text>
-      <text x="25" y="265" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">WEB</text>
-    </svg>
-  </div>
-</section>
+<div class="split" id="problem">
+<div class="split-visual" style="background:rgba(232,82,15,.02)">
+<div class="problem-list">
+<div class="prob-item"><h3><span>✕</span> Brak strony internetowej</h3><p>83% klientów szuka usług w Google. Bez strony — nie istniejesz.</p></div>
+<div class="prob-item"><h3><span>?</span> Brak widoczności</h3><p>Masz stronę, ale nikt jej nie znajduje. Konkurencja wyżej.</p></div>
+<div class="prob-item"><h3><span>↓</span> Social bez efektów</h3><p>Posty bez strategii nie przynoszą klientów.</p></div>
+</div>
+</div>
+<div class="split-text">
+<div class="label">Problem</div>
+<h2 style="font-size:2rem;margin-bottom:12px">Czy Twoja firma istnieje w internecie?</h2>
+<p style="color:var(--body);font-size:.95rem;margin-bottom:20px">Większość firm traci klientów, bo nie widać ich online. Sprawdź, czy to Twój problem.</p>
+<div class="solution-block">
+<h3>Rozwiązanie?</h3>
+<p>Kompleksowa strategia oparta na danych i AI — od strony WWW, przez SEO, po social media.</p>
+</div>
+</div>
+</div>
 
-<!-- AUDIT AREAS -->
-<section class="audit-section" id="audyt">
-  <h2>Co analizujemy</h2>
-  <p class="audit-subtitle">9 obszarów kompleksowego audytu z rygorem naukowym</p>
-  <div class="audit-grid">
-    <div class="audit-card"><h3>Strona www</h3><p>UX, szybkość, mobilność, struktura, konwersja</p></div>
-    <div class="audit-card"><h3>SEO & Google</h3><p>Techniczne SEO, treści, linki, pozycje fraz</p></div>
-    <div class="audit-card"><h3>Google Business Profile</h3><p>Optymalizacja wizytówki, zdjęcia, kategorie</p></div>
-    <div class="audit-card"><h3>Opinie</h3><p>Analiza opinii, sentyment, porównanie z konkurencją</p></div>
-    <div class="audit-card"><h3>Instagram</h3><p>100+ postów, 5-10 konkurentów, engagement</p></div>
-    <div class="audit-card"><h3>Facebook</h3><p>100+ postów, 5-10 konkurentów, zasięgi</p></div>
-    <div class="audit-card"><h3>TikTok</h3><p>100+ filmów, 5-10 konkurentów, trendy</p></div>
-    <div class="audit-card"><h3>AI Search</h3><p>ChatGPT, Perplexity, Claude, Gemini</p></div>
-    <div class="audit-card"><h3>Linki zewnętrzne</h3><p>Profil linkowy, katalogi, wzmianki NAP</p></div>
-  </div>
-</section>
+<div class="split split-reverse" id="uslugi">
+<div class="split-text">
+<div class="label">Usługi</div>
+<h2 style="font-size:2rem;margin-bottom:12px">Co robimy</h2>
+<p style="color:var(--body);font-size:.95rem">Pełen pakiet usług marketingowych wzmocnionych sztuczną inteligencją. Od audytu po stałe prowadzenie.</p>
+</div>
+<div class="split-visual">
+<div class="srv-mini-grid">
+<div class="srv-mini"><span class="srv-mini-icon">≡</span><h3>Analiza firmy</h3><p>Audyt i analiza 1089+ źródeł z AI.</p></div>
+<div class="srv-mini"><span class="srv-mini-icon">○</span><h3>Strony WWW</h3><p>Nowoczesne strony pod konwersję i SEO.</p></div>
+<div class="srv-mini"><span class="srv-mini-icon">⌕</span><h3>SEO + AI Search</h3><p>Pozycjonowanie w Google i AI.</p></div>
+<div class="srv-mini"><span class="srv-mini-icon">■</span><h3>Social media</h3><p>Strategia, content, reklamy.</p></div>
+<div class="srv-mini"><span class="srv-mini-icon">⚙</span><h3>Re-audyt</h3><p>Mierzymy efekty co 30 dni.</p></div>
+<div class="srv-mini"><span class="srv-mini-icon">★</span><h3>Prowadzenie</h3><p>Kompleksowa opieka bez umów.</p></div>
+</div>
+</div>
+</div>
 
-<!-- COMPARISON -->
-<section class="comp-section">
-  <h2>My vs typowa agencja</h2>
-  <table class="comp-table">
-    <thead><tr><th>Aspekt</th><th>Zautomatyzuj Się</th><th>Typowa agencja</th></tr></thead>
-    <tbody>
-      <tr><td>Źródła</td><td class="us">Badania naukowe i studia</td><td class="them">Best practices</td></tr>
-      <tr><td>Konkurencja</td><td class="us">Cała branża</td><td class="them">3-5 firm</td></tr>
-      <tr><td>Social media</td><td class="us">100+ postów, rygor SEO</td><td class="them">Powierzchownie</td></tr>
-      <tr><td>Raporty</td><td class="us">3 HTML z dowodami</td><td class="them">1 PDF</td></tr>
-      <tr><td>Mierzalność</td><td class="us">Re-audyt co 30 dni</td><td class="them">Nadzieja</td></tr>
-      <tr><td>Ciągłość</td><td class="us">Stała optymalizacja</td><td class="them">Jednorazowo</td></tr>
-      <tr><td>AI Search</td><td class="us">Aktywna optymalizacja</td><td class="them">Ignorowane</td></tr>
-    </tbody>
-  </table>
-</section>
+<div class="split" id="proces">
+<div class="split-visual">
+<div class="proc-list">
+<div class="proc-step"><div class="proc-num">01</div><div><h3>Konsultacja</h3><p>Bezpłatna rozmowa o Twojej firmie, celach i wyzwaniach.</p></div></div>
+<div class="proc-step"><div class="proc-num">02</div><div><h3>Analiza z AI</h3><p>Badamy 1089+ źródeł, konkurencję i rynek.</p></div></div>
+<div class="proc-step"><div class="proc-num">03</div><div><h3>Plan działania</h3><p>Konkretny plan z priorytetami i harmonogramem.</p></div></div>
+<div class="proc-step"><div class="proc-num">04</div><div><h3>Wdrożenie + Efekty</h3><p>Realizacja i re-audyt co 30 dni.</p></div></div>
+</div>
+</div>
+<div class="split-text">
+<div class="label">Proces</div>
+<h2 style="font-size:2rem;margin-bottom:12px">Jak działamy</h2>
+<p style="color:var(--body);font-size:.95rem">4 proste kroki od bezpłatnej konsultacji do mierzalnych efektów dla Twojej firmy.</p>
+</div>
+</div>
 
-<!-- DELIVERABLES -->
-<section class="deliv-section">
-  <h2>Co dostarczamy</h2>
-  <div class="deliv-grid">
-    <div class="deliv-card"><div class="num">01</div><h3>Pełny raport z dowodami</h3><p>Szczegółowa analiza ze źródłami badawczymi</p></div>
-    <div class="deliv-card"><div class="num">02</div><h3>Czysty raport</h3><p>Przejrzysty raport zrozumiały dla każdego</p></div>
-    <div class="deliv-card"><div class="num">03</div><h3>Plan krok po kroku</h3><p>Konkretny plan z priorytetami i terminami</p></div>
-    <div class="deliv-card"><div class="num">04</div><h3>Tabela porównawcza</h3><p>Porównanie z konkurencją w każdym obszarze</p></div>
-    <div class="deliv-card"><div class="num">05</div><h3>Gotowe materiały</h3><p>Emaile, posty, opisy — gotowe do użycia</p></div>
-    <div class="deliv-card"><div class="num">06</div><h3>Roadmapa 90 dni</h3><p>Strategiczny plan na 3 miesiące</p></div>
-  </div>
-</section>
+<div class="split split-reverse" id="case">
+<div class="split-text">
+<div class="label">Case Study</div>
+<h2 style="font-size:2rem;margin-bottom:12px">Efekty naszej pracy</h2>
+<p style="color:var(--body);font-size:.95rem">Konkretne wyniki dla konkretnych firm. Sprawdź, co osiągnęliśmy.</p>
+</div>
+<div class="split-visual">
+<div class="case-stack">
+<div class="cs-card"><div><h3>Firma budowlana — Kielce</h3><div class="cs-details">0 → 16 stron w Google, 0 → #1 Maps</div></div><span class="cs-badge">7 dni</span></div>
+<div class="cs-card"><div><h3>Salon beauty — Warszawa</h3><div class="cs-details">+35% IG followers, 0 → 3 frazy top 10</div></div><span class="cs-badge">30 dni</span></div>
+<div class="cs-card"><div><h3>Fizjoterapia — Kraków</h3><div class="cs-details">0 → #6 Maps, ocena 4.2 → 4.6★</div></div><span class="cs-badge">30 dni</span></div>
+<div class="cs-card"><div><h3>Szkoła językowa — Łódź</h3><div class="cs-details">4x zapytań, 0 → #8 Maps</div></div><span class="cs-badge">30 dni</span></div>
+</div>
+</div>
+</div>
 
-<!-- CLIENTS -->
-<section class="clients-section">
-  <h2>Dla kogo pracujemy</h2>
-  <div class="clients-grid">
-    <div class="client-card"><h3>Usługi lokalne</h3><p>Hydraulicy, salony, gabinety</p></div>
-    <div class="client-card"><h3>Małe sklepy i marki</h3><p>E-commerce, lokalne butiki</p></div>
-    <div class="client-card"><h3>Specjaliści</h3><p>Prawnicy, lekarze, coachowie</p></div>
-    <div class="client-card"><h3>Startupy</h3><p>Szybki, mierzalny wzrost</p></div>
-  </div>
-</section>
+<div class="split">
+<div class="split-visual">
+<div class="why-stack">
+<div class="why-item"><h3>Dane, nie opinie</h3><p>1089+ źródeł danych i AI zamiast przeczuć.</p></div>
+<div class="why-item"><h3>Konkurencja na 2 tory</h3><p>SEO i AI Search — widoczność w obu kanałach.</p></div>
+<div class="why-item"><h3>Kompletny pakiet</h3><p>Strona, SEO, social — wszystko w jednym.</p></div>
+<div class="why-item"><h3>Bez umów</h3><p>Współpracujesz, bo chcesz. Bez zobowiązań.</p></div>
+</div>
+</div>
+<div class="split-text">
+<div class="label">Dlaczego my</div>
+<h2 style="font-size:2rem;margin-bottom:12px">Czemu warto z nami pracować</h2>
+<p style="color:var(--body);font-size:.95rem">Łączymy dane, AI i doświadczenie. Bez zbędnych obietnic — tylko mierzalne efekty.</p>
+</div>
+</div>
 
-<!-- STATS -->
-<section class="split">
-  <div class="split-text stats-content stats-bg">
-    <div class="section-label" style="color:rgba(255,255,255,.5)">W liczbach</div>
-    <div class="stat-item"><div class="num">150+</div><div class="label">Źródeł badawczych analizowanych dziennie</div></div>
-    <div class="stat-item"><div class="num">30</div><div class="label">Dniowe cykle re-audytu i optymalizacji</div></div>
-    <div class="stat-item"><div class="num">97%</div><div class="label">Satysfakcji wśród naszych klientów</div></div>
-  </div>
-  <div class="split-visual stats-visual">
-    <svg width="320" height="320" viewBox="0 0 320 320" fill="none">
-      <circle cx="160" cy="160" r="120" stroke="#b89773" stroke-width="8" fill="none" opacity=".2"/>
-      <circle cx="160" cy="160" r="120" stroke="#4a7c59" stroke-width="8" fill="none" stroke-dasharray="692" stroke-dashoffset="20" stroke-linecap="round"/>
-      <text x="160" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="52" font-weight="700" fill="#2d2a26">97%</text>
-      <text x="160" y="180" text-anchor="middle" font-family="Inter" font-size="14" fill="#888">satysfakcji</text>
-    </svg>
-  </div>
-</section>
+<div class="pricing-section" id="cennik">
+<div class="label" style="text-align:center">Cennik</div>
+<h2 style="font-size:2rem;text-align:center;margin-bottom:8px">Pakiety</h2>
+<p style="color:var(--body);text-align:center;max-width:500px;margin:0 auto">Transparentne ceny. Bez ukrytych kosztów.</p>
+<div class="pricing-row">
+<div class="pr-card">
+<div class="pr-name">Konsultacja</div><div class="pr-price">0 zł</div><span class="pr-period">jednorazowo</span>
+<ul class="pr-features"><li>30 min rozmowa</li><li>Wstępna analiza</li><li>Rekomendacje</li></ul>
+<button class="btn-outline" style="width:100%">Umów się</button></div>
+<div class="pr-card">
+<div class="pr-name">Audyt</div><div class="pr-price">1 299 zł</div><span class="pr-period">jednorazowo</span>
+<ul class="pr-features"><li>Pełna analiza AI</li><li>1089+ źródeł</li><li>Raport konkurencji</li><li>Rekomendacje</li></ul>
+<button class="btn-outline" style="width:100%">Zamów</button></div>
+<div class="pr-card featured">
+<div class="pr-name">Audyt + Plan</div><div class="pr-price">1 999 zł</div><span class="pr-period">jednorazowo</span>
+<ul class="pr-features"><li>Wszystko z Audytu</li><li>Plan działania</li><li>Harmonogram</li><li>Priorytety</li><li>Budżet</li></ul>
+<button class="btn-primary" style="width:100%">Wybierz</button></div>
+<div class="pr-card">
+<div class="pr-name">Budowa</div><div class="pr-price">3 499 zł</div><span class="pr-period">jednorazowo</span>
+<ul class="pr-features"><li>Strona WWW</li><li>SEO on-page</li><li>Google Business</li><li>Social media setup</li></ul>
+<button class="btn-outline" style="width:100%">Zamów</button></div>
+<div class="pr-card">
+<div class="pr-name">Prowadzenie</div><div class="pr-price">od 1 999 zł</div><span class="pr-period">/miesiąc</span>
+<ul class="pr-features"><li>SEO ciągłe</li><li>Social media</li><li>Re-audyt co 30 dni</li><li>Raporty</li><li>Bez umów</li></ul>
+<button class="btn-outline" style="width:100%">Wybierz</button></div>
+</div>
+</div>
 
-<!-- PROCESS -->
-<section class="split reverse" id="proces">
-  <div class="split-text process-bg">
-    <div class="section-label">Jak pracujemy</div>
-    <h2 style="font-family:Georgia,serif;font-size:40px;margin-bottom:36px">Sprawdzony proces<br>w 4 krokach</h2>
-    <div class="process-steps">
-      <div class="pstep"><div class="pstep-content"><h3>Analiza</h3><p>Dogłębny audyt 9 obszarów obecności online i badanie całej konkurencji w branży.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Strategia</h3><p>Plan działania oparty na danych z ponad 150 źródeł. Każda rekomendacja z dowodem.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Wdrożenie</h3><p>Realizacja strategii z gotowymi materiałami, mierzalnymi celami i kamieniami milowymi.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy, korygujemy, optymalizujemy. Ciągłe doskonalenie.</p></div></div>
-    </div>
-  </div>
-  <div class="split-visual process-visual-bg" style="padding:60px">
-    <svg width="280" height="320" viewBox="0 0 280 320" fill="none">
-      <circle cx="140" cy="50" r="30" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
-      <circle cx="140" cy="130" r="30" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
-      <circle cx="140" cy="210" r="30" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
-      <circle cx="140" cy="290" r="30" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
-      <line x1="140" y1="80" x2="140" y2="100" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-      <line x1="140" y1="160" x2="140" y2="180" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-      <line x1="140" y1="240" x2="140" y2="260" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-      <text x="140" y="55" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Georgia" font-size="18">01</text>
-      <text x="140" y="135" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Georgia" font-size="18">02</text>
-      <text x="140" y="215" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Georgia" font-size="18">03</text>
-      <text x="140" y="295" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Georgia" font-size="18">04</text>
-    </svg>
-  </div>
-</section>
+<div class="split split-reverse">
+<div class="split-text" style="display:flex;justify-content:center">
+<div class="guar-center">
+<div class="guar-icon">🛡</div>
+<h2>Realne efekty albo zwrot pieniędzy</h2>
+<p>Wierzymy w nasze usługi. Dlatego dajemy gwarancję mierzalnych efektów.</p>
+<div class="guar-opts">
+<div class="guar-opt"><strong>100% zwrot</strong><span>jeśli nie dostarczymy obiecanych efektów</span></div>
+<div class="guar-opt"><strong>30 dni gratis</strong><span>dodatkowej optymalizacji za darmo</span></div>
+</div>
+</div>
+</div>
+<div class="split-visual" style="min-height:400px;display:flex;align-items:center;justify-content:center">
+<div style="font-size:6rem;opacity:.15;font-family:'Outfit',sans-serif;font-weight:700;color:var(--orange)">100%</div>
+</div>
+</div>
 
-<!-- PRICING -->
-<section class="pricing-section" id="cennik">
-  <div class="pricing-inner">
-    <h2 class="pricing-title">Cennik</h2>
-    <div class="pricing-grid">
-      <div class="p-card">
-        <h3>Full Audit</h3>
-        <div class="price">2 900 zł</div>
-        <div class="price-sub">Realizacja: 2-5 dni roboczych</div>
-        <ul><li>Pełny audyt 9 obszarów</li><li>Analiza całej konkurencji</li><li>3 raporty HTML z dowodami</li><li>Plan krok po kroku</li><li>Gotowe materiały</li><li>Roadmapa 90 dni</li></ul>
-        <a href="#kontakt" class="btn-price">Zamów audyt</a>
-      </div>
-      <div class="p-card featured">
-        <h3>Build from Zero</h3>
-        <div class="price">8 900 zł</div>
-        <div class="price-sub">Realizacja: 7-14 dni roboczych</div>
-        <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO on-page</li><li>Social media strategia</li><li>AI Search optymalizacja</li><li>Konfiguracja analityki</li></ul>
-        <a href="#kontakt" class="btn-price">Zaczynamy</a>
-      </div>
-      <div class="p-card">
-        <h3>Re-Audit</h3>
-        <div class="price">1 400 zł</div>
-        <div class="price-sub">Co 30 dni / cyklicznie</div>
-        <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring AI Search</li></ul>
-        <a href="#kontakt" class="btn-price">Subskrybuj</a>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="faq-section" id="faq">
+<div class="label" style="text-align:center">FAQ</div>
+<h2 style="font-size:2rem;text-align:center;margin-bottom:32px">Najczęściej zadawane pytania</h2>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Ile trwa wdrożenie?<span class="icon">+</span></div><div class="faq-a">Pierwsze efekty widoczne w ciągu 7-30 dni, w zależności od pakietu.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Czy muszę podpisywać długą umowę?<span class="icon">+</span></div><div class="faq-a">Nie. Bez długoterminowych umów. Rezygnacja w każdej chwili.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Co to jest analiza AI?<span class="icon">+</span></div><div class="faq-a">Analiza 1089+ źródeł danych o firmie, konkurencji i rynku z pomocą sztucznej inteligencji.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Czy zajmujecie się social media?<span class="icon">+</span></div><div class="faq-a">Tak — strategia, content, zarządzanie profilami i kampanie reklamowe na IG, FB i LinkedInie.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Jak mierzycie efekty?<span class="icon">+</span></div><div class="faq-a">Miesięczne raporty z pozycjami w Google, ruchem, zaangażowaniem i liczbą zapytań.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Dla jakich branż pracujecie?<span class="icon">+</span></div><div class="faq-a">Usługi, e-commerce, gastronomia, beauty, medycyna, edukacja i wiele innych.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Co jeśli już mam stronę?<span class="icon">+</span></div><div class="faq-a">Zaczniemy od audytu i zaproponujemy optymalizacje SEO oraz UX.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Jak wygląda gwarancja?<span class="icon">+</span></div><div class="faq-a">Zwrot pieniędzy lub 30 dni dodatkowej optymalizacji gratis.</div></div>
+</div>
 
-<!-- CTA -->
-<section class="split cta-split" id="kontakt">
-  <div class="split-text cta-bg cta-content">
-    <div class="section-label" style="color:var(--dark)">Kontakt</div>
-    <h2>Porozmawiajmy o Twoim biznesie</h2>
-    <p>Bezpłatna konsultacja. Pokażemy Ci, co dane mówią o Twojej obecności online i jak możemy pomóc.</p>
-    <a href="mailto:kontakt@zautomatyzujsie.pl" class="btn-dark">Napisz do nas</a>
-  </div>
-  <div class="split-visual cta-visual-side">
-    <svg width="260" height="200" viewBox="0 0 260 200" fill="none">
-      <rect x="20" y="30" width="220" height="140" rx="8" stroke="#b89773" stroke-width="2" fill="none"/>
-      <path d="M20 30L130 110L240 30" stroke="#b89773" stroke-width="2" fill="none"/>
-      <path d="M20 170L90 110" stroke="#b89773" stroke-width="1.5" stroke-dasharray="4 4"/>
-      <path d="M240 170L170 110" stroke="#b89773" stroke-width="1.5" stroke-dasharray="4 4"/>
-    </svg>
-  </div>
-</section>
+<div class="split" id="kontakt">
+<div class="split-text">
+<div class="cta-text">
+<div class="label">Kontakt</div>
+<h2>Gotowy, żeby Twoja firma była #1?</h2>
+<p>Umów bezpłatną konsultację i dowiedz się, jak możemy pomóc Twojej firmie rosnąć online.</p>
+<button class="btn-primary" onclick="window.location.href='mailto:zautomatyzujsie@gmail.com'">Rozpocznij współpracę</button>
+<div class="cta-contacts">
+<span>✉ zautomatyzujsie@gmail.com</span>
+<span>IG @zautomatyzujsie</span>
+<span>FB @zautomatyzujsie</span>
+</div>
+</div>
+</div>
+<div class="split-visual" style="display:flex;align-items:center;justify-content:center">
+<div class="cta-visual-inner">
+<div class="cta-big-email">zautomatyzujsie@gmail.com</div>
+<div class="cta-social">Instagram & Facebook: @zautomatyzujsie</div>
+</div>
+</div>
+</div>
 
 <footer>
-  <span>&copy; 2026 Zautomatyzuj Się</span>
-  <span>Marketing oparty na danych</span>
+<div class="footer-grid">
+<div><h4>Zautomatyzuj Się</h4><p>Twoja firma. Widoczna.<br>Łączymy AI z marketingiem cyfrowym.</p></div>
+<div><h4>Usługi</h4><a href="#uslugi">Analiza firmy</a><a href="#uslugi">Strony WWW</a><a href="#uslugi">SEO + AI</a><a href="#uslugi">Social media</a></div>
+<div><h4>Firma</h4><a href="#proces">Jak działamy</a><a href="#case">Case study</a><a href="#faq">FAQ</a><a href="#cennik">Cennik</a></div>
+<div><h4>Kontakt</h4><p>zautomatyzujsie@gmail.com</p><p>IG @zautomatyzujsie</p><p>FB @zautomatyzujsie</p></div>
+</div>
+<div class="footer-copy">© 2026 Zautomatyzuj Się. Wszelkie prawa zastrzeżone.</div>
 </footer>
 
+<script>
+function toggleFaq(el){el.classList.toggle('active');el.nextElementSibling.classList.toggle('open')}
+</script>
 </body>
 </html>
