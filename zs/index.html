@@ -33,8 +33,12 @@ a{text-decoration:none;color:inherit}
 .dot-grid{background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
 
 /* NAVBAR */
 .navbar{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid rgba(0,0,0,.05)}
@@ -48,7 +52,7 @@ a{text-decoration:none;color:inherit}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-size:15px;font-weight:500;color:var(--text-sec);transition:color .2s}
 .nav-links a:hover{color:var(--navy)}
-.nav-cta .btn{font-size:14px;padding:10px 22px}
+.nav-cta .btn{font-size:15px;padding:12px 26px;box-shadow:0 2px 12px rgba(10,16,69,.2)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
 .hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
 .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.1);z-index:999}
@@ -135,11 +139,12 @@ a{text-decoration:none;color:inherit}
 .testimonials{padding:100px 0}
 .testimonials-header{text-align:center;margin-bottom:48px}
 .testimonials-header h2{font-size:clamp(32px,4vw,48px);font-weight:800;color:var(--navy);margin-bottom:12px}
-.testimonials-scroll{display:flex;gap:24px;overflow-x:auto;padding:0 24px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.testimonials-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:0 24px 24px;max-width:var(--max-w);margin:0 auto}
 .testimonials-scroll::-webkit-scrollbar{height:6px}
 .testimonials-scroll::-webkit-scrollbar-track{background:#f0f0f0;border-radius:3px}
 .testimonials-scroll::-webkit-scrollbar-thumb{background:#c4c9f0;border-radius:3px}
-.testimonial-card{min-width:340px;max-width:380px;flex-shrink:0;background:#fff;border:1px solid rgba(0,0,0,.06);box-shadow:0 2px 12px rgba(0,0,0,.06);border-radius:var(--radius);padding:32px;scroll-snap-align:start}
+.testimonial-card{background:#fff;border:1px solid rgba(0,0,0,.06);box-shadow:0 2px 12px rgba(0,0,0,.06);border-radius:var(--radius);padding:32px;transition:transform .25s,box-shadow .25s}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
 .testimonial-card .stars{color:#f59e0b;font-size:16px;margin-bottom:12px}
 .testimonial-card blockquote{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:16px;font-style:italic}
 .testimonial-card .author{font-size:13px;font-weight:600;color:var(--text-sec)}
@@ -218,11 +223,13 @@ a{text-decoration:none;color:inherit}
 .case-inner{grid-template-columns:1fr;padding:40px}
 .pricing-grid{grid-template-columns:1fr}
 .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+.testimonials-scroll{grid-template-columns:1fr 1fr}
 .hero{padding:80px 0 60px}
 }
 @media(max-width:640px){
 .footer-grid{grid-template-columns:1fr}
 .footer-cta-form{flex-direction:column}
+.testimonials-scroll{grid-template-columns:1fr}
 .guarantee-options{flex-direction:column;align-items:center}
 .case-stats{grid-template-columns:1fr 1fr}
 .services-btns{flex-direction:column}
@@ -289,7 +296,7 @@ Zautomatyzuj Sie
 <section class="services" id="uslugi">
 <div class="container">
 <div class="services-text reveal">
-<span class="section-badge">&#9889; Uslugi</span>
+<span class="section-badge">Uslugi</span>
 <h2>Kompleksowa analiza i budowa widocznosci</h2>
 <p>Od audytu po stale prowadzenie &mdash; jedno miejsce, jeden partner.</p>
 <div class="services-btns">
@@ -319,14 +326,14 @@ analyzing 1089+ sources<br>
 <section class="features" id="metoda">
 <div class="container">
 <div class="features-header reveal">
-<span class="section-badge">&#11088; Metoda</span>
+<span class="section-badge">Metoda</span>
 <h2>Kazda rekomendacja oparta na badaniach</h2>
 <p>Nie zgadujemy. Analizujemy setki danych, zeby kazda decyzja byla poparta liczbami.</p>
 </div>
 <div class="features-grid">
 
 <!-- Card 1 -->
-<div class="feature-card reveal">
+<div class="feature-card reveal reveal-delay-1">
 <div class="feature-icon">
 <svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
 </div>
@@ -340,39 +347,39 @@ analyzing 1089+ sources<br>
 </div>
 
 <!-- Card 2 -->
-<div class="feature-card reveal">
+<div class="feature-card reveal reveal-delay-2">
 <div class="feature-icon">
 <svg viewBox="0 0 24 24"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg>
 </div>
 <h3>Konkurencja na dwoch torach</h3>
 <p>Analizujemy wszystkich konkurentow wyzszych w Google PLUS 5-10 konkurentow na kazdej platformie spolecznosciowej.</p>
 <ul class="checklist">
-<li>&#128269; Audyt konkurencji w Google</li>
-<li>&#128241; 5-10 konkurentow Instagram</li>
-<li>&#128216; 5-10 konkurentow Facebook</li>
-<li>&#127925; 5-10 konkurentow TikTok</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Audyt konkurencji w Google</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> 5-10 konkurentow Instagram</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> 5-10 konkurentow Facebook</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> 5-10 konkurentow TikTok</li>
 </ul>
 </div>
 
 <!-- Card 3 -->
-<div class="feature-card reveal">
+<div class="feature-card reveal reveal-delay-3">
 <div class="feature-icon">
 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
 </div>
 <h3>3 raporty + gotowe materialy</h3>
 <p>Pelen raport z dowodami, czysty raport bez zargonu, plan wdrozeniowy krok po kroku. Plus gotowe posty, maile, opisy.</p>
 <div class="doc-grid">
-<div class="doc-item"><div class="doc-item-icon">&#128196;</div>Raport</div>
-<div class="doc-item"><div class="doc-item-icon">&#128203;</div>Plan</div>
-<div class="doc-item"><div class="doc-item-icon">&#128172;</div>Posty</div>
-<div class="doc-item"><div class="doc-item-icon">&#9993;</div>Maile</div>
-<div class="doc-item"><div class="doc-item-icon">&#128205;</div>Opisy GBP</div>
-<div class="doc-item"><div class="doc-item-icon">&#127919;</div>Strategia</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Raport</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Plan</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Posty</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Maile</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Opisy GBP</div>
+<div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Strategia</div>
 </div>
 </div>
 
 <!-- Card 4 -->
-<div class="feature-card reveal">
+<div class="feature-card reveal reveal-delay-4">
 <div class="feature-icon">
 <svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
 </div>
@@ -412,28 +419,28 @@ analyzing 1089+ sources<br>
 <section class="testimonials">
 <div class="container">
 <div class="testimonials-header reveal">
-<span class="section-badge">&#128172; Efekty</span>
+<span class="section-badge">Efekty</span>
 <h2>Co mowia nasi klienci</h2>
 </div>
 </div>
 <div class="testimonials-scroll">
 <div class="testimonial-card reveal">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
 <blockquote>&bdquo;Klientki zaczely same nas znajdowac w Google. Pierwszy raz mamy zapytania z internetu!&rdquo;</blockquote>
 <div class="author">Salon kosmetyczny, Warszawa</div>
 </div>
 <div class="testimonial-card reveal">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
 <blockquote>&bdquo;Od zera do pierwszej strony Google w tydzien. Nie wierzylam, ze to mozliwe.&rdquo;</blockquote>
 <div class="author">Zajecia dla dzieci, Kielce</div>
 </div>
 <div class="testimonial-card reveal">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
 <blockquote>&bdquo;Wreszcie ktos wyjasnil mi co robic &mdash; i zrobil to ze mna. Wyniki mowia same za siebie.&rdquo;</blockquote>
 <div class="author">Gabinet fizjoterapii, Krakow</div>
 </div>
 <div class="testimonial-card reveal">
-<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
 <blockquote>&bdquo;Pierwszy raz ktos napisal do nas przez Google &mdash; to dziala.&rdquo;</blockquote>
 <div class="author">Szkola jezykowa, Lodz</div>
 </div>
@@ -446,7 +453,7 @@ analyzing 1089+ sources<br>
 <div class="pricing-inner reveal">
 <div class="pricing-grid">
 <div class="pricing-left">
-<span class="section-badge">&#128176; Cennik</span>
+<span class="section-badge">Cennik</span>
 <h2>Ile to kosztuje?</h2>
 <ul class="pricing-features">
 <li><span class="check">&#10003;</span> Pelna analiza widocznosci w Google i social media</li>
@@ -454,34 +461,34 @@ analyzing 1089+ sources<br>
 <li><span class="check">&#10003;</span> Analiza 5-10 konkurentow na kazdej platformie</li>
 <li><span class="check">&#10003;</span> 3 raporty: pelen, czysty, plan wdrozeniowy</li>
 <li><span class="check">&#10003;</span> Re-audyt co 30 dni z porownaniem PRZED/PO</li>
-<li><span class="lock">&#128274;</span> Stale prowadzenie i aktualizacja strategii</li>
-<li><span class="lock">&#128274;</span> Reagowanie na zmiany algorytmow w czasie rzeczywistym</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Stale prowadzenie i aktualizacja strategii</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Reagowanie na zmiany algorytmow w czasie rzeczywistym</li>
 </ul>
 </div>
 <div class="pricing-right">
 <div class="pricing-cards">
 <div class="price-card">
-<div class="price-icon">&#128100;</div>
+<div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
 <div class="price-info"><div class="price-name">Konsultacja</div><div class="price-desc">Bezplatna rozmowa o Twojej firmie</div></div>
 <div class="price-amount">0 zl</div>
 </div>
 <div class="price-card">
-<div class="price-icon">&#128200;</div>
+<div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
 <div class="price-info"><div class="price-name">Audyt firmy</div><div class="price-desc">Pelna analiza + raport z danymi</div></div>
 <div class="price-amount">1 299 zl</div>
 </div>
 <div class="price-card featured">
-<div class="price-icon">&#11088;</div>
+<div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
 <div class="price-info"><div class="price-name">Audyt + Plan</div><div class="price-desc">Analiza + plan wdrozeniowy krok po kroku</div></div>
 <div class="price-amount">1 999 zl</div>
 </div>
 <div class="price-card">
-<div class="price-icon">&#128640;</div>
+<div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
 <div class="price-info"><div class="price-name">Budowa od zera</div><div class="price-desc">Strona + SEO + social + 90 dni plan</div></div>
 <div class="price-amount">3 499 zl</div>
 </div>
 <div class="price-card">
-<div class="price-icon">&#9854;</div>
+<div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg></div>
 <div class="price-info"><div class="price-name">Prowadzenie</div><div class="price-desc">Comiesiezne raporty + reagowanie na algorytmy</div></div>
 <div class="price-amount">od 1 999 zl/msc</div>
 </div>
@@ -496,7 +503,7 @@ analyzing 1089+ sources<br>
 <section class="faq" id="faq">
 <div class="container">
 <div class="faq-header reveal">
-<span class="section-badge">&#10067; FAQ</span>
+<span class="section-badge">FAQ</span>
 <h2>Najczesciej zadawane pytania</h2>
 </div>
 <div class="faq-list">
@@ -548,7 +555,7 @@ analyzing 1089+ sources<br>
 <!-- GUARANTEE -->
 <div class="guarantee">
 <div class="guarantee-inner reveal">
-<div class="guarantee-shield">&#128737;</div>
+<div class="guarantee-shield"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="#10B981" stroke-width="2.5"/></svg></div>
 <h2>Realne efekty albo zwrot pieniedzy</h2>
 <p>Dajemy Ci 90 dni na zobaczenie wynikow. Jesli po wdrozeniu naszych rekomendacji nie zobaczysz mierzalnej poprawy widocznosci &mdash; masz dwie opcje:</p>
 <div class="guarantee-options">
