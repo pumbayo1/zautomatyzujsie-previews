@@ -62,35 +62,79 @@ a{text-decoration:none;color:inherit}
 .mobile-menu .btn{margin-top:16px;width:100%;text-align:center}
 
 /* HERO */
-.hero{padding:100px 0 80px;background:linear-gradient(180deg,var(--light-bg) 0%,#fff 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px;opacity:.4;pointer-events:none}
-/* Floating report cards in hero */
-.hero-floats{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
-.float-card{position:absolute;background:rgba(255,255,255,.7);backdrop-filter:blur(6px);border:1px solid rgba(37,99,235,.08);border-radius:12px;padding:12px 16px;font-size:12px;color:var(--navy);box-shadow:0 4px 24px rgba(10,16,69,.06);white-space:nowrap}
-.float-card .fc-label{font-size:10px;color:var(--text-sec);font-weight:400;display:block;margin-bottom:2px}
-.float-card .fc-value{font-size:18px;font-weight:800;color:var(--navy)}
-.float-card .fc-bar{height:4px;border-radius:2px;background:#e5e7eb;margin-top:6px;overflow:hidden;width:80px}
-.float-card .fc-bar-fill{height:100%;border-radius:2px}
-.fc1{top:18%;left:4%;animation:floatA 8s ease-in-out infinite}
-.fc2{top:12%;right:5%;animation:floatB 10s ease-in-out infinite}
-.fc3{bottom:30%;left:6%;animation:floatC 9s ease-in-out infinite}
-.fc4{top:40%;right:3%;animation:floatD 11s ease-in-out infinite}
-.fc5{bottom:15%;right:12%;animation:floatA 7s ease-in-out infinite 1.5s}
-@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1deg)}}
-@keyframes floatB{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(-1.5deg)}}
-@keyframes floatC{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-11px) rotate(1.2deg)}}
-@keyframes floatD{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-16px) rotate(-0.8deg)}}
-@media(max-width:960px){.hero-floats{display:none}}
+.hero{padding:100px 0 80px;background:linear-gradient(180deg,#070b33 0%,#0a1045 60%,#0d1257 100%);position:relative;overflow:hidden;min-height:100vh}
 
-.hero .container{position:relative;z-index:1;text-align:center}
+/* HERO DASHBOARD BACKDROP */
+.hero-dashboard{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;gap:16px;padding:40px;opacity:0.18;pointer-events:none;z-index:0}
+.dash-panel{background:#0d1257;border-radius:16px;padding:20px;color:rgba(255,255,255,0.9);font-size:13px;overflow:hidden;border:1px solid rgba(37,99,235,.15);box-shadow:0 0 30px rgba(37,99,235,.08)}
+.dash-panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.dash-panel-title::before{content:'';width:6px;height:6px;border-radius:50%;background:#2563eb;display:inline-block}
+
+/* Line chart (CSS polyline animation) */
+.dash-chart-svg{width:100%;height:80px;margin-bottom:12px}
+.dash-chart-line{fill:none;stroke:#2563eb;stroke-width:2;stroke-dasharray:400;stroke-dashoffset:400;animation:drawLine 3s ease forwards 0.5s}
+.dash-chart-area{fill:url(#chartGrad);opacity:0;animation:fadeInArea 1s ease forwards 3s}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+@keyframes fadeInArea{to{opacity:0.3}}
+
+.dash-stat-row{display:flex;justify-content:space-between;margin-bottom:8px;font-family:'Courier New',monospace;font-size:12px}
+.dash-stat-label{color:rgba(255,255,255,.5)}
+.dash-stat-value{color:#10B981;font-weight:700}
+
+/* Bar chart */
+.dash-bars{display:flex;align-items:flex-end;gap:8px;height:50px;margin-top:12px}
+.dash-bar{flex:1;background:#2563eb;border-radius:3px 3px 0 0;transform-origin:bottom;animation:growBar 1.5s ease forwards}
+.dash-bar:nth-child(1){height:40%;animation-delay:0.8s;transform:scaleY(0)}
+.dash-bar:nth-child(2){height:65%;animation-delay:1s;transform:scaleY(0)}
+.dash-bar:nth-child(3){height:50%;animation-delay:1.2s;transform:scaleY(0)}
+.dash-bar:nth-child(4){height:80%;animation-delay:1.4s;transform:scaleY(0)}
+.dash-bar:nth-child(5){height:55%;animation-delay:1.6s;transform:scaleY(0)}
+.dash-bar:nth-child(6){height:90%;animation-delay:1.8s;transform:scaleY(0)}
+@keyframes growBar{to{transform:scaleY(1)}}
+
+/* Social media progress bars */
+.dash-social-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:12px}
+.dash-social-platform{width:90px;font-weight:600;color:rgba(255,255,255,.7);font-size:11px}
+.dash-social-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.dash-social-fill{height:100%;border-radius:3px;transform-origin:left;transform:scaleX(0);animation:fillBar 2s ease forwards}
+.dash-social-fill.ig{background:linear-gradient(90deg,#f09433,#dc2743);width:48%;animation-delay:1s}
+.dash-social-fill.fb{background:#1877f2;width:65%;animation-delay:1.3s}
+.dash-social-fill.tt{background:#fff;width:72%;animation-delay:1.6s}
+.dash-social-fill.gr{background:#f59e0b;width:95%;animation-delay:1.9s}
+@keyframes fillBar{to{transform:scaleX(1)}}
+.dash-social-val{width:60px;text-align:right;font-family:'Courier New',monospace;font-weight:700;color:#10B981;font-size:11px}
+
+/* Floating metric badges */
+.hero-floating-badges{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1}
+.metric-badge{position:absolute;background:rgba(13,18,87,.85);backdrop-filter:blur(8px);border:1px solid rgba(37,99,235,.25);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap;box-shadow:0 0 20px rgba(37,99,235,.15)}
+.metric-badge .badge-highlight{color:#10B981}
+.mb1{top:18%;left:6%;animation:bobA 6s ease-in-out infinite}
+.mb2{top:28%;right:7%;animation:bobB 7s ease-in-out infinite 0.5s}
+.mb3{bottom:32%;left:8%;animation:bobA 8s ease-in-out infinite 1s}
+@keyframes bobA{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes bobB{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+
+/* Keyword tracker (bottom panel) */
+.dash-panel-bottom{grid-column:1 / -1}
+.kw-scroll{overflow:hidden;height:80px;position:relative}
+.kw-scroll-inner{animation:scrollKw 12s linear infinite}
+@keyframes scrollKw{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.kw-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;font-family:'Courier New',monospace}
+.kw-phrase{color:rgba(255,255,255,.6)}
+.kw-pos{color:#10B981;font-weight:700}
+
+/* Hero content layer */
+.hero .container{position:relative;z-index:2;text-align:center}
 .hero-badge{margin-bottom:24px}
-.hero h1{font-size:clamp(40px,5.5vw,68px);font-weight:800;line-height:1.1;color:var(--navy);margin-bottom:20px}
-.hero-sub{font-size:18px;line-height:1.7;color:var(--text-sec);max-width:640px;margin:0 auto 36px}
+.hero h1{font-size:clamp(44px,6vw,80px);font-weight:800;line-height:1.05;color:#fff;margin-bottom:20px;text-shadow:0 2px 40px rgba(0,0,0,.4)}
+.hero-sub{font-size:18px;line-height:1.7;color:rgba(255,255,255,.65);max-width:640px;margin:0 auto 36px}
 .hero-cta{margin-bottom:60px}
-.hero-cta .btn{font-size:18px;padding:16px 36px}
+.hero-cta .btn{font-size:18px;padding:16px 36px;background:#2563eb;box-shadow:0 4px 24px rgba(37,99,235,.4)}
+.hero-cta .btn:hover{background:#1d4ed8;box-shadow:0 6px 32px rgba(37,99,235,.55);transform:translateY(-2px)}
+.hero .pill{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15)}
 
-/* DASHBOARD MOCKUP */
-.dashboard{max-width:680px;margin:0 auto;background:var(--navy-light);border-radius:16px;padding:24px 28px;text-align:left;box-shadow:0 0 60px rgba(37,99,235,.35),0 20px 60px rgba(0,0,0,.25);position:relative;overflow:hidden}
+/* DASHBOARD MOCKUP (below title) */
+.dashboard{max-width:680px;margin:0 auto;background:rgba(13,18,87,.7);border-radius:16px;padding:24px 28px;text-align:left;box-shadow:0 0 60px rgba(37,99,235,.35),0 20px 60px rgba(0,0,0,.25);position:relative;overflow:hidden;border:1px solid rgba(37,99,235,.2)}
 .dashboard::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,rgba(196,201,240,.08) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
 .dash-header{display:flex;align-items:center;gap:8px;margin-bottom:20px;position:relative}
 .dash-dot{width:10px;height:10px;border-radius:50%}
@@ -103,6 +147,9 @@ a{text-decoration:none;color:inherit}
 .dash-response{margin-top:12px;font-family:monospace;font-size:13px;color:rgba(255,255,255,.25);position:relative}
 .dash-cursor{display:inline-block;width:8px;height:16px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:4px;border-radius:1px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* Mobile: hide dashboard backdrop */
+@media(max-width:960px){.hero-dashboard,.hero-floating-badges{display:none}}
 
 /* SERVICES */
 .services{padding:100px 0}
@@ -292,13 +339,82 @@ Zautomatyzuj Się
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-floats">
-<div class="float-card fc1"><span class="fc-label">Pozycja Google</span><span class="fc-value" data-count-to="3">#3</span><div class="fc-bar"><div class="fc-bar-fill" style="width:72%;background:var(--accent)"></div></div></div>
-<div class="float-card fc2"><span class="fc-label">Widoczność SEO</span><span class="fc-value">+72%</span><div class="fc-bar"><div class="fc-bar-fill" style="width:88%;background:#10B981"></div></div></div>
-<div class="float-card fc3"><span class="fc-label">Strona WWW</span><span class="fc-value">92/100</span><div class="fc-bar"><div class="fc-bar-fill" style="width:92%;background:var(--accent)"></div></div></div>
-<div class="float-card fc4"><span class="fc-label">Nowi klienci/msc</span><span class="fc-value">+340%</span><div class="fc-bar"><div class="fc-bar-fill" style="width:85%;background:#10B981"></div></div></div>
-<div class="float-card fc5"><span class="fc-label">Opinie Google</span><span class="fc-value">4.9★</span><div class="fc-bar"><div class="fc-bar-fill" style="width:95%;background:#f59e0b"></div></div></div>
+
+<!-- DASHBOARD BACKDROP -->
+<div class="hero-dashboard">
+<!-- Left panel: Search Console -->
+<div class="dash-panel">
+<div class="dash-panel-title">Search Console &middot; Widoczność</div>
+<svg class="dash-chart-svg" viewBox="0 0 300 80" preserveAspectRatio="none">
+<defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.4"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient></defs>
+<polyline class="dash-chart-line" points="0,70 30,65 60,58 90,60 120,45 150,38 180,30 210,25 240,18 270,12 300,8"/>
+<polygon class="dash-chart-area" points="0,80 0,70 30,65 60,58 90,60 120,45 150,38 180,30 210,25 240,18 270,12 300,8 300,80"/>
+</svg>
+<div class="dash-stat-row"><span class="dash-stat-label">Kliknięcia</span><span class="dash-stat-value" id="dashClicks">0</span></div>
+<div class="dash-stat-row"><span class="dash-stat-label">Wyświetlenia</span><span class="dash-stat-value" id="dashImpressions">0</span></div>
+<div class="dash-stat-row"><span class="dash-stat-label">Pozycja średnia</span><span class="dash-stat-value" id="dashPosition">20.0</span></div>
+<div class="dash-bars">
+<div class="dash-bar"></div><div class="dash-bar"></div><div class="dash-bar"></div>
+<div class="dash-bar"></div><div class="dash-bar"></div><div class="dash-bar"></div>
 </div>
+</div>
+
+<!-- Right panel: Social Media -->
+<div class="dash-panel">
+<div class="dash-panel-title">Social Media &middot; Analiza</div>
+<div class="dash-social-row">
+<span class="dash-social-platform">Instagram ER</span>
+<div class="dash-social-bar"><div class="dash-social-fill ig"></div></div>
+<span class="dash-social-val" id="dashIG">0%</span>
+</div>
+<div class="dash-social-row">
+<span class="dash-social-platform">Facebook reach</span>
+<div class="dash-social-bar"><div class="dash-social-fill fb"></div></div>
+<span class="dash-social-val" id="dashFB">0%</span>
+</div>
+<div class="dash-social-row">
+<span class="dash-social-platform">TikTok views</span>
+<div class="dash-social-bar"><div class="dash-social-fill tt"></div></div>
+<span class="dash-social-val" id="dashTT">0</span>
+</div>
+<div class="dash-social-row">
+<span class="dash-social-platform">Google Reviews</span>
+<div class="dash-social-bar"><div class="dash-social-fill gr"></div></div>
+<span class="dash-social-val" id="dashGR">0</span>
+</div>
+</div>
+
+<!-- Bottom panel: Keyword tracker -->
+<div class="dash-panel dash-panel-bottom">
+<div class="dash-panel-title">Keyword Tracker &middot; Live</div>
+<div class="kw-scroll">
+<div class="kw-scroll-inner">
+<div class="kw-row"><span class="kw-phrase">"fryzjer kraków"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"salon kosmetyczny warszawa"</span><span class="kw-pos">Pozycja: 5 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"fizjoterapia kraków"</span><span class="kw-pos">Pozycja: 6 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"dentysta wrocław"</span><span class="kw-pos">Pozycja: 2 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"szkoła językowa łódź"</span><span class="kw-pos">Pozycja: 4 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"trener personalny gdańsk"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
+<!-- Duplicate for seamless loop -->
+<div class="kw-row"><span class="kw-phrase">"fryzjer kraków"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"salon kosmetyczny warszawa"</span><span class="kw-pos">Pozycja: 5 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"fizjoterapia kraków"</span><span class="kw-pos">Pozycja: 6 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"dentysta wrocław"</span><span class="kw-pos">Pozycja: 2 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"szkoła językowa łódź"</span><span class="kw-pos">Pozycja: 4 &uarr;</span></div>
+<div class="kw-row"><span class="kw-phrase">"trener personalny gdańsk"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FLOATING METRIC BADGES -->
+<div class="hero-floating-badges">
+<div class="metric-badge mb1">SEO Score <span class="badge-highlight">92/100</span></div>
+<div class="metric-badge mb2"><span class="badge-highlight">+340%</span> ruch</div>
+<div class="metric-badge mb3">Top 3 <span class="badge-highlight">Maps</span></div>
+</div>
+
+<!-- HERO CONTENT -->
 <div class="container">
 <div class="hero-badge"><span class="pill">Marketing oparty na danych &middot; 2026</span></div>
 <h1 class="reveal">Zautomatyzuj Się.</h1>
@@ -672,6 +788,44 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 requestAnimationFrame(()=>{document.querySelectorAll('.reveal').forEach(el=>{
 const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');
 })});
+
+// Dashboard counter animations
+function animateCounter(el, target, suffix, duration, isFloat) {
+  const start = isFloat ? 20.0 : 0;
+  const startTime = performance.now();
+  const dir = target < start ? -1 : 1;
+  function update(now) {
+    const elapsed = Math.min((now - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - elapsed, 3);
+    const current = start + (target - start) * ease;
+    if (isFloat) {
+      el.textContent = current.toFixed(1) + suffix;
+    } else if (target >= 1000) {
+      el.textContent = Math.round(current).toLocaleString('pl-PL') + suffix;
+    } else {
+      el.textContent = Math.round(current) + suffix;
+    }
+    if (elapsed < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+setTimeout(() => {
+  const c = document.getElementById('dashClicks');
+  const i = document.getElementById('dashImpressions');
+  const p = document.getElementById('dashPosition');
+  const ig = document.getElementById('dashIG');
+  const fb = document.getElementById('dashFB');
+  const tt = document.getElementById('dashTT');
+  const gr = document.getElementById('dashGR');
+  if (c) animateCounter(c, 2847, '', 2500, false);
+  if (i) animateCounter(i, 18420, '', 2500, false);
+  if (p) animateCounter(p, 4.2, '', 2500, true);
+  if (ig) animateCounter(ig, 4.8, '%', 2000, true);
+  if (fb) animateCounter(fb, 127, '%', 2000, false);
+  if (tt) animateCounter(tt, 45.2, 'K', 2000, true);
+  if (gr) animateCounter(gr, 4.9, '\u2605', 2000, true);
+}, 800);
 </script>
 </body>
 </html>
