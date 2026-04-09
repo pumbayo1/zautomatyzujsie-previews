@@ -64,6 +64,16 @@ a{text-decoration:none;color:inherit}
 /* HERO */
 .hero{padding:100px 0 80px;background:linear-gradient(180deg,var(--light-bg) 0%,#fff 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px;opacity:.4;pointer-events:none}
+/* Data rain - subtle matrix behind everything */
+.data-rain{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;justify-content:space-around;overflow:hidden;pointer-events:none;z-index:0}
+.data-column{display:flex;flex-direction:column;gap:14px;animation:rainScroll linear infinite;font-family:'Courier New',monospace;font-size:12px;color:rgba(10,16,69,.06);white-space:nowrap;will-change:transform}
+.data-column span{display:block;padding:2px 0}
+.data-column span.bright{color:rgba(10,16,69,.14);animation:dataPulse 4s ease infinite}
+.dc1{animation-duration:22s}.dc2{animation-duration:18s}.dc3{animation-duration:26s}.dc4{animation-duration:20s}.dc5{animation-duration:28s}.dc6{animation-duration:16s}.dc7{animation-duration:24s}.dc8{animation-duration:19s}
+@keyframes rainScroll{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
+@keyframes dataPulse{0%,100%{opacity:.06}50%{opacity:.18}}
+@media(max-width:960px){.data-rain{display:none}}
+
 /* Floating report cards in hero */
 .hero-floats{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
 .float-card{position:absolute;background:rgba(255,255,255,.7);backdrop-filter:blur(6px);border:1px solid rgba(37,99,235,.08);border-radius:12px;padding:12px 16px;font-size:12px;color:var(--navy);box-shadow:0 4px 24px rgba(10,16,69,.06);white-space:nowrap}
@@ -292,6 +302,16 @@ Zautomatyzuj Się
 
 <!-- HERO -->
 <section class="hero">
+<div class="data-rain">
+<div class="data-column dc1"><span>pozycja #3</span><span class="bright">↑ +47%</span><span>SEO: 92</span><span>Google Maps</span><span>CTR: 6.2%</span><span class="bright">widoczność: 94%</span><span>backlinki: 87</span><span>pozycja #3</span><span>↑ +47%</span><span>SEO: 92</span><span>Google Maps</span><span>CTR: 6.2%</span><span class="bright">widoczność: 94%</span><span>backlinki: 87</span></div>
+<div class="data-column dc2"><span>4.9★</span><span>kliknięcia: 2847</span><span class="bright">CTR: 8.4%</span><span>wyświetlenia: 34K</span><span>sesje: 1204</span><span class="bright">bounce: 24%</span><span>czas: 4:32</span><span>4.9★</span><span>kliknięcia: 2847</span><span class="bright">CTR: 8.4%</span><span>wyświetlenia: 34K</span><span>sesje: 1204</span><span class="bright">bounce: 24%</span><span>czas: 4:32</span></div>
+<div class="data-column dc3"><span class="bright">Instagram ER: 4.8%</span><span>reach: +127%</span><span>obserwujący: +340</span><span>reels: 12K</span><span class="bright">hashtagi: TOP 5</span><span>saves: 847</span><span class="bright">Instagram ER: 4.8%</span><span>reach: +127%</span><span>obserwujący: +340</span><span>reels: 12K</span><span class="bright">hashtagi: TOP 5</span><span>saves: 847</span></div>
+<div class="data-column dc4"><span>fryzjer kraków</span><span class="bright">widoczność: 87%</span><span>backlinki: 142</span><span>keywords: 847</span><span class="bright">organic: +89%</span><span>snippets: 7</span><span>fryzjer kraków</span><span class="bright">widoczność: 87%</span><span>backlinki: 142</span><span>keywords: 847</span><span class="bright">organic: +89%</span><span>snippets: 7</span></div>
+<div class="data-column dc5"><span>Facebook: +89%</span><span class="bright">TikTok: 45K</span><span>opinie: 4.9★</span><span>ROAS: 4.7x</span><span class="bright">leads: +156%</span><span>konwersje: 8.2%</span><span>Facebook: +89%</span><span class="bright">TikTok: 45K</span><span>opinie: 4.9★</span><span>ROAS: 4.7x</span><span class="bright">leads: +156%</span><span>konwersje: 8.2%</span></div>
+<div class="data-column dc6"><span class="bright">meta: OK</span><span>schema: 12</span><span>speed: 94</span><span class="bright">index: 847</span><span>crawl: OK</span><span>H1: OK</span><span class="bright">meta: OK</span><span>schema: 12</span><span>speed: 94</span><span class="bright">index: 847</span><span>crawl: OK</span><span>H1: OK</span></div>
+<div class="data-column dc7"><span>GMB: 4.8★</span><span class="bright">zdjęcia: +45</span><span>posty: 12/msc</span><span>telefony: +67%</span><span class="bright">recenzje: 189</span><span>lokalne: TOP 3</span><span>GMB: 4.8★</span><span class="bright">zdjęcia: +45</span><span>posty: 12/msc</span><span>telefony: +67%</span><span class="bright">recenzje: 189</span><span>lokalne: TOP 3</span></div>
+<div class="data-column dc8"><span>ROI: 340%</span><span class="bright">CPA: 12 PLN</span><span>retention: 89%</span><span>NPS: 72</span><span class="bright">AI search: 78%</span><span>chatGPT: cited</span><span>ROI: 340%</span><span class="bright">CPA: 12 PLN</span><span>retention: 89%</span><span>NPS: 72</span><span class="bright">AI search: 78%</span><span>chatGPT: cited</span></div>
+</div>
 <div class="hero-floats">
 <div class="float-card fc1"><span class="fc-label">Pozycja Google</span><span class="fc-value" data-count-to="3">#3</span><div class="fc-bar"><div class="fc-bar-fill" style="width:72%;background:var(--accent)"></div></div></div>
 <div class="float-card fc2"><span class="fc-label">Widoczność SEO</span><span class="fc-value">+72%</span><div class="fc-bar"><div class="fc-bar-fill" style="width:88%;background:#10B981"></div></div></div>
