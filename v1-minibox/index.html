@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Się — Marketing cyfrowy oparty na danych</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#F0EEEA;--text:#1C1A17;--text-gray:#5C5A56;--text-mid:#464442;
+--white:#FFFFFF;--border:#E0DEDA;--platinum:#EBE6DE;
+--overlay:rgba(28,26,23,0.07);
+--card-blue:#D6E0EA;--card-cream:#E3DED0;--card-green:#D3E2CF;
+--dark:#1C1A17;--dark-card:#25221E;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased}
+.container{max-width:1280px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:18px;font-weight:600;letter-spacing:-0.64px;color:var(--text);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:var(--text-gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn-pill{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;transition:all .2s;border:none}
+.btn-dark{background:var(--dark);color:var(--white)}
+.btn-dark:hover{opacity:.88}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--text)}
+.nav-mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.nav-mobile-toggle span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;transition:.3s}
+@media(max-width:900px){
+.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px;border-bottom:1px solid var(--border);gap:16px}
+.nav-links.open{display:flex}
+.nav-mobile-toggle{display:block}
+}
+
+/* HERO */
+.hero{padding:80px 0 40px;text-align:center}
+.hero h1{font-size:56px;font-weight:500;letter-spacing:-2.8px;line-height:1.08;margin-bottom:20px}
+.hero .subtitle{font-size:18px;color:var(--text-gray);max-width:620px;margin:0 auto 32px;line-height:1.6}
+.hero-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.hero-buttons .btn-pill{padding:14px 32px;font-size:15px}
+.social-proof{font-size:14px;color:var(--text-gray);letter-spacing:-0.2px}
+.social-proof span{margin:0 6px;opacity:.5}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;margin:32px 0 0;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ticker{display:flex;gap:48px;animation:ticker 30s linear infinite;width:max-content}
+.ticker-item{white-space:nowrap;font-size:13px;color:var(--text-mid);font-weight:500}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* DASHBOARD MOCK */
+.dashboard-mock{margin:48px auto 0;max-width:960px;background:var(--dark);border-radius:16px;overflow:hidden;color:var(--white)}
+.dash-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.1)}
+.dash-tab{padding:14px 24px;font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;border-bottom:2px solid transparent;transition:.2s}
+.dash-tab.active{color:var(--white);border-bottom-color:var(--white)}
+.dash-body{padding:24px;font-family:'Inter',monospace;font-size:13px;min-height:220px;position:relative;overflow:hidden}
+.dash-table{width:100%;border-collapse:collapse}
+.dash-table th{text-align:left;color:rgba(255,255,255,.4);font-weight:400;font-size:12px;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.dash-table td{padding:8px 12px;color:rgba(255,255,255,.8);font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}
+.tag-green{background:rgba(76,175,80,.18);color:#7dca80}
+.tag-yellow{background:rgba(255,193,7,.15);color:#e0a800}
+.tag-red{background:rgba(244,67,54,.15);color:#ef5350}
+.pct-green{color:#7dca80}
+.pct-yellow{color:#e0a800}
+.terminal-feed{margin-top:16px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;height:72px;overflow:hidden;position:relative}
+.terminal-line{font-size:12px;color:rgba(255,255,255,.5);padding:2px 0;opacity:0;animation:feedIn .5s forwards}
+@keyframes feedIn{to{opacity:1}}
+
+/* FEATURES */
+.features{padding:80px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.features{grid-template-columns:1fr;gap:16px}}
+.feature-card{border-radius:8px;padding:36px 28px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px}
+.feature-card h3{font-size:22px;font-weight:600;letter-spacing:-1px;margin-bottom:12px;color:var(--text)}
+.feature-card p{font-size:15px;color:var(--text-mid);line-height:1.55;flex:1}
+.feature-stat{margin-top:24px;border-top:1px solid var(--overlay);padding-top:16px}
+.feature-stat .num{font-size:36px;font-weight:600;letter-spacing:-1.8px;color:var(--text)}
+.feature-stat .label{font-size:13px;color:var(--text-gray)}
+
+/* SECTIONS */
+section{padding:80px 0}
+.section-badge{display:inline-block;padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.5px;color:var(--text-mid);background:var(--overlay);margin-bottom:20px}
+.section-title{font-size:36px;font-weight:500;letter-spacing:-1.8px;line-height:1.15;margin-bottom:24px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;gap:32px}}
+
+/* STEPS */
+.steps{list-style:none;margin:24px 0 32px}
+.steps li{display:flex;gap:14px;margin-bottom:18px;font-size:15px;color:var(--text-mid);line-height:1.5}
+.steps li .sq{width:8px;height:8px;background:var(--text);border-radius:2px;margin-top:7px;flex-shrink:0}
+.steps li strong{color:var(--text)}
+
+/* MINI CARDS */
+.mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.mini-cards{grid-template-columns:1fr}}
+.mini-card{background:var(--white);border-radius:8px;padding:24px;border:1px solid var(--border)}
+.mini-card h4{font-size:16px;font-weight:600;letter-spacing:-0.4px;margin-bottom:8px}
+.mini-card p{font-size:14px;color:var(--text-gray);line-height:1.5}
+
+/* DARK SECTION */
+.dark-section{background:var(--dark);color:var(--white);padding:80px 0;margin:0 -9999px;padding-left:9999px;padding-right:9999px}
+.dark-section .container{max-width:1280px;margin:0 auto}
+.dark-section .section-title{color:var(--white)}
+.dark-top-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+@media(max-width:768px){.dark-top-cards{grid-template-columns:1fr}}
+.dark-card{background:var(--dark-card);border-radius:8px;padding:28px;border:1px solid rgba(255,255,255,.06)}
+.dark-card h4{font-size:18px;font-weight:500;letter-spacing:-0.6px;margin-bottom:8px;color:var(--white)}
+.dark-card p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.55}
+.dark-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:24px}
+.dark-tab{padding:12px 20px;font-size:14px;color:rgba(255,255,255,.4);cursor:pointer;border-bottom:2px solid transparent;transition:.2s;background:none;border-top:none;border-left:none;border-right:none}
+.dark-tab.active{color:var(--white);border-bottom-color:var(--white)}
+.dark-tab-content{display:none;color:rgba(255,255,255,.65);font-size:15px;line-height:1.7}
+.dark-tab-content.active{display:block}
+.dark-tab-content h5{color:var(--white);font-size:17px;font-weight:500;margin-bottom:8px}
+.dark-tab-content ul{list-style:none;padding:0}
+.dark-tab-content ul li{padding:4px 0}
+.dark-tab-content ul li::before{content:"\2022";color:rgba(255,255,255,.3);margin-right:8px}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+@media(max-width:900px){.testimonials-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.testimonials-grid{grid-template-columns:1fr}}
+.testimonial-card{background:var(--white);border-radius:8px;padding:28px;border:1px solid var(--border)}
+.testimonial-card .quote{font-size:15px;color:var(--text);line-height:1.55;margin-bottom:16px;font-style:italic}
+.testimonial-card .author{font-size:13px;color:var(--text-gray)}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
+.price-card{background:var(--white);border-radius:8px;padding:32px 24px;border:1px solid var(--border);text-align:center;transition:transform .2s}
+.price-card:hover{transform:translateY(-4px)}
+.price-card.featured{border:2px solid var(--text);position:relative}
+.price-card.featured::after{content:"Popularne";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--dark);color:var(--white);font-size:11px;padding:4px 14px;border-radius:100px;font-weight:500}
+.price-card h4{font-size:17px;font-weight:600;letter-spacing:-0.4px;margin-bottom:8px}
+.price-card .price{font-size:32px;font-weight:600;letter-spacing:-1.4px;margin-bottom:4px}
+.price-card .price-sub{font-size:13px;color:var(--text-gray);margin-bottom:16px}
+.price-card ul{list-style:none;text-align:left;margin-bottom:20px}
+.price-card ul li{font-size:14px;color:var(--text-mid);padding:5px 0;border-bottom:1px solid var(--border)}
+.price-card ul li:last-child{border-bottom:none}
+.price-card .btn-pill{width:100%}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:40px auto 0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 0;font-size:16px;font-weight:500;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit}
+.faq-q::after{content:"+";font-size:20px;font-weight:400;transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:15px;color:var(--text-gray);line-height:1.6}
+.faq-a-inner{padding:0 0 20px}
+
+/* GUARANTEE */
+.guarantee{text-align:center;padding:60px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:40px 0}
+.guarantee h3{font-size:28px;font-weight:500;letter-spacing:-1.2px;margin-bottom:12px}
+.guarantee p{font-size:16px;color:var(--text-gray);max-width:560px;margin:0 auto}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.5);padding:60px 0 32px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:40px}
+.footer-brand .footer-logo{font-size:18px;font-weight:600;color:var(--white);letter-spacing:-0.64px;margin-bottom:8px}
+.footer-brand p{font-size:14px;max-width:300px;line-height:1.5}
+.footer-links h5{color:var(--white);font-size:14px;font-weight:600;margin-bottom:12px}
+.footer-links a{display:block;font-size:14px;color:rgba(255,255,255,.45);text-decoration:none;padding:3px 0;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;text-align:center}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RIGHT DASH PANEL */
+.dash-mini{background:var(--dark);border-radius:12px;padding:20px;color:var(--white);font-size:13px}
+.dash-mini-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.dash-mini-row:last-child{border-bottom:none}
+.dash-mini-label{color:rgba(255,255,255,.45)}
+.dash-mini-val{font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="container nav-inner">
+<a href="#" class="nav-logo">Zautomatyzuj Sie</a>
+<button class="nav-mobile-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+<span></span><span></span><span></span>
+</button>
+<div class="nav-links">
+<a href="#uslugi">Uslugi</a>
+<a href="#jak-dzialamy">Jak Dzialamy</a>
+<a href="#raport">Raport</a>
+<a href="#ksef">KSeF</a>
+<a href="#cennik">Cennik</a>
+<a href="#faq">FAQ</a>
+<a href="#kontakt">Kontakt</a>
+<a href="#kontakt" class="btn-pill btn-dark">Bezplatna analiza</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1 class="reveal">Zautomatyzuj Sie.</h1>
+<p class="subtitle reveal">Laczymy najnowsze badania z marketingiem cyfrowym, zeby Twoja firma byla widoczna w Google, social media i w glowach klientow.</p>
+<div class="hero-buttons reveal">
+<a href="#kontakt" class="btn-pill btn-dark">Bezplatna analiza firmy</a>
+<a href="#uslugi" class="btn-pill btn-outline">Zobacz efekty</a>
+</div>
+<p class="social-proof reveal">1089+ zrodel w bazie <span>|</span> 543+ wnioskow <span>|</span> 154 monitorowanych codziennie</p>
+
+<!-- TICKER -->
+<div class="ticker-wrap reveal">
+<div class="ticker" id="ticker"></div>
+</div>
+
+<!-- DASHBOARD MOCK -->
+<div class="dashboard-mock reveal">
+<div class="dash-tabs">
+<div class="dash-tab active" data-tab="seo">Audyt SEO</div>
+<div class="dash-tab" data-tab="social">Social Media</div>
+<div class="dash-tab" data-tab="konkurencja">Konkurencja</div>
+<div class="dash-tab" data-tab="ai">AI Search</div>
+</div>
+<div class="dash-body">
+<table class="dash-table">
+<thead><tr><th>Firma</th><th>Widocznosc</th><th>SEO Score</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Salon Bella, Warszawa</td><td class="pct-green">+340%</td><td>92/100</td><td><span class="tag tag-green">Zoptymalizowana</span></td></tr>
+<tr><td>FizjoMed, Krakow</td><td class="pct-green">+180%</td><td>78/100</td><td><span class="tag tag-yellow">W trakcie</span></td></tr>
+<tr><td>LinguaSchool, Lodz</td><td class="pct-yellow">+65%</td><td>54/100</td><td><span class="tag tag-red">Wymaga audytu</span></td></tr>
+<tr><td>KidsFun Academy, Kielce</td><td class="pct-green">+520%</td><td>96/100</td><td><span class="tag tag-green">Zoptymalizowana</span></td></tr>
+</tbody>
+</table>
+<div class="terminal-feed" id="terminalFeed"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section id="uslugi">
+<div class="container">
+<div class="features">
+<div class="feature-card reveal" style="background:var(--card-blue)">
+<div>
+<h3>Pelna analiza firmy</h3>
+<p>1089+ zrodel naukowych i branzowych. Audyt SEO, analiza social media obejmujaca 100+ postow, profil Google Business i widocznosc w AI Search.</p>
+</div>
+<div class="feature-stat">
+<div class="num">97%</div>
+<div class="label">Satysfakcji klientow</div>
+</div>
+</div>
+<div class="feature-card reveal" style="background:var(--card-cream)">
+<div>
+<h3>Strony WWW od zera</h3>
+<p>Projektujemy z mysia o UX 2026. Optymalizacja pod Google i AI Search od pierwszego dnia. Szybkie, responsywne, konwertujace.</p>
+</div>
+<div class="feature-stat">
+<div class="num">48h</div>
+<div class="label">Czas dostarczenia audytu</div>
+</div>
+</div>
+<div class="feature-card reveal" style="background:var(--card-green)">
+<div>
+<h3>Re-audyt co 30 dni</h3>
+<p>Tabela PRZED/PO pokazujaca realne zmiany. Ciagle doskonalenie strategii na podstawie danych, nie opinii.</p>
+</div>
+<div class="feature-stat">
+<div class="num">30 dni</div>
+<div class="label">Cykl re-audytu</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- JAK DZIALAMY -->
+<section id="jak-dzialamy">
+<div class="container">
+<div class="two-col">
+<div class="reveal">
+<span class="section-badge">JAK DZIALAMY</span>
+<h3 class="section-title">Od analizy do efektow w 4 krokach</h3>
+<ul class="steps">
+<li><span class="sq"></span><div><strong>Bezplatna konsultacja</strong> — rozmawiamy o Twojej firmie, celach i wyzwaniach</div></li>
+<li><span class="sq"></span><div><strong>Pelna analiza</strong> — 1089+ zrodel, najnowsze badania 2026</div></li>
+<li><span class="sq"></span><div><strong>Plan dzialania</strong> — raport: co, dlaczego, jak, z konkretnymi priorytetami</div></li>
+<li><span class="sq"></span><div><strong>Wdrozenie + Efekty</strong> — monitorujemy wyniki w czasie rzeczywistym</div></li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-dark">Rozpocznij wspolprace</a>
+</div>
+<div class="reveal">
+<div class="dash-mini">
+<div style="color:rgba(255,255,255,.4);font-size:12px;margin-bottom:12px;font-weight:500">AUDYT W CZASIE RZECZYWISTYM</div>
+<div class="dash-mini-row"><span class="dash-mini-label">Google Business</span><span class="dash-mini-val pct-green">+72%</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">SEO On-Page</span><span class="dash-mini-val pct-green">94/100</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Social Engagement</span><span class="dash-mini-val pct-yellow">+28%</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">AI Search Visibility</span><span class="dash-mini-val pct-green">Wysoka</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Konkurencja</span><span class="dash-mini-val">3 z 5 wyprzedzone</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Rekomendacje</span><span class="dash-mini-val">12 dzialan</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RAPORT -->
+<section id="raport">
+<div class="container">
+<div class="two-col">
+<div class="reveal">
+<div class="dash-mini">
+<div style="color:rgba(255,255,255,.4);font-size:12px;margin-bottom:12px;font-weight:500">PRZYKLAD RAPORTU</div>
+<div class="dash-mini-row"><span class="dash-mini-label">Strony przeanalizowane</span><span class="dash-mini-val">47</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Bledy krytyczne</span><span class="dash-mini-val" style="color:#ef5350">8</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Rekomendacje</span><span class="dash-mini-val">24</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Zrodla naukowe</span><span class="dash-mini-val">156</span></div>
+<div class="dash-mini-row"><span class="dash-mini-label">Plan wdrozeniowy</span><span class="dash-mini-val pct-green">Gotowy</span></div>
+</div>
+</div>
+<div class="reveal">
+<h3 class="section-title">Co dokladnie dostajesz po analizie</h3>
+<div class="mini-cards">
+<div class="mini-card">
+<h4>Raport pelny z dowodami</h4>
+<p>Kazda rekomendacja poparta zrodlem naukowym lub branzowym. Zero domyslow.</p>
+</div>
+<div class="mini-card">
+<h4>Czysty raport bez zargonu</h4>
+<p>Prosty jezyk, czytelne tabele, wizualizacje. Zrozumiesz wszystko bez slownika.</p>
+</div>
+<div class="mini-card">
+<h4>Plan wdrozeniowy krok po kroku</h4>
+<p>Priorytetyzacja dzialan — wiesz co robic najpierw, a co moze poczekac.</p>
+</div>
+<div class="mini-card">
+<h4>Gotowe materialy</h4>
+<p>Posty, maile, opisy Google Business Profile — gotowe do publikacji.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DARK SECTION -->
+<div class="dark-section" id="ksef">
+<div class="container">
+<h2 class="section-title reveal">Dlaczego Zautomatyzuj Sie?</h2>
+<div class="dark-top-cards reveal">
+<div class="dark-card">
+<h4>Dane, nie opinie</h4>
+<p>1089+ zrodel naukowych i branzowych. Kazda rekomendacja ma dowod. Nie zgadujemy — analizujemy.</p>
+</div>
+<div class="dark-card">
+<h4>Konkurencja na dwoch torach</h4>
+<p>Google + social media jednoczesnie. Twoi klienci szukaja Cie w obu miejscach — badzmy tam razem.</p>
+</div>
+</div>
+<div class="reveal">
+<div class="dark-tabs">
+<button class="dark-tab active" data-dtab="analiza">Analiza</button>
+<button class="dark-tab" data-dtab="seo2">SEO</button>
+<button class="dark-tab" data-dtab="social2">Social Media</button>
+<button class="dark-tab" data-dtab="ai2">AI Search</button>
+</div>
+<div class="dark-tab-content active" data-dtab-content="analiza">
+<h5>Pelna analiza firmy w 48h</h5>
+<ul>
+<li>Audyt SEO on-page i off-page</li>
+<li>Analiza profilu Google Business</li>
+<li>Przeglad 100+ postow social media</li>
+<li>Benchmarking na tle 5 konkurentow</li>
+<li>Raport z priorytetyzacja dzialan</li>
+</ul>
+</div>
+<div class="dark-tab-content" data-dtab-content="seo2">
+<h5>Optymalizacja pod wyszukiwarki</h5>
+<ul>
+<li>Struktura nagdowkow i meta tagow</li>
+<li>Szybkosc ladowania i Core Web Vitals</li>
+<li>Optymalizacja tresci pod slowa kluczowe</li>
+<li>Link building i profil linkow</li>
+<li>Schema markup i dane strukturalne</li>
+</ul>
+</div>
+<div class="dark-tab-content" data-dtab-content="social2">
+<h5>Strategia social media</h5>
+<ul>
+<li>Audyt obecnych kanalow</li>
+<li>Kalendarz publikacji</li>
+<li>Gotowe posty i grafiki</li>
+<li>Strategia hashtagow i zasiegu</li>
+<li>Raport efektywnosci co 30 dni</li>
+</ul>
+</div>
+<div class="dark-tab-content" data-dtab-content="ai2">
+<h5>Widocznosc w AI Search</h5>
+<ul>
+<li>Optymalizacja pod ChatGPT i Perplexity</li>
+<li>Dane strukturalne dla AI</li>
+<li>Tresci odpowiadajace na pytania</li>
+<li>Monitoring widocznosci w AI</li>
+<li>Strategia E-E-A-T</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section>
+<div class="container">
+<h2 class="section-title reveal" style="text-align:center">Co mowia nasi klienci</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card reveal">
+<p class="quote">"Klientki zaczely same nas znajdowac w Google. Wczesniej bylysmy niewidoczne — teraz jestesmy na pierwszej stronie."</p>
+<p class="author">Salon kosmetyczny, Warszawa</p>
+</div>
+<div class="testimonial-card reveal">
+<p class="quote">"Od zera do lidera w Google w 7 dni. Nie wierzyalam, ze to mozliwe, ale dane mowia same za siebie."</p>
+<p class="author">Zajecia dla dzieci, Kielce</p>
+</div>
+<div class="testimonial-card reveal">
+<p class="quote">"Wreszcie ktos wyjasnil co robic — i zrobil to ze mna. Raport byl czytelny i od razu wiedzialem, od czego zaczac."</p>
+<p class="author">Gabinet fizjoterapii, Krakow</p>
+</div>
+<div class="testimonial-card reveal">
+<p class="quote">"Pierwszy raz ktos napisal do nas przez Google. Nigdy wczesniej to sie nie zdarzalo. Teraz mamy staly naplyw zapytan."</p>
+<p class="author">Szkola jezykowa, Lodz</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="cennik">
+<div class="container">
+<h2 class="section-title reveal" style="text-align:center">Cennik</h2>
+<p class="reveal" style="text-align:center;color:var(--text-gray);margin-bottom:8px">Przejrzyste ceny. Bez ukrytych kosztow.</p>
+<div class="pricing-grid reveal">
+<div class="price-card">
+<h4>Konsultacja</h4>
+<div class="price">0 zl</div>
+<div class="price-sub">Jednorazowo</div>
+<ul>
+<li>30 min rozmowy o firmie</li>
+<li>Wstepna analiza potrzeb</li>
+<li>Rekomendacja nastepnych krokow</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-outline">Umow sie</a>
+</div>
+<div class="price-card">
+<h4>Audyt</h4>
+<div class="price">1 299 zl</div>
+<div class="price-sub">Jednorazowo</div>
+<ul>
+<li>Pelna analiza 1089+ zrodel</li>
+<li>Audyt SEO + Social Media</li>
+<li>Raport z rekomendacjami</li>
+<li>Dostawa w 48h</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-outline">Zamow</a>
+</div>
+<div class="price-card featured">
+<h4>Audyt + Plan</h4>
+<div class="price">1 999 zl</div>
+<div class="price-sub">Jednorazowo</div>
+<ul>
+<li>Wszystko z pakietu Audyt</li>
+<li>Plan wdrozeniowy krok po kroku</li>
+<li>Gotowe materialy do publikacji</li>
+<li>Priorytetyzacja dzialan</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-dark">Zamow</a>
+</div>
+<div class="price-card">
+<h4>Budowa</h4>
+<div class="price">3 499 zl</div>
+<div class="price-sub">Jednorazowo</div>
+<ul>
+<li>Strona WWW od zera</li>
+<li>UX 2026 + optymalizacja SEO</li>
+<li>Google Business setup</li>
+<li>Gotowa do AI Search</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-outline">Zamow</a>
+</div>
+<div class="price-card">
+<h4>Prowadzenie</h4>
+<div class="price">od 1 999 zl</div>
+<div class="price-sub">Miesiecznie</div>
+<ul>
+<li>Re-audyt co 30 dni</li>
+<li>Monitoring pozycji</li>
+<li>Aktualizacja tresci</li>
+<li>Raport miesieczny</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-outline">Zamow</a>
+</div>
+<div class="price-card">
+<h4>Wdrozenie systemow</h4>
+<div class="price">Indywidualnie</div>
+<div class="price-sub">Wycena po analizie</div>
+<ul>
+<li>Automatyzacja procesow</li>
+<li>Integracja narzedzi</li>
+<li>Szkolenie zespolu</li>
+<li>Wsparcie wdrozeniowe</li>
+</ul>
+<a href="#kontakt" class="btn-pill btn-dark">Skontaktuj sie</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+<div class="container">
+<h2 class="section-title reveal" style="text-align:center">Czeste pytania</h2>
+<div class="faq-list">
+<div class="faq-item">
+<button class="faq-q">Ile trwa analiza firmy?</button>
+<div class="faq-a"><div class="faq-a-inner">Pelna analiza jest gotowa w 48 godzin od otrzymania dostepu do profili. Obejmuje audyt SEO, social media, Google Business i widocznosc w AI Search.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q">Czy moge wdrozyc rekomendacje samodzielnie?</button>
+<div class="faq-a"><div class="faq-a-inner">Tak. Raport zawiera plan krok po kroku z priorytetyzacja. Jezyki sa proste, a kazda rekomendacja ma konkretne instrukcje. Mozesz tez zlecic nam wdrozenie.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q">Skad 1089+ zrodel?</button>
+<div class="faq-a"><div class="faq-a-inner">Nasza baza to zrodla naukowe, branzowe raporty, case studies i aktualne badania z 2026 roku. Kazda rekomendacja jest poparta dowodem — nie zgadujemy.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q">Co jesli nie jestem zadowolony?</button>
+<div class="faq-a"><div class="faq-a-inner">Jesli po analizie nie zobaczysz wartosci w raporcie, zwracamy 100% kwoty. Bez pytan, bez haczyikow.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q">Czy pomagacie z KSeF?</button>
+<div class="faq-a"><div class="faq-a-inner">Tak. Pomagamy firmom przygotowac sie do obowiazku e-fakturowania. Audytujemy gotowosci systemow, doradzamy narzedzia i wspieramy we wdrozeniu KSeF.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q">Dla kogo jest ta usluga?</button>
+<div class="faq-a"><div class="faq-a-inner">Dla malych i srednich firm w Polsce, ktore chca byc widoczne w Google, social media i AI Search. Szczegolnie dla branz uslugowych — salony, gabinety, szkoly, biura.</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- GUARANTEE -->
+<div class="container">
+<div class="guarantee reveal">
+<h3>100% satysfakcji albo zwrot</h3>
+<p>Jesli po otrzymaniu raportu uznasz, ze nie dostales wartosci — zwracamy pelna kwote. Bez pytan, bez warunkow.</p>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer id="kontakt">
+<div class="container">
+<div class="footer-inner">
+<div class="footer-brand">
+<div class="footer-logo">Zautomatyzuj Sie</div>
+<p>Marketing cyfrowy oparty na danych. 1089+ zrodel, zero domyslow.</p>
+</div>
+<div class="footer-links">
+<h5>Uslugi</h5>
+<a href="#uslugi">Analiza firmy</a>
+<a href="#uslugi">Strony WWW</a>
+<a href="#uslugi">Re-audyt</a>
+<a href="#cennik">Cennik</a>
+</div>
+<div class="footer-links">
+<h5>Firma</h5>
+<a href="#jak-dzialamy">Jak dzialamy</a>
+<a href="#faq">FAQ</a>
+<a href="#kontakt">Kontakt</a>
+</div>
+<div class="footer-links">
+<h5>Kontakt</h5>
+<a href="mailto:kontakt@zautomatyzujsie.pl">kontakt@zautomatyzujsie.pl</a>
+<a href="tel:+48000000000">+48 000 000 000</a>
+</div>
+</div>
+<div class="footer-bottom">Zautomatyzuj Sie &copy; 2026. Wszelkie prawa zastrzezone.</div>
+</div>
+</footer>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-q').forEach(function(btn){
+btn.addEventListener('click',function(){
+var item=this.parentElement;
+var ans=item.querySelector('.faq-a');
+var isOpen=item.classList.contains('open');
+document.querySelectorAll('.faq-item').forEach(function(fi){
+fi.classList.remove('open');
+fi.querySelector('.faq-a').style.maxHeight=null;
+});
+if(!isOpen){
+item.classList.add('open');
+ans.style.maxHeight=ans.scrollHeight+'px';
+}
+});
+});
+
+// IntersectionObserver reveal
+var observer=new IntersectionObserver(function(entries){
+entries.forEach(function(e){
+if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+
+// Ticker
+var tickerData=[
+"Audyt SEO: 47 stron przeanalizowanych",
+"Google Business: +340% widocznosci",
+"Social Media: 100+ postow zoptymalizowanych",
+"AI Search: wysoka widocznosc w ChatGPT",
+"Konkurencja: 3 z 5 rywali wyprzedzonych",
+"Re-audyt: tabela PRZED/PO co 30 dni",
+"Zrodla: 1089+ naukowych i branzowych",
+"Raport: gotowy w 48 godzin",
+"Klienci: 97% satysfakcji",
+"Plan wdrozeniowy: krok po kroku z priorytetami"
+];
+var tickerEl=document.getElementById('ticker');
+var html='';
+for(var i=0;i<2;i++){tickerData.forEach(function(t){html+='<span class="ticker-item">'+t+'</span>'});}
+tickerEl.innerHTML=html;
+
+// Terminal feed
+var feedLines=[
+"[OK] Meta title zoptymalizowany — Salon Bella",
+"[WARN] Brak alt na 12 obrazkach — FizjoMed",
+"[OK] Schema LocalBusiness dodany — KidsFun",
+"[INFO] Analiza konkurencji: 5 firm w promieniu 3km",
+"[OK] Google Business: godziny otwarcia aktualne",
+"[WARN] Strona laduje sie 4.2s — wymaga optymalizacji",
+"[OK] SSL certyfikat aktywny",
+"[INFO] 156 zrodel naukowych wykorzystanych",
+"[OK] Social media: 100+ postow przeanalizowanych",
+"[WARN] Brak linkow wewnetrznych na 3 podstronach",
+"[OK] AI Search: tresc odpowiada na 8 pytan",
+"[INFO] Re-audyt zaplanowany za 28 dni"
+];
+var feedEl=document.getElementById('terminalFeed');
+var feedIdx=0;
+function addFeedLine(){
+var line=document.createElement('div');
+line.className='terminal-line';
+var prefix=feedLines[feedIdx%feedLines.length];
+var color=prefix.indexOf('[OK]')===0?'#7dca80':prefix.indexOf('[WARN]')===0?'#e0a800':'rgba(255,255,255,.4)';
+line.innerHTML='<span style="color:'+color+'">'+prefix.split(']')[0]+']</span>'+prefix.split(']').slice(1).join(']');
+feedEl.appendChild(line);
+if(feedEl.children.length>4){feedEl.removeChild(feedEl.firstChild)}
+feedIdx++;
+}
+addFeedLine();
+setInterval(addFeedLine,2400);
+
+// Dark section tabs
+document.querySelectorAll('.dark-tab').forEach(function(tab){
+tab.addEventListener('click',function(){
+document.querySelectorAll('.dark-tab').forEach(function(t){t.classList.remove('active')});
+document.querySelectorAll('.dark-tab-content').forEach(function(c){c.classList.remove('active')});
+this.classList.add('active');
+document.querySelector('[data-dtab-content="'+this.dataset.dtab+'"]').classList.add('active');
+});
+});
+
+// Hero dashboard tabs
+document.querySelectorAll('.dash-tab').forEach(function(tab){
+tab.addEventListener('click',function(){
+document.querySelectorAll('.dash-tab').forEach(function(t){t.classList.remove('active')});
+this.classList.add('active');
+});
+});
+</script>
+</body>
+</html>
