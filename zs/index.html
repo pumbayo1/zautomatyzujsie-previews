@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zautomatyzuj Sie - Twoja firma. Widoczna.</title>
+<title>Zautomatyzuj Się - Twoja firma. Widoczna.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -64,6 +64,24 @@ a{text-decoration:none;color:inherit}
 /* HERO */
 .hero{padding:100px 0 80px;background:linear-gradient(180deg,var(--light-bg) 0%,#fff 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px;opacity:.4;pointer-events:none}
+/* Floating report cards in hero */
+.hero-floats{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+.float-card{position:absolute;background:rgba(255,255,255,.7);backdrop-filter:blur(6px);border:1px solid rgba(37,99,235,.08);border-radius:12px;padding:12px 16px;font-size:12px;color:var(--navy);box-shadow:0 4px 24px rgba(10,16,69,.06);white-space:nowrap}
+.float-card .fc-label{font-size:10px;color:var(--text-sec);font-weight:400;display:block;margin-bottom:2px}
+.float-card .fc-value{font-size:18px;font-weight:800;color:var(--navy)}
+.float-card .fc-bar{height:4px;border-radius:2px;background:#e5e7eb;margin-top:6px;overflow:hidden;width:80px}
+.float-card .fc-bar-fill{height:100%;border-radius:2px}
+.fc1{top:18%;left:4%;animation:floatA 8s ease-in-out infinite}
+.fc2{top:12%;right:5%;animation:floatB 10s ease-in-out infinite}
+.fc3{bottom:30%;left:6%;animation:floatC 9s ease-in-out infinite}
+.fc4{top:40%;right:3%;animation:floatD 11s ease-in-out infinite}
+.fc5{bottom:15%;right:12%;animation:floatA 7s ease-in-out infinite 1.5s}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(-1.5deg)}}
+@keyframes floatC{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-11px) rotate(1.2deg)}}
+@keyframes floatD{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-16px) rotate(-0.8deg)}}
+@media(max-width:960px){.hero-floats{display:none}}
+
 .hero .container{position:relative;z-index:1;text-align:center}
 .hero-badge{margin-bottom:24px}
 .hero h1{font-size:clamp(40px,5.5vw,68px);font-weight:800;line-height:1.1;color:var(--navy);margin-bottom:20px}
@@ -246,16 +264,16 @@ a{text-decoration:none;color:inherit}
 <div class="container">
 <a href="#" class="nav-logo">
 <div class="nav-logo-icon"><span></span><span></span><span></span></div>
-Zautomatyzuj Sie
+Zautomatyzuj Się
 </a>
 <div class="nav-links">
-<a href="#uslugi">Uslugi</a>
-<a href="#metoda">Jak Dzialamy</a>
+<a href="#uslugi">Usługi</a>
+<a href="#metoda">Jak Działamy</a>
 <a href="#case-study">Case Study</a>
 <a href="#cennik">Cennik</a>
 <a href="#faq">FAQ</a>
 <a href="#kontakt">Kontakt</a>
-<div class="nav-cta"><a href="#kontakt" class="btn btn-primary">Bezplatna analiza</a></div>
+<div class="nav-cta"><a href="#kontakt" class="btn btn-primary">Bezpłatna analiza</a></div>
 </div>
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
 <span></span><span></span><span></span>
@@ -263,22 +281,29 @@ Zautomatyzuj Sie
 </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-<a href="#uslugi" onclick="closeMenu()">Uslugi</a>
-<a href="#metoda" onclick="closeMenu()">Jak Dzialamy</a>
+<a href="#uslugi" onclick="closeMenu()">Usługi</a>
+<a href="#metoda" onclick="closeMenu()">Jak Działamy</a>
 <a href="#case-study" onclick="closeMenu()">Case Study</a>
 <a href="#cennik" onclick="closeMenu()">Cennik</a>
 <a href="#faq" onclick="closeMenu()">FAQ</a>
 <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
-<a href="#kontakt" class="btn btn-primary" onclick="closeMenu()">Bezplatna analiza</a>
+<a href="#kontakt" class="btn btn-primary" onclick="closeMenu()">Bezpłatna analiza</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
+<div class="hero-floats">
+<div class="float-card fc1"><span class="fc-label">Pozycja Google</span><span class="fc-value" data-count-to="3">#3</span><div class="fc-bar"><div class="fc-bar-fill" style="width:72%;background:var(--accent)"></div></div></div>
+<div class="float-card fc2"><span class="fc-label">Widoczność SEO</span><span class="fc-value">+72%</span><div class="fc-bar"><div class="fc-bar-fill" style="width:88%;background:#10B981"></div></div></div>
+<div class="float-card fc3"><span class="fc-label">Strona WWW</span><span class="fc-value">92/100</span><div class="fc-bar"><div class="fc-bar-fill" style="width:92%;background:var(--accent)"></div></div></div>
+<div class="float-card fc4"><span class="fc-label">Nowi klienci/msc</span><span class="fc-value">+340%</span><div class="fc-bar"><div class="fc-bar-fill" style="width:85%;background:#10B981"></div></div></div>
+<div class="float-card fc5"><span class="fc-label">Opinie Google</span><span class="fc-value">4.9★</span><div class="fc-bar"><div class="fc-bar-fill" style="width:95%;background:#f59e0b"></div></div></div>
+</div>
 <div class="container">
 <div class="hero-badge"><span class="pill">Marketing oparty na danych &middot; 2026</span></div>
 <h1 class="reveal">Twoja firma. Widoczna.</h1>
-<p class="hero-sub reveal">Laczymy najnowsze badania z marketingiem cyfrowym, zeby Twoja firma byla widoczna w Google, social media i w glowach klientow.</p>
-<div class="hero-cta reveal"><a href="#kontakt" class="btn btn-primary">Bezplatna analiza firmy</a></div>
+<p class="hero-sub reveal">Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była widoczna w Google, social media i w głowach klientów.</p>
+<div class="hero-cta reveal"><a href="#kontakt" class="btn btn-primary">Bezpłatna analiza firmy</a></div>
 <div class="dashboard reveal">
 <div class="dash-header">
 <span class="dash-dot r"></span><span class="dash-dot y"></span><span class="dash-dot g"></span>
@@ -288,8 +313,8 @@ Zautomatyzuj Sie
 <div class="dash-line"><span class="arrow">&rarr;</span> Audyt strony WWW i SEO</div>
 <div class="dash-line"><span class="arrow">&rarr;</span> Analiza konkurencji w Google</div>
 <div class="dash-line"><span class="arrow">&rarr;</span> Deep dive social media</div>
-<div class="dash-input">Wpisz nazwe firmy lub domene...<span class="dash-cursor"></span></div>
-<div class="dash-response">Analizuje widocznosc w Google, Instagram, Facebook...</div>
+<div class="dash-input">Wpisz nazwę firmy lub domenę...<span class="dash-cursor"></span></div>
+<div class="dash-response">Analizuje widoczność w Google, Instagram, Facebook...</div>
 </div>
 </div>
 </section>
@@ -298,11 +323,11 @@ Zautomatyzuj Sie
 <section class="services" id="uslugi">
 <div class="container">
 <div class="services-text reveal">
-<span class="section-badge">Uslugi</span>
-<h2>Kompleksowa analiza i budowa widocznosci</h2>
-<p>Od audytu po stale prowadzenie &mdash; jedno miejsce, jeden partner.</p>
+<span class="section-badge">Usługi</span>
+<h2>Kompleksowa analiza i budowa widoczności</h2>
+<p>Od audytu po stałe prowadzenie &mdash; jedno miejsce, jeden partner.</p>
 <div class="services-btns">
-<a href="#kontakt" class="btn btn-primary">Zamow audyt</a>
+<a href="#kontakt" class="btn btn-primary">Zamów audyt</a>
 <a href="#cennik" class="btn btn-outline">Zobacz cennik</a>
 </div>
 </div>
@@ -330,7 +355,7 @@ analyzing 1089+ sources<br>
 <div class="features-header reveal">
 <span class="section-badge">Metoda</span>
 <h2>Kazda rekomendacja oparta na badaniach</h2>
-<p>Nie zgadujemy. Analizujemy setki danych, zeby kazda decyzja byla poparta liczbami.</p>
+<p>Nie zgadujemy. Analizujemy setki danych, żeby każda decyzja była poparta liczbami.</p>
 </div>
 <div class="features-grid">
 
@@ -339,8 +364,8 @@ analyzing 1089+ sources<br>
 <div class="feature-icon">
 <svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
 </div>
-<h3>Pelna analiza firmy w sieci</h3>
-<p>Audyt strony, SEO, Google Business, opinii, Instagrama, Facebooka i TikToka &mdash; minimum 100 postow kazdej platformy.</p>
+<h3>Pełna analiza firmy w sieci</h3>
+<p>Audyt strony, SEO, Google Business, opinii, Instagrama, Facebooka i TikToka &mdash; minimum 100 postów każdej platformy.</p>
 <div class="tag-cloud">
 <span class="tag">strona WWW</span><span class="tag">SEO techniczne</span><span class="tag">Google Maps</span>
 <span class="tag">Instagram 100+</span><span class="tag">Facebook 100+</span><span class="tag">TikTok 100+</span>
@@ -354,12 +379,12 @@ analyzing 1089+ sources<br>
 <svg viewBox="0 0 24 24"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg>
 </div>
 <h3>Konkurencja na dwoch torach</h3>
-<p>Analizujemy wszystkich konkurentow wyzszych w Google PLUS 5-10 konkurentow na kazdej platformie spolecznosciowej.</p>
+<p>Analizujemy wszystkich konkurentów wyższych w Google PLUS 5-10 konkurentów na każdej platformie społecznościowej.</p>
 <ul class="checklist">
 <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Audyt konkurencji w Google</li>
-<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> 5-10 konkurentow Instagram</li>
-<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> 5-10 konkurentow Facebook</li>
-<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> 5-10 konkurentow TikTok</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> 5-10 konkurentów Instagram</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> 5-10 konkurentów Facebook</li>
+<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> 5-10 konkurentów TikTok</li>
 </ul>
 </div>
 
@@ -369,7 +394,7 @@ analyzing 1089+ sources<br>
 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
 </div>
 <h3>3 raporty + gotowe materialy</h3>
-<p>Pelen raport z dowodami, czysty raport bez zargonu, plan wdrozeniowy krok po kroku. Plus gotowe posty, maile, opisy.</p>
+<p>Pełen raport z dowodami, czysty raport bez żargonu, plan wdrożeniowy krok po kroku. Plus gotowe posty, maile, opisy.</p>
 <div class="doc-grid">
 <div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Raport</div>
 <div class="doc-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Plan</div>
@@ -386,7 +411,7 @@ analyzing 1089+ sources<br>
 <svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
 </div>
 <h3>Re-audyt co 30 dni</h3>
-<p>Po wdrozeniu sprawdzamy co sie zmienilo. Tabela PRZED/PO z liczbami, gotowa do publikacji.</p>
+<p>Po wdrożeniu sprawdzamy co sie zmieniło. Tabela PRZED/PO z liczbami, gotowa do publikacji.</p>
 <div class="growth-bars">
 <div class="growth-col"><span>Przed</span><div class="growth-bar growth-before" style="height:25px"></div></div>
 <div class="growth-col"><span>Po</span><div class="growth-bar growth-after" style="height:60px"></div></div>
@@ -406,7 +431,7 @@ analyzing 1089+ sources<br>
 <div class="case-inner reveal">
 <div class="case-text">
 <h2>Od zera do lidera w Google w 7 dni.</h2>
-<p>Zajecia dla dzieci, Kielce &mdash; 0 stron &rarr; 16 zaindeksowanych, Top 3 w Google Maps. Pelna widocznosc w tydzien.</p>
+<p>Zajęcia dla dzieci, Kielce &mdash; 0 stron &rarr; 16 zaindeksowanych, Top 3 w Google Maps. Pełna widoczność w tydzień.</p>
 </div>
 <div class="case-stats">
 <div class="stat-card"><div class="stat-val">0 &rarr; 16</div><div class="stat-label">stron WWW</div></div>
@@ -428,22 +453,22 @@ analyzing 1089+ sources<br>
 <div class="testimonials-scroll">
 <div class="testimonial-card reveal">
 <div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
-<blockquote>&bdquo;Klientki zaczely same nas znajdowac w Google. Pierwszy raz mamy zapytania z internetu!&rdquo;</blockquote>
+<blockquote>&bdquo;Klientki zaczęły same nas znajdować w Google. Pierwszy raz mamy zapytania z internetu!&rdquo;</blockquote>
 <div class="author">Salon kosmetyczny, Warszawa</div>
 </div>
 <div class="testimonial-card reveal">
 <div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
-<blockquote>&bdquo;Od zera do pierwszej strony Google w tydzien. Nie wierzylam, ze to mozliwe.&rdquo;</blockquote>
-<div class="author">Zajecia dla dzieci, Kielce</div>
+<blockquote>&bdquo;Od zera do pierwszej strony Google w tydzień. Nie wierzyłam, ze to mozliwe.&rdquo;</blockquote>
+<div class="author">Zajęcia dla dzieci, Kielce</div>
 </div>
 <div class="testimonial-card reveal">
 <div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
-<blockquote>&bdquo;Wreszcie ktos wyjasnil mi co robic &mdash; i zrobil to ze mna. Wyniki mowia same za siebie.&rdquo;</blockquote>
+<blockquote>&bdquo;Wreszcie ktos wyjaśnił mi co robic &mdash; i zrobil to ze mna. Wyniki mowia same za siebie.&rdquo;</blockquote>
 <div class="author">Gabinet fizjoterapii, Krakow</div>
 </div>
 <div class="testimonial-card reveal">
 <div class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></div>
-<blockquote>&bdquo;Pierwszy raz ktos napisal do nas przez Google &mdash; to dziala.&rdquo;</blockquote>
+<blockquote>&bdquo;Pierwszy raz ktos napisał do nas przez Google &mdash; to dziala.&rdquo;</blockquote>
 <div class="author">Szkola jezykowa, Lodz</div>
 </div>
 </div>
@@ -458,12 +483,12 @@ analyzing 1089+ sources<br>
 <span class="section-badge">Cennik</span>
 <h2>Ile to kosztuje?</h2>
 <ul class="pricing-features">
-<li><span class="check">&#10003;</span> Pelna analiza widocznosci w Google i social media</li>
+<li><span class="check">&#10003;</span> Pełna analiza widoczności w Google i social media</li>
 <li><span class="check">&#10003;</span> Audyt strony, SEO, Google Business Profile</li>
-<li><span class="check">&#10003;</span> Analiza 5-10 konkurentow na kazdej platformie</li>
+<li><span class="check">&#10003;</span> Analiza 5-10 konkurentów na każdej platformie</li>
 <li><span class="check">&#10003;</span> 3 raporty: pelen, czysty, plan wdrozeniowy</li>
 <li><span class="check">&#10003;</span> Re-audyt co 30 dni z porownaniem PRZED/PO</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Stale prowadzenie i aktualizacja strategii</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Stałe prowadzenie i aktualizacja strategii</li>
 <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Reagowanie na zmiany algorytmow w czasie rzeczywistym</li>
 </ul>
 </div>
@@ -471,17 +496,17 @@ analyzing 1089+ sources<br>
 <div class="pricing-cards">
 <div class="price-card">
 <div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-<div class="price-info"><div class="price-name">Konsultacja</div><div class="price-desc">Bezplatna rozmowa o Twojej firmie</div></div>
+<div class="price-info"><div class="price-name">Konsultacja</div><div class="price-desc">Bezpłatna rozmowa o Twojej firmie</div></div>
 <div class="price-amount">0 zl</div>
 </div>
 <div class="price-card">
 <div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
-<div class="price-info"><div class="price-name">Audyt firmy</div><div class="price-desc">Pelna analiza + raport z danymi</div></div>
+<div class="price-info"><div class="price-name">Audyt firmy</div><div class="price-desc">Pełna analiza + raport z danymi</div></div>
 <div class="price-amount">1 299 zl</div>
 </div>
 <div class="price-card featured">
 <div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-<div class="price-info"><div class="price-name">Audyt + Plan</div><div class="price-desc">Analiza + plan wdrozeniowy krok po kroku</div></div>
+<div class="price-info"><div class="price-name">Audyt + Plan</div><div class="price-desc">Analiza + plan wdrożeniowy krok po kroku</div></div>
 <div class="price-amount">1 999 zl</div>
 </div>
 <div class="price-card">
@@ -491,7 +516,7 @@ analyzing 1089+ sources<br>
 </div>
 <div class="price-card">
 <div class="price-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg></div>
-<div class="price-info"><div class="price-name">Prowadzenie</div><div class="price-desc">Comiesiezne raporty + reagowanie na algorytmy</div></div>
+<div class="price-info"><div class="price-name">Prowadzenie</div><div class="price-desc">Comiesięczne raporty + reagowanie na algorytmy</div></div>
 <div class="price-amount">od 1 999 zl/msc</div>
 </div>
 </div>
@@ -506,48 +531,48 @@ analyzing 1089+ sources<br>
 <div class="container">
 <div class="faq-header reveal">
 <span class="section-badge">FAQ</span>
-<h2>Najczesciej zadawane pytania</h2>
+<h2>Najczęściej zadawane pytania</h2>
 </div>
 <div class="faq-list">
 
 <div class="faq-item reveal">
-<button class="faq-question">Jak wyglada proces wspolpracy?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Zaczynamy od bezplatnej rozmowy, podczas ktorej poznajemy Twoja firme i cele. Nastepnie przeprowadzamy pelny audyt widocznosci online &mdash; strona, SEO, Google Business, social media. Na tej podstawie tworzymy raport z konkretnymi rekomendacjami i plan wdrozeniowy. Mozesz wdrozyc go samodzielnie lub zlecic nam prowadzenie.</div></div>
+<button class="faq-question">Jak wyglada proces współpracy?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><div class="faq-answer-inner">Zaczynamy od bezplatnej rozmowy, podczas ktorej poznajemy Twoją firme i cele. Nastepnie przeprowadzamy pelny audyt widoczności online &mdash; strona, SEO, Google Business, social media. Na tej podstawie tworzymy raport z konkretnymi rekomendacjami i plan wdrozeniowy. Możesz wdrozyc go samodzielnie lub zlecic nam prowadzenie.</div></div>
 </div>
 
 <div class="faq-item reveal">
-<button class="faq-question">Czym rozniecie sie od typowych agencji?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Typowe agencje sprzedaja pakiety postow lub reklam. My zaczynamy od pelnej analizy &mdash; sprawdzamy minimum 100 postow na kazdej platformie, audytujemy strone technicznie, analizujemy konkurencje w Google i social media. Kazda rekomendacja jest poparta danymi, nie opiniami.</div></div>
+<button class="faq-question">Czym rozniecie się od typowych agencji?<span class="faq-icon">+</span></button>
+<div class="faq-answer"><div class="faq-answer-inner">Typowe agencje sprzedaja pakiety postów lub reklam. My zaczynamy od pelnej analizy &mdash; sprawdzamy minimum 100 postów na każdej platformie, audytujemy strone technicznie, analizujemy konkurencje w Google i social media. Kazda rekomendacja jest poparta danymi, nie opiniami.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Dla jakiego typu firm pracujecie?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Pracujemy glownie z firmami lokalnymi i uslugowymi &mdash; salony, gabinety, szkoly, studia, restauracje, firmy budowlane. Kazda firma, ktora chce byc widoczna w Google i social media, moze skorzystac z naszej analizy. Obslugujemy klientow z calej Polski.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Pracujemy głównie z firmami lokalnymi i usługowymi — salony, gabinety, szkoły, studia, restauracje, firmy budowlane. Każda firma, która chce być widoczna w Google i social media, może skorzystać z naszej analizy. Obsługujemy klientów z całej Polski.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Co dokladnie dostaje po analizie?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Otrzymujesz 3 dokumenty: (1) pelny raport z dowodami i zrzutami ekranu, (2) czysty raport bez technicznego zargonu, napisany prostym jezykiem, (3) plan wdrozeniowy krok po kroku. Dodatkowo przygotowujemy gotowe materialy &mdash; posty, maile, opisy Google Business Profile.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Otrzymujesz 3 dokumenty: (1) pelny raport z dowodami i zrzutami ekranu, (2) czysty raport bez technicznego żargonu, napisany prostym jezykiem, (3) plan wdrożeniowy krok po kroku. Dodatkowo przygotowujemy gotowe materialy &mdash; posty, maile, opisy Google Business Profile.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Czy moge sam wdrozyc rekomendacje?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Tak. Plan wdrozeniowy jest napisany tak, zeby kazdy mogl go wykonac samodzielnie. Kazdy krok ma jasne instrukcje, przyklady i gotowe materialy. Jezeli potrzebujesz pomocy, oferujemy tez prowadzenie &mdash; wdrazamy wszystko za Ciebie.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Tak. Plan wdrożeniowy jest napisany tak, żeby każdy mógł go wykonać samodzielnie. Każdy krok ma jasne instrukcje, przykłady i gotowe materiały. Jeżeli potrzebujesz pomocy, oferujemy też prowadzenie — wdrażamy wszystko za Ciebie.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Co to jest re-audyt?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Re-audyt to ponowna analiza po 30 dniach od wdrozenia. Sprawdzamy co sie zmienilo &mdash; pozycje w Google, zasiegi, nowe opinie, ruch na stronie. Tworzymy tabele PRZED/PO z konkretnymi liczbami, ktora mozesz wykorzystac jako case study lub material marketingowy.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Re-audyt to ponowna analiza po 30 dniach od wdrozenia. Sprawdzamy co sie zmieniło &mdash; pozycje w Google, zasiegi, nowe opinie, ruch na stronie. Tworzymy tabele PRZED/PO z konkretnymi liczbami, ktora możesz wykorzystac jako case study lub material marketingowy.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Czy obslugujecie wyszukiwarki AI?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Tak. Sprawdzamy jak Twoja firma wyglada w wynikach ChatGPT, Perplexity i innych wyszukiwarek AI. To nowy kanal pozyskiwania klientow i coraz wiecej osob szuka uslug wlasnie tam. Nasze rekomendacje uwzgledniaja optymalizacje pod AI Search.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Tak. Sprawdzamy jak Twoja firma wygląda w wynikach ChatGPT, Perplexity i innych wyszukiwarek AI. To nowy kanał pozyskiwania klientów i coraz więcej osób szuka usług właśnie tam. Nasze rekomendacje uwzględniają optymalizację pod AI Search.</div></div>
 </div>
 
 <div class="faq-item reveal">
 <button class="faq-question">Czy sa umowy dlugoterminowe?<span class="faq-icon">+</span></button>
-<div class="faq-answer"><div class="faq-answer-inner">Nie. Audyt to jednorazowa usluga &mdash; placisc raz i dostajesz pelny pakiet. Prowadzenie mozesz zamowic na dowolny okres, bez zobowiazan. Mozesz zrezygnowac w kazdym momencie. Wierzymy, ze klient zostaje, bo widzi wyniki, nie dlatego, ze podpisal umowe.</div></div>
+<div class="faq-answer"><div class="faq-answer-inner">Nie. Audyt to jednorazowa usluga &mdash; placisc raz i dostajesz pelny pakiet. Prowadzenie możesz zamowic na dowolny okres, bez zobowiazan. Możesz zrezygnowac w kazdym momencie. Wierzymy, ze klient zostaje, bo widzi wyniki, nie dlatego, ze podpisal umowe.</div></div>
 </div>
 
 </div>
@@ -558,8 +583,8 @@ analyzing 1089+ sources<br>
 <div class="guarantee">
 <div class="guarantee-inner reveal">
 <div class="guarantee-shield"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="#10B981" stroke-width="2.5"/></svg></div>
-<h2>Realne efekty albo zwrot pieniedzy</h2>
-<p>Dajemy Ci 90 dni na zobaczenie wynikow. Jesli po wdrozeniu naszych rekomendacji nie zobaczysz mierzalnej poprawy widocznosci &mdash; masz dwie opcje:</p>
+<h2>Realne efekty albo zwrot pieniędzy</h2>
+<p>Dajemy Ci 90 dni na zobaczenie wyników. Jeśli po wdrożeniu naszych rekomendacji nie zobaczysz mierzalnej poprawy widoczności &mdash; masz dwie opcje:</p>
 <div class="guarantee-options">
 <div class="guarantee-option"><strong>100% zwrot</strong><span>Pelny zwrot kosztow audytu</span></div>
 <div class="guarantee-option"><strong>30 dni za darmo</strong><span>Bezplatne prowadzenie przez miesiac</span></div>
@@ -574,12 +599,12 @@ analyzing 1089+ sources<br>
 <div class="footer-brand">
 <div class="nav-logo" style="margin-bottom:8px">
 <div class="nav-logo-icon"><span></span><span></span><span></span></div>
-Zautomatyzuj Sie
+Zautomatyzuj Się
 </div>
 <p>Twoja firma. Widoczna.<br><a href="mailto:zautomatyzujsie@gmail.com">zautomatyzujsie@gmail.com</a></p>
 </div>
 <div class="footer-col">
-<h4>Uslugi</h4>
+<h4>Usługi</h4>
 <a href="#">Audyt SEO</a>
 <a href="#">Google Business</a>
 <a href="#">Social Media</a>
@@ -596,15 +621,15 @@ Zautomatyzuj Sie
 <a href="#">Blog</a>
 </div>
 <div class="footer-cta">
-<h3>Gotowy zeby Twoja firma byla widoczna?</h3>
+<h3>Gotowy żeby Twoja firma była widoczna?</h3>
 <form class="footer-cta-form" onsubmit="event.preventDefault()">
 <input type="email" placeholder="Wpisz email">
-<button class="btn btn-primary" type="submit">Umow rozmowe</button>
+<button class="btn btn-primary" type="submit">Umów rozmowę</button>
 </form>
 </div>
 </div>
 <div class="footer-bottom">
-<p>&copy; 2026 Zautomatyzuj Sie &middot; @zautomatyzujsie</p>
+<p>&copy; 2026 Zautomatyzuj Się &middot; @zautomatyzujsie</p>
 <div class="footer-socials">
 <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,.6)"/></svg></a>
 <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
