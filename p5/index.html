@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Się — Warm Organic</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26;--cream:#f5efe6;--soft-green:#e8f0e4}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+
+/* NAV */
+nav{padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(250,247,242,.95);backdrop-filter:blur(8px);z-index:100;border-bottom:1px solid rgba(139,111,71,.06)}
+.logo{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:var(--dark)}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav a{text-decoration:none;color:var(--text);font-size:.9rem;transition:color .3s}
+nav a:hover{color:var(--primary)}
+.btn{display:inline-block;padding:.85rem 2rem;background:var(--primary);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;border-radius:50px;transition:all .3s;box-shadow:0 4px 15px rgba(139,111,71,.2)}
+.btn:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,111,71,.3)}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+
+/* HERO */
+.hero{padding:5rem 3rem 2rem;display:flex;align-items:center;gap:4rem;max-width:1200px;margin:0 auto}
+.hero-text{flex:1}
+.hero-text h1{font-family:Georgia,serif;font-size:3.4rem;line-height:1.15;color:var(--dark);margin-bottom:1.2rem}
+.hero-text h1 em{font-style:normal;color:var(--green);position:relative}
+.hero-text p{font-size:1.1rem;line-height:1.75;color:#5a5550;max-width:480px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:1rem}
+.hero-visual{flex:1;display:flex;justify-content:center}
+
+/* WAVE DIVIDER */
+.wave-divider{width:100%;overflow:hidden;line-height:0;margin-top:-1px}
+.wave-divider svg{display:block;width:100%;height:80px}
+.wave-up{transform:rotate(180deg)}
+
+/* SERVICES */
+.services-section{background:var(--cream);padding:4rem 3rem 5rem}
+.section-header{text-align:center;max-width:600px;margin:0 auto 3rem}
+.section-header h2{font-family:Georgia,serif;font-size:2.2rem;color:var(--dark);margin-bottom:.6rem}
+.section-header p{font-size:.95rem;color:#7a756f;line-height:1.6}
+.svc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.svc-card{background:#fff;border-radius:20px;padding:2rem;text-align:center;transition:all .3s;box-shadow:0 2px 12px rgba(107,84,53,.04)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(107,84,53,.1)}
+.svc-card-icon{width:64px;height:64px;margin:0 auto 1rem;background:var(--soft-green);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.svc-card h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--dark);margin-bottom:.5rem}
+.svc-card p{font-size:.85rem;color:#6b6560;line-height:1.65}
+
+/* STATS */
+.stats-section{padding:4rem 3rem;background:var(--bg)}
+.stats-flex{display:flex;justify-content:center;gap:4rem;max-width:800px;margin:0 auto}
+.stat-bubble{text-align:center;position:relative}
+.stat-circle{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--cream),#fff);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(107,84,53,.06);border:2px solid rgba(184,151,115,.15);margin:0 auto .8rem}
+.stat-circle .val{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;color:var(--primary)}
+.stat-circle .unit{font-size:.7rem;color:#8a857f;text-transform:uppercase;letter-spacing:1px}
+.stat-bubble .lbl{font-size:.82rem;color:#6b6560}
+
+/* PROCESS */
+.process-section{background:var(--soft-green);padding:4rem 3rem 5rem}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1000px;margin:0 auto}
+.proc-step{text-align:center;position:relative}
+.proc-step .circle{width:60px;height:60px;border-radius:50%;background:#fff;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--green)}
+.proc-step h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;color:var(--dark)}
+.proc-step p{font-size:.82rem;color:#5a5550;line-height:1.6}
+.proc-step:not(:last-child)::after{content:'';position:absolute;top:30px;left:calc(50% + 35px);width:calc(100% - 70px);height:2px;background:linear-gradient(90deg,var(--green),var(--accent));opacity:.3}
+
+/* PRICING */
+.pricing-section{padding:5rem 3rem;background:var(--bg)}
+.pricing-cards{display:flex;gap:2rem;max-width:1000px;margin:0 auto;justify-content:center}
+.pr-card{flex:1;max-width:320px;background:#fff;border-radius:24px;padding:2.5rem;text-align:center;box-shadow:0 4px 20px rgba(107,84,53,.05);transition:all .3s;position:relative;overflow:hidden}
+.pr-card:hover{transform:translateY(-6px);box-shadow:0 12px 35px rgba(107,84,53,.12)}
+.pr-card.popular{border:2px solid var(--primary)}
+.pr-card.popular::before{content:'Najpopularniejszy';position:absolute;top:16px;right:-30px;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;padding:.3rem 2.5rem;transform:rotate(45deg);text-transform:uppercase;letter-spacing:1px}
+.pr-card h3{font-family:Georgia,serif;font-size:1.2rem;color:var(--dark);margin-bottom:.3rem}
+.pr-card .desc{font-size:.8rem;color:#8a857f;margin-bottom:1rem}
+.pr-card .amount{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--primary)}
+.pr-card .freq{font-size:.78rem;color:#8a857f}
+.pr-card .timeline{display:inline-block;margin-top:.8rem;padding:.3rem 1rem;background:var(--soft-green);border-radius:20px;font-size:.78rem;color:var(--green);font-weight:600}
+.pr-card ul{list-style:none;text-align:left;margin:1.5rem 0}
+.pr-card li{font-size:.85rem;padding:.45rem 0;color:#5a5550;padding-left:1.5rem;position:relative}
+.pr-card li::before{content:'';position:absolute;left:0;top:.7rem;width:10px;height:10px;border-radius:50%;background:var(--soft-green);border:2px solid var(--green)}
+
+/* CTA */
+.cta-section{padding:5rem 3rem;text-align:center;background:linear-gradient(135deg,var(--cream),var(--bg))}
+.cta-section h2{font-family:Georgia,serif;font-size:2.2rem;color:var(--dark);margin-bottom:.8rem}
+.cta-section p{font-size:1rem;color:#6b6560;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* FOOTER */
+footer{padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#8a857f;border-top:1px solid rgba(139,111,71,.08)}
+footer a{color:var(--primary);text-decoration:none}
+
+@media(max-width:768px){
+  .hero{flex-direction:column;padding:3rem 2rem;text-align:center}
+  .hero-text h1{font-size:2.2rem}
+  .hero-btns{justify-content:center}
+  .stats-flex{flex-direction:column;gap:2rem}
+  .process-steps{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .proc-step::after{display:none}
+  .pricing-cards{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Zautomatyzuj Się</div>
+  <ul>
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#proces">Jak działamy</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#kontakt" class="btn" style="padding:.5rem 1.4rem;font-size:.82rem">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Marketing, który <em>rośnie</em> razem z Twoim biznesem</h1>
+    <p>Łączymy analitykę z kreatywnością. Codziennie przeglądamy ponad 150 źródeł branżowych, abyś Ty mógł rosnąć w oparciu o sprawdzone dane, a nie domysły.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn">Zamów bezpłatną konsultację</a>
+      <a href="#uslugi" class="btn btn-outline">Zobacz usługi</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg width="400" height="360" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Organic plant/growth illustration -->
+      <!-- Pot -->
+      <path d="M140 280 Q140 310 170 320 L230 320 Q260 310 260 280Z" fill="#b89773" opacity=".3"/>
+      <path d="M130 270 L270 270 L260 280 L140 280Z" fill="#8b6f47" opacity=".4"/>
+      <!-- Soil -->
+      <ellipse cx="200" cy="270" rx="70" ry="8" fill="#6b5435" opacity=".2"/>
+      <!-- Main stem -->
+      <path d="M200 270 C200 220 195 180 200 120" stroke="#4a7c59" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Branches with leaves -->
+      <path d="M200 220 C180 210 160 200 150 185" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <path d="M150 185 C140 175 135 165 145 160 C155 155 165 165 160 178 C155 185 150 185 150 185" fill="#4a7c59" opacity=".4"/>
+      <path d="M200 190 C220 178 240 172 255 168" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <path d="M255 168 C268 162 275 155 268 148 C260 142 250 150 248 162 C247 168 255 168 255 168" fill="#4a7c59" opacity=".35"/>
+      <path d="M200 160 C178 148 162 140 152 130" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <path d="M152 130 C142 120 138 110 148 106 C158 102 164 114 158 126 C155 130 152 130 152 130" fill="#4a7c59" opacity=".3"/>
+      <!-- Top bloom / data flower -->
+      <circle cx="200" cy="100" r="28" fill="#c08e7d" opacity=".15"/>
+      <circle cx="200" cy="100" r="18" fill="#c08e7d" opacity=".25"/>
+      <!-- Data petals -->
+      <ellipse cx="200" cy="72" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(0 200 100)"/>
+      <ellipse cx="224" cy="84" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(72 200 100)"/>
+      <ellipse cx="218" cy="114" rx="8" ry="14" fill="#b89773" opacity=".25" transform="rotate(144 200 100)"/>
+      <ellipse cx="182" cy="114" rx="8" ry="14" fill="#b89773" opacity=".25" transform="rotate(216 200 100)"/>
+      <ellipse cx="176" cy="84" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(288 200 100)"/>
+      <circle cx="200" cy="100" r="8" fill="#8b6f47" opacity=".5"/>
+      <!-- Floating data elements -->
+      <g style="animation:sway 4s ease-in-out infinite">
+        <rect x="280" y="80" width="80" height="36" rx="18" fill="#fff" stroke="#b89773" stroke-width="1" opacity=".9"/>
+        <text x="294" y="96" font-family="Georgia" font-size="10" font-weight="700" fill="#8b6f47">150+</text>
+        <text x="290" y="108" font-family="Lato" font-size="7" fill="#8a857f">źródeł</text>
+      </g>
+      <g style="animation:sway 5s ease-in-out infinite;animation-delay:.5s">
+        <rect x="40" y="120" width="76" height="36" rx="18" fill="#fff" stroke="#4a7c59" stroke-width="1" opacity=".9"/>
+        <text x="56" y="136" font-family="Georgia" font-size="10" font-weight="700" fill="#4a7c59">97%</text>
+        <text x="48" y="148" font-family="Lato" font-size="7" fill="#8a857f">satysfakcji</text>
+      </g>
+      <g style="animation:sway 3.5s ease-in-out infinite;animation-delay:1s">
+        <rect x="290" y="180" width="76" height="36" rx="18" fill="#fff" stroke="#c08e7d" stroke-width="1" opacity=".9"/>
+        <text x="300" y="196" font-family="Georgia" font-size="10" font-weight="700" fill="#c08e7d">+34%</text>
+        <text x="296" y="208" font-family="Lato" font-size="7" fill="#8a857f">konwersja</text>
+      </g>
+      <!-- Small floating seeds/dots -->
+      <circle cx="120" cy="90" r="3" fill="#b89773" opacity=".3"><animate attributeName="cy" values="90;80;90" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="280" cy="140" r="2" fill="#4a7c59" opacity=".3"><animate attributeName="cy" values="140;130;140" dur="4s" repeatCount="indefinite"/></circle>
+      <circle cx="320" cy="230" r="2.5" fill="#c08e7d" opacity=".3"><animate attributeName="cy" values="230;220;230" dur="3.5s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+</section>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 0 400 80 600 40S1000 0 1200 40V80H0Z" fill="#f5efe6"/></svg>
+</div>
+
+<section id="uslugi" class="services-section">
+  <div class="section-header">
+    <h2>Usługi, które rosną z Tobą</h2>
+    <p>Każda usługa oparta na danych z ponad 150 źródeł badawczych, aktualizowanych codziennie.</p>
+  </div>
+  <div class="svc-cards">
+    <div class="svc-card">
+      <div class="svc-card-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 28L12 8l6 10 4-6 6 16" stroke="#4a7c59" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="8" r="2.5" fill="#8b6f47" opacity=".4"/></svg>
+      </div>
+      <h3>Audyt SEO</h3>
+      <p>Kompletna analiza widoczności z raportem priorytetów i konkretnymi rekomendacjami.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="3" stroke="#4a7c59" stroke-width="1.5" fill="none"/><path d="M4 12h24" stroke="#4a7c59" stroke-width="1"/><rect x="8" y="16" width="8" height="6" rx="1.5" fill="#8b6f47" opacity=".2"/><path d="M20 17h4M20 21h3" stroke="#b89773" stroke-width="1" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Budowa stron</h3>
+      <p>Szybkie, responsywne strony zoptymalizowane pod konwersję i wyszukiwarki.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="2" width="16" height="28" rx="4" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="16" cy="26" r="1.5" fill="#8b6f47"/><rect x="11" y="8" width="10" height="10" rx="2" fill="#c08e7d" opacity=".2"/><path d="M14 13l3-2v4z" fill="#4a7c59" opacity=".5"/></svg>
+      </div>
+      <h3>Social media</h3>
+      <p>Strategia i zarządzanie na Instagram, Facebook i TikTok z analizą wyników.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="14" r="10" stroke="#4a7c59" stroke-width="1.5" fill="none"/><path d="M12 14c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#8b6f47" stroke-width="1.5" fill="none"/><circle cx="16" cy="14" r="1.5" fill="#4a7c59"/><path d="M16 24v4M12 27h8" stroke="#b89773" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>AI Search</h3>
+      <p>Twoja firma w odpowiedziach ChatGPT, Gemini i Perplexity.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#4a7c59" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/><path d="M16 8v8l5 5" stroke="#8b6f47" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="#c08e7d"/></svg>
+      </div>
+      <h3>Re-audyt 30 dni</h3>
+      <p>Cykliczny pomiar postępów i aktualizacja rekomendacji co miesiąc.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider wave-up">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 0 400 80 600 40S1000 0 1200 40V80H0Z" fill="#f5efe6"/></svg>
+</div>
+
+<section class="stats-section">
+  <div class="stats-flex">
+    <div class="stat-bubble">
+      <div class="stat-circle"><div class="val">150+</div><div class="unit">dziennie</div></div>
+      <div class="lbl">Źródeł badawczych</div>
+    </div>
+    <div class="stat-bubble">
+      <div class="stat-circle"><div class="val">30</div><div class="unit">dni</div></div>
+      <div class="lbl">Cykl re-audytu</div>
+    </div>
+    <div class="stat-bubble">
+      <div class="stat-circle"><div class="val">97%</div><div class="unit">klientów</div></div>
+      <div class="lbl">Satysfakcji</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 80 400 0 600 40S1000 80 1200 40V80H0Z" fill="#e8f0e4"/></svg>
+</div>
+
+<section id="proces" class="process-section">
+  <div class="section-header" style="margin-bottom:3rem">
+    <h2>Jak działamy</h2>
+    <p>Cztery proste kroki do marketingu opartego na twardych danych.</p>
+  </div>
+  <div class="process-steps">
+    <div class="proc-step"><div class="circle">1</div><h3>Poznajemy</h3><p>Analizujemy Twój biznes, branżę i konkurencję ze 150+ źródeł.</p></div>
+    <div class="proc-step"><div class="circle">2</div><h3>Planujemy</h3><p>Tworzymy strategię, gdzie każda rekomendacja ma twarde uzasadnienie.</p></div>
+    <div class="proc-step"><div class="circle">3</div><h3>Wdrażamy</h3><p>Realizujemy zmiany krok po kroku, od SEO po social media.</p></div>
+    <div class="proc-step"><div class="circle">4</div><h3>Optymalizujemy</h3><p>Co 30 dni mierzymy wyniki i korygujemy strategię.</p></div>
+  </div>
+</section>
+
+<div class="wave-divider wave-up">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 80 400 0 600 40S1000 80 1200 40V80H0Z" fill="#e8f0e4"/></svg>
+</div>
+
+<section id="cennik" class="pricing-section">
+  <div class="section-header">
+    <h2>Wybierz swój plan wzrostu</h2>
+    <p>Trzy pakiety dopasowane do Twoich potrzeb i etapu rozwoju.</p>
+  </div>
+  <div class="pricing-cards">
+    <div class="pr-card">
+      <h3>Full Audit</h3>
+      <div class="desc">Diagnostyka i plan</div>
+      <div class="amount">2 900 zł</div>
+      <div class="freq">jednorazowo</div>
+      <div class="timeline">2-5 dni roboczych</div>
+      <ul>
+        <li>Kompletny audyt SEO</li>
+        <li>Analiza konkurencji</li>
+        <li>Raport z priorytetami</li>
+        <li>Audyt treści i UX</li>
+        <li>Plan wdrożenia</li>
+      </ul>
+      <a href="#kontakt" class="btn btn-outline" style="display:block;text-align:center;border-radius:50px">Zamów audyt</a>
+    </div>
+    <div class="pr-card popular">
+      <h3>Build from Zero</h3>
+      <div class="desc">Kompletne rozwiązanie</div>
+      <div class="amount">7 900 zł</div>
+      <div class="freq">projekt</div>
+      <div class="timeline">7-14 dni roboczych</div>
+      <ul>
+        <li>Strona internetowa od zera</li>
+        <li>Optymalizacja SEO on-page</li>
+        <li>Konfiguracja analityki</li>
+        <li>Strategia social media</li>
+        <li>Optymalizacja AI Search</li>
+        <li>Re-audyt 30 dni gratis</li>
+      </ul>
+      <a href="#kontakt" class="btn" style="display:block;text-align:center;border-radius:50px">Rozpocznij projekt</a>
+    </div>
+    <div class="pr-card">
+      <h3>Re-audyt</h3>
+      <div class="desc">Ciągła optymalizacja</div>
+      <div class="amount">1 200 zł</div>
+      <div class="freq">miesięcznie</div>
+      <div class="timeline">Co 30 dni</div>
+      <ul>
+        <li>Pomiar postępów</li>
+        <li>Aktualizacja rekomendacji</li>
+        <li>Raport z wynikami</li>
+        <li>Nowe możliwości wzrostu</li>
+        <li>Korekta strategii</li>
+      </ul>
+      <a href="#kontakt" class="btn btn-outline" style="display:block;text-align:center;border-radius:50px">Subskrybuj</a>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="cta-section">
+  <h2>Pozwól danym prowadzić Twój marketing</h2>
+  <p>Porozmawiajmy o tym, jak pomóc Twojej firmie rosnąć w oparciu o twarde badania i liczby.</p>
+  <a href="mailto:kontakt@zautomatyzujsie.pl" class="btn">Umów bezpłatną konsultację</a>
+</section>
+
+<footer>
+  <span>&copy; 2026 Zautomatyzuj Się. Wszelkie prawa zastrzeżone.</span>
+  <a href="mailto:kontakt@zautomatyzujsie.pl">kontakt@zautomatyzujsie.pl</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Się — Marketing oparty na danych</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26}
+body{font-family:'Lato',sans-serif;color:#fff;background:linear-gradient(135deg,#6b5435 0%,#8b6f47 30%,#b89773 60%,#c08e7d 100%);min-height:100vh;overflow-x:hidden}
+
+/* BLOBS */
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;z-index:0;pointer-events:none}
+.blob-1{width:600px;height:600px;background:radial-gradient(circle,#b89773,transparent);top:-200px;left:-100px}
+.blob-2{width:500px;height:500px;background:radial-gradient(circle,#c08e7d,transparent);bottom:-150px;right:-100px}
+.blob-3{width:400px;height:400px;background:radial-gradient(circle,#4a7c59,transparent);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+.container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 40px}
+
+/* GLASS */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15);border-radius:24px}
+.glass-strong{background:rgba(255,255,255,.14);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.2);border-radius:24px}
+
+/* NAV */
+nav{padding:24px 0;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10}
+nav .logo{font-size:22px;font-weight:900;letter-spacing:1px}
+nav ul{list-style:none;display:flex;gap:28px}
+nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s}
+nav a:hover{color:#fff}
+
+/* HERO */
+.hero{padding:100px 0 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:80vh}
+.hero h1{font-size:60px;font-weight:900;line-height:1.05;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,#faf7f2,#b89773);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:36px;max-width:460px}
+.btn-glow{display:inline-block;padding:16px 40px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);border-radius:60px;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:all .3s}
+.btn-glow:hover{background:rgba(255,255,255,.25);transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.hero-svg-wrap{display:flex;justify-content:center}
+
+/* SERVICES */
+.section-title{font-size:42px;font-weight:900;text-align:center;margin-bottom:60px}
+.services{padding:80px 0}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc-card{padding:40px 32px;transition:transform .3s,box-shadow .3s;cursor:default}
+.svc-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.2)}
+.svc-card svg{margin-bottom:20px}
+.svc-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.svc-card p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7)}
+
+/* STATS */
+.stats{padding:60px 0}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stat-card{text-align:center;padding:48px 32px}
+.stat-card .num{font-size:64px;font-weight:900;background:linear-gradient(135deg,#faf7f2,#b89773);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-card .label{font-size:14px;color:rgba(255,255,255,.7);margin-top:8px}
+
+/* PROCESS */
+.process{padding:80px 0}
+.process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.proc-step{padding:36px 28px;text-align:center;position:relative}
+.proc-step .step-num{font-size:48px;font-weight:900;color:rgba(255,255,255,.15);margin-bottom:12px}
+.proc-step h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.proc-step p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+
+/* PRICING */
+.pricing{padding:80px 0}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.price-card{padding:44px 36px;transition:transform .3s}
+.price-card:hover{transform:translateY(-6px)}
+.price-card.featured{transform:scale(1.05);box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.price-card.featured:hover{transform:scale(1.08)}
+.price-card h3{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.6);margin-bottom:16px}
+.price-card .price{font-size:48px;font-weight:900;margin-bottom:6px}
+.price-card .price-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:28px}
+.price-card ul{list-style:none;margin-bottom:32px}
+.price-card ul li{font-size:14px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+.price-card ul li:last-child{border-bottom:none}
+
+/* CTA */
+.cta-section{padding:100px 0;text-align:center}
+.cta-section h2{font-size:48px;font-weight:900;margin-bottom:20px}
+.cta-section p{font-size:18px;color:rgba(255,255,255,.7);max-width:500px;margin:0 auto 36px}
+
+/* FOOTER */
+footer{padding:40px 0;text-align:center;color:rgba(255,255,255,.4);font-size:13px;border-top:1px solid rgba(255,255,255,.1)}
+
+@media(max-width:900px){
+  .hero,.services-grid,.stats-row,.process-track,.pricing-grid{grid-template-columns:1fr}
+  .hero{text-align:center;padding:60px 0}
+  .hero h1{font-size:36px}
+  .hero p{margin:0 auto 36px}
+  .hero-svg-wrap{margin-top:40px}
+  .price-card.featured{transform:none}
+  nav ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="container">
+<nav>
+  <div class="logo">Zautomatyzuj Się</div>
+  <ul>
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#proces">Proces</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Twój marketing<br><span>oparty na danych</span></h1>
+    <p>Analizujemy ponad 150 źródeł badawczych dziennie. Każda strategia, którą proponujemy, ma twarde naukowe podstawy. Zero zgadywania.</p>
+    <a href="#cennik" class="btn-glow">Sprawdź ofertę</a>
+  </div>
+  <div class="hero-svg-wrap">
+    <svg width="380" height="380" viewBox="0 0 380 380" fill="none">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="380" y2="380"><stop offset="0%" stop-color="rgba(255,255,255,.3)"/><stop offset="100%" stop-color="rgba(255,255,255,.05)"/></linearGradient>
+      </defs>
+      <circle cx="190" cy="190" r="140" stroke="url(#g1)" stroke-width="2" fill="none"/>
+      <circle cx="190" cy="190" r="100" stroke="url(#g1)" stroke-width="1.5" fill="none"/>
+      <circle cx="190" cy="190" r="60" stroke="url(#g1)" stroke-width="1" fill="none"/>
+      <circle cx="190" cy="50" r="10" fill="rgba(255,255,255,.5)"/>
+      <circle cx="310" cy="150" r="8" fill="rgba(184,151,115,.6)"/>
+      <circle cx="280" cy="300" r="12" fill="rgba(192,142,125,.5)"/>
+      <circle cx="80" cy="260" r="9" fill="rgba(74,124,89,.5)"/>
+      <circle cx="100" cy="120" r="7" fill="rgba(255,255,255,.3)"/>
+      <line x1="190" y1="50" x2="310" y2="150" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <line x1="310" y1="150" x2="280" y2="300" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <line x1="280" y1="300" x2="80" y2="260" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <line x1="80" y1="260" x2="100" y2="120" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <line x1="100" y1="120" x2="190" y2="50" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <path d="M130 190Q160 140 190 160Q220 180 250 150Q280 120 300 170" stroke="rgba(255,255,255,.4)" stroke-width="2" fill="none"/>
+      <path d="M130 210Q170 180 200 200Q230 220 260 190Q290 160 300 190" stroke="rgba(184,151,115,.4)" stroke-width="2" fill="none"/>
+    </svg>
+  </div>
+</section>
+
+<section class="services" id="uslugi">
+  <h2 class="section-title">Nasze usługi</h2>
+  <div class="services-grid">
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 40L16 24L24 32L32 16L40 8" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="8" r="4" fill="#b89773"/></svg>
+      <h3>Audyt SEO</h3>
+      <p>Pełna analiza widoczności Twojej strony. Techniczne SEO, treści, linki zwrotne i struktura witryny.</p>
+    </div>
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none"/><path d="M16 16H32M16 24H28M16 32H24" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/></svg>
+      <h3>Budowa stron</h3>
+      <p>Nowoczesne strony internetowe zoptymalizowane pod konwersję i wyszukiwarki od pierwszego dnia online.</p>
+    </div>
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none"/><path d="M18 20C18 20 20 16 24 16C28 16 30 20 30 20" stroke="rgba(255,255,255,.5)" stroke-width="2" fill="none"/><circle cx="18" cy="22" r="2" fill="rgba(255,255,255,.6)"/><circle cx="30" cy="22" r="2" fill="rgba(255,255,255,.6)"/><path d="M18 30C18 30 20 34 24 34C28 34 30 30 30 30" stroke="rgba(255,255,255,.5)" stroke-width="2" fill="none"/></svg>
+      <h3>Social Media</h3>
+      <p>Strategia i zarządzanie profilami na Instagram, Facebook i TikTok z naciskiem na konwersję.</p>
+    </div>
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6L40 16V32L24 42L8 32V16Z" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none"/><circle cx="24" cy="24" r="6" fill="rgba(74,124,89,.4)" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/></svg>
+      <h3>AI Search</h3>
+      <p>Optymalizacja pod wyszukiwarki AI nowej generacji. Bądź widoczny tam, gdzie Twoi klienci szukają jutro.</p>
+    </div>
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none"/><path d="M24 12V24L32 28" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <h3>Re-audyt 30 dni</h3>
+      <p>Cykliczna weryfikacja postępów i korekta strategii. Mierzymy realne efekty co miesiąc.</p>
+    </div>
+    <div class="svc-card glass">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M12 36L24 12L36 36Z" stroke="rgba(255,255,255,.8)" stroke-width="2.5" fill="none"/><line x1="24" y1="26" x2="24" y2="30" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="33" r="1.5" fill="rgba(255,255,255,.6)"/></svg>
+      <h3>Konsulting</h3>
+      <p>Indywidualne konsultacje strategiczne dla firm, które chcą podejmować decyzje w oparciu o dane.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-row">
+    <div class="stat-card glass"><div class="num">150+</div><div class="label">Źródeł badawczych dziennie</div></div>
+    <div class="stat-card glass"><div class="num">30</div><div class="label">Dniowe cykle re-audytu</div></div>
+    <div class="stat-card glass"><div class="num">97%</div><div class="label">Satysfakcji klientów</div></div>
+  </div>
+</section>
+
+<section class="process" id="proces">
+  <h2 class="section-title">Jak pracujemy</h2>
+  <div class="process-track">
+    <div class="proc-step glass"><div class="step-num">01</div><h3>Analiza</h3><p>Badamy Twoją obecność online i konkurencję.</p></div>
+    <div class="proc-step glass"><div class="step-num">02</div><h3>Strategia</h3><p>Tworzymy plan oparty na ponad 150 źródłach.</p></div>
+    <div class="proc-step glass"><div class="step-num">03</div><h3>Wdrożenie</h3><p>Realizujemy strategię z mierzalnymi celami.</p></div>
+    <div class="proc-step glass"><div class="step-num">04</div><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy i korygujemy.</p></div>
+  </div>
+</section>
+
+<section class="pricing" id="cennik">
+  <h2 class="section-title">Cennik</h2>
+  <div class="pricing-grid">
+    <div class="price-card glass">
+      <h3>Full Audit</h3>
+      <div class="price">2 900 zł</div>
+      <div class="price-sub">Realizacja: 2-5 dni roboczych</div>
+      <ul><li>Pełny audyt SEO</li><li>Analiza konkurencji</li><li>Raport z rekomendacjami</li><li>Konsultacja strategiczna</li><li>Plan wdrożeniowy</li></ul>
+      <a href="#kontakt" class="btn-glow" style="width:100%;text-align:center">Zamów audyt</a>
+    </div>
+    <div class="price-card glass-strong featured">
+      <h3>Build from Zero</h3>
+      <div class="price">8 900 zł</div>
+      <div class="price-sub">Realizacja: 7-14 dni roboczych</div>
+      <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO on-page</li><li>Konfiguracja analityki</li><li>Social media strategia</li><li>AI Search optymalizacja</li></ul>
+      <a href="#kontakt" class="btn-glow" style="width:100%;text-align:center">Zaczynamy</a>
+    </div>
+    <div class="price-card glass">
+      <h3>Re-Audit</h3>
+      <div class="price">1 400 zł</div>
+      <div class="price-sub">Co 30 dni / cyklicznie</div>
+      <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring pozycji</li></ul>
+      <a href="#kontakt" class="btn-glow" style="width:100%;text-align:center">Subskrybuj</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="kontakt">
+  <h2>Gotowy na marketing oparty na danych?</h2>
+  <p>Umów się na bezpłatną konsultację. Pokażemy Ci, co dane mówią o Twojej obecności online.</p>
+  <a href="mailto:kontakt@zautomatyzujsie.pl" class="btn-glow">Napisz do nas</a>
+</section>
+
+<footer>&copy; 2026 Zautomatyzuj Się. Marketing oparty na danych.</footer>
+</div>
+
+</body>
+</html>

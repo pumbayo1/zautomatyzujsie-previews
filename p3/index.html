@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Się — Magazyn Marketingowy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26;--rule:#d4cfc8}
+body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text)}
+h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
+
+/* MASTHEAD */
+.masthead{text-align:center;padding:2rem 2rem 1rem;border-bottom:3px double var(--rule)}
+.masthead .name{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;letter-spacing:2px;color:var(--dark);text-transform:uppercase}
+.masthead .tagline{font-size:.85rem;color:var(--primary);letter-spacing:4px;text-transform:uppercase;margin-top:.3rem}
+.masthead-meta{display:flex;justify-content:center;gap:3rem;padding:.8rem 0;font-size:.78rem;color:#8a857f;border-top:1px solid var(--rule);margin-top:1rem}
+
+/* NAV BAR */
+.nav-bar{display:flex;justify-content:center;gap:3rem;padding:.7rem 2rem;border-bottom:1px solid var(--rule);font-size:.82rem;text-transform:uppercase;letter-spacing:2px}
+.nav-bar a{color:var(--text);text-decoration:none;transition:color .3s}
+.nav-bar a:hover{color:var(--primary)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:0;border-bottom:1px solid var(--rule)}
+.hero-article{padding:3rem;border-right:1px solid var(--rule)}
+.hero-article .kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--primary);margin-bottom:.8rem;font-weight:600}
+.hero-article h1{font-size:3rem;line-height:1.15;margin-bottom:1.2rem;font-weight:900;color:var(--dark)}
+.hero-article .lead{font-size:1.15rem;line-height:1.8;color:#4a4540;column-count:2;column-gap:2rem}
+.hero-article .lead::first-letter{font-family:'Playfair Display',serif;font-size:3.5rem;float:left;line-height:1;margin-right:.4rem;color:var(--primary);font-weight:700}
+.hero-visual{display:flex;align-items:center;justify-content:center;padding:2rem;background:linear-gradient(135deg,#f5f0e8,var(--bg))}
+
+/* PULL QUOTE */
+.pull-quote{padding:3rem 4rem;text-align:center;border-bottom:1px solid var(--rule);position:relative}
+.pull-quote::before,.pull-quote::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:var(--primary)}
+.pull-quote::before{top:0}.pull-quote::after{bottom:0}
+.pull-quote blockquote{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;color:var(--dark);line-height:1.5;max-width:700px;margin:0 auto}
+.pull-quote cite{display:block;margin-top:1rem;font-size:.85rem;font-style:normal;color:var(--primary);letter-spacing:1px}
+
+/* SERVICES COLUMNS */
+.services-section{padding:3rem;border-bottom:1px solid var(--rule)}
+.services-section h2{font-size:2rem;text-align:center;margin-bottom:.5rem;font-weight:900}
+.services-section .sub{text-align:center;font-size:.85rem;color:#8a857f;margin-bottom:2.5rem}
+.services-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.svc-col{padding:1.5rem 2rem;border-right:1px solid var(--rule)}
+.svc-col:last-child{border-right:none}
+.svc-col .icon-wrap{margin-bottom:1rem}
+.svc-col h3{font-size:1.15rem;margin-bottom:.6rem;font-weight:700}
+.svc-col p{font-size:.88rem;line-height:1.7;color:#5a5550}
+
+/* MIDDLE COLUMNS */
+.mid-cols{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule)}
+.mid-col{padding:2.5rem 3rem}
+.mid-col:first-child{border-right:1px solid var(--rule)}
+.mid-col h2{font-size:1.6rem;font-weight:900;margin-bottom:1.5rem}
+
+/* STATS STRIP */
+.stats-strip{display:flex;border-bottom:1px solid var(--rule)}
+.stat-item{flex:1;text-align:center;padding:2.5rem 1rem;border-right:1px solid var(--rule)}
+.stat-item:last-child{border-right:none}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--primary)}
+.stat-item .label{font-size:.8rem;color:#8a857f;text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+
+/* PROCESS */
+.process-step{display:flex;align-items:flex-start;margin-bottom:1.5rem}
+.process-step .num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--accent);min-width:40px;font-weight:700}
+.process-step h3{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.process-step p{font-size:.85rem;color:#6b6560;line-height:1.6}
+
+/* PRICING TABLE */
+.pricing-table{width:100%;border-collapse:collapse;margin-top:1rem}
+.pricing-table th{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;padding:1rem;border-bottom:2px solid var(--dark);text-align:left}
+.pricing-table td{padding:.8rem 1rem;border-bottom:1px solid var(--rule);font-size:.88rem}
+.pricing-table tr:hover{background:rgba(139,111,71,.04)}
+.pricing-table .price-cell{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--primary)}
+
+/* CTA */
+.cta-banner{padding:3rem;text-align:center;background:var(--dark);color:var(--bg)}
+.cta-banner h2{font-size:2rem;font-weight:900;margin-bottom:.8rem;color:var(--bg)}
+.cta-banner p{font-size:1rem;color:var(--accent);margin-bottom:1.5rem}
+.cta-btn{display:inline-block;padding:.8rem 2.5rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;text-transform:uppercase;letter-spacing:2px;transition:all .3s}
+.cta-btn:hover{background:var(--accent);color:var(--dark)}
+
+/* FOOTER */
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);padding:2rem 3rem;border-top:1px solid var(--rule);font-size:.82rem;color:#8a857f}
+.footer-cols a{color:var(--primary);text-decoration:none}
+.footer-cols div:nth-child(2){text-align:center}
+.footer-cols div:last-child{text-align:right}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-article{border-right:none;border-bottom:1px solid var(--rule)}
+  .hero-article .lead{column-count:1}
+  .services-cols{grid-template-columns:1fr}
+  .svc-col{border-right:none;border-bottom:1px solid var(--rule)}
+  .mid-cols{grid-template-columns:1fr}
+  .mid-col:first-child{border-right:none;border-bottom:1px solid var(--rule)}
+  .stats-strip{flex-direction:column}
+  .stat-item{border-right:none;border-bottom:1px solid var(--rule)}
+  .masthead .name{font-size:2rem}
+  .hero-article h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="name">Zautomatyzuj Się</div>
+  <div class="tagline">Marketing oparty na danych</div>
+  <div class="masthead-meta">
+    <span>Wydanie cyfrowe</span>
+    <span>Kwiecień 2026</span>
+    <span>Nr 1</span>
+  </div>
+</header>
+
+<nav class="nav-bar">
+  <a href="#uslugi">Usługi</a>
+  <a href="#dane">Dane</a>
+  <a href="#proces">Proces</a>
+  <a href="#cennik">Cennik</a>
+  <a href="#kontakt">Kontakt</a>
+</nav>
+
+<section class="hero">
+  <article class="hero-article">
+    <div class="kicker">Temat numeru</div>
+    <h1>Dlaczego Twój marketing potrzebuje danych, nie intuicji</h1>
+    <p class="lead">Większość małych i średnich firm w Polsce podejmuje decyzje marketingowe na podstawie przeczuć. Tymczasem badania pokazują, że firmy wykorzystujące podejście data-driven osiągają o 23% wyższy wzrost przychodów. W Zautomatyzuj Się codziennie analizujemy ponad 150 źródeł branżowych, aby każda nasza rekomendacja była poparta konkretnymi liczbami. Nie zgadujemy — wiemy, co działa, bo mamy na to dowody. Nasze audyty SEO, strategie social media i optymalizacja pod AI Search opierają się na najnowszych badaniach i realnych danych z rynku.</p>
+  </article>
+  <div class="hero-visual">
+    <svg width="340" height="320" viewBox="0 0 340 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Magazine-style illustration: open book with data flowing out -->
+      <!-- Book base -->
+      <path d="M70 240 Q170 210 170 210 Q170 210 270 240 L270 260 Q170 230 170 230 Q170 230 70 260Z" fill="#6b5435" opacity=".15"/>
+      <path d="M70 120 Q170 100 170 100 L170 230 Q170 230 70 260Z" fill="none" stroke="#8b6f47" stroke-width="1.5"/>
+      <path d="M270 120 Q170 100 170 100 L170 230 Q170 230 270 260Z" fill="none" stroke="#8b6f47" stroke-width="1.5"/>
+      <!-- Text lines on left page -->
+      <line x1="90" y1="145" x2="155" y2="135" stroke="#b89773" stroke-width="1" opacity=".4"/>
+      <line x1="90" y1="160" x2="155" y2="150" stroke="#b89773" stroke-width="1" opacity=".4"/>
+      <line x1="90" y1="175" x2="145" y2="165" stroke="#b89773" stroke-width="1" opacity=".3"/>
+      <line x1="90" y1="190" x2="150" y2="180" stroke="#b89773" stroke-width="1" opacity=".3"/>
+      <!-- Data visualization on right page -->
+      <rect x="185" y="130" width="8" height="40" rx="2" fill="#4a7c59" opacity=".5"/>
+      <rect x="200" y="120" width="8" height="50" rx="2" fill="#4a7c59" opacity=".7"/>
+      <rect x="215" y="110" width="8" height="60" rx="2" fill="#8b6f47" opacity=".8"/>
+      <rect x="230" y="125" width="8" height="45" rx="2" fill="#c08e7d" opacity=".7"/>
+      <rect x="245" y="135" width="8" height="35" rx="2" fill="#b89773" opacity=".5"/>
+      <!-- Floating data elements rising from book -->
+      <circle cx="120" cy="80" r="18" stroke="#b89773" stroke-width="1" fill="none" opacity=".6">
+        <animate attributeName="cy" values="80;70;80" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <text x="112" y="84" font-family="Playfair Display" font-size="12" fill="#8b6f47">34%</text>
+      <circle cx="220" cy="65" r="22" stroke="#4a7c59" stroke-width="1" fill="none" opacity=".6">
+        <animate attributeName="cy" values="65;55;65" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="207" y="70" font-family="Playfair Display" font-size="14" fill="#4a7c59">150+</text>
+      <rect x="145" y="40" width="50" height="28" rx="6" stroke="#c08e7d" stroke-width="1" fill="none" opacity=".5">
+        <animate attributeName="y" values="40;32;40" dur="3.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="152" y="58" font-family="Playfair Display" font-size="11" fill="#c08e7d">ROI</text>
+      <!-- Connecting lines from book to bubbles -->
+      <path d="M130 110 Q125 95 120 85" stroke="#b89773" stroke-width=".8" fill="none" opacity=".3"/>
+      <path d="M200 105 Q210 85 218 72" stroke="#4a7c59" stroke-width=".8" fill="none" opacity=".3"/>
+      <path d="M170 100 Q170 70 170 55" stroke="#c08e7d" stroke-width=".8" fill="none" opacity=".3"/>
+    </svg>
+  </div>
+</section>
+
+<section class="pull-quote">
+  <blockquote>Każda rekomendacja, którą składamy, jest poparta konkretnymi badaniami z liczbami. Zero zgadywania, same fakty.</blockquote>
+  <cite>Zespół Zautomatyzuj Się</cite>
+</section>
+
+<section id="uslugi" class="services-section">
+  <h2>Nasze specjalizacje</h2>
+  <div class="sub">Pięć filarów marketingu opartego na danych</div>
+  <div class="services-cols">
+    <div class="svc-col">
+      <div class="icon-wrap">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M6 38L18 14l8 12 6-8 6 20" stroke="#8b6f47" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="14" r="3" fill="#b89773" opacity=".4"/><path d="M4 6v34h36" stroke="#6b5435" stroke-width="1.2"/></svg>
+      </div>
+      <h3>Audyt SEO</h3>
+      <p>Kompletna diagnostyka Twojej widoczności w wyszukiwarkach. Analiza techniczna, treściowa i profilu linków z raportem priorytetów.</p>
+    </div>
+    <div class="svc-col">
+      <div class="icon-wrap">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="8" width="36" height="28" rx="3" stroke="#8b6f47" stroke-width="1.5" fill="none"/><path d="M4 16h36" stroke="#b89773" stroke-width="1"/><path d="M16 8v28" stroke="#b89773" stroke-width=".8" stroke-dasharray="2 2"/><circle cx="30" cy="28" r="4" stroke="#4a7c59" stroke-width="1.2" fill="none"/><path d="M10 24h4M10 28h3M10 32h5" stroke="#c08e7d" stroke-width="1" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Budowa stron &amp; AI Search</h3>
+      <p>Strony zoptymalizowane pod wyszukiwarki klasyczne i AI. Responsywne, szybkie, z wbudowaną analityką i schematami danych.</p>
+    </div>
+    <div class="svc-col">
+      <div class="icon-wrap">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="10" y="4" width="24" height="36" rx="5" stroke="#8b6f47" stroke-width="1.5" fill="none"/><circle cx="22" cy="36" r="2" fill="#b89773"/><path d="M16 12h12M16 18h8" stroke="#c08e7d" stroke-width="1" stroke-linecap="round"/><path d="M16 24l3 3 7-7" stroke="#4a7c59" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Social media &amp; Re-audyty</h3>
+      <p>Strategia IG, FB i TikTok z comiesięcznymi re-audytami. Mierzymy, raportujemy, optymalizujemy w cyklu 30-dniowym.</p>
+    </div>
+  </div>
+</section>
+
+<section id="dane" class="stats-strip">
+  <div class="stat-item"><div class="num">150+</div><div class="label">Źródeł badawczych</div></div>
+  <div class="stat-item"><div class="num">30</div><div class="label">Dni cykl re-audytu</div></div>
+  <div class="stat-item"><div class="num">97%</div><div class="label">Satysfakcji klientów</div></div>
+</section>
+
+<section class="mid-cols">
+  <div id="proces" class="mid-col">
+    <h2>Jak pracujemy</h2>
+    <div class="process-step"><div class="num">I.</div><div><h3>Analiza i diagnoza</h3><p>Zbieramy dane z ponad 150 źródeł, analizujemy Twoją branżę, konkurencję i obecną pozycję.</p></div></div>
+    <div class="process-step"><div class="num">II.</div><div><h3>Strategia z liczbami</h3><p>Tworzymy plan oparty wyłącznie na danych. Każda rekomendacja ma swoje uzasadnienie w badaniach.</p></div></div>
+    <div class="process-step"><div class="num">III.</div><div><h3>Wdrożenie</h3><p>Realizujemy zmiany krok po kroku — SEO, treści, social media, optymalizacja pod AI Search.</p></div></div>
+    <div class="process-step"><div class="num">IV.</div><div><h3>Cykliczny re-audyt</h3><p>Co 30 dni wracamy z raportem wyników i zaktualizowanymi rekomendacjami.</p></div></div>
+  </div>
+  <div id="cennik" class="mid-col">
+    <h2>Cennik usług</h2>
+    <table class="pricing-table">
+      <thead>
+        <tr><th>Pakiet</th><th>Cena</th><th>Czas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Full Audit</strong><br><span style="font-size:.8rem;color:#8a857f">Kompletny audyt SEO, analiza konkurencji, raport z priorytetami, plan wdrożenia</span></td><td class="price-cell">2 900 zł</td><td>2–5 dni</td></tr>
+        <tr><td><strong>Build from Zero</strong><br><span style="font-size:.8rem;color:#8a857f">Strona internetowa, SEO on-page, analityka, social media, AI Search, re-audyt gratis</span></td><td class="price-cell">7 900 zł</td><td>7–14 dni</td></tr>
+        <tr><td><strong>Re-audyt</strong><br><span style="font-size:.8rem;color:#8a857f">Pomiar postępów, aktualizacja strategii, raport wyników, nowe rekomendacje</span></td><td class="price-cell">1 200 zł/mies.</td><td>Co 30 dni</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="kontakt" class="cta-banner">
+  <h2>Rozpocznij marketing oparty na faktach</h2>
+  <p>Skontaktuj się z nami i dowiedz się, co mówią dane o Twojej firmie.</p>
+  <a href="mailto:kontakt@zautomatyzujsie.pl" class="cta-btn">Napisz do redakcji</a>
+</section>
+
+<div class="footer-cols">
+  <div>&copy; 2026 Zautomatyzuj Się</div>
+  <div>Marketing oparty na danych</div>
+  <div><a href="mailto:kontakt@zautomatyzujsie.pl">kontakt@zautomatyzujsie.pl</a></div>
+</div>
+
+</body>
+</html>

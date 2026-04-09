@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zautomatyzuj Się — Podgląd szablonów</title>
+<title>Zautomatyzuj Się — 10 propozycji strony</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -13,75 +13,173 @@ body {
   line-height: 1.7;
   padding: 40px 20px;
 }
-.container { max-width: 900px; margin: 0 auto; }
-h1 { color: #6b5435; font-size: 2rem; margin-bottom: 8px; }
-.subtitle { color: #5a544c; font-style: italic; margin-bottom: 40px; }
+.container { max-width: 1100px; margin: 0 auto; }
+h1 { color: #6b5435; font-size: 2.2rem; margin-bottom: 6px; text-align: center; }
+.subtitle { color: #5a544c; font-style: italic; margin-bottom: 40px; text-align: center; font-size: 1.1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .card {
   background: white;
   border: 1px solid #e8e0d4;
-  border-radius: 12px;
-  padding: 28px;
-  margin-bottom: 20px;
+  border-radius: 14px;
+  overflow: hidden;
   box-shadow: 0 2px 12px rgba(139,111,71,0.08);
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(139,111,71,0.12); }
-.card h2 { color: #8b6f47; font-size: 1.4rem; margin-bottom: 4px; }
-.card .tech { color: #8a847c; font-size: 0.9rem; margin-bottom: 8px; }
-.card p { color: #5a544c; margin-bottom: 16px; }
-.card a {
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(139,111,71,0.15); }
+.card-preview {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.card-body { padding: 20px; }
+.card-body h2 { color: #8b6f47; font-size: 1.15rem; margin-bottom: 2px; }
+.card-body .style { color: #b89773; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.card-body p { color: #5a544c; font-size: 0.92rem; margin-bottom: 14px; }
+.card-body a {
   display: inline-block;
   background: #8b6f47;
   color: white;
-  padding: 10px 24px;
+  padding: 9px 22px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-family: Georgia, serif;
 }
-.card a:hover { background: #6b5435; }
-.badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-.badge-rec { background: #4a7c59; color: white; }
-.badge-free { background: #b89773; color: white; }
-.footer { text-align: center; margin-top: 40px; color: #8a847c; font-size: 0.85rem; }
+.card-body a:hover { background: #6b5435; }
+
+/* Unique preview backgrounds per card */
+.bg-1 { background: linear-gradient(135deg, #faf7f2 0%, #e8e0d4 100%); color: #6b5435; }
+.bg-2 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #b89773; }
+.bg-3 { background: linear-gradient(135deg, #faf7f2 0%, #f0e8d8 100%); color: #6b5435; font-family: 'Playfair Display', Georgia, serif; }
+.bg-4 { background: linear-gradient(135deg, #8b6f47 0%, #6b5435 100%); position: relative; }
+.bg-4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 50%; height: 100%; background: #b89773; clip-path: polygon(100% 0, 0% 100%, 100% 100%); }
+.bg-5 { background: linear-gradient(135deg, #4a7c59 0%, #6b9f7a 50%, #b89773 100%); }
+.bg-6 { background: #faf7f2; color: #2d2a26; border: 3px solid #2d2a26; font-family: 'Courier New', monospace; font-size: 2rem; }
+.bg-7 { background: linear-gradient(135deg, #6b5435 0%, #b89773 50%, #c08e7d 100%); }
+.bg-8 { background: linear-gradient(to right, #6b5435 50%, #faf7f2 50%); }
+.bg-9 { background: #f4f1ec; color: #6b5435; }
+.bg-10 { background: #2d2a26; color: #b89773; }
+
+.footer { text-align: center; margin-top: 40px; color: #8a847c; font-size: 0.85rem; padding: 20px; }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Zautomatyzuj Się — Podgląd szablonów</h1>
-  <p class="subtitle">3 propozycje stron zcustomizowanych z treściami i kolorami marki. Kliknij żeby zobaczyć efekt.</p>
+  <h1>Zautomatyzuj Się</h1>
+  <p class="subtitle">10 unikalnych propozycji strony internetowej — każda z własnymi grafikami SVG i polskimi treściami</p>
 
-  <div class="card">
-    <h2>Propozycja 1 — Inazuma Tailwind <span class="badge badge-rec">REKOMENDOWANY</span> <span class="badge badge-free">FREE</span></h2>
-    <div class="tech">HTML + Tailwind CSS + Swiper | Single-page z 10+ sekcjami</div>
-    <p>Najbardziej kompletna opcja. Statystyki, metoda pracy w 4 krokach, pakiety cennikowe w PLN, opinie klientów, FAQ, kontakt z mapą Warszawy. Ciepłe earthy kolory, Georgia serif. Pełna customizacja — zero angielskiego tekstu.</p>
-    <a href="zautomatyzujsie-preview-1/index.html">Zobacz podgląd →</a>
-  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-preview bg-1">01</div>
+      <div class="card-body">
+        <div class="style">Minimal Zen</div>
+        <h2>Czysta przestrzeń, duża typografia</h2>
+        <p>Ultra minimalistyczny design. Dużo białej przestrzeni, horyzontalny scroll na usługach, subtelne animacje CSS. Spokojny, pewny siebie.</p>
+        <a href="p1/index.html">Zobacz →</a>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>Propozycja 2 — Custom SEO Agency <span class="badge badge-free">FREE</span></h2>
-    <div class="tech">HTML + CSS (standalone) | Single-page z 7 sekcjami</div>
-    <p>Lekka, minimalna strona zbudowana od zera. Hero z proof points (150+ źródeł, re-audyty co 30 dni), 5 kart usług, sekcja metody, grupa docelowa, wyróżniki, opinie. Samowystarczalny plik HTML bez zewnętrznych zależności.</p>
-    <a href="zautomatyzujsie-preview-2/index.html">Zobacz podgląd →</a>
-  </div>
+    <div class="card">
+      <div class="card-preview bg-2">02</div>
+      <div class="card-body">
+        <div class="style">Data Dashboard</div>
+        <h2>Ciemny motyw, neonowe akcenty</h2>
+        <p>Ciemne tło, gridowy layout jak panel analityczny. Metryki na pierwszym planie, świecące obramowania. Technologiczny, data-driven vibe.</p>
+        <a href="p2/index.html">Zobacz →</a>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>Propozycja 3 — Bigspring Next.js <span class="badge badge-rec">NAJSZYBSZY</span> <span class="badge badge-free">FREE</span></h2>
-    <div class="tech">Next.js 14 + Tailwind CSS + MDX | Multi-page (9+ stron)</div>
-    <p>Pełna strona wielostronicowa: Home, Cennik (3 pakiety), FAQ (8 pytań), Kontakt, Blog. PageSpeed 100 na desktop. Idealna dla agencji SEO — blog z MDX do publikowania raportów i case studies. Ciepłe kolory #8b6f47, Georgia serif.</p>
-    <a href="zautomatyzujsie-preview-4/index.html">Zobacz podgląd →</a>
+    <div class="card">
+      <div class="card-preview bg-3">03</div>
+      <div class="card-body">
+        <div class="style">Editorial Magazine</div>
+        <h2>Gazetowy layout, serifowa typografia</h2>
+        <p>Styl gazety/magazynu. Kolumny tekstu, pull quotes, drop caps, nagłówek z datą wydania. Dla tych co cenią treść i wiedzę.</p>
+        <a href="p3/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-4"><span style="position:relative;z-index:1">04</span></div>
+      <div class="card-body">
+        <div class="style">Geometric Modern</div>
+        <h2>Ostre kształty, asymetryczne layouty</h2>
+        <p>Geometryczne tła z CSS clip-path, diagonalne cięcia sekcji, heksagonalne SVG ilustracje. Odważny, nowoczesny, wyrazisty.</p>
+        <a href="p4/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-5">05</div>
+      <div class="card-body">
+        <div class="style">Warm Organic</div>
+        <h2>Zaokrąglone kształty, fale między sekcjami</h2>
+        <p>Miękkie gradienty, SVG wave dividers, organiczne kształty. Ciepły, przyjazny ale profesjonalny. Przyroda + dane.</p>
+        <a href="p5/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-6">06</div>
+      <div class="card-body">
+        <div class="style">Swiss / Brutalist</div>
+        <h2>Surowy grid, ciężka typografia</h2>
+        <p>Ścisły grid z grubymi obramowaniami, monospace akcenty, minimalny kolor. Surowy, szczery, zero ozdobników. Tylko fakty.</p>
+        <a href="p6/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-7">07</div>
+      <div class="card-body">
+        <div class="style">Gradient Flow</div>
+        <h2>Ciepłe gradienty, szkło, rozmycie</h2>
+        <p>Bogate gradienty od #6b5435 do #c08e7d, blobowe kształty CSS, glassmorphism karty z backdrop-blur. Elegancki i płynny.</p>
+        <a href="p7/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-8">08</div>
+      <div class="card-body">
+        <div class="style">Split Screen</div>
+        <h2>50/50 podział, naprzemienne strony</h2>
+        <p>Każda sekcja podzielona na pół — tekst i wizual. Alternujące strony, silny rytm pionowy, kontrastowe tła.</p>
+        <a href="p8/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-9">09</div>
+      <div class="card-body">
+        <div class="style">Card-Based</div>
+        <h2>Wszystko w kartach, Notion/Pinterest vibe</h2>
+        <p>Masonry-like layout, karty z hover efektami i transform, subtelne cienie. Ciepły neutralny. Porządek w kreatywności.</p>
+        <a href="p9/index.html">Zobacz →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview bg-10">10</div>
+      <div class="card-body">
+        <div class="style">Storytelling Scroll</div>
+        <h2>Pełnoekranowe sekcje, scroll-snap</h2>
+        <p>Każda sekcja 100vh z scroll-snap. Nawigacja kropkami z boku. Filmowy feeling, każda sekcja to nowa scena historii.</p>
+        <a href="p10/index.html">Zobacz →</a>
+      </div>
+    </div>
   </div>
 
   <div class="footer">
-    <p>Wygenerowano przez Web Agency Toolkit · Zautomatyzuj Się · 2026</p>
+    <p>Web Agency Toolkit · Zautomatyzuj Się · 10 propozycji z unikalnymi grafikami SVG</p>
   </div>
 </div>
 </body>
