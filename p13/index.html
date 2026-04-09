@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Się — Twoja firma. Widoczna.</title>
+<meta name="description" content="Zautomatyzuj Się — marketing cyfrowy oparty na danych i AI. SEO, strony WWW, social media. Twoja firma widoczna w Google i social media.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--orange:#E8520F;--hover:#D4442A;--green:#10B981;--bg:#FAFAF8;--bg-alt:#F5F0EB;--heading:#1A1A2E;--body:#5A5A6E;--white:#fff;--card-shadow:0 2px 16px rgba(0,0,0,.05)}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--heading);background:var(--bg);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Outfit',sans-serif;color:var(--heading);line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(26,26,46,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,82,15,.15)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:16px 48px;display:flex;justify-content:space-between;align-items:center}
+.nav-brand{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.3rem;color:#fff}
+.nav-brand span{background:linear-gradient(135deg,var(--orange),#FF7A3D);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.85rem;color:rgba(255,255,255,.7);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.btn-primary{background:linear-gradient(135deg,var(--orange),var(--hover));color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.88rem;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;display:inline-block}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(232,82,15,.35)}
+.btn-outline{border:2px solid var(--orange);color:var(--orange);padding:11px 28px;border-radius:8px;font-weight:600;font-size:.88rem;background:transparent;cursor:pointer;transition:all .2s;display:inline-block}
+.btn-outline:hover{background:var(--orange);color:#fff}
+.btn-white-outline{border:2px solid rgba(255,255,255,.3);color:#fff;padding:11px 28px;border-radius:8px;font-weight:600;font-size:.88rem;background:transparent;cursor:pointer;transition:all .2s;display:inline-block}
+.btn-white-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.tag{display:inline-block;font-size:.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--orange);font-weight:700;margin-bottom:14px}
+.container{max-width:1180px;margin:0 auto;padding:0 48px}
+.section{padding:100px 0}
+.section-center{text-align:center}
+.section-title{font-size:2.4rem;margin-bottom:12px}
+.section-sub{color:var(--body);font-size:1.05rem;max-width:580px;margin-bottom:48px}
+.section-sub.center{margin-left:auto;margin-right:auto}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#1A1A2E 0%,#2D1B3D 40%,#1A1A2E 70%,rgba(232,82,15,.15) 100%);padding:140px 0 100px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,82,15,.12),transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-40%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.06),transparent 70%);pointer-events:none}
+.hero-content{max-width:1180px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.hero h1{font-size:3.8rem;font-weight:700;color:#fff;margin-bottom:20px;line-height:1.1}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--orange),#FF7A3D);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:rgba(255,255,255,.7);font-size:1.1rem;margin-bottom:36px;max-width:520px;line-height:1.8}
+.hero-btns{display:flex;gap:16px;margin-bottom:0}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.hero-stat{padding:36px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.hero-stat:last-child{border-right:none}
+.hero-stat strong{font-family:'Outfit',sans-serif;font-size:2rem;color:#fff;display:block;margin-bottom:4px}
+.hero-stat strong span{background:linear-gradient(135deg,var(--orange),#FF7A3D);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat small{font-size:.75rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.srv-card{background:var(--white);padding:36px 28px;border-radius:14px;box-shadow:var(--card-shadow);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--hover));transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.srv-card:hover{transform:translateY(-6px);box-shadow:0 8px 32px rgba(232,82,15,.1)}
+.srv-card:hover::before{transform:scaleX(1)}
+.srv-num{font-family:'Outfit',sans-serif;font-size:3rem;font-weight:700;color:var(--orange);opacity:.12;position:absolute;top:16px;right:20px;line-height:1}
+.srv-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,rgba(232,82,15,.1),rgba(232,82,15,.03));display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:18px}
+.srv-card h3{font-size:1.1rem;margin-bottom:10px}
+.srv-card p{color:var(--body);font-size:.88rem;line-height:1.7}
+
+/* PROCESS */
+.process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative}
+.process-track::before{content:'';position:absolute;top:40px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--orange),var(--green));opacity:.2}
+.proc-step{text-align:center;position:relative}
+.proc-num{width:80px;height:80px;border-radius:50%;background:var(--white);border:3px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:700;color:var(--orange);margin:0 auto 24px;position:relative;z-index:2;box-shadow:0 4px 20px rgba(232,82,15,.12)}
+.proc-step h3{font-size:1.05rem;margin-bottom:8px}
+.proc-step p{color:var(--body);font-size:.85rem;max-width:220px;margin:0 auto}
+
+/* CASE STUDY */
+.case-highlight{background:linear-gradient(135deg,var(--heading),#2D1B3D);border-radius:20px;padding:56px 48px;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+.case-highlight::before{content:'';position:absolute;top:-50px;right:-50px;width:250px;height:250px;background:radial-gradient(circle,rgba(232,82,15,.2),transparent 70%);pointer-events:none}
+.case-highlight h3{font-size:1.8rem;color:#fff;margin-bottom:12px}
+.case-highlight .case-badge{display:inline-block;background:var(--green);color:#fff;font-size:.72rem;padding:4px 14px;border-radius:20px;font-weight:600;margin-bottom:20px}
+.case-highlight p{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:0}
+.case-metrics{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.case-metric{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;text-align:center}
+.case-metric .label{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:8px}
+.case-metric .before-val{font-family:'Outfit',sans-serif;font-size:1.4rem;color:var(--hover);font-weight:700}
+.case-metric .arrow-sep{color:rgba(255,255,255,.3);margin:4px 0;font-size:1.2rem}
+.case-metric .after-val{font-family:'Outfit',sans-serif;font-size:1.4rem;color:var(--green);font-weight:700}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.why-card{background:var(--white);padding:36px;border-radius:14px;box-shadow:var(--card-shadow);display:flex;gap:24px;align-items:flex-start;transition:transform .25s}
+.why-card:hover{transform:translateY(-4px)}
+.why-icon{min-width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--orange),var(--hover));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;font-weight:700}
+.why-card h3{font-size:1.05rem;margin-bottom:6px}
+.why-card p{color:var(--body);font-size:.88rem}
+
+/* PRICING */
+.pricing-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.pr-card{background:var(--white);border-radius:16px;padding:32px 22px;text-align:center;box-shadow:var(--card-shadow);transition:transform .25s;position:relative}
+.pr-card:hover{transform:translateY(-4px)}
+.pr-card.featured{background:linear-gradient(180deg,rgba(232,82,15,.03),var(--white));border:2px solid var(--orange)}
+.pr-card.featured::before{content:'\2605 NAJPOPULARNIEJSZY';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:.65rem;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap;letter-spacing:.5px}
+.pr-name{font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;margin-bottom:8px}
+.pr-price{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:700;color:var(--orange)}
+.pr-period{font-size:.75rem;color:var(--body);display:block;margin-bottom:18px}
+.pr-features{list-style:none;text-align:left;margin-bottom:24px}
+.pr-features li{font-size:.8rem;color:var(--body);padding:5px 0;border-bottom:1px solid #f5f0eb}
+.pr-features li::before{content:'\2713 ';color:var(--green);font-weight:700}
+
+/* FAQ */
+.faq-wrap{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid #ece8e2}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.95rem;user-select:none}
+.faq-q .arrow{width:32px;height:32px;border-radius:50%;background:rgba(232,82,15,.08);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:1rem;transition:transform .3s;flex-shrink:0}
+.faq-q.active .arrow{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--body);font-size:.9rem;line-height:1.8}
+.faq-a.open{max-height:300px;padding-bottom:18px}
+
+/* CTA */
+.cta-section{background:linear-gradient(160deg,var(--heading),#2D1B3D);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,82,15,.15),transparent 70%);pointer-events:none}
+.cta-section h2{font-size:2.6rem;color:#fff;margin-bottom:16px;position:relative;z-index:2}
+.cta-section p{color:rgba(255,255,255,.7);font-size:1.05rem;margin-bottom:36px;position:relative;z-index:2}
+.cta-contacts{display:flex;gap:32px;justify-content:center;margin-top:28px;position:relative;z-index:2}
+.cta-contacts span{color:rgba(255,255,255,.6);font-size:.88rem}
+
+/* FOOTER */
+footer{background:var(--heading);color:#ccc;padding:56px 48px}
+.footer-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-inner h4{color:#fff;font-family:'Outfit',sans-serif;margin-bottom:14px;font-size:.95rem}
+.footer-inner p,.footer-inner a{color:#999;font-size:.84rem;line-height:2;display:block}
+.footer-inner a:hover{color:var(--orange)}
+.footer-copy{text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-size:.78rem;color:#666;max-width:1180px;margin-left:auto;margin-right:auto}
+
+/* MOBILE */
+@media(max-width:900px){
+.pricing-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+.nav-links{display:none}
+.nav-inner{padding:14px 20px}
+.container{padding:0 20px}
+.hero-content{padding:0 20px}
+.hero{padding:100px 0 70px}
+.hero-grid{grid-template-columns:1fr;gap:40px}
+.hero h1{font-size:2.4rem}
+.section{padding:64px 0}
+.section-title{font-size:1.8rem}
+.services-grid{grid-template-columns:1fr}
+.process-track{grid-template-columns:1fr 1fr;gap:24px}
+.process-track::before{display:none}
+.case-highlight{grid-template-columns:1fr;padding:36px 24px}
+.why-grid{grid-template-columns:1fr}
+.pricing-row{grid-template-columns:1fr}
+.footer-inner{grid-template-columns:1fr 1fr}
+.hero-stats{grid-template-columns:1fr}
+.hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding:24px 20px}
+.hero-stat:last-child{border-bottom:none}
+.cta-contacts{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+<div class="nav-brand">Zautomatyzuj <span>Się</span></div>
+<div class="nav-links">
+<a href="#uslugi">Usługi</a>
+<a href="#proces">Proces</a>
+<a href="#case">Case Study</a>
+<a href="#cennik">Cennik</a>
+<a href="#faq">FAQ</a>
+<button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Bezpłatna analiza firmy</button>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<div class="hero-grid">
+<div>
+<span class="tag" style="color:var(--orange)">Marketing oparty na danych i AI</span>
+<h1><em>Twoja firma.<br>Widoczna.</em></h1>
+<p>Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była widoczna w Google, social media i w głowach klientów.</p>
+<div class="hero-btns">
+<button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Bezpłatna analiza firmy</button>
+<button class="btn-white-outline" onclick="document.getElementById('cennik').scrollIntoView({behavior:'smooth'})">Zobacz cennik</button>
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><strong><span>1089+</span></strong><small>źródeł danych</small></div>
+<div class="hero-stat"><strong><span>543+</span></strong><small>wniosków AI</small></div>
+<div class="hero-stat"><strong><span>154</span></strong><small>monitorowanych</small></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="uslugi" style="background:var(--white)">
+<div class="container">
+<div class="section-center">
+<span class="tag">Usługi</span>
+<h2 class="section-title">Co robimy dla Twojej firmy</h2>
+<p class="section-sub center">Pełen pakiet usług marketingowych wzmocnionych sztuczną inteligencją i najnowszymi badaniami.</p>
+</div>
+<div class="services-grid">
+<div class="srv-card">
+<div class="srv-num">01</div>
+<div class="srv-icon">📊</div>
+<h3>Pełna analiza firmy w sieci</h3>
+<p>Audyt strony, SEO, Google Business Profile, social media (100+ postów), analiza konkurencji. Kompletny obraz Twojej obecności online.</p>
+</div>
+<div class="srv-card">
+<div class="srv-num">02</div>
+<div class="srv-icon">🌐</div>
+<h3>Strony WWW od zera</h3>
+<p>UX 2026, zoptymalizowane pod Google i AI Search. Dane strukturalne, szybkość, konwersja. Strona, która pracuje na Twój biznes.</p>
+</div>
+<div class="srv-card">
+<div class="srv-num">03</div>
+<div class="srv-icon">🔍</div>
+<h3>Pozycjonowanie SEO i AI Search</h3>
+<p>Widoczność w Google, Maps, ChatGPT, Perplexity, Claude. Twoja firma tam, gdzie szukają klienci — dziś i jutro.</p>
+</div>
+<div class="srv-card">
+<div class="srv-num">04</div>
+<div class="srv-icon">📱</div>
+<h3>Social media — deep dive</h3>
+<p>Analiza IG, FB, TikTok + 5-10 konkurentów. Strategia, content, reklamy. Nie posty dla postów — posty dla klientów.</p>
+</div>
+<div class="srv-card">
+<div class="srv-num">05</div>
+<div class="srv-icon">📈</div>
+<h3>Re-audyt po wdrożeniu</h3>
+<p>Tabela PRZED/PO co 30 dni. Mierzymy efekty, analizujemy dane, optymalizujemy. Bez zgadywania — twarde liczby.</p>
+</div>
+<div class="srv-card">
+<div class="srv-num">06</div>
+<div class="srv-icon">⚙️</div>
+<h3>Stałe prowadzenie firmy</h3>
+<p>Comiesięczne raporty, reagowanie na zmiany algorytmów, ciągła optymalizacja. Twój marketing na autopilocie.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="proces" style="background:var(--bg-alt)">
+<div class="container">
+<div class="section-center">
+<span class="tag">Proces</span>
+<h2 class="section-title">Jak działamy</h2>
+<p class="section-sub center">4 proste kroki od bezpłatnej konsultacji do mierzalnych efektów.</p>
+</div>
+<div class="process-track">
+<div class="proc-step">
+<div class="proc-num">1</div>
+<h3>Bezpłatna konsultacja</h3>
+<p>Poznajemy Twoją firmę, cele i wyzwania. Bez zobowiązań.</p>
+</div>
+<div class="proc-step">
+<div class="proc-num">2</div>
+<h3>Pełna analiza</h3>
+<p>Badamy 1089+ źródeł danych, konkurencję i rynek z pomocą AI.</p>
+</div>
+<div class="proc-step">
+<div class="proc-num">3</div>
+<h3>Plan działania</h3>
+<p>Konkretny plan z priorytetami, budżetem i harmonogramem wdrożenia.</p>
+</div>
+<div class="proc-step">
+<div class="proc-num">4</div>
+<h3>Wdrożenie + Efekty</h3>
+<p>Realizujemy plan i mierzymy efekty. Re-audyt co 30 dni.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="section" id="case" style="background:var(--white)">
+<div class="container">
+<div class="section-center">
+<span class="tag">Case Study</span>
+<h2 class="section-title">Efekty naszej pracy</h2>
+<p class="section-sub center">Konkretne wyniki dla konkretnych firm. Dane, nie obietnice.</p>
+</div>
+<div class="case-highlight">
+<div>
+<span class="case-badge">7 dni</span>
+<h3>Zajęcia dla dzieci — Kielce</h3>
+<p>Firma z zerową widocznością online. Po 7 dniach — 16 stron w wynikach Google i Top 3 w Google Maps. Bez płatnych reklam, tylko strategia i dane.</p>
+</div>
+<div class="case-metrics">
+<div class="case-metric">
+<div class="label">Strony w Google</div>
+<div class="before-val">0</div>
+<div class="arrow-sep">↓</div>
+<div class="after-val">16 stron</div>
+</div>
+<div class="case-metric">
+<div class="label">Google Maps</div>
+<div class="before-val">Brak</div>
+<div class="arrow-sep">↓</div>
+<div class="after-val">Top 3</div>
+</div>
+<div class="case-metric">
+<div class="label">Czas</div>
+<div class="before-val">—</div>
+<div class="arrow-sep">↓</div>
+<div class="after-val">7 dni</div>
+</div>
+<div class="case-metric">
+<div class="label">Reklamy</div>
+<div class="before-val">—</div>
+<div class="arrow-sep">↓</div>
+<div class="after-val">0 zł</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WHY US -->
+<section class="section" style="background:var(--bg-alt)">
+<div class="container">
+<div class="section-center">
+<span class="tag">Dlaczego my</span>
+<h2 class="section-title">Czemu warto z nami pracować</h2>
+<p class="section-sub center">Nie jesteśmy kolejną agencją. Działamy inaczej.</p>
+</div>
+<div class="why-grid">
+<div class="why-card">
+<div class="why-icon">📊</div>
+<div>
+<h3>Dane, nie opinie</h3>
+<p>1089+ źródeł danych i AI zamiast przeczuć. Każda rekomendacja poparta twardą analizą.</p>
+</div>
+</div>
+<div class="why-card">
+<div class="why-icon">🔀</div>
+<div>
+<h3>Konkurencja na dwóch torach</h3>
+<p>Analizujemy i klasyczne SEO, i AI Search — Twoja firma widoczna w Google i w ChatGPT/Perplexity/Claude.</p>
+</div>
+</div>
+<div class="why-card">
+<div class="why-icon">📦</div>
+<div>
+<h3>Kompletny pakiet</h3>
+<p>Strona, SEO, social media, audyt, prowadzenie — wszystko w jednym miejscu. Bez żonglowania agencjami.</p>
+</div>
+</div>
+<div class="why-card">
+<div class="why-icon">🤝</div>
+<div>
+<h3>Bez umów — miesiąc do miesiąca</h3>
+<p>Współpracujesz, bo widzisz efekty — nie dlatego, że podpisałeś umowę na rok. Bez zobowiązań.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="cennik" style="background:var(--white)">
+<div class="container">
+<div class="section-center">
+<span class="tag">Cennik</span>
+<h2 class="section-title">Pakiety</h2>
+<p class="section-sub center">Transparentne ceny. Bez ukrytych kosztów. Bez długich umów.</p>
+</div>
+<div class="pricing-row">
+<div class="pr-card">
+<div class="pr-name">Konsultacja</div>
+<div class="pr-price">0 zł</div>
+<span class="pr-period">jednorazowo</span>
+<ul class="pr-features">
+<li>30 min rozmowa</li>
+<li>Wstępna analiza firmy</li>
+<li>Rekomendacje</li>
+<li>Bez zobowiązań</li>
+</ul>
+<button class="btn-outline" style="width:100%" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Umów się</button>
+</div>
+<div class="pr-card">
+<div class="pr-name">Audyt</div>
+<div class="pr-price">1 299 zł</div>
+<span class="pr-period">jednorazowo</span>
+<ul class="pr-features">
+<li>Pełna analiza AI</li>
+<li>1089+ źródeł danych</li>
+<li>Raport konkurencji</li>
+<li>Rekomendacje wdrożeniowe</li>
+</ul>
+<button class="btn-outline" style="width:100%" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Zamów</button>
+</div>
+<div class="pr-card featured">
+<div class="pr-name">Audyt + Plan</div>
+<div class="pr-price">1 999 zł</div>
+<span class="pr-period">jednorazowo</span>
+<ul class="pr-features">
+<li>Wszystko z Audytu</li>
+<li>Plan działania</li>
+<li>Harmonogram wdrożenia</li>
+<li>Priorytety i budżet</li>
+<li>Gotowy do realizacji</li>
+</ul>
+<button class="btn-primary" style="width:100%" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Wybierz</button>
+</div>
+<div class="pr-card">
+<div class="pr-name">Budowa</div>
+<div class="pr-price">3 499 zł</div>
+<span class="pr-period">jednorazowo</span>
+<ul class="pr-features">
+<li>Strona WWW od zera</li>
+<li>SEO on-page</li>
+<li>Google Business Profile</li>
+<li>Social media setup</li>
+</ul>
+<button class="btn-outline" style="width:100%" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Zamów</button>
+</div>
+<div class="pr-card">
+<div class="pr-name">Prowadzenie</div>
+<div class="pr-price">od 1 999 zł</div>
+<span class="pr-period">/miesiąc</span>
+<ul class="pr-features">
+<li>SEO ciągłe</li>
+<li>Social media</li>
+<li>Re-audyt co 30 dni</li>
+<li>Comiesięczne raporty</li>
+<li>Bez umów</li>
+</ul>
+<button class="btn-outline" style="width:100%" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Wybierz</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:var(--bg-alt)">
+<div class="container">
+<div class="section-center">
+<span class="tag">FAQ</span>
+<h2 class="section-title">Najczęściej zadawane pytania</h2>
+</div>
+<div class="faq-wrap">
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Jak wygląda proces współpracy?<div class="arrow">+</div></div>
+<div class="faq-a">Zaczynamy od bezpłatnej konsultacji, potem przeprowadzamy pełną analizę AI (1089+ źródeł), tworzymy plan działania z priorytetami i harmonogramem, a następnie wdrażamy i mierzymy efekty. Re-audyt co 30 dni.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Czym się różnicie od innych agencji?<div class="arrow">+</div></div>
+<div class="faq-a">Działamy na danych, nie na przeczuciach. Analizujemy 1089+ źródeł z pomocą AI. Pokrywamy nie tylko klasyczne SEO, ale też AI Search (ChatGPT, Perplexity, Claude). Pracujemy bez długich umów — miesiąc do miesiąca.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Ile kosztuje współpraca?<div class="arrow">+</div></div>
+<div class="faq-a">Konsultacja jest bezpłatna. Audyt od 1 299 zł, Audyt + Plan 1 999 zł, Budowa strony od 3 499 zł, stałe prowadzenie od 1 999 zł/miesiąc. Wszystkie ceny transparentne, bez ukrytych kosztów.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Co dostaję po analizie?<div class="arrow">+</div></div>
+<div class="faq-a">Pełny raport z audytem strony, SEO, Google Business Profile, social media (100+ postów), analizą konkurencji i konkretnymi rekomendacjami wdrożeniowymi. W pakiecie Audyt + Plan dostajesz też harmonogram i priorytety.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Czy muszę podpisywać długą umowę?<div class="arrow">+</div></div>
+<div class="faq-a">Nie. Pracujemy bez długoterminowych umów. Rozliczenie miesiąc do miesiąca. Możesz zrezygnować w każdej chwili.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Jak szybko zobaczę efekty?<div class="arrow">+</div></div>
+<div class="faq-a">Pierwsze efekty widoczne są w ciągu 7-30 dni, w zależności od pakietu i branży. Nasz case study pokazuje Top 3 w Google Maps w 7 dni.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA / KONTAKT -->
+<section class="cta-section" id="kontakt">
+<div class="container" style="position:relative;z-index:2">
+<h2>Gotowy, żeby Twoja firma<br>była widoczna?</h2>
+<p>Umów bezpłatną konsultację i dowiedz się, co możemy zrobić dla Twojego biznesu.</p>
+<button class="btn-primary" style="font-size:1rem;padding:16px 40px" onclick="window.location.href='mailto:zautomatyzujsie@gmail.com'">Bezpłatna analiza firmy</button>
+<div class="cta-contacts">
+<span>✉ zautomatyzujsie@gmail.com</span>
+<span>IG @zautomatyzujsie</span>
+<span>FB Zautomatyzuj Się</span>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-inner">
+<div>
+<h4>Zautomatyzuj Się</h4>
+<p>Twoja firma. Widoczna.<br>Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była widoczna w Google, social media i w głowach klientów.</p>
+</div>
+<div>
+<h4>Usługi</h4>
+<a href="#uslugi">Analiza firmy</a>
+<a href="#uslugi">Strony WWW</a>
+<a href="#uslugi">SEO + AI Search</a>
+<a href="#uslugi">Social media</a>
+</div>
+<div>
+<h4>Firma</h4>
+<a href="#proces">Jak działamy</a>
+<a href="#case">Case Study</a>
+<a href="#faq">FAQ</a>
+<a href="#cennik">Cennik</a>
+</div>
+<div>
+<h4>Kontakt</h4>
+<p>zautomatyzujsie@gmail.com</p>
+<p>IG @zautomatyzujsie</p>
+<p>FB Zautomatyzuj Się</p>
+</div>
+</div>
+<div class="footer-copy">© 2026 Zautomatyzuj Się. Wszelkie prawa zastrzeżone.</div>
+</footer>
+
+<script>
+function toggleFaq(el){el.classList.toggle('active');el.nextElementSibling.classList.toggle('open')}
+</script>
+</body>
+</html>
