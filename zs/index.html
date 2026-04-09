@@ -92,6 +92,14 @@ a{text-decoration:none;color:inherit}
 @keyframes floatD{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-16px) rotate(-0.8deg)}}
 @media(max-width:960px){.hero-floats{display:none}}
 
+/* Brief ticker */
+.brief-ticker{max-width:680px;margin:0 auto 32px;height:44px;overflow:hidden;position:relative}
+.brief-ticker-inner{position:relative;height:100%}
+.brief-line{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;height:44px;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;font-size:13px;color:var(--text-sec);font-family:'Courier New',monospace;letter-spacing:-.01em}
+.brief-line.active{opacity:1;transform:translateY(0)}
+.brief-tag{background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:1px;flex-shrink:0;font-family:'Inter',sans-serif}
+@media(max-width:640px){.brief-ticker{height:60px}.brief-line{font-size:11px;flex-wrap:wrap;text-align:center;justify-content:center;height:60px}}
+
 .hero .container{position:relative;z-index:1;text-align:center}
 .hero-badge{margin-bottom:24px}
 .hero h1{font-size:clamp(40px,5.5vw,68px);font-weight:800;line-height:1.1;color:var(--navy);margin-bottom:20px}
@@ -355,6 +363,18 @@ Zautomatyzuj Się
 <div class="hero-badge"><span class="pill">Marketing oparty na danych &middot; 2026</span></div>
 <h1 class="reveal">Zautomatyzuj Się.</h1>
 <p class="hero-sub reveal">Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była widoczna w Google, social media i w głowach klientów.</p>
+<div class="brief-ticker reveal">
+<div class="brief-ticker-inner" id="briefTicker">
+<div class="brief-line active"><span class="brief-tag">BRIEF</span> Audyt strony WWW: szybkość, nagłówki, schema markup, dane strukturalne, Core Web Vitals</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Analiza 5–10 konkurentów na każdej platformie: Instagram, Facebook, TikTok — minimum 100 postów</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Pozycje w Google na wszystkie kluczowe frazy + Local Pack + Featured Snippets</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Google Business Profile: kategorie, zdjęcia, posty, Q&amp;A, statystyki widoczności</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Widoczność w wyszukiwarkach AI: ChatGPT, Google AI Mode, Perplexity, Claude, Gemini</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> 3 raporty: pełen z dowodami, czysty dla Ciebie, plan wdrożeniowy krok po kroku</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Gotowe materiały: posty na social media, maile do partnerów, opisy Google Business</div>
+<div class="brief-line"><span class="brief-tag">BRIEF</span> Re-audyt po 30 dniach: tabela PRZED / PO z konkretnymi liczbami</div>
+</div>
+</div>
 <div class="hero-cta reveal"><a href="#kontakt" class="btn btn-primary">Bezpłatna analiza firmy</a></div>
 <div class="dashboard reveal">
 <div class="dash-header">
@@ -782,6 +802,18 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 requestAnimationFrame(()=>{document.querySelectorAll('.reveal').forEach(el=>{
 const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');
 })});
+
+// Brief ticker rotation
+(function(){
+const lines=document.querySelectorAll('#briefTicker .brief-line');
+if(!lines.length)return;
+let idx=0;
+setInterval(()=>{
+lines[idx].classList.remove('active');
+idx=(idx+1)%lines.length;
+lines[idx].classList.add('active');
+},3000);
+})();
 
 // ERP counters - count up fast to target, then slowly increment +1
 const erpObs=new IntersectionObserver((entries)=>{
