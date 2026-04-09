@@ -70,19 +70,19 @@ a{text-decoration:none;color:inherit}
 
 /* Data rain container */
 .data-rain{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;justify-content:space-around;overflow:hidden;pointer-events:none;z-index:0}
-.data-column{display:flex;flex-direction:column;gap:14px;animation:rainScroll linear infinite;font-family:'Courier New',monospace;font-size:13px;color:rgba(37,99,235,.1);white-space:nowrap;will-change:transform}
+.data-column{display:flex;flex-direction:column;gap:14px;animation:rainScroll linear infinite;font-family:'Courier New',monospace;font-size:13px;color:rgba(37,99,235,.2);white-space:nowrap;will-change:transform}
 .data-column span{display:block;padding:2px 0}
-.data-column span.bright{color:rgba(37,99,235,.3);animation:dataPulse 3s ease infinite}
+.data-column span.bright{color:rgba(37,99,235,.5);animation:dataPulse 3s ease infinite}
 .dc1{animation-duration:20s}.dc2{animation-duration:17s}.dc3{animation-duration:24s}.dc4{animation-duration:19s}.dc5{animation-duration:26s}.dc6{animation-duration:15s}.dc7{animation-duration:22s}.dc8{animation-duration:18s}.dc9{animation-duration:28s}.dc10{animation-duration:21s}
 @keyframes rainScroll{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
-@keyframes dataPulse{0%,100%{opacity:.1}50%{opacity:.4}}
+@keyframes dataPulse{0%,100%{opacity:.2}50%{opacity:.6}}
 
 /* Scanning line */
 .hero-scanline{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(37,99,235,.3) 30%,rgba(37,99,235,.5) 50%,rgba(37,99,235,.3) 70%,transparent 100%);box-shadow:0 0 12px rgba(37,99,235,.3),0 0 30px rgba(37,99,235,.1);z-index:1;animation:scanMove 8s ease-in-out infinite;pointer-events:none}
 @keyframes scanMove{0%{top:-2px;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
 
 /* Gradient overlay for readability */
-.hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(10,10,26,.4) 0%,rgba(10,10,26,.7) 40%,rgba(10,10,26,.85) 70%,rgba(10,10,26,.95) 100%);z-index:1;pointer-events:none}
+.hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(10,10,26,.2) 0%,rgba(10,10,26,.4) 40%,rgba(10,10,26,.6) 70%,rgba(10,10,26,.8) 100%);z-index:1;pointer-events:none}
 
 .hero .container{position:relative;z-index:2;text-align:center}
 .hero-badge{margin-bottom:24px}

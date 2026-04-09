@@ -64,32 +64,30 @@ a{text-decoration:none;color:inherit}
 /* HERO */
 .hero{padding:100px 0 80px;background:linear-gradient(180deg,#070b33 0%,#0a1045 60%,#0d1257 100%);position:relative;overflow:hidden;min-height:100vh}
 
-/* HERO DASHBOARD BACKDROP */
-.hero-dashboard{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;gap:16px;padding:40px;opacity:0.18;pointer-events:none;z-index:0}
-.dash-panel{background:#0d1257;border-radius:16px;padding:20px;color:rgba(255,255,255,0.9);font-size:13px;overflow:hidden;border:1px solid rgba(37,99,235,.15);box-shadow:0 0 30px rgba(37,99,235,.08)}
-.dash-panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+/* HERO DASHBOARD - structured layout behind title */
+.hero-dashboard{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:20px;opacity:0.2;pointer-events:none;z-index:0}
+.dash-panel{background:rgba(13,18,87,.9);border-radius:16px;padding:20px;color:rgba(255,255,255,.9);font-size:13px;overflow:hidden;border:1px solid rgba(37,99,235,.15)}
+.dash-panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:14px;display:flex;align-items:center;gap:6px}
 .dash-panel-title::before{content:'';width:6px;height:6px;border-radius:50%;background:#2563eb;display:inline-block}
 
-/* Line chart (CSS polyline animation) */
-.dash-chart-svg{width:100%;height:80px;margin-bottom:12px}
-.dash-chart-line{fill:none;stroke:#2563eb;stroke-width:2;stroke-dasharray:400;stroke-dashoffset:400;animation:drawLine 3s ease forwards 0.5s}
-.dash-chart-area{fill:url(#chartGrad);opacity:0;animation:fadeInArea 1s ease forwards 3s}
+/* Line chart SVG */
+.dash-chart-svg{width:100%;height:70px;margin-bottom:10px}
+.dash-chart-line{fill:none;stroke:#2563eb;stroke-width:2;stroke-dasharray:400;stroke-dashoffset:400;animation:drawLine 3s ease forwards .5s}
 @keyframes drawLine{to{stroke-dashoffset:0}}
-@keyframes fadeInArea{to{opacity:0.3}}
 
-.dash-stat-row{display:flex;justify-content:space-between;margin-bottom:8px;font-family:'Courier New',monospace;font-size:12px}
+.dash-stat-row{display:flex;justify-content:space-between;margin-bottom:6px;font-family:'Courier New',monospace;font-size:12px}
 .dash-stat-label{color:rgba(255,255,255,.5)}
 .dash-stat-value{color:#10B981;font-weight:700}
 
-/* Bar chart */
-.dash-bars{display:flex;align-items:flex-end;gap:8px;height:50px;margin-top:12px}
-.dash-bar{flex:1;background:#2563eb;border-radius:3px 3px 0 0;transform-origin:bottom;animation:growBar 1.5s ease forwards}
-.dash-bar:nth-child(1){height:40%;animation-delay:0.8s;transform:scaleY(0)}
-.dash-bar:nth-child(2){height:65%;animation-delay:1s;transform:scaleY(0)}
-.dash-bar:nth-child(3){height:50%;animation-delay:1.2s;transform:scaleY(0)}
-.dash-bar:nth-child(4){height:80%;animation-delay:1.4s;transform:scaleY(0)}
-.dash-bar:nth-child(5){height:55%;animation-delay:1.6s;transform:scaleY(0)}
-.dash-bar:nth-child(6){height:90%;animation-delay:1.8s;transform:scaleY(0)}
+/* Bar chart - under Search Console panel */
+.dash-bars{display:flex;align-items:flex-end;gap:6px;height:45px;margin-top:10px}
+.dash-bar{flex:1;background:#2563eb;border-radius:3px 3px 0 0;transform-origin:bottom;transform:scaleY(0);animation:growBar 1.5s ease forwards}
+.dash-bar:nth-child(1){height:40%;animation-delay:.8s}
+.dash-bar:nth-child(2){height:65%;animation-delay:1s}
+.dash-bar:nth-child(3){height:50%;animation-delay:1.2s}
+.dash-bar:nth-child(4){height:80%;animation-delay:1.4s}
+.dash-bar:nth-child(5){height:55%;animation-delay:1.6s}
+.dash-bar:nth-child(6){height:90%;animation-delay:1.8s}
 @keyframes growBar{to{transform:scaleY(1)}}
 
 /* Social media progress bars */
@@ -104,24 +102,13 @@ a{text-decoration:none;color:inherit}
 @keyframes fillBar{to{transform:scaleX(1)}}
 .dash-social-val{width:60px;text-align:right;font-family:'Courier New',monospace;font-weight:700;color:#10B981;font-size:11px}
 
-/* Floating metric badges */
-.hero-floating-badges{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:1}
-.metric-badge{position:absolute;background:rgba(13,18,87,.85);backdrop-filter:blur(8px);border:1px solid rgba(37,99,235,.25);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap;box-shadow:0 0 20px rgba(37,99,235,.15)}
+/* Metric badges - positioned right of title area, not random */
+.hero-metrics-row{display:flex;gap:12px;justify-content:center;margin-top:20px;position:relative;z-index:2;flex-wrap:wrap}
+.metric-badge{background:rgba(13,18,87,.85);backdrop-filter:blur(8px);border:1px solid rgba(37,99,235,.25);border-radius:10px;padding:8px 16px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;box-shadow:0 0 20px rgba(37,99,235,.15);animation:badgePulse 3s ease-in-out infinite}
+.metric-badge:nth-child(2){animation-delay:.5s}
+.metric-badge:nth-child(3){animation-delay:1s}
 .metric-badge .badge-highlight{color:#10B981}
-.mb1{top:18%;left:6%;animation:bobA 6s ease-in-out infinite}
-.mb2{top:28%;right:7%;animation:bobB 7s ease-in-out infinite 0.5s}
-.mb3{bottom:32%;left:8%;animation:bobA 8s ease-in-out infinite 1s}
-@keyframes bobA{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes bobB{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-
-/* Keyword tracker (bottom panel) */
-.dash-panel-bottom{grid-column:1 / -1}
-.kw-scroll{overflow:hidden;height:80px;position:relative}
-.kw-scroll-inner{animation:scrollKw 12s linear infinite}
-@keyframes scrollKw{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.kw-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;font-family:'Courier New',monospace}
-.kw-phrase{color:rgba(255,255,255,.6)}
-.kw-pos{color:#10B981;font-weight:700}
+@keyframes badgePulse{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(-4px);opacity:.9}}
 
 /* Hero content layer */
 .hero .container{position:relative;z-index:2;text-align:center}
@@ -149,7 +136,7 @@ a{text-decoration:none;color:inherit}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* Mobile: hide dashboard backdrop */
-@media(max-width:960px){.hero-dashboard,.hero-floating-badges{display:none}}
+@media(max-width:960px){.hero-dashboard{display:none}.hero-metrics-row{flex-direction:column;align-items:center}}
 
 /* SERVICES */
 .services{padding:100px 0}
@@ -384,34 +371,6 @@ Zautomatyzuj Się
 </div>
 </div>
 
-<!-- Bottom panel: Keyword tracker -->
-<div class="dash-panel dash-panel-bottom">
-<div class="dash-panel-title">Keyword Tracker &middot; Live</div>
-<div class="kw-scroll">
-<div class="kw-scroll-inner">
-<div class="kw-row"><span class="kw-phrase">"fryzjer kraków"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"salon kosmetyczny warszawa"</span><span class="kw-pos">Pozycja: 5 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"fizjoterapia kraków"</span><span class="kw-pos">Pozycja: 6 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"dentysta wrocław"</span><span class="kw-pos">Pozycja: 2 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"szkoła językowa łódź"</span><span class="kw-pos">Pozycja: 4 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"trener personalny gdańsk"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
-<!-- Duplicate for seamless loop -->
-<div class="kw-row"><span class="kw-phrase">"fryzjer kraków"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"salon kosmetyczny warszawa"</span><span class="kw-pos">Pozycja: 5 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"fizjoterapia kraków"</span><span class="kw-pos">Pozycja: 6 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"dentysta wrocław"</span><span class="kw-pos">Pozycja: 2 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"szkoła językowa łódź"</span><span class="kw-pos">Pozycja: 4 &uarr;</span></div>
-<div class="kw-row"><span class="kw-phrase">"trener personalny gdańsk"</span><span class="kw-pos">Pozycja: 3 &uarr;</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- FLOATING METRIC BADGES -->
-<div class="hero-floating-badges">
-<div class="metric-badge mb1">SEO Score <span class="badge-highlight">92/100</span></div>
-<div class="metric-badge mb2"><span class="badge-highlight">+340%</span> ruch</div>
-<div class="metric-badge mb3">Top 3 <span class="badge-highlight">Maps</span></div>
 </div>
 
 <!-- HERO CONTENT -->
@@ -419,7 +378,12 @@ Zautomatyzuj Się
 <div class="hero-badge"><span class="pill">Marketing oparty na danych &middot; 2026</span></div>
 <h1 class="reveal">Zautomatyzuj Się.</h1>
 <p class="hero-sub reveal">Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była widoczna w Google, social media i w głowach klientów.</p>
-<div class="hero-cta reveal"><a href="#kontakt" class="btn btn-primary">Bezpłatna analiza firmy</a></div>
+<div class="hero-metrics-row reveal">
+<div class="metric-badge">SEO Score <span class="badge-highlight">92/100</span></div>
+<div class="metric-badge"><span class="badge-highlight">+340%</span> ruch organiczny</div>
+<div class="metric-badge">Top 3 <span class="badge-highlight">Google Maps</span></div>
+</div>
+<div class="hero-cta reveal" style="margin-top:24px"><a href="#kontakt" class="btn btn-primary">Bezpłatna analiza firmy</a></div>
 <div class="dashboard reveal">
 <div class="dash-header">
 <span class="dash-dot r"></span><span class="dash-dot y"></span><span class="dash-dot g"></span>
