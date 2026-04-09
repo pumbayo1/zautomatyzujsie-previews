@@ -127,6 +127,36 @@ a{text-decoration:none;color:inherit}
 .platform-circle.google{background:#4285f4}.platform-circle.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.platform-circle.fb{background:#1877f2}.platform-circle.tt{background:#000}.platform-circle.ai{background:linear-gradient(135deg,#10a37f,#1a7f5a)}
 .services-visual-code{font-family:monospace;font-size:13px;color:rgba(255,255,255,.5);position:relative;line-height:2}
 
+/* ERP / WDROŻENIA */
+.erp-section{padding:100px 0;background:var(--white)}
+.erp-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.erp-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.15;color:var(--navy);margin-bottom:16px}
+.erp-desc{font-size:16px;color:var(--text-sec);line-height:1.8;margin-bottom:28px}
+.erp-features{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.erp-feat{display:flex;gap:14px;align-items:flex-start}
+.erp-feat svg{flex-shrink:0;margin-top:2px}
+.erp-feat div{display:flex;flex-direction:column;gap:2px}
+.erp-feat strong{font-size:15px;color:var(--navy)}
+.erp-feat span{font-size:14px;color:var(--text-sec);line-height:1.5}
+.erp-cta-text{font-size:15px;color:var(--text);font-weight:500;line-height:1.6}
+
+.erp-visual{display:flex;justify-content:center}
+.erp-mock{background:var(--navy);border-radius:16px;padding:24px;width:100%;max-width:360px;box-shadow:0 0 40px rgba(10,16,69,.12);border:1px solid rgba(37,99,235,.1)}
+.erp-mock-header{display:flex;align-items:center;gap:6px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.erp-mock-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.erp-mock-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;font-family:'Courier New',monospace}
+.erp-mock-label{color:rgba(255,255,255,.5)}
+.erp-mock-status{font-weight:700}
+.erp-mock-val{color:#fff;font-weight:600}
+.erp-mock-bar-wrap{margin-top:16px}
+.erp-mock-bar-label{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;font-family:'Courier New',monospace}
+.erp-mock-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.erp-mock-bar-fill{height:100%;width:94%;background:linear-gradient(90deg,#2563eb,#10B981);border-radius:3px;transform-origin:left;transform:scaleX(0);animation:fillErp 2s ease forwards 1s}
+@keyframes fillErp{to{transform:scaleX(1)}}
+.erp-mock-bar-pct{font-size:13px;font-weight:800;color:#10B981;margin-top:4px;font-family:'Courier New',monospace}
+
+@media(max-width:960px){.erp-inner{grid-template-columns:1fr}.erp-visual{margin-top:32px}}
+
 /* FEATURES */
 .features{padding:100px 0;background:var(--light-bg2)}
 .features-header{text-align:center;margin-bottom:60px}
@@ -364,6 +394,59 @@ analyzing 1089+ sources<br>
 154 monitored daily<br>
 &gt; social_scan --deep --all-platforms<br>
 &gt; seo_audit --competitors=10
+</div>
+</div>
+</div>
+</section>
+
+<!-- ERP / WDROŻENIA -->
+<section class="erp-section" id="wdrozenia">
+<div class="container">
+<div class="erp-inner reveal">
+<div class="erp-content">
+<span class="section-badge">Wdrożenia</span>
+<h2 class="erp-title">Jesteś nową firmą?<br>Zautomatyzujemy Twój biznes od A do Z.</h2>
+<p class="erp-desc">Dobieramy i wdrażamy programy handlowo-magazynowe, kadrowe, księgowe oraz systemy CRM — dokładnie pod Twoją działalność. Nie ważne, czy prowadzisz jednoosobową firmę, sklep internetowy, czy średnie przedsiębiorstwo — nasi wdrożeniowcy mają doświadczenie w systemach ERP zarówno dla dużych organizacji, jak i dla mikrofirm.</p>
+<div class="erp-features">
+<div class="erp-feat">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<div><strong>Programy handlowo-magazynowe</strong><span>Fakturowanie, magazyn, zamówienia, sprzedaż — wszystko w jednym systemie.</span></div>
+</div>
+<div class="erp-feat">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<div><strong>Kadry i księgowość</strong><span>Systemy kadrowo-płacowe i księgowe dopasowane do wielkości firmy i branży.</span></div>
+</div>
+<div class="erp-feat">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+<div><strong>CRM i automatyzacja</strong><span>Zarządzanie klientami, leady, pipeline sprzedażowy, automatyczne przypomnienia i raporty.</span></div>
+</div>
+<div class="erp-feat">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+<div><strong>Pełna automatyzacja procesów</strong><span>Integracje między systemami, automatyczne faktury, powiadomienia, raporty — zero ręcznej pracy.</span></div>
+</div>
+</div>
+<p class="erp-cta-text">Napisz do nas, jaki typ działalności prowadzisz i czego potrzebujesz — przygotujemy ofertę skrojoną pod Twój biznes.</p>
+<a href="#kontakt" class="btn btn-primary" style="margin-top:12px">Zapytaj o wdrożenie</a>
+</div>
+<div class="erp-visual">
+<div class="erp-mock">
+<div class="erp-mock-header">
+<span class="erp-mock-dot" style="background:#ef4444"></span>
+<span class="erp-mock-dot" style="background:#f59e0b"></span>
+<span class="erp-mock-dot" style="background:#22c55e"></span>
+<span style="font-size:11px;color:rgba(255,255,255,.4);margin-left:8px;font-family:monospace">system ERP · panel główny</span>
+</div>
+<div class="erp-mock-row"><span class="erp-mock-label">Moduł</span><span class="erp-mock-status" style="color:#10B981">Aktywny</span></div>
+<div class="erp-mock-row"><span class="erp-mock-label">Faktury</span><span class="erp-mock-val">247 / msc</span></div>
+<div class="erp-mock-row"><span class="erp-mock-label">Magazyn</span><span class="erp-mock-val">1,204 SKU</span></div>
+<div class="erp-mock-row"><span class="erp-mock-label">CRM</span><span class="erp-mock-val">89 klientów</span></div>
+<div class="erp-mock-row"><span class="erp-mock-label">Kadry</span><span class="erp-mock-val">12 pracowników</span></div>
+<div class="erp-mock-bar-wrap">
+<div class="erp-mock-bar-label">Automatyzacja procesów</div>
+<div class="erp-mock-bar"><div class="erp-mock-bar-fill"></div></div>
+<div class="erp-mock-bar-pct">94%</div>
+</div>
+</div>
 </div>
 </div>
 </div>
