@@ -8,20 +8,20 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#8b6f47;--dark:#6b5435;--accent:#b89773;
-  --green:#4a7c59;--rose:#c08e7d;
-  --bg:#faf7f2;--cream:#f5efe6;--soft-green:#e8f0e4;
-  --shadow-sm:0 2px 8px rgba(107,84,53,.04);
-  --shadow-md:0 4px 16px rgba(107,84,53,.08);
-  --shadow-lg:0 8px 32px rgba(107,84,53,.1);
+  --primary:#E8520F;--dark:#D4442A;--accent:#F4845F;
+  --green:#10B981;--rose:#F97316;
+  --bg:#FAFAF8;--cream:#FFF5F0;--soft-green:#FEF0E6;
+  --shadow-sm:0 2px 8px rgba(212,68,42,.04);
+  --shadow-md:0 4px 16px rgba(212,68,42,.08);
+  --shadow-lg:0 8px 32px rgba(212,68,42,.1);
   --radius:18px;--pill:50px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Lato',sans-serif;color:#3d3427;background:var(--bg);line-height:1.7}
+body{font-family:'Lato',sans-serif;color:#1A1A2E;background:var(--bg);line-height:1.7}
 h1,h2,h3,h4{font-family:Georgia,serif;color:var(--dark);line-height:1.3}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(245,239,230,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,84,53,.06);padding:.8rem 2rem}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,245,240,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,68,42,.06);padding:.8rem 2rem}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
 .nav-logo{font-family:Georgia,serif;font-size:1.35rem;color:var(--dark);font-weight:700;text-decoration:none}
 .nav-links{display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap}
@@ -29,7 +29,7 @@ h1,h2,h3,h4{font-family:Georgia,serif;color:var(--dark);line-height:1.3}
 .nav-links a:hover{color:var(--dark)}
 .btn-pill{display:inline-block;background:var(--primary);color:#fff!important;padding:.65rem 1.6rem;border-radius:var(--pill);text-decoration:none;font-weight:700;font-size:.92rem;border:none;cursor:pointer;box-shadow:var(--shadow-md);transition:all .25s}
 .btn-pill:hover{background:var(--dark);color:#fff!important;transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.nav-links .btn-pill{background:var(--primary);color:#fff!important;box-shadow:0 2px 8px rgba(139,111,71,.3)}
+.nav-links .btn-pill{background:var(--primary);color:#fff!important;box-shadow:0 2px 8px rgba(232,82,15,.3)}
 .btn-pill-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
 .btn-pill-outline:hover{background:var(--primary);color:#fff}
 
@@ -37,13 +37,13 @@ h1,h2,h3,h4{font-family:Georgia,serif;color:var(--dark);line-height:1.3}
 section{padding:5rem 2rem}
 .container{max-width:1100px;margin:0 auto}
 .section-title{text-align:center;font-size:2.2rem;margin-bottom:.6rem}
-.section-sub{text-align:center;color:#7a6b5a;max-width:640px;margin:0 auto 2.5rem;font-size:1.05rem}
+.section-sub{text-align:center;color:#5A5A6E;max-width:640px;margin:0 auto 2.5rem;font-size:1.05rem}
 
 /* HERO */
 .hero{background:var(--cream);padding:6rem 2rem 4rem;text-align:center}
 .hero h1{font-size:3rem;margin-bottom:1.2rem}
 .hero h1 em{font-style:italic;color:var(--primary)}
-.hero .subtitle{font-size:1.15rem;color:#6a5c4a;max-width:620px;margin:0 auto 2rem;line-height:1.8}
+.hero .subtitle{font-size:1.15rem;color:#4A4A5E;max-width:620px;margin:0 auto 2rem;line-height:1.8}
 .hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
 .stats-bar{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .stat-badge{background:#fff;border-radius:var(--pill);padding:.55rem 1.4rem;font-weight:700;color:var(--dark);box-shadow:var(--shadow-sm);font-size:.92rem}
@@ -64,7 +64,7 @@ section{padding:5rem 2rem}
 
 /* PROBLEM */
 .problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
-.solution-box{background:var(--soft-green);border-radius:var(--radius);padding:2rem;text-align:center;border:2px solid rgba(74,124,89,.15)}
+.solution-box{background:var(--soft-green);border-radius:var(--radius);padding:2rem;text-align:center;border:2px solid rgba(16,185,129,.15)}
 .solution-box h3{color:var(--green)}
 
 /* SERVICES */
@@ -82,7 +82,7 @@ section{padding:5rem 2rem}
 .case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .case-label{display:inline-block;background:var(--soft-green);color:var(--green);font-weight:700;font-size:.75rem;padding:.2rem .7rem;border-radius:var(--pill);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.04em}
 .case-before,.case-after{font-size:.88rem;margin:.25rem 0}
-.case-before{color:#9a8b78}
+.case-before{color:#7A7A8E}
 .case-after{color:var(--green);font-weight:700}
 .case-time{font-size:.82rem;color:var(--accent);margin-top:.5rem;font-weight:600}
 
@@ -97,7 +97,7 @@ section{padding:5rem 2rem}
 .price-card.featured:hover{transform:scale(1.04) translateY(-4px)}
 .featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.78rem;font-weight:700;padding:.3rem 1rem;border-radius:var(--pill)}
 .price-amount{font-family:Georgia,serif;font-size:1.8rem;color:var(--dark);margin:.8rem 0 .3rem}
-.price-desc{font-size:.88rem;color:#7a6b5a}
+.price-desc{font-size:.88rem;color:#5A5A6E}
 
 /* GUARANTEE */
 .guarantee-card{background:#fff;border:2px solid var(--green);border-radius:var(--radius);padding:2.5rem;text-align:center;max-width:700px;margin:0 auto}
@@ -110,7 +110,7 @@ section{padding:5rem 2rem}
 .faq-q{padding:1.2rem 1.6rem;cursor:pointer;font-weight:700;color:var(--dark);display:flex;justify-content:space-between;align-items:center;font-size:1rem}
 .faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);transition:transform .3s}
 .faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.6rem;color:#6a5c4a;font-size:.95rem;line-height:1.7}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.6rem;color:#4A4A5E;font-size:.95rem;line-height:1.7}
 .faq-item.open .faq-a{max-height:300px;padding:0 1.6rem 1.2rem}
 
 /* CTA FINAL */
@@ -125,9 +125,9 @@ section{padding:5rem 2rem}
 footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;padding:3rem 2rem 2rem}
 .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem}
 .footer-col h4{margin-bottom:.8rem;font-size:1rem}
-.footer-col a{display:block;color:#7a6b5a;text-decoration:none;font-size:.9rem;margin-bottom:.4rem;transition:color .2s}
+.footer-col a{display:block;color:#5A5A6E;text-decoration:none;font-size:.9rem;margin-bottom:.4rem;transition:color .2s}
 .footer-col a:hover{color:var(--dark)}
-.footer-bottom{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(107,84,53,.08);color:#9a8b78;font-size:.85rem}
+.footer-bottom{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(212,68,42,.08);color:#7A7A8E;font-size:.85rem}
 
 /* HERO DASHBOARD */
 .hero-dashboard{display:flex;justify-content:center;margin:2rem auto 0;max-width:480px}
@@ -231,7 +231,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,20 1440,20 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,20 1440,20 L1440,60 L0,60Z" fill="#FAFAF8"/></svg>
 </div>
 
 <!-- PROBLEM -->
@@ -265,7 +265,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--bg)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,40 C240,10 480,50 720,30 C960,10 1200,50 1440,30 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,40 C240,10 480,50 720,30 C960,10 1200,50 1440,30 L1440,60 L0,60Z" fill="#FFF5F0"/></svg>
 </div>
 
 <!-- SERVICES -->
@@ -310,7 +310,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--cream)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,0 720,60 1080,20 C1260,5 1380,40 1440,30 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,0 720,60 1080,20 C1260,5 1380,40 1440,30 L1440,60 L0,60Z" fill="#FAFAF8"/></svg>
 </div>
 
 <!-- PROCESS -->
@@ -345,7 +345,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--bg)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C480,55 960,5 1440,40 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C480,55 960,5 1440,40 L1440,60 L0,60Z" fill="#FFF5F0"/></svg>
 </div>
 
 <!-- CASE STUDIES -->
@@ -388,7 +388,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--cream)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,45 C360,15 720,55 1080,25 C1260,15 1380,35 1440,25 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,45 C360,15 720,55 1080,25 C1260,15 1380,35 1440,25 L1440,60 L0,60Z" fill="#FAFAF8"/></svg>
 </div>
 
 <!-- WHY US -->
@@ -423,7 +423,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--bg)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,55 480,10 720,40 C960,55 1200,15 1440,35 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,55 480,10 720,40 C960,55 1200,15 1440,35 L1440,60 L0,60Z" fill="#FFF5F0"/></svg>
 </div>
 
 <!-- PRICING -->
@@ -459,7 +459,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
       </div>
       <div class="price-card">
         <h3>Sta&#322;e prowadzenie</h3>
-        <div class="price-amount">od 1 999 z&#322;<small style="font-size:.55em;color:#7a6b5a">/msc</small></div>
+        <div class="price-amount">od 1 999 z&#322;<small style="font-size:.55em;color:#5A5A6E">/msc</small></div>
         <p class="price-desc">Miesi&#281;czna opieka: SEO, social media, tre&#347;ci, raporty, optymalizacja.</p>
         <br><a href="#kontakt" class="btn-pill btn-pill-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
       </div>
@@ -469,7 +469,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--cream)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,50 720,10 1080,40 C1260,50 1380,25 1440,30 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,50 720,10 1080,40 C1260,50 1380,25 1440,30 L1440,60 L0,60Z" fill="#FAFAF8"/></svg>
 </div>
 
 <!-- GUARANTEE -->
@@ -478,7 +478,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
     <div class="guarantee-card">
       <div class="circle-icon circle-icon-green" style="margin:0 auto 1rem;font-size:1.8rem">&#10003;</div>
       <h2>Realne efekty albo zwrot pieni&#281;dzy</h2>
-      <p style="margin:1rem 0;color:#6a5c4a;line-height:1.8">
+      <p style="margin:1rem 0;color:#4A4A5E;line-height:1.8">
         <strong>Opcja 1:</strong> Je&#347;li po audycie uznasz, &#380;e raport nie daje warto&#347;ci &mdash; zwracamy 100% kwoty.<br>
         <strong>Opcja 2:</strong> Je&#347;li po wdro&#380;eniu nie zobaczysz mierzalnych wzrost&oacute;w w um&oacute;wionym terminie &mdash; nast&#281;pny miesi&#261;c gratis.
       </p>
@@ -489,7 +489,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--bg)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C480,5 960,55 1440,20 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C480,5 960,55 1440,20 L1440,60 L0,60Z" fill="#FFF5F0"/></svg>
 </div>
 
 <!-- FAQ -->
@@ -512,14 +512,14 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
 
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--cream)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,25 C360,55 720,5 1080,35 C1260,48 1380,20 1440,25 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,25 C360,55 720,5 1080,35 C1260,48 1380,20 1440,25 L1440,60 L0,60Z" fill="#FAFAF8"/></svg>
 </div>
 
 <!-- CTA FINAL -->
 <section id="kontakt" class="cta-final" style="background:var(--bg)">
   <div class="container">
     <h2>Gotowy &#380;eby Twoja firma by&#322;a <em style="color:var(--primary)">widoczna</em>?</h2>
-    <p style="color:#6a5c4a;margin-bottom:2rem;font-size:1.05rem">Um&oacute;w bezp&#322;atn&#261; konsultacj&#281; i sprawd&#378;, co mo&#380;emy zrobi&#263; dla Twojej firmy.</p>
+    <p style="color:#4A4A5E;margin-bottom:2rem;font-size:1.05rem">Um&oacute;w bezp&#322;atn&#261; konsultacj&#281; i sprawd&#378;, co mo&#380;emy zrobi&#263; dla Twojej firmy.</p>
     <a href="mailto:zautomatyzujsie@gmail.com" class="btn-pill" style="font-size:1.05rem;padding:.8rem 2.2rem">Rozpocznij wsp&oacute;&#322;prac&#281;</a>
     <br><br>
     <a href="mailto:zautomatyzujsie@gmail.com" class="email-link">zautomatyzujsie@gmail.com</a>
@@ -537,7 +537,7 @@ footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;pad
   <div class="footer-grid">
     <div class="footer-col">
       <h4 style="font-family:Georgia,serif;color:var(--dark)">Zautomatyzuj Si&#281;</h4>
-      <p style="font-size:.9rem;color:#7a6b5a;line-height:1.6">&#321;&#261;czymy dane z marketingiem cyfrowym, &#380;eby Twoja firma by&#322;a widoczna tam, gdzie szukaj&#261; klienci.</p>
+      <p style="font-size:.9rem;color:#5A5A6E;line-height:1.6">&#321;&#261;czymy dane z marketingiem cyfrowym, &#380;eby Twoja firma by&#322;a widoczna tam, gdzie szukaj&#261; klienci.</p>
     </div>
     <div class="footer-col">
       <h4>Us&#322;ugi</h4>
