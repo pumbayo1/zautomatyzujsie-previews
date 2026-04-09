@@ -153,15 +153,15 @@ a{text-decoration:none;color:inherit}
 .report-intro{text-align:center;font-size:15px;color:var(--text-sec);max-width:700px;margin:0 auto 48px;line-height:1.7}
 .report-intro strong{color:var(--text)}
 .report-pages{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.report-page{background:#fff;border:1px solid #e5e7eb;border-radius:12px;width:340px;box-shadow:0 8px 40px rgba(10,16,69,.08);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.report-page{background:#fff;border:1px solid #e5e7eb;border-radius:12px;width:340px;min-width:340px;max-height:420px;box-shadow:0 8px 40px rgba(10,16,69,.08);overflow:hidden;transition:transform .3s,box-shadow .3s;flex-shrink:0}
 .report-page:hover{transform:translateY(-6px) rotate(-0.5deg);box-shadow:0 16px 60px rgba(10,16,69,.14)}
 .report-page-bar{height:28px;background:var(--navy);display:flex;align-items:center;padding:0 12px;gap:6px}
 .report-page-bar span{width:8px;height:8px;border-radius:50%}
 .report-page-bar span:nth-child(1){background:#ef4444}
 .report-page-bar span:nth-child(2){background:#f59e0b}
 .report-page-bar span:nth-child(3){background:#22c55e}
-.report-page-bar .rp-title{margin-left:8px;font-size:10px;color:rgba(255,255,255,.5);font-family:monospace}
-.report-page-body{padding:24px 20px;font-size:12px;line-height:1.7;color:var(--text)}
+.report-page-bar .rp-title{margin-left:8px;font-size:9px;color:rgba(255,255,255,.5);font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 50px)}
+.report-page-body{padding:24px 20px;font-size:12px;line-height:1.7;color:var(--text);overflow:hidden}
 .rp-h1{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px;font-family:'Inter',sans-serif}
 .rp-h2{font-size:13px;font-weight:700;color:var(--navy);margin:14px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--accent);display:inline-block}
 .rp-meta{font-size:10px;color:var(--text-sec);margin-bottom:14px}
