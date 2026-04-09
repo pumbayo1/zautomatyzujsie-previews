@@ -1,516 +1,818 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zautomatyzuj Się — Twoja firma. Widoczna.</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0B1D3A;--navy-light:#132C55;--navy-mid:#1A3A6E;
-  --accent:#3B82F6;--accent-light:#60A5FA;--accent-glow:rgba(59,130,246,.15);
-  --teal:#14B8A6;--teal-glow:rgba(20,184,166,.12);
-  --gold:#F59E0B;
-  --bg:#F8FAFC;--card-bg:#FFFFFF;
-  --text:#1E293B;--text-light:#64748B;--text-muted:#94A3B8;
-  --shadow-sm:0 1px 3px rgba(11,29,58,.06);
-  --shadow-md:0 4px 16px rgba(11,29,58,.08);
-  --shadow-lg:0 12px 40px rgba(11,29,58,.12);
-  --radius:16px;--pill:50px;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7}
-h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--navy);line-height:1.3}
-a{text-decoration:none}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-/* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(11,29,58,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:.75rem 2rem;border-bottom:1px solid rgba(59,130,246,.1)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;font-weight:700}
-.nav-logo span{color:var(--accent-light)}
-.nav-links{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
-.nav-links a{color:rgba(255,255,255,.75);font-size:.88rem;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:#fff}
-.btn-cta{display:inline-block;background:var(--accent);color:#fff!important;padding:.6rem 1.5rem;border-radius:var(--pill);font-weight:600;font-size:.88rem;border:none;cursor:pointer;box-shadow:0 2px 12px rgba(59,130,246,.3);transition:all .25s}
-.btn-cta:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 4px 20px rgba(59,130,246,.4)}
-.btn-outline{background:transparent;color:var(--accent)!important;border:2px solid var(--accent);box-shadow:none}
-.btn-outline:hover{background:var(--accent);color:#fff!important}
+  <title>Zautomatyzuj Się - Twoja firma. Widoczna.</title>
+  <meta content="Agencja marketingowa - strony WWW, SEO, social media, automatyzacja" name="description">
+  <meta content="marketing, SEO, strony WWW, social media, automatyzacja" name="keywords">
 
-/* MOBILE NAV */
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
-.nav-toggle span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:.3s}
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-/* SECTIONS */
-section{padding:5rem 2rem}
-.container{max-width:1100px;margin:0 auto}
-.section-label{display:inline-block;background:var(--accent-glow);color:var(--accent);font-weight:600;font-size:.8rem;padding:.3rem 1rem;border-radius:var(--pill);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
-.section-title{text-align:center;font-size:2.2rem;margin-bottom:.5rem}
-.section-sub{text-align:center;color:var(--text-light);max-width:620px;margin:0 auto 2.5rem;font-size:1rem}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 50%,var(--navy-mid) 100%);padding:6rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,.12) 0%,transparent 70%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-40%;left:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,.08) 0%,transparent 70%);border-radius:50%}
-.hero *{position:relative;z-index:1}
-.hero h1{font-size:3.2rem;color:#fff;margin-bottom:1.2rem}
-.hero h1 em{font-style:italic;color:var(--accent-light)}
-.hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,.7);max-width:600px;margin:0 auto 2rem;line-height:1.8}
-.hero .subtitle strong{color:var(--accent-light)}
-.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
-.hero .btn-outline{color:rgba(255,255,255,.9)!important;border-color:rgba(255,255,255,.3)}
-.hero .btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6);color:#fff!important}
-.stats-row{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap}
-.stat-item{text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent-light);display:block}
-.stat-label{font-size:.82rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em}
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-/* DIVIDER */
-.section-divider{width:100%;height:80px;background:var(--navy);position:relative}
-.section-divider svg{position:absolute;bottom:0;left:0;width:100%;height:80px}
-
-/* CARDS */
-.card{background:var(--card-bg);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);transition:transform .25s,box-shadow .25s;border:1px solid rgba(11,29,58,.04)}
-.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-
-/* ICON BOXES */
-.icon-box{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem;flex-shrink:0}
-.icon-box-blue{background:var(--accent-glow);color:var(--accent)}
-.icon-box-teal{background:var(--teal-glow);color:var(--teal)}
-
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.5rem}
-.services-grid .card h3{font-size:1.15rem;margin-bottom:.5rem}
-.services-grid .card p{color:var(--text-light);font-size:.92rem}
-
-/* PROCESS */
-.process-track{display:flex;gap:0;justify-content:center;flex-wrap:wrap;position:relative;padding:2rem 0}
-.process-node{text-align:center;flex:1;min-width:200px;max-width:240px;position:relative;padding:0 1rem}
-.node-circle{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;position:relative;z-index:2;box-shadow:0 4px 16px rgba(11,29,58,.2)}
-.process-node:not(:last-child)::after{content:'';position:absolute;top:28px;left:calc(50% + 32px);width:calc(100% - 64px);border-top:2px dashed var(--accent);opacity:.3;z-index:1}
-.process-node h3{font-size:1rem;margin-bottom:.4rem}
-.process-node p{font-size:.88rem;color:var(--text-light)}
-
-/* CASE STUDIES */
-.cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.case-card{background:var(--card-bg);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow-md);border-left:4px solid var(--accent);transition:transform .25s,box-shadow .25s}
-.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.case-tag{display:inline-block;background:var(--accent-glow);color:var(--accent);font-weight:600;font-size:.75rem;padding:.2rem .7rem;border-radius:var(--pill);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.04em}
-.case-before,.case-after{font-size:.88rem;margin:.25rem 0}
-.case-before{color:var(--text-muted)}
-.case-after{color:var(--teal);font-weight:700}
-.case-time{font-size:.82rem;color:var(--gold);margin-top:.5rem;font-weight:600}
-
-/* WHY US */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-
-/* PRICING */
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.3rem}
-.price-card{background:var(--card-bg);border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .25s,box-shadow .25s;position:relative;border:1px solid rgba(11,29,58,.04)}
-.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.price-card.featured{border:2px solid var(--accent);transform:scale(1.04)}
-.price-card.featured:hover{transform:scale(1.04) translateY(-4px)}
-.featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.78rem;font-weight:700;padding:.3rem 1rem;border-radius:var(--pill)}
-.price-amount{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin:.8rem 0 .3rem}
-.price-desc{font-size:.88rem;color:var(--text-light)}
-
-/* GUARANTEE */
-.guarantee-card{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--radius);padding:3rem;text-align:center;max-width:720px;margin:0 auto;color:#fff;box-shadow:var(--shadow-lg)}
-.guarantee-card h2{color:#fff;margin-bottom:1rem}
-.guarantee-card .guarantee-icon{width:64px;height:64px;border-radius:50%;background:rgba(20,184,166,.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.2rem;color:var(--teal)}
-
-/* FAQ */
-.faq-list{max-width:760px;margin:0 auto}
-.faq-item{background:var(--card-bg);border-radius:var(--radius);margin-bottom:.8rem;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .2s;border:1px solid rgba(11,29,58,.04)}
-.faq-item:hover{box-shadow:var(--shadow-md)}
-.faq-q{padding:1.2rem 1.6rem;cursor:pointer;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-family:'Inter',sans-serif}
-.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);transition:transform .3s;font-weight:300}
-.faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.6rem;color:var(--text-light);font-size:.92rem;line-height:1.7}
-.faq-item.open .faq-a{max-height:300px;padding:0 1.6rem 1.2rem}
-
-/* CTA FINAL */
-.cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);text-align:center;position:relative;overflow:hidden}
-.cta-final::before{content:'';position:absolute;top:-30%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,.1) 0%,transparent 70%);border-radius:50%}
-.cta-final *{position:relative;z-index:1}
-.cta-final h2{color:#fff;font-size:2.2rem;margin-bottom:1rem}
-.cta-final h2 em{color:var(--accent-light)}
-.cta-final .email-link{color:var(--accent-light);font-weight:600;font-size:1.05rem}
-.social-links{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem}
-.social-links a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1);transition:all .2s}
-.social-links a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-/* FOOTER */
-footer{background:var(--navy);padding:3rem 2rem 2rem;color:rgba(255,255,255,.6)}
-.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem}
-.footer-col h4{color:#fff;margin-bottom:.8rem;font-size:1rem;font-family:'Playfair Display',serif}
-.footer-col p{font-size:.88rem;line-height:1.6}
-.footer-col a{display:block;color:rgba(255,255,255,.5);font-size:.88rem;margin-bottom:.4rem;transition:color .2s}
-.footer-col a:hover{color:var(--accent-light)}
-.footer-bottom{text-align:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-size:.82rem}
-
-/* ALT BG */
-.bg-alt{background:#F1F5F9}
-
-@media(max-width:768px){
-  .nav-links{display:none}
-  .nav-toggle{display:block}
-  .nav-links.active{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:1.5rem;gap:1rem;border-top:1px solid rgba(59,130,246,.1)}
-  .hero h1{font-size:2.2rem}
-  .stats-row{gap:1.5rem}
-  .process-node:not(:last-child)::after{display:none}
-  .pricing-grid{grid-template-columns:1fr 1fr}
-  .price-card.featured{transform:scale(1)}
-}
-@media(max-width:480px){
-  .pricing-grid{grid-template-columns:1fr}
-}
-</style>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Zautomatyzuj <span>Się</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links">
-      <a href="#uslugi">Usługi</a>
-      <a href="#proces">Jak Działamy</a>
-      <a href="#case-study">Case Study</a>
-      <a href="#cennik">Cennik</a>
-      <a href="#faq">FAQ</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#kontakt" class="btn-cta">Bezpłatna analiza</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <h1>Twoja firma. <em>Widoczna.</em></h1>
-    <p class="subtitle">Łączymy najnowsze badania z marketingiem cyfrowym, żeby Twoja firma była <strong>widoczna w Google</strong>, social media i w głowach klientów.</p>
-    <div class="hero-ctas">
-      <a href="#kontakt" class="btn-cta" style="font-size:1rem;padding:.75rem 2rem">Bezpłatna analiza firmy</a>
-      <a href="#uslugi" class="btn-cta btn-outline" style="font-size:1rem;padding:.75rem 2rem">Zobacz usługi</a>
-    </div>
-    <div class="stats-row">
-      <div class="stat-item"><span class="stat-num">1089+</span><span class="stat-label">źródeł danych</span></div>
-      <div class="stat-item"><span class="stat-num">543+</span><span class="stat-label">wniosków</span></div>
-      <div class="stat-item"><span class="stat-num">154</span><span class="stat-label">monitorowanych</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- DIVIDER -->
-<div style="background:var(--navy)">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:60px"><path d="M0,0 C360,50 720,10 1080,40 C1260,52 1380,20 1440,30 L1440,60 L0,60Z" fill="#F8FAFC"/></svg>
-</div>
-
-<!-- PROBLEM -->
-<section>
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Problem</span></div>
-    <h2 class="section-title">Czy Twoja firma istnieje w internecie?</h2>
-    <p class="section-sub">Większość małych firm jest niewidoczna online. Sprawdź, czy to także Twój problem.</p>
-    <div class="services-grid">
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#10005;</div>
-        <h3>Brak strony WWW</h3>
-        <p>83% klientów szuka firm w Google zanim podejmie decyzję. Bez strony — nie istniejesz.</p>
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:zautomatyzujsie@gmail.com">zautomatyzujsie@gmail.com</a>
+        <i class="icofont-phone"></i> @zautomatyzujsie
       </div>
-      <div class="card">
-        <div class="icon-box icon-box-blue">?</div>
-        <h3>Brak widoczności</h3>
-        <p>Twoja konkurencja jest na pierwszej stronie wyników, a Ty nie. Klienci wybierają tych, których widzą.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#8595;</div>
-        <h3>Social bez efektów</h3>
-        <p>Publikujesz posty, ale nikt ich nie widzi. Brak strategii = brak zasięgu, brak klientów.</p>
+      <div class="social-links">
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- SERVICES -->
-<section id="uslugi" class="bg-alt">
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Usługi</span></div>
-    <h2 class="section-title">Co robimy</h2>
-    <p class="section-sub">Kompletny pakiet usług, który zamienia niewidoczną firmę w lidera rynku lokalnego.</p>
-    <div class="services-grid">
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#8801;</div>
-        <h3>Pełna analiza firmy w sieci</h3>
-        <p>Sprawdzamy Twoją stronę, SEO, social media, wizytówkę Google, opinie i konkurencję. Otrzymujesz raport z 1089+ źródeł danych i konkretnymi wnioskami.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#9675;</div>
-        <h3>Strony WWW od zera</h3>
-        <p>Projektujemy i budujemy nowoczesne strony zoptymalizowane pod SEO, szybkość i konwersję. Responsywne, szybkie, z analityką.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#8981;</div>
-        <h3>Pozycjonowanie SEO i AI&nbsp;Search</h3>
-        <p>Optymalizujemy Twoją stronę pod Google i nowe wyszukiwarki AI (ChatGPT, Perplexity). Lokalne SEO, treści, link building.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#9632;</div>
-        <h3>Social media — Twoje i konkurencji</h3>
-        <p>Analizujemy i prowadzimy Twoje profile. Monitorujemy konkurencję. Tworzymy treści, które budują zasięg i zaufanie.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#9881;</div>
-        <h3>Re-audyt po wdrożeniu</h3>
-        <p>Po każdym wdrożeniu sprawdzamy efekty. Mierzymy wzrosty pozycji, ruchu, zapytań. Korygujemy strategię na bieżąco.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-teal">&#9733;</div>
-        <h3>Stałe prowadzenie firmy</h3>
-        <p>Miesięczna opieka nad całą obecnością online: SEO, social media, Google Ads, treści, raportowanie. Jeden partner — pełna obsługa.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
 
-<!-- PROCESS -->
-<section id="proces">
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Proces</span></div>
-    <h2 class="section-title">Jak działamy</h2>
-    <p class="section-sub">Przejrzysty proces w 4 krokach — od bezpłatnej rozmowy do realnych efektów.</p>
-    <div class="process-track">
-      <div class="process-node">
-        <div class="node-circle">1</div>
-        <h3>Konsultacja</h3>
-        <p>Rozmawiamy o Twojej firmie, celach i wyzwaniach. Bez zobowiązań.</p>
-      </div>
-      <div class="process-node">
-        <div class="node-circle">2</div>
-        <h3>Analiza</h3>
-        <p>Nasze narzędzia analizują 1089+ źródeł danych o Twojej firmie i konkurencji.</p>
-      </div>
-      <div class="process-node">
-        <div class="node-circle">3</div>
-        <h3>Plan</h3>
-        <p>Otrzymujesz szczegółowy plan z priorytetami, kosztami i harmonogramem.</p>
-      </div>
-      <div class="process-node">
-        <div class="node-circle">4</div>
-        <h3>Wdrożenie</h3>
-        <p>Realizujemy plan, mierzymy wyniki i optymalizujemy na bieżąco.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <h1 class="logo mr-auto"><a href="index.html">Zautomatyzuj Się<span>.</span></a></h1>
 
-<!-- CASE STUDIES -->
-<section id="case-study" class="bg-alt">
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Rezultaty</span></div>
-    <h2 class="section-title">Efekty naszej pracy</h2>
-    <p class="section-sub">Realne wyniki dla realnych firm. Przed i po współpracy z nami.</p>
-    <div class="cases-grid">
-      <div class="case-card">
-        <span class="case-tag">Edukacja</span>
-        <h3>Zajęcia dla dzieci Kielce</h3>
-        <p class="case-before">PRZED: 0 stron w indeksie, brak w Maps</p>
-        <p class="case-after">PO: 16 stron zaindeksowanych, Top 3 w Maps</p>
-        <p class="case-time">7 dni</p>
-      </div>
-      <div class="case-card">
-        <span class="case-tag">Uroda</span>
-        <h3>Salon kosmetyczny Warszawa</h3>
-        <p class="case-before">PRZED: słaby Instagram, 0 fraz w Top 10</p>
-        <p class="case-after">PO: +35% obserwujących IG, 3 frazy w Top 10</p>
-        <p class="case-time">30 dni</p>
-      </div>
-      <div class="case-card">
-        <span class="case-tag">Zdrowie</span>
-        <h3>Fizjoterapia Kraków</h3>
-        <p class="case-before">PRZED: brak w Maps, ocena 4.2&#9733;</p>
-        <p class="case-after">PO: #6 w Maps, ocena 4.6&#9733;</p>
-        <p class="case-time">21 dni</p>
-      </div>
-      <div class="case-card">
-        <span class="case-tag">Edukacja</span>
-        <h3>Szkoła językowa Łódź</h3>
-        <p class="case-before">PRZED: minimalne zapytania, brak w Maps</p>
-        <p class="case-after">PO: 4x więcej zapytań, #8 w Maps</p>
-        <p class="case-time">14 dni</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Strona główna</a></li>
+          <li><a href="#services">Usługi</a></li>
+          <li><a href="#process">Jak Działamy</a></li>
+          <li><a href="#portfolio">Case Study</a></li>
+          <li><a href="#pricing">Cennik</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
 
-<!-- WHY US -->
-<section>
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Dlaczego my</span></div>
-    <h2 class="section-title">Dlaczego Zautomatyzuj Się?</h2>
-    <p class="section-sub">Nie jesteśmy kolejną agencją. Działamy inaczej.</p>
-    <div class="why-grid">
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#8593;</div>
-        <h3>Dane, nie opinie</h3>
-        <p>Każda rekomendacja oparta na analizie 1089+ źródeł danych. Żadnego zgadywania.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#10022;</div>
-        <h3>Konkurencja na dwóch torach</h3>
-        <p>Analizujemy i Twoją firmę, i konkurencję — wiesz dokładnie, gdzie jesteś i co robić.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#9678;</div>
-        <h3>Kompletny pakiet</h3>
-        <p>Strona, SEO, social media, Google Ads, treści — wszystko w jednym miejscu, od jednego zespołu.</p>
-      </div>
-      <div class="card">
-        <div class="icon-box icon-box-blue">&#10084;</div>
-        <h3>Bez umów</h3>
-        <p>Żadnych długoterminowych umów. Zostajesz, bo widzisz efekty — nie dlatego, że musisz.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <a href="#contact" class="btn-get-started scrollto ml-3">Rozpocznij współpracę</a>
 
-<!-- PRICING -->
-<section id="cennik" class="bg-alt">
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">Cennik</span></div>
-    <h2 class="section-title">Ile to kosztuje?</h2>
-    <p class="section-sub">Przejrzyste ceny. Żadnych ukrytych kosztów.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Konsultacja</h3>
-        <div class="price-amount">0 zł</div>
-        <p class="price-desc">Bezpłatna rozmowa o Twojej firmie i celach. Bez zobowiązań.</p>
-        <br><a href="#kontakt" class="btn-cta btn-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Umów się</a>
-      </div>
-      <div class="price-card">
-        <h3>Audyt firmy</h3>
-        <div class="price-amount">1 299 zł</div>
-        <p class="price-desc">Pełna analiza obecności online z raportem i wnioskami.</p>
-        <br><a href="#kontakt" class="btn-cta btn-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
-      </div>
-      <div class="price-card featured">
-        <div class="featured-badge">Najpopularniejszy</div>
-        <h3>Audyt + Plan</h3>
-        <div class="price-amount">1 999 zł</div>
-        <p class="price-desc">Analiza + szczegółowy plan działania z priorytetami i harmonogramem.</p>
-        <br><a href="#kontakt" class="btn-cta" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
-      </div>
-      <div class="price-card">
-        <h3>Budowa od zera</h3>
-        <div class="price-amount">3 499 zł</div>
-        <p class="price-desc">Strona WWW + SEO + wizytówka Google + social media setup.</p>
-        <br><a href="#kontakt" class="btn-cta btn-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
-      </div>
-      <div class="price-card">
-        <h3>Stałe prowadzenie</h3>
-        <div class="price-amount">od 1 999 zł<small style="font-size:.55em;color:var(--text-light)">/msc</small></div>
-        <p class="price-desc">Miesięczna opieka: SEO, social media, treści, raporty, optymalizacja.</p>
-        <br><a href="#kontakt" class="btn-cta btn-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+      <h1>Twoja firma. <span>Widoczna.</span>
+      </h1>
+      <h2>Strony WWW, SEO, social media i automatyzacja marketingu — wszystko, czego potrzebuje Twój biznes, żeby przyciągać klientów z internetu.</h2>
+      <div class="d-flex">
+        <a href="#contact" class="btn-get-started scrollto">Bezpłatna analiza firmy</a>
       </div>
     </div>
-  </div>
-</section>
+  </section><!-- End Hero -->
 
-<!-- GUARANTEE -->
-<section>
-  <div class="container">
-    <div class="guarantee-card">
-      <div class="guarantee-icon">&#10003;</div>
-      <h2>Realne efekty albo zwrot pieniędzy</h2>
-      <p style="color:rgba(255,255,255,.7);line-height:1.8;margin:1rem 0">
-        <strong style="color:#fff">Opcja 1:</strong> Jeśli po audycie uznasz, że raport nie daje wartości — zwracamy 100% kwoty.<br>
-        <strong style="color:#fff">Opcja 2:</strong> Jeśli po wdrożeniu nie zobaczysz mierzalnych wzrostów w umówionym terminie — następny miesiąc gratis.
-      </p>
-      <p style="color:var(--teal);font-weight:700;font-size:1.1rem;margin-top:1.2rem">Zero ryzyka po Twojej stronie.</p>
-    </div>
-  </div>
-</section>
+  <main id="main">
 
-<!-- FAQ -->
-<section id="faq" class="bg-alt">
-  <div class="container">
-    <div style="text-align:center"><span class="section-label">FAQ</span></div>
-    <h2 class="section-title">Najczęściej zadawane pytania</h2>
-    <p class="section-sub">Odpowiedzi na pytania, które słyszymy najczęściej.</p>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Ile trwa audyt firmy?</div><div class="faq-a">Standardowy audyt realizujemy w 3-5 dni roboczych. Otrzymujesz pełny raport z wnioskami i rekomendacjami.</div></div>
-      <div class="faq-item"><div class="faq-q">Czy muszę mieć stronę WWW?</div><div class="faq-a">Nie. Jeśli nie masz strony, możemy ją stworzyć w ramach pakietu „Budowa od zera". Audyt obejmuje też firmy bez strony.</div></div>
-      <div class="faq-item"><div class="faq-q">Co oznacza „1089+ źródeł"?</div><div class="faq-a">Nasze narzędzia analityczne analizują dane z Google, social media, katalogów firm, recenzji, forum i wielu innych źródeł — łącznie ponad 1089.</div></div>
-      <div class="faq-item"><div class="faq-q">Czy podpisuję długą umowę?</div><div class="faq-a">Nie. Działamy bez długoterminowych umów. Możesz zrezygnować w każdym miesiącu. Zostajesz, bo widzisz efekty.</div></div>
-      <div class="faq-item"><div class="faq-q">Jak szybko widzę efekty?</div><div class="faq-a">Pierwsze efekty (indeksacja, widoczność w Maps) często w 7-14 dni. SEO organiczne to proces 2-3 miesięcy na trwałe wyniki.</div></div>
-      <div class="faq-item"><div class="faq-q">Czy obsługujecie firmy spoza Polski?</div><div class="faq-a">Tak. Obsługujemy firmy działające na rynku polskim niezależnie od lokalizacji. Pracujemy zdalnie.</div></div>
-      <div class="faq-item"><div class="faq-q">Co jeśli mam już agencję marketingową?</div><div class="faq-a">Możesz zamówić sam audyt — pokażemy, co Twoja obecna agencja robi dobrze, a co można poprawić.</div></div>
-      <div class="faq-item"><div class="faq-q">Jak wygląda bezpłatna konsultacja?</div><div class="faq-a">15-20 minut rozmowy online lub telefonicznie. Poznajemy Twoją firmę, cele i wyzwania. Bez sprzedaży na siłę.</div></div>
-    </div>
-  </div>
-</section>
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+      <div class="container" data-aos="fade-up">
 
-<!-- CTA FINAL -->
-<section id="kontakt" class="cta-final">
-  <div class="container">
-    <h2>Gotowy żeby Twoja firma była <em>widoczna</em>?</h2>
-    <p style="color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:1.05rem">Umów bezpłatną konsultację i sprawdź, co możemy zrobić dla Twojej firmy.</p>
-    <a href="mailto:zautomatyzujsie@gmail.com" class="btn-cta" style="font-size:1.05rem;padding:.8rem 2.2rem">Rozpocznij współpracę</a>
-    <br><br>
-    <a href="mailto:zautomatyzujsie@gmail.com" class="email-link">zautomatyzujsie@gmail.com</a>
-    <div class="social-links">
-      <a href="https://facebook.com/zautomatyzujsie" title="Facebook">f</a>
-      <a href="https://instagram.com/zautomatyzujsie" title="Instagram">&#9737;</a>
-      <a href="https://linkedin.com/company/zautomatyzujsie" title="LinkedIn">in</a>
-      <a href="https://tiktok.com/@zautomatyzujsie" title="TikTok">&#9834;</a>
-    </div>
-  </div>
-</section>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-search-alt"></i></div>
+              <h4 class="title"><a href="">Bezpłatna analiza</a></h4>
+              <p class="description">Sprawdzamy Twoją obecność w internecie i pokazujemy, co poprawić — za darmo.</p>
+            </div>
+          </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>Zautomatyzuj Się</h4>
-      <p>Łączymy dane z marketingiem cyfrowym, żeby Twoja firma była widoczna tam, gdzie szukają klienci.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Usługi</h4>
-      <a href="#uslugi">Analiza firmy</a>
-      <a href="#uslugi">Strony WWW</a>
-      <a href="#uslugi">SEO i AI Search</a>
-      <a href="#uslugi">Social media</a>
-    </div>
-    <div class="footer-col">
-      <h4>Firma</h4>
-      <a href="#proces">Jak działamy</a>
-      <a href="#case-study">Case Study</a>
-      <a href="#cennik">Cennik</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <h4>Kontakt</h4>
-      <a href="mailto:zautomatyzujsie@gmail.com">zautomatyzujsie@gmail.com</a>
-      <a href="https://facebook.com/zautomatyzujsie">Facebook</a>
-      <a href="https://instagram.com/zautomatyzujsie">Instagram</a>
-      <a href="https://linkedin.com/company/zautomatyzujsie">LinkedIn</a>
-    </div>
-  </div>
-  <div class="footer-bottom">&copy; 2026 Zautomatyzuj Się. Wszelkie prawa zastrzeżone.</div>
-</footer>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-rocket"></i></div>
+              <h4 class="title"><a href="">Szybkie efekty</a></h4>
+              <p class="description">Pierwsze wyniki widoczne już w ciągu 7–30 dni od startu współpracy.</p>
+            </div>
+          </div>
 
-<script>
-document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const item=q.parentElement;
-    document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open')});
-    item.classList.toggle('open');
-  });
-});
-</script>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-bot"></i></div>
+              <h4 class="title"><a href="">AI + Automatyzacja</a></h4>
+              <p class="description">Wykorzystujemy sztuczną inteligencję, żeby Twój marketing działał 24/7.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bx bx-shield"></i></div>
+              <h4 class="title"><a href="">Gwarancja jakości</a></h4>
+              <p class="description">Jeśli nie zobaczysz efektów w 90 dni — zwrócimy pieniądze.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Featured Services Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>O nas</h2>
+          <h3>Dlaczego <span>Zautomatyzuj Się</span>?</h3>
+          <p>Jesteśmy zespołem specjalistów od marketingu internetowego. Łączymy sprawdzone strategie z najnowszą technologią AI, żeby Twoja firma rosła szybciej.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <h3>Pomagamy firmom zdobywać klientów z internetu — skutecznie i mierzalnie.</h3>
+            <p class="font-italic">
+              Nie obiecujemy — pokazujemy wyniki. Każda złotówka wydana na marketing musi się zwrócić.
+            </p>
+            <ul>
+              <li>
+                <i class="bx bx-store-alt"></i>
+                <div>
+                  <h5>Kompleksowa obsługa online</h5>
+                  <p>Strona WWW, SEO, social media, reklamy — wszystko w jednym miejscu, bez potrzeby koordynowania wielu agencji.</p>
+                </div>
+              </li>
+              <li>
+                <i class="bx bx-images"></i>
+                <div>
+                  <h5>Technologia AI na Twoich usługach</h5>
+                  <p>Automatyzujemy powtarzalne zadania marketingowe, żebyś mógł skupić się na tym, co robisz najlepiej.</p>
+                </div>
+              </li>
+            </ul>
+            <p>
+              Nasz zespół pracuje z firmami z całej Polski — od jednoosobowych działalności po firmy zatrudniające kilkadziesiąt osób. Wiemy, że każdy biznes jest inny, dlatego dopasowujemy strategię do Twoich celów i budżetu.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="count-box">
+              <i class="icofont-simple-smile"></i>
+              <span data-toggle="counter-up">1089</span>
+              <p>Przeanalizowanych firm</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="icofont-document-folder"></i>
+              <span data-toggle="counter-up">543</span>
+              <p>Zrealizowanych projektów</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="icofont-live-support"></i>
+              <span data-toggle="counter-up">154</span>
+              <p>Aktywnych klientów</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Usługi</h2>
+          <h3>Nasze <span>Usługi</span></h3>
+          <p>Kompleksowa obsługa marketingowa Twojej firmy — od analizy, przez wdrożenie, po stałe prowadzenie.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-search-alt"></i></div>
+              <h4><a href="">Analiza firmy</a></h4>
+              <p>Bezpłatny audyt Twojej obecności w internecie — strona, SEO, social media, konkurencja. Raport z konkretnymi rekomendacjami.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-code-alt"></i></div>
+              <h4><a href="">Strony WWW</a></h4>
+              <p>Nowoczesne, szybkie strony internetowe zoptymalizowane pod SEO i konwersję. Responsywne, gotowe do pozyskiwania klientów.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4><a href="">SEO + AI Search</a></h4>
+              <p>Pozycjonowanie w Google i optymalizacja pod wyszukiwarki AI (ChatGPT, Perplexity). Bądź tam, gdzie szukają Twoi klienci.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h4><a href="">Social media</a></h4>
+              <p>Prowadzenie profili na Facebooku, Instagramie i LinkedIn. Treści, które angażują i budują markę.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-revision"></i></div>
+              <h4><a href="">Re-audyt</a></h4>
+              <p>Cykliczna weryfikacja wyników i strategii. Sprawdzamy, co działa, co poprawić i jakie nowe szanse się pojawiły.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-cog"></i></div>
+              <h4><a href="">Prowadzenie</a></h4>
+              <p>Stała obsługa marketingowa Twojej firmy. Strategia, realizacja, raportowanie — wszystko w jednych rękach.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Process Section ======= -->
+    <section id="process" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Jak Działamy</h2>
+          <h3>Nasz <span>Proces</span></h3>
+          <p>Przejrzysty proces w 4 krokach — od pierwszego kontaktu do mierzalnych efektów.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <ul>
+              <li>
+                <i class="bx bx-search-alt"></i>
+                <div>
+                  <h5>Krok 1: Bezpłatna analiza</h5>
+                  <p>Sprawdzamy Twoją obecność online i przygotowujemy raport z konkretnymi zaleceniami.</p>
+                </div>
+              </li>
+              <li>
+                <i class="bx bx-edit"></i>
+                <div>
+                  <h5>Krok 2: Strategia i plan</h5>
+                  <p>Tworzymy spersonalizowaną strategię marketingową dopasowaną do Twoich celów i budżetu.</p>
+                </div>
+              </li>
+              <li>
+                <i class="bx bx-rocket"></i>
+                <div>
+                  <h5>Krok 3: Wdrożenie</h5>
+                  <p>Realizujemy plan — strona, SEO, social media, reklamy. Ty się skupiasz na biznesie.</p>
+                </div>
+              </li>
+              <li>
+                <i class="bx bx-line-chart"></i>
+                <div>
+                  <h5>Krok 4: Optymalizacja i raportowanie</h5>
+                  <p>Mierzymy efekty, optymalizujemy działania i regularnie raportujemy wyniki.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Process Section -->
+
+    <!-- ======= Portfolio / Case Study Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Case Study</h2>
+          <h3>Nasze <span>Realizacje</span></h3>
+          <p>Prawdziwe wyniki dla prawdziwych firm. Zobacz, jak pomagamy naszym klientom rosnąć.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Wszystkie</li>
+              <li data-filter=".filter-app">SEO</li>
+              <li data-filter=".filter-web">Strony WWW</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Salon fryzjerski — Kielce</h4>
+              <p>Top 3 w Google w 7 dni</p>
+              <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Salon fryzjerski — Kielce"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Kancelaria prawna — Warszawa</h4>
+              <p>+340% ruchu w 30 dni</p>
+              <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Kancelaria prawna — Warszawa"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Restauracja — Kraków</h4>
+              <p>2x więcej rezerwacji online</p>
+              <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Restauracja — Kraków"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Sklep meblowy — Wrocław</h4>
+              <p>Nowa strona + SEO lokalne</p>
+              <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Sklep meblowy — Wrocław"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Gabinet stomatologiczny — Gdańsk</h4>
+              <p>+180% zapytań z Google</p>
+              <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Gabinet stomatologiczny — Gdańsk"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Firma budowlana — Poznań</h4>
+              <p>Strona + kampania Google Ads</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Firma budowlana — Poznań"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="Szczegóły"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio / Case Study Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Dlaczego my</h2>
+          <h3>Czym się <span>wyróżniamy</span>?</h3>
+          <p>4 powody, dla których firmy wybierają Zautomatyzuj Się.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-time"></i></div>
+              <h4><a href="">Szybkość</a></h4>
+              <p>Pierwsze efekty widoczne w 7–30 dni. Nie czekasz miesiącami na wyniki.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-bar-chart-alt-2"></i></div>
+              <h4><a href="">Mierzalność</a></h4>
+              <p>Regularne raporty z konkretnymi liczbami. Wiesz dokładnie, za co płacisz.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-bot"></i></div>
+              <h4><a href="">Technologia AI</a></h4>
+              <p>Wykorzystujemy AI do automatyzacji i optymalizacji — Twój marketing pracuje non-stop.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="400">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-shield"></i></div>
+              <h4><a href="">Gwarancja 90 dni</a></h4>
+              <p>Jeśli nie zobaczysz efektów w 90 dni — zwrócimy pieniądze. Bez haczyków.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Cennik</h2>
+          <h3>Nasze <span>Pakiety</span></h3>
+          <p>Wybierz pakiet dopasowany do potrzeb Twojej firmy. Każdy obejmuje bezpłatną analizę na start.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+              <h3>Analiza</h3>
+              <h4><sup></sup>0<span>zł</span></h4>
+              <ul>
+                <li>Audyt obecności online</li>
+                <li>Analiza konkurencji</li>
+                <li>Raport z rekomendacjami</li>
+                <li>Konsultacja telefoniczna</li>
+                <li class="na">Wdrożenie zmian</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#contact" class="btn-buy">Zamów bezpłatnie</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box">
+              <h3>Strona WWW</h3>
+              <h4><sup></sup>1 299<span>zł</span></h4>
+              <ul>
+                <li>Nowoczesny design</li>
+                <li>Responsywność (mobile)</li>
+                <li>Optymalizacja SEO</li>
+                <li>Formularz kontaktowy</li>
+                <li>Hosting + domena (1 rok)</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#contact" class="btn-buy">Zamów</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+            <div class="box featured">
+              <h3>SEO + AI Search</h3>
+              <h4><sup></sup>1 999<span>zł</span></h4>
+              <ul>
+                <li>Pozycjonowanie w Google</li>
+                <li>Optymalizacja pod AI Search</li>
+                <li>Analiza słów kluczowych</li>
+                <li>Link building</li>
+                <li>Miesięczny raport wyników</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#contact" class="btn-buy">Zamów</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 mt-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="box">
+              <h3>Social Media</h3>
+              <h4><sup></sup>3 499<span>zł</span></h4>
+              <ul>
+                <li>Strategia contentowa</li>
+                <li>Prowadzenie 2 platform</li>
+                <li>12 postów miesięcznie</li>
+                <li>Grafiki i copy</li>
+                <li>Raport miesięczny</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#contact" class="btn-buy">Zamów</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 mt-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="box">
+              <span class="advanced">Kompleksowo</span>
+              <h3>Prowadzenie</h3>
+              <h4>od <sup></sup>1 999<span>zł/msc</span></h4>
+              <ul>
+                <li>Pełna obsługa marketingowa</li>
+                <li>SEO + Social Media + Reklamy</li>
+                <li>Dedykowany opiekun</li>
+                <li>Comiesięczne raporty</li>
+                <li>Strategia i optymalizacja</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#contact" class="btn-buy">Zapytaj o ofertę</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>FAQ</h2>
+          <h3>Najczęściej zadawane <span>pytania</span></h3>
+          <p>Odpowiedzi na pytania, które słyszymy najczęściej od naszych klientów.</p>
+        </div>
+
+        <ul class="faq-list" data-aos="fade-up" data-aos-delay="100">
+
+          <li>
+            <a data-toggle="collapse" class="" href="#faq1">Ile kosztuje bezpłatna analiza firmy? <i class="icofont-simple-up"></i></a>
+            <div id="faq1" class="collapse show" data-parent=".faq-list">
+              <p>
+                Analiza jest całkowicie bezpłatna i niezobowiązująca. Sprawdzamy Twoją obecność w internecie, analizujemy konkurencję i przygotowujemy raport z konkretnymi rekomendacjami. Nie musisz podejmować żadnych zobowiązań.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq2" class="collapsed">Jak szybko zobaczę efekty? <i class="icofont-simple-up"></i></a>
+            <div id="faq2" class="collapse" data-parent=".faq-list">
+              <p>
+                Pierwsze efekty widoczne są już w ciągu 7–30 dni, w zależności od wybranego pakietu i stanu Twojej obecności online. SEO wymaga zwykle 2–3 miesięcy na pełne rezultaty, ale poprawki techniczne i lokalne dają efekty znacznie szybciej.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq3" class="collapsed">Czy mogę zrezygnować w dowolnym momencie? <i class="icofont-simple-up"></i></a>
+            <div id="faq3" class="collapse" data-parent=".faq-list">
+              <p>
+                Tak. Nie wiążemy klientów długoterminowymi umowami. Współpracę można zakończyć z miesięcznym wypowiedzeniem. Wierzymy, że klienci zostają z nami, bo widzą wyniki — nie dlatego, że muszą.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq4" class="collapsed">Co oznacza gwarancja 90 dni? <i class="icofont-simple-up"></i></a>
+            <div id="faq4" class="collapse" data-parent=".faq-list">
+              <p>
+                Jeśli w ciągu 90 dni od rozpoczęcia współpracy nie zobaczysz mierzalnej poprawy (więcej ruchu, zapytań, widoczności w Google), zwrócimy Ci pieniądze. Szczegóły gwarancji omawiamy indywidualnie przy podpisaniu umowy.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq5" class="collapsed">Czy prowadzicie firmy z całej Polski? <i class="icofont-simple-up"></i></a>
+            <div id="faq5" class="collapse" data-parent=".faq-list">
+              <p>
+                Tak. Pracujemy zdalnie z firmami z całej Polski. Spotkania odbywają się online, a komunikacja przebiega przez e-mail, telefon i dedykowany czat. Niezależnie od lokalizacji — efekty są takie same.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq6" class="collapsed">Czym jest SEO + AI Search? <i class="icofont-simple-up"></i></a>
+            <div id="faq6" class="collapse" data-parent=".faq-list">
+              <p>
+                Oprócz tradycyjnego pozycjonowania w Google, optymalizujemy Twoją obecność pod kątem wyszukiwarek AI — takich jak ChatGPT, Perplexity czy Google SGE. Coraz więcej osób szuka informacji przez AI, a my dbamy o to, żeby Twoja firma tam była.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq7" class="collapsed">Ile czasu muszę poświęcać na współpracę? <i class="icofont-simple-up"></i></a>
+            <div id="faq7" class="collapse" data-parent=".faq-list">
+              <p>
+                Minimum. Na początku potrzebujemy ok. 1–2 godzin na rozmowę i ustalenie celów. Potem wystarczy 15–30 minut tygodniowo na akceptację materiałów i feedback. Resztą zajmujemy się my.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" href="#faq8" class="collapsed">Czy mogę zacząć od jednej usługi i rozszerzyć później? <i class="icofont-simple-up"></i></a>
+            <div id="faq8" class="collapse" data-parent=".faq-list">
+              <p>
+                Oczywiście. Większość naszych klientów zaczyna od bezpłatnej analizy, potem zamawia stronę WWW lub SEO, a z czasem rozszerza współpracę o social media i pełne prowadzenie. Dopasowujemy się do Twojego tempa i budżetu.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Kontakt</h2>
+          <h3><span>Skontaktuj się z nami</span></h3>
+          <p>Napisz do nas lub wypełnij formularz — odezwiemy się w ciągu 24 godzin.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
+              <i class="bx bx-envelope"></i>
+              <h3>E-mail</h3>
+              <p>zautomatyzujsie@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bxl-instagram"></i>
+              <h3>Instagram</h3>
+              <p>@zautomatyzujsie</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-map"></i>
+              <h3>Lokalizacja</h3>
+              <p>Cała Polska (praca zdalna)</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-6 ">
+            <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2500000!2d19.145136!3d51.919438!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPolska!5e0!3m2!1spl!2spl!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+          </div>
+
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="col form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Twoje imię" data-rule="minlen:4" data-msg="Wpisz co najmniej 4 znaki" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Twój e-mail" data-rule="email" data-msg="Wpisz poprawny adres e-mail" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Temat" data-rule="minlen:4" data-msg="Wpisz co najmniej 4 znaki tematu" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Napisz wiadomość" placeholder="Wiadomość"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Wysyłanie...</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Wiadomość została wysłana. Dziękujemy!</div>
+              </div>
+              <div class="text-center"><button type="submit">Wyślij wiadomość</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Zapisz się na newsletter</h4>
+            <p>Porady marketingowe, nowości i case study prosto na Twoją skrzynkę.</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Twój e-mail"><input type="submit" value="Zapisz się">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Zautomatyzuj Się<span>.</span></h3>
+            <p>
+              Cała Polska<br>
+              (praca zdalna)<br><br>
+              <strong>E-mail:</strong> zautomatyzujsie@gmail.com<br>
+              <strong>Instagram:</strong> @zautomatyzujsie<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nawigacja</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Strona główna</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">O nas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Usługi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Cennik</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Kontakt</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Nasze usługi</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Analiza firmy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Strony WWW</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">SEO + AI Search</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Social media</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Prowadzenie</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Social media</h4>
+            <p>Obserwuj nas i bądź na bieżąco z poradami marketingowymi.</p>
+            <div class="social-links mt-3">
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; 2026 <strong><span>Zautomatyzuj Się</span></strong>. Wszelkie prawa zastrzeżone.
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
