@@ -7,14 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26}
+:root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26;--warm-bg:#f5efe6}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,247,242,.9);backdrop-filter:blur(10px)}
-nav .logo{font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--dark)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,247,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,111,71,.1)}
+nav .logo{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--dark)}
+nav .logo svg{flex-shrink:0}
 nav ul{list-style:none;display:flex;gap:28px}
-nav a{text-decoration:none;color:var(--text);font-size:14px;font-weight:600}
+nav a{text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:color .2s}
 nav a:hover{color:var(--primary)}
 
 /* SPLIT SECTION */
@@ -23,28 +24,71 @@ nav a:hover{color:var(--primary)}
 .split.reverse>*{direction:ltr}
 .split-text{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
 .split-visual{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
 
 /* HERO */
-.hero-bg{background:var(--dark)}
+.hero-bg{background:linear-gradient(135deg,var(--dark) 0%,#5a4530 50%,var(--primary) 100%)}
 .hero-text{color:#fff}
-.hero-text h1{font-family:Georgia,serif;font-size:56px;line-height:1.15;margin-bottom:24px}
+.hero-text h1{font-family:Georgia,serif;font-size:52px;line-height:1.15;margin-bottom:24px}
 .hero-text h1 em{font-style:italic;color:var(--accent)}
-.hero-text p{font-size:18px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:36px;max-width:460px}
+.hero-text p{font-size:17px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:20px;max-width:460px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.hero-badge{padding:5px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:30px;font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
 .btn-split{display:inline-block;padding:16px 40px;background:var(--accent);color:var(--dark);font-weight:700;font-size:15px;text-decoration:none;border-radius:4px;transition:all .3s}
 .btn-split:hover{background:#fff;transform:translateY(-2px)}
-.hero-visual-bg{background:var(--bg)}
+.hero-visual-bg{background:var(--warm-bg);padding:40px}
 
 /* SERVICES SPLIT */
 .svc-bg-left{background:#fff}
-.svc-bg-right{background:var(--primary)}
+.svc-bg-right{background:linear-gradient(135deg,var(--primary),var(--dark))}
 .svc-list{list-style:none}
 .svc-list li{padding:24px 0;border-bottom:1px solid rgba(0,0,0,.08);display:flex;align-items:flex-start;gap:20px}
 .svc-list li:last-child{border-bottom:none}
-.svc-list h3{font-size:18px;font-weight:700;margin-bottom:4px}
+.svc-list h3{font-size:18px;font-weight:700;margin-bottom:6px}
 .svc-list p{font-size:14px;color:#666;line-height:1.6}
 
+/* AUDIT AREAS */
+.audit-section{min-height:auto;padding:80px 48px;background:var(--warm-bg)}
+.audit-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:16px}
+.audit-subtitle{text-align:center;color:#888;font-size:15px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.audit-card{background:#fff;border-radius:16px;padding:28px 24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .3s,box-shadow .3s;border:1px solid rgba(139,111,71,.08)}
+.audit-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(139,111,71,.12)}
+.audit-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--dark)}
+.audit-card p{font-size:12px;color:#999;line-height:1.5}
+
+/* COMPARISON TABLE */
+.comp-section{min-height:auto;padding:80px 48px;background:var(--dark)}
+.comp-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px;color:#fff}
+.comp-table{width:100%;max-width:900px;margin:0 auto;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05)}
+.comp-table th,.comp-table td{padding:16px 24px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.comp-table thead th{background:rgba(255,255,255,.08);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.8)}
+.comp-table tbody td{color:rgba(255,255,255,.6)}
+.comp-table tbody td:first-child{font-weight:600;color:rgba(255,255,255,.9)}
+.comp-table .us{color:#4ade80;font-weight:600}
+.comp-table .them{color:rgba(255,255,255,.35)}
+.comp-table tbody tr:last-child td{border-bottom:none}
+
+/* DELIVERABLES */
+.deliv-section{min-height:auto;padding:80px 48px;background:#fff}
+.deliv-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+.deliv-card{background:var(--warm-bg);border-radius:16px;padding:32px 24px;text-align:center;border:1px solid rgba(139,111,71,.08)}
+.deliv-card .num{font-family:Georgia,serif;font-size:32px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.deliv-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--dark)}
+.deliv-card p{font-size:13px;color:#888;line-height:1.5}
+
+/* CLIENTS */
+.clients-section{min-height:auto;padding:80px 48px;background:var(--warm-bg)}
+.clients-section h2{font-family:Georgia,serif;font-size:40px;text-align:center;margin-bottom:48px}
+.clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto}
+.client-card{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;border:1px solid rgba(139,111,71,.08);transition:transform .3s}
+.client-card:hover{transform:translateY(-4px)}
+.client-card h3{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px}
+.client-card p{font-size:12px;color:#888;line-height:1.5}
+
 /* STATS SPLIT */
-.stats-bg{background:var(--green)}
+.stats-bg{background:linear-gradient(135deg,var(--green),#3a6349)}
 .stats-content{color:#fff}
 .stat-item{margin-bottom:48px}
 .stat-item:last-child{margin-bottom:0}
@@ -54,7 +98,7 @@ nav a:hover{color:var(--primary)}
 
 /* PROCESS SPLIT */
 .process-bg{background:#fff}
-.process-visual-bg{background:var(--rose)}
+.process-visual-bg{background:linear-gradient(135deg,var(--rose),#a07060)}
 .process-steps{counter-reset:proc}
 .process-steps .pstep{counter-increment:proc;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.08);display:flex;gap:20px;align-items:flex-start}
 .process-steps .pstep:last-child{border-bottom:none}
@@ -62,7 +106,7 @@ nav a:hover{color:var(--primary)}
 .pstep-content h3{font-size:18px;font-weight:700;margin-bottom:4px}
 .pstep-content p{font-size:14px;color:#666;line-height:1.6}
 
-/* PRICING SPLIT */
+/* PRICING SECTION */
 .pricing-section{min-height:auto;padding:80px 0;background:var(--dark)}
 .pricing-inner{max-width:1200px;margin:0 auto;padding:0 48px}
 .pricing-title{font-family:Georgia,serif;font-size:48px;color:#fff;text-align:center;margin-bottom:60px}
@@ -91,25 +135,30 @@ nav a:hover{color:var(--primary)}
 /* FOOTER */
 footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:center;background:var(--text);color:rgba(255,255,255,.4);font-size:13px}
 
-.section-label{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
-
 @media(max-width:900px){
   .split{grid-template-columns:1fr}
   .split.reverse{direction:ltr}
   .split-text{padding:60px 32px}
   .split-visual{min-height:50vh}
-  .pricing-grid{grid-template-columns:1fr}
+  .pricing-grid,.audit-grid,.deliv-grid,.clients-grid{grid-template-columns:1fr}
   nav ul{display:none}
+  nav{padding:16px 24px}
   .hero-text h1{font-size:36px}
+  .audit-section,.comp-section,.deliv-section,.clients-section{padding:60px 24px}
+  .comp-table th,.comp-table td{padding:10px 14px;font-size:12px}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Zautomatyzuj Się</div>
+  <div class="logo">
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/><circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".2"/><path d="M12 14h12l-12 14h12" stroke="#8b6f47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="#6b5435" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="12" cy="14" r="2" fill="#8b6f47"/><circle cx="24" cy="14" r="2" fill="#b89773"/><circle cx="12" cy="28" r="2" fill="#b89773"/><circle cx="24" cy="28" r="2" fill="#8b6f47"/><circle cx="8" cy="21" r="1.2" fill="#b89773" opacity=".6"/><circle cx="40" cy="21" r="1.2" fill="#8b6f47" opacity=".6"/></svg>
+    Zautomatyzuj Się
+  </div>
   <ul>
     <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#audyt">Audyt</a></li>
     <li><a href="#proces">Proces</a></li>
     <li><a href="#cennik">Cennik</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
@@ -121,22 +170,55 @@ footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:
   <div class="split-text hero-text hero-bg" style="padding-top:120px">
     <div class="section-label" style="color:var(--accent)">Marketing oparty na danych</div>
     <h1>Nie zgadujemy.<br><em>Analizujemy.</em></h1>
-    <p>150+ źródeł badawczych dziennie. Każda rekomendacja poparta realnymi badaniami, nie intuicją. Twoja firma zasługuje na więcej.</p>
+    <p>150+ źródeł badawczych dziennie. 9 obszarów audytu. Każda rekomendacja poparta realnymi badaniami, nie intuicją. Twoja firma zasługuje na więcej niż "best practices".</p>
+    <div class="hero-badges">
+      <span class="hero-badge">9 obszarów audytu</span>
+      <span class="hero-badge">100+ postów analizy</span>
+      <span class="hero-badge">AI Search</span>
+      <span class="hero-badge">Re-audyt 30 dni</span>
+    </div>
     <a href="#cennik" class="btn-split">Sprawdź ofertę</a>
   </div>
   <div class="split-visual hero-visual-bg">
+    <!-- Data automation SVG -->
     <svg width="360" height="400" viewBox="0 0 360 400" fill="none">
-      <rect x="40" y="60" width="280" height="280" rx="16" stroke="#8b6f47" stroke-width="2" fill="none"/>
-      <rect x="70" y="100" width="60" height="200" rx="4" fill="#b89773" opacity=".3"/>
-      <rect x="70" y="180" width="60" height="120" rx="4" fill="#b89773"/>
-      <rect x="150" y="100" width="60" height="200" rx="4" fill="#4a7c59" opacity=".3"/>
-      <rect x="150" y="130" width="60" height="170" rx="4" fill="#4a7c59"/>
-      <rect x="230" y="100" width="60" height="200" rx="4" fill="#c08e7d" opacity=".3"/>
-      <rect x="230" y="200" width="60" height="100" rx="4" fill="#c08e7d"/>
-      <path d="M85 170L180 120L260 190" stroke="#6b5435" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <circle cx="85" cy="170" r="5" fill="#6b5435"/>
-      <circle cx="180" cy="120" r="5" fill="#6b5435"/>
-      <circle cx="260" cy="190" r="5" fill="#6b5435"/>
+      <!-- Dashboard frame -->
+      <rect x="20" y="30" width="320" height="340" rx="16" stroke="#8b6f47" stroke-width="2" fill="none"/>
+      <rect x="20" y="30" width="320" height="40" rx="16" fill="#8b6f47" opacity=".08"/>
+      <!-- Window dots -->
+      <circle cx="44" cy="50" r="5" fill="#c08e7d" opacity=".6"/>
+      <circle cx="60" cy="50" r="5" fill="#b89773" opacity=".6"/>
+      <circle cx="76" cy="50" r="5" fill="#4a7c59" opacity=".6"/>
+      <!-- Chart bars -->
+      <rect x="50" y="200" width="40" height="140" rx="4" fill="#b89773" opacity=".3"/>
+      <rect x="50" y="250" width="40" height="90" rx="4" fill="#b89773"/>
+      <rect x="110" y="200" width="40" height="140" rx="4" fill="#4a7c59" opacity=".3"/>
+      <rect x="110" y="220" width="40" height="120" rx="4" fill="#4a7c59"/>
+      <rect x="170" y="200" width="40" height="140" rx="4" fill="#c08e7d" opacity=".3"/>
+      <rect x="170" y="260" width="40" height="80" rx="4" fill="#c08e7d"/>
+      <rect x="230" y="200" width="40" height="140" rx="4" fill="#8b6f47" opacity=".3"/>
+      <rect x="230" y="210" width="40" height="130" rx="4" fill="#8b6f47"/>
+      <rect x="290" y="200" width="40" height="140" rx="4" fill="#4a7c59" opacity=".3"/>
+      <rect x="290" y="230" width="40" height="110" rx="4" fill="#4a7c59"/>
+      <!-- Trend line -->
+      <path d="M70 240L130 210L190 255L250 200L310 220" stroke="#6b5435" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="70" cy="240" r="4" fill="#6b5435"/>
+      <circle cx="130" cy="210" r="4" fill="#6b5435"/>
+      <circle cx="190" cy="255" r="4" fill="#6b5435"/>
+      <circle cx="250" cy="200" r="4" fill="#6b5435"/>
+      <circle cx="310" cy="220" r="4" fill="#6b5435"/>
+      <!-- KPI cards -->
+      <rect x="50" y="90" width="120" height="80" rx="10" fill="#fff" stroke="#b89773" stroke-width="1" opacity=".8"/>
+      <text x="68" y="118" font-size="10" fill="#8b6f47" font-family="Inter" font-weight="600">SEO Score</text>
+      <text x="68" y="150" font-size="28" fill="#6b5435" font-weight="900" font-family="Inter">94%</text>
+      <rect x="190" y="90" width="140" height="80" rx="10" fill="#fff" stroke="#4a7c59" stroke-width="1" opacity=".8"/>
+      <text x="208" y="118" font-size="10" fill="#4a7c59" font-family="Inter" font-weight="600">Organic Traffic</text>
+      <text x="208" y="150" font-size="28" fill="#4a7c59" font-weight="900" font-family="Inter">+147%</text>
+      <!-- Circuit dots -->
+      <circle cx="30" cy="380" r="3" fill="#b89773" opacity=".4"/>
+      <circle cx="350" cy="380" r="3" fill="#b89773" opacity=".4"/>
+      <line x1="30" y1="370" x2="30" y2="377" stroke="#b89773" stroke-width="1" opacity=".3"/>
+      <line x1="350" y1="370" x2="350" y2="377" stroke="#b89773" stroke-width="1" opacity=".3"/>
     </svg>
   </div>
 </section>
@@ -149,19 +231,19 @@ footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:
     <ul class="svc-list">
       <li>
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M6 34L14 18L22 26L30 10L34 6" stroke="#8b6f47" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="34" cy="6" r="3" fill="#b89773"/></svg>
-        <div><h3>Audyt SEO</h3><p>Kompleksowa analiza widoczności w wyszukiwarkach z konkretnym planem działania.</p></div>
+        <div><h3>Audyt SEO</h3><p>Kompleksowa analiza widoczności w wyszukiwarkach z konkretnym planem działania. Badamy techniczne SEO, treści, linki zwrotne i strukturę witryny. Każda rekomendacja poparta badaniami.</p></div>
       </li>
       <li>
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" rx="6" stroke="#8b6f47" stroke-width="2.5" fill="none"/><line x1="12" y1="14" x2="28" y2="14" stroke="#b89773" stroke-width="2"/><line x1="12" y1="20" x2="24" y2="20" stroke="#b89773" stroke-width="2"/><line x1="12" y1="26" x2="20" y2="26" stroke="#b89773" stroke-width="2"/></svg>
-        <div><h3>Budowa stron</h3><p>Strony zoptymalizowane pod konwersję i widoczność od pierwszego dnia.</p></div>
+        <div><h3>Budowa stron</h3><p>Strony zoptymalizowane pod konwersję i widoczność od pierwszego dnia. Responsywne, szybkie, zgodne z Core Web Vitals.</p></div>
       </li>
       <li>
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#8b6f47" stroke-width="2.5" fill="none"/><path d="M14 18C14 18 16 14 20 14S26 18 26 18" stroke="#b89773" stroke-width="2" fill="none"/><path d="M14 24C14 24 16 28 20 28S26 24 26 24" stroke="#b89773" stroke-width="2" fill="none"/></svg>
-        <div><h3>Social Media</h3><p>Instagram, Facebook, TikTok. Strategia i treści, które generują konwersje.</p></div>
+        <div><h3>Social Media</h3><p>Instagram, Facebook, TikTok z taką samą rygorem jak SEO. 100+ postów analizy, 5-10 konkurentów. Strategia oparta na danych, nie na trendach.</p></div>
       </li>
       <li>
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 4L36 12V28L20 36L4 28V12Z" stroke="#8b6f47" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="5" fill="#4a7c59" opacity=".4"/></svg>
-        <div><h3>AI Search + Re-audyt</h3><p>Optymalizacja pod AI i comiesięczna weryfikacja postępów.</p></div>
+        <div><h3>AI Search + Re-audyt</h3><p>Optymalizacja pod ChatGPT, Perplexity, Claude, Gemini plus comiesięczna weryfikacja postępów. Ciągłe doskonalenie, nie jednorazowa akcja.</p></div>
       </li>
     </ul>
   </div>
@@ -175,11 +257,74 @@ footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:
       <circle cx="230" cy="270" r="14" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
       <circle cx="60" cy="240" r="11" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
       <circle cx="150" cy="170" r="8" fill="rgba(255,255,255,.4)"/>
-      <text x="130" y="16" fill="rgba(255,255,255,.5)" font-size="10" font-family="Inter">SEO</text>
-      <text x="255" y="135" fill="rgba(255,255,255,.5)" font-size="10" font-family="Inter">AI</text>
-      <text x="215" y="295" fill="rgba(255,255,255,.5)" font-size="10" font-family="Inter">SOCIAL</text>
-      <text x="30" y="260" fill="rgba(255,255,255,.5)" font-size="10" font-family="Inter">WEB</text>
+      <!-- Connection lines -->
+      <line x1="150" y1="58" x2="150" y2="130" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <line x1="158" y1="170" x2="240" y2="130" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <line x1="155" y1="178" x2="225" y2="260" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <line x1="142" y1="175" x2="70" y2="235" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <text x="128" y="16" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">SEO</text>
+      <text x="255" y="135" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">AI</text>
+      <text x="210" y="300" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">SOCIAL</text>
+      <text x="25" y="265" fill="rgba(255,255,255,.6)" font-size="11" font-family="Inter" font-weight="600">WEB</text>
     </svg>
+  </div>
+</section>
+
+<!-- AUDIT AREAS -->
+<section class="audit-section" id="audyt">
+  <h2>Co analizujemy</h2>
+  <p class="audit-subtitle">9 obszarów kompleksowego audytu z rygorem naukowym</p>
+  <div class="audit-grid">
+    <div class="audit-card"><h3>Strona www</h3><p>UX, szybkość, mobilność, struktura, konwersja</p></div>
+    <div class="audit-card"><h3>SEO & Google</h3><p>Techniczne SEO, treści, linki, pozycje fraz</p></div>
+    <div class="audit-card"><h3>Google Business Profile</h3><p>Optymalizacja wizytówki, zdjęcia, kategorie</p></div>
+    <div class="audit-card"><h3>Opinie</h3><p>Analiza opinii, sentyment, porównanie z konkurencją</p></div>
+    <div class="audit-card"><h3>Instagram</h3><p>100+ postów, 5-10 konkurentów, engagement</p></div>
+    <div class="audit-card"><h3>Facebook</h3><p>100+ postów, 5-10 konkurentów, zasięgi</p></div>
+    <div class="audit-card"><h3>TikTok</h3><p>100+ filmów, 5-10 konkurentów, trendy</p></div>
+    <div class="audit-card"><h3>AI Search</h3><p>ChatGPT, Perplexity, Claude, Gemini</p></div>
+    <div class="audit-card"><h3>Linki zewnętrzne</h3><p>Profil linkowy, katalogi, wzmianki NAP</p></div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comp-section">
+  <h2>My vs typowa agencja</h2>
+  <table class="comp-table">
+    <thead><tr><th>Aspekt</th><th>Zautomatyzuj Się</th><th>Typowa agencja</th></tr></thead>
+    <tbody>
+      <tr><td>Źródła</td><td class="us">Badania naukowe i studia</td><td class="them">Best practices</td></tr>
+      <tr><td>Konkurencja</td><td class="us">Cała branża</td><td class="them">3-5 firm</td></tr>
+      <tr><td>Social media</td><td class="us">100+ postów, rygor SEO</td><td class="them">Powierzchownie</td></tr>
+      <tr><td>Raporty</td><td class="us">3 HTML z dowodami</td><td class="them">1 PDF</td></tr>
+      <tr><td>Mierzalność</td><td class="us">Re-audyt co 30 dni</td><td class="them">Nadzieja</td></tr>
+      <tr><td>Ciągłość</td><td class="us">Stała optymalizacja</td><td class="them">Jednorazowo</td></tr>
+      <tr><td>AI Search</td><td class="us">Aktywna optymalizacja</td><td class="them">Ignorowane</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliv-section">
+  <h2>Co dostarczamy</h2>
+  <div class="deliv-grid">
+    <div class="deliv-card"><div class="num">01</div><h3>Pełny raport z dowodami</h3><p>Szczegółowa analiza ze źródłami badawczymi</p></div>
+    <div class="deliv-card"><div class="num">02</div><h3>Czysty raport</h3><p>Przejrzysty raport zrozumiały dla każdego</p></div>
+    <div class="deliv-card"><div class="num">03</div><h3>Plan krok po kroku</h3><p>Konkretny plan z priorytetami i terminami</p></div>
+    <div class="deliv-card"><div class="num">04</div><h3>Tabela porównawcza</h3><p>Porównanie z konkurencją w każdym obszarze</p></div>
+    <div class="deliv-card"><div class="num">05</div><h3>Gotowe materiały</h3><p>Emaile, posty, opisy — gotowe do użycia</p></div>
+    <div class="deliv-card"><div class="num">06</div><h3>Roadmapa 90 dni</h3><p>Strategiczny plan na 3 miesiące</p></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-section">
+  <h2>Dla kogo pracujemy</h2>
+  <div class="clients-grid">
+    <div class="client-card"><h3>Usługi lokalne</h3><p>Hydraulicy, salony, gabinety</p></div>
+    <div class="client-card"><h3>Małe sklepy i marki</h3><p>E-commerce, lokalne butiki</p></div>
+    <div class="client-card"><h3>Specjaliści</h3><p>Prawnicy, lekarze, coachowie</p></div>
+    <div class="client-card"><h3>Startupy</h3><p>Szybki, mierzalny wzrost</p></div>
   </div>
 </section>
 
@@ -207,10 +352,10 @@ footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:
     <div class="section-label">Jak pracujemy</div>
     <h2 style="font-family:Georgia,serif;font-size:40px;margin-bottom:36px">Sprawdzony proces<br>w 4 krokach</h2>
     <div class="process-steps">
-      <div class="pstep"><div class="pstep-content"><h3>Analiza</h3><p>Dogłębny audyt Twojej obecności online i badanie konkurencji.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Strategia</h3><p>Plan działania oparty na danych z ponad 150 źródeł badawczych.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Wdrożenie</h3><p>Realizacja strategii z mierzalnymi celami i kamieniami milowymi.</p></div></div>
-      <div class="pstep"><div class="pstep-content"><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy, korygujemy, optymalizujemy.</p></div></div>
+      <div class="pstep"><div class="pstep-content"><h3>Analiza</h3><p>Dogłębny audyt 9 obszarów obecności online i badanie całej konkurencji w branży.</p></div></div>
+      <div class="pstep"><div class="pstep-content"><h3>Strategia</h3><p>Plan działania oparty na danych z ponad 150 źródeł. Każda rekomendacja z dowodem.</p></div></div>
+      <div class="pstep"><div class="pstep-content"><h3>Wdrożenie</h3><p>Realizacja strategii z gotowymi materiałami, mierzalnymi celami i kamieniami milowymi.</p></div></div>
+      <div class="pstep"><div class="pstep-content"><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy, korygujemy, optymalizujemy. Ciągłe doskonalenie.</p></div></div>
     </div>
   </div>
   <div class="split-visual process-visual-bg" style="padding:60px">
@@ -239,21 +384,21 @@ footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:
         <h3>Full Audit</h3>
         <div class="price">2 900 zł</div>
         <div class="price-sub">Realizacja: 2-5 dni roboczych</div>
-        <ul><li>Pełny audyt SEO</li><li>Analiza konkurencji</li><li>Raport z rekomendacjami</li><li>Konsultacja strategiczna</li><li>Plan wdrożeniowy</li></ul>
+        <ul><li>Pełny audyt 9 obszarów</li><li>Analiza całej konkurencji</li><li>3 raporty HTML z dowodami</li><li>Plan krok po kroku</li><li>Gotowe materiały</li><li>Roadmapa 90 dni</li></ul>
         <a href="#kontakt" class="btn-price">Zamów audyt</a>
       </div>
       <div class="p-card featured">
         <h3>Build from Zero</h3>
         <div class="price">8 900 zł</div>
         <div class="price-sub">Realizacja: 7-14 dni roboczych</div>
-        <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO</li><li>Konfiguracja analityki</li><li>Social media strategia</li><li>AI Search optymalizacja</li></ul>
+        <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO on-page</li><li>Social media strategia</li><li>AI Search optymalizacja</li><li>Konfiguracja analityki</li></ul>
         <a href="#kontakt" class="btn-price">Zaczynamy</a>
       </div>
       <div class="p-card">
         <h3>Re-Audit</h3>
         <div class="price">1 400 zł</div>
         <div class="price-sub">Co 30 dni / cyklicznie</div>
-        <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring pozycji</li></ul>
+        <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring AI Search</li></ul>
         <a href="#kontakt" class="btn-price">Subskrybuj</a>
       </div>
     </div>

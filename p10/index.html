@@ -8,46 +8,87 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26}
-html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--text);overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;right:0;z-index:100;padding:24px 32px;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
-nav a{display:block;width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:transparent;transition:all .3s;text-indent:-9999px}
-nav a:hover,nav a.active{background:#fff;border-color:#fff}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(45,42,38,.85);backdrop-filter:blur(12px)}
+nav .logo{display:flex;align-items:center;gap:10px;color:#fff;font-size:18px;font-weight:800}
+nav .logo svg{flex-shrink:0}
+nav .nav-links{display:flex;gap:24px;list-style:none}
+nav .nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:600;transition:color .3s}
+nav .nav-links a:hover{color:#fff}
+.dot-nav{position:fixed;top:50%;right:24px;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:12px}
+.dot-nav a{display:block;width:10px;height:10px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:transparent;transition:all .3s;text-indent:-9999px}
+.dot-nav a:hover{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.5)}
 
 /* SECTION */
-.scene{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-
-/* PATTERNS */
-.pattern{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.04;pointer-events:none}
+.scene{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 48px}
 
 /* SCENE 1: HERO */
-.scene-hero{background:var(--dark);color:#fff}
-.scene-hero .content{text-align:center;max-width:800px;padding:40px;position:relative;z-index:2}
-.scene-hero h1{font-family:Georgia,serif;font-size:72px;line-height:1.05;margin-bottom:24px}
+.scene-hero{background:linear-gradient(135deg,var(--dark) 0%,#5a4530 50%,var(--primary) 100%);color:#fff}
+.scene-hero .content{text-align:center;max-width:800px;position:relative;z-index:2}
+.scene-hero h1{font-family:Georgia,serif;font-size:68px;line-height:1.05;margin-bottom:24px}
 .scene-hero h1 em{font-style:italic;color:var(--accent)}
-.scene-hero .tagline{font-size:20px;color:rgba(255,255,255,.6);margin-bottom:16px;letter-spacing:2px;text-transform:uppercase;font-weight:600;font-size:13px}
-.scene-hero p{font-size:18px;line-height:1.7;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 40px}
+.scene-hero .tagline{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:16px;letter-spacing:3px;text-transform:uppercase;font-weight:600}
+.scene-hero p{font-size:18px;line-height:1.7;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 20px}
+.hero-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:36px}
+.hero-badge{padding:5px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:30px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7)}
 .btn-scene{display:inline-block;padding:18px 48px;border:2px solid rgba(255,255,255,.3);color:#fff;font-weight:700;font-size:15px;text-decoration:none;border-radius:60px;transition:all .3s;letter-spacing:1px}
 .btn-scene:hover{background:rgba(255,255,255,.1);border-color:#fff}
-.hero-svg-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;opacity:.15}
+.hero-svg-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;opacity:.12}
 .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:12px;letter-spacing:2px;text-transform:uppercase;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
 
 /* SCENE 2: SERVICES */
 .scene-services{background:var(--bg);color:var(--text)}
-.scene-services .content{max-width:1100px;width:100%;padding:60px 48px}
-.scene-services h2{font-family:Georgia,serif;font-size:48px;margin-bottom:48px;text-align:center}
-.svc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.svc-item{text-align:center;padding:32px 20px}
+.scene-services .content{max-width:1100px;width:100%}
+.scene-services h2{font-family:Georgia,serif;font-size:48px;margin-bottom:16px;text-align:center}
+.scene-services .subtitle{text-align:center;color:#888;font-size:15px;margin-bottom:48px}
+.svc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.svc-item{text-align:center;padding:32px 24px;background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .3s;border-bottom:3px solid var(--accent)}
+.svc-item:hover{transform:translateY(-4px)}
 .svc-item svg{margin-bottom:20px}
 .svc-item h3{font-size:18px;font-weight:700;margin-bottom:8px}
 .svc-item p{font-size:13px;color:#888;line-height:1.7}
 
+/* SCENE: AUDIT */
+.scene-audit{background:#fff;color:var(--text)}
+.scene-audit .content{max-width:1100px;width:100%}
+.scene-audit h2{font-family:Georgia,serif;font-size:48px;margin-bottom:16px;text-align:center}
+.scene-audit .subtitle{text-align:center;color:#888;font-size:15px;margin-bottom:48px}
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.audit-card{padding:24px 20px;text-align:center;border-radius:12px;background:var(--bg);border:1px solid rgba(139,111,71,.1);transition:transform .3s}
+.audit-card:hover{transform:translateY(-4px)}
+.audit-card h3{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--dark)}
+.audit-card p{font-size:12px;color:#999}
+
+/* SCENE: COMPARISON */
+.scene-comp{background:var(--dark);color:#fff}
+.scene-comp .content{max-width:900px;width:100%}
+.scene-comp h2{font-family:Georgia,serif;font-size:48px;margin-bottom:48px;text-align:center}
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.04)}
+.comp-table th,.comp-table td{padding:16px 24px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.comp-table thead th{background:rgba(255,255,255,.06);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.6)}
+.comp-table tbody td{color:rgba(255,255,255,.5)}
+.comp-table tbody td:first-child{font-weight:600;color:rgba(255,255,255,.9)}
+.comp-table .us{color:#4ade80;font-weight:600}
+.comp-table .them{color:rgba(255,255,255,.3)}
+.comp-table tbody tr:last-child td{border-bottom:none}
+
+/* SCENE: DELIVERABLES */
+.scene-deliv{background:var(--bg);color:var(--text)}
+.scene-deliv .content{max-width:1000px;width:100%}
+.scene-deliv h2{font-family:Georgia,serif;font-size:48px;margin-bottom:48px;text-align:center}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.deliv-card{padding:28px 24px;text-align:center;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);border-top:3px solid var(--accent)}
+.deliv-card .num{font-family:Georgia,serif;font-size:28px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.deliv-card h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.deliv-card p{font-size:12px;color:#888}
+
 /* SCENE 3: STATS */
-.scene-stats{background:var(--green);color:#fff}
-.scene-stats .content{text-align:center;max-width:900px;padding:40px}
+.scene-stats{background:linear-gradient(135deg,var(--green),#3a6349);color:#fff}
+.scene-stats .content{text-align:center;max-width:900px}
 .scene-stats h2{font-family:Georgia,serif;font-size:48px;margin-bottom:60px}
 .stats-row{display:flex;justify-content:center;gap:80px;flex-wrap:wrap}
 .stat-big .num{font-family:Georgia,serif;font-size:96px;font-weight:700;line-height:1}
@@ -55,7 +96,7 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
 
 /* SCENE 4: PROCESS */
 .scene-process{background:#fff;color:var(--text)}
-.scene-process .content{max-width:900px;width:100%;padding:60px 48px}
+.scene-process .content{max-width:900px;width:100%}
 .scene-process h2{font-family:Georgia,serif;font-size:48px;margin-bottom:60px;text-align:center}
 .timeline{position:relative;padding-left:60px}
 .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:var(--accent)}
@@ -67,7 +108,7 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
 
 /* SCENE 5: PRICING */
 .scene-pricing{background:var(--text);color:#fff}
-.scene-pricing .content{max-width:1100px;width:100%;padding:60px 48px}
+.scene-pricing .content{max-width:1100px;width:100%}
 .scene-pricing h2{font-family:Georgia,serif;font-size:48px;margin-bottom:48px;text-align:center}
 .price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .pr-card{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px 32px;transition:transform .3s,border-color .3s}
@@ -87,36 +128,57 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
 
 /* SCENE 6: CTA */
 .scene-cta{background:var(--accent);color:var(--text)}
-.scene-cta .content{text-align:center;max-width:700px;padding:40px}
+.scene-cta .content{text-align:center;max-width:700px}
 .scene-cta h2{font-family:Georgia,serif;font-size:52px;line-height:1.15;margin-bottom:20px}
 .scene-cta p{font-size:18px;color:rgba(45,42,38,.6);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto}
 .btn-dark{display:inline-block;padding:18px 48px;background:var(--text);color:#fff;font-weight:700;font-size:15px;text-decoration:none;border-radius:60px;transition:all .3s;letter-spacing:1px}
 .btn-dark:hover{background:var(--dark);transform:translateY(-2px)}
 
-/* FOOTER inside last scene */
+/* FOOTER */
 .scene-footer{min-height:auto;scroll-snap-align:end;padding:32px 48px;background:var(--text);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.3);font-size:12px}
 
 @media(max-width:900px){
   .scene-hero h1{font-size:40px}
-  .svc-row,.price-row{grid-template-columns:1fr}
+  .svc-row,.price-row,.audit-grid,.deliv-grid{grid-template-columns:1fr}
   .stats-row{gap:40px}
   .stat-big .num{font-size:56px}
-  .scene-pricing h2,.scene-process h2,.scene-services h2,.scene-stats h2{font-size:32px}
-  nav{display:none}
+  .scene{padding:60px 24px}
+  nav .nav-links{display:none}
+  nav{padding:16px 24px}
+  .dot-nav{display:none}
   .scene-cta h2{font-size:36px}
+  .comp-table th,.comp-table td{padding:10px 14px;font-size:12px}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#hero" title="Start">Start</a>
-  <a href="#uslugi" title="Usługi">Usługi</a>
-  <a href="#statystyki" title="Statystyki">Statystyki</a>
-  <a href="#proces" title="Proces">Proces</a>
-  <a href="#cennik" title="Cennik">Cennik</a>
-  <a href="#kontakt" title="Kontakt">Kontakt</a>
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".5"/><circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".3"/><path d="M12 14h12l-12 14h12" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="rgba(255,255,255,.8)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="12" cy="14" r="2" fill="#fff"/><circle cx="24" cy="14" r="2" fill="#b89773"/><circle cx="12" cy="28" r="2" fill="#b89773"/><circle cx="24" cy="28" r="2" fill="#fff"/></svg>
+    Zautomatyzuj Się
+  </div>
+  <div class="nav-links">
+    <a href="#hero">Start</a>
+    <a href="#uslugi">Usługi</a>
+    <a href="#audyt">Audyt</a>
+    <a href="#porownanie">Porównanie</a>
+    <a href="#cennik">Cennik</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
 </nav>
+
+<div class="dot-nav">
+  <a href="#hero" title="Start">.</a>
+  <a href="#uslugi" title="Usługi">.</a>
+  <a href="#audyt" title="Audyt">.</a>
+  <a href="#porownanie" title="Porównanie">.</a>
+  <a href="#statystyki" title="Statystyki">.</a>
+  <a href="#proces" title="Proces">.</a>
+  <a href="#dostarczamy" title="Dostarczamy">.</a>
+  <a href="#cennik" title="Cennik">.</a>
+  <a href="#kontakt" title="Kontakt">.</a>
+</div>
 
 <!-- SCENE 1: HERO -->
 <section class="scene scene-hero" id="hero">
@@ -127,14 +189,24 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
     <circle cx="300" cy="300" r="100" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
     <path d="M150 350Q200 200 300 220Q400 240 450 150" stroke="rgba(184,151,115,.6)" stroke-width="2" fill="none"/>
     <path d="M150 380Q220 280 320 300Q420 320 480 200" stroke="rgba(192,142,125,.4)" stroke-width="2" fill="none"/>
+    <!-- Circuit nodes -->
     <circle cx="300" cy="220" r="8" fill="rgba(255,255,255,.4)"/>
     <circle cx="450" cy="150" r="6" fill="rgba(184,151,115,.5)"/>
     <circle cx="150" cy="350" r="6" fill="rgba(192,142,125,.4)"/>
+    <line x1="300" y1="220" x2="450" y2="150" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+    <line x1="150" y1="350" x2="300" y2="220" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
   </svg>
   <div class="content">
     <div class="tagline">Marketing oparty na danych</div>
     <h1>Zautomatyzuj <em>Się</em></h1>
-    <p>150+ źródeł badawczych. Każda rekomendacja poparta realnymi danymi. Twoja firma zasługuje na strategię, nie na domysły.</p>
+    <p>150+ źródeł badawczych. 9 obszarów audytu. Każda rekomendacja poparta realnymi danymi i badaniami. Twoja firma zasługuje na strategię, nie na domysły.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">9 obszarów audytu</span>
+      <span class="hero-badge">AI Search</span>
+      <span class="hero-badge">100+ postów analizy</span>
+      <span class="hero-badge">Re-audyt 30 dni</span>
+      <span class="hero-badge">3 raporty HTML</span>
+    </div>
     <a href="#uslugi" class="btn-scene">Poznaj nas</a>
   </div>
   <div class="scroll-hint">Przewiń w dół</div>
@@ -144,40 +216,79 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
 <section class="scene scene-services" id="uslugi">
   <div class="content">
     <h2>Co robimy</h2>
+    <p class="subtitle">Kompleksowa obsługa marketingowa oparta na automatyzacji, danych i badaniach naukowych.</p>
     <div class="svc-row">
       <div class="svc-item">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="4" y="4" width="48" height="48" rx="12" stroke="#8b6f47" stroke-width="2" fill="none"/><path d="M14 42L22 24L30 34L38 16L44 10" stroke="#b89773" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="10" r="4" fill="#8b6f47"/></svg>
         <h3>Audyt SEO</h3>
-        <p>Pełna analiza widoczności Twojej strony. Techniczne SEO, treści, linki, struktura. Konkretne rekomendacje.</p>
+        <p>Pełna analiza widoczności. Techniczne SEO, treści, linki, struktura. Rekomendacje oparte na ponad 150 źródłach badawczych.</p>
       </div>
       <div class="svc-item">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="10" y="6" width="36" height="44" rx="4" stroke="#8b6f47" stroke-width="2" fill="none"/><line x1="18" y1="18" x2="38" y2="18" stroke="#b89773" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="26" x2="34" y2="26" stroke="#b89773" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="34" x2="30" y2="34" stroke="#c08e7d" stroke-width="2" stroke-linecap="round"/></svg>
         <h3>Budowa stron</h3>
-        <p>Projektujemy i budujemy strony zoptymalizowane pod konwersję i widoczność od pierwszego dnia.</p>
+        <p>Strony zoptymalizowane pod konwersję i widoczność. Responsywne, szybkie, zgodne z Core Web Vitals od pierwszego dnia.</p>
       </div>
       <div class="svc-item">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" stroke="#8b6f47" stroke-width="2" fill="none"/><circle cx="20" cy="24" r="3" fill="#b89773"/><circle cx="36" cy="24" r="3" fill="#b89773"/><path d="M20 34C20 34 23 38 28 38S36 34 36 34" stroke="#c08e7d" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
         <h3>Social Media</h3>
-        <p>Instagram, Facebook, TikTok. Strategia i zarządzanie z naciskiem na realne konwersje.</p>
+        <p>Instagram, Facebook, TikTok. 100+ postów, 5-10 konkurentów. Strategia z rygorem jak SEO. Twój głos, nie AI.</p>
       </div>
     </div>
     <div class="svc-row" style="margin-top:20px">
       <div class="svc-item">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M28 6L48 18V38L28 50L8 38V18Z" stroke="#8b6f47" stroke-width="2" fill="none"/><circle cx="28" cy="28" r="8" fill="none" stroke="#4a7c59" stroke-width="2"/><path d="M28 6V28M28 28L48 18M28 28L8 18" stroke="#b89773" stroke-width="1.5" opacity=".4"/></svg>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M28 6L48 18V38L28 50L8 38V18Z" stroke="#8b6f47" stroke-width="2" fill="none"/><circle cx="28" cy="28" r="8" fill="none" stroke="#4a7c59" stroke-width="2"/></svg>
         <h3>AI Search</h3>
-        <p>Optymalizacja pod wyszukiwarki AI. Bądź widoczny tam, gdzie Twoi klienci szukają jutro.</p>
+        <p>Optymalizacja pod ChatGPT, Perplexity, Claude, Gemini. Większość agencji to ignoruje — my nie.</p>
       </div>
       <div class="svc-item">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" stroke="#8b6f47" stroke-width="2" fill="none"/><path d="M28 14V28L36 34" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/><path d="M16 42L22 36" stroke="#b89773" stroke-width="2" stroke-linecap="round"/><path d="M40 42L34 36" stroke="#b89773" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" stroke="#8b6f47" stroke-width="2" fill="none"/><path d="M28 14V28L36 34" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/></svg>
         <h3>Re-audyt 30 dni</h3>
-        <p>Cykliczna weryfikacja postępów i korekta strategii. Mierzymy realne efekty co miesiąc.</p>
+        <p>Cykliczna weryfikacja i korekta strategii. Mierzymy realne efekty co miesiąc. Ciągłe doskonalenie.</p>
       </div>
       <div class="svc-item">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M14 44L28 10L42 44Z" stroke="#8b6f47" stroke-width="2" fill="none"/><line x1="28" y1="30" x2="28" y2="36" stroke="#c08e7d" stroke-width="2.5" stroke-linecap="round"/><circle cx="28" cy="40" r="2" fill="#c08e7d"/></svg>
         <h3>Konsulting</h3>
-        <p>Konsultacje strategiczne dla firm, które chcą podejmować lepsze decyzje marketingowe.</p>
+        <p>Konsultacje strategiczne dla firm, które chcą podejmować decyzje oparte na danych, nie intuicji.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SCENE: AUDIT AREAS -->
+<section class="scene scene-audit" id="audyt">
+  <div class="content">
+    <h2>Co analizujemy</h2>
+    <p class="subtitle">9 obszarów audytu z rygorem naukowym i porównaniem z konkurencją.</p>
+    <div class="audit-grid">
+      <div class="audit-card"><h3>Strona www</h3><p>UX, szybkość, mobilność, konwersja</p></div>
+      <div class="audit-card"><h3>SEO & Google</h3><p>Techniczne SEO, treści, linki, pozycje</p></div>
+      <div class="audit-card"><h3>Google Business Profile</h3><p>Wizytówka, zdjęcia, kategorie</p></div>
+      <div class="audit-card"><h3>Opinie</h3><p>Sentyment, odpowiedzi, porównanie</p></div>
+      <div class="audit-card"><h3>Instagram</h3><p>100+ postów, 5-10 konkurentów</p></div>
+      <div class="audit-card"><h3>Facebook</h3><p>100+ postów, zasięgi, interakcje</p></div>
+      <div class="audit-card"><h3>TikTok</h3><p>100+ filmów, trendy, viralność</p></div>
+      <div class="audit-card"><h3>AI Search</h3><p>ChatGPT, Perplexity, Claude, Gemini</p></div>
+      <div class="audit-card"><h3>Linki zewnętrzne</h3><p>Profil linkowy, katalogi, wzmianki</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE: COMPARISON -->
+<section class="scene scene-comp" id="porownanie">
+  <div class="content">
+    <h2>My vs typowa agencja</h2>
+    <table class="comp-table">
+      <thead><tr><th>Aspekt</th><th>Zautomatyzuj Się</th><th>Typowa agencja</th></tr></thead>
+      <tbody>
+        <tr><td>Źródła</td><td class="us">Badania naukowe i studia</td><td class="them">Best practices</td></tr>
+        <tr><td>Konkurencja</td><td class="us">Cała branża</td><td class="them">3-5 firm</td></tr>
+        <tr><td>Social media</td><td class="us">100+ postów, rygor SEO</td><td class="them">Powierzchownie</td></tr>
+        <tr><td>Raporty</td><td class="us">3 HTML z dowodami</td><td class="them">1 PDF</td></tr>
+        <tr><td>Mierzalność</td><td class="us">Re-audyt co 30 dni</td><td class="them">Nadzieja</td></tr>
+        <tr><td>Ciągłość</td><td class="us">Stała optymalizacja</td><td class="them">Jednorazowo</td></tr>
+        <tr><td>AI Search</td><td class="us">Aktywna optymalizacja</td><td class="them">Ignorowane</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -198,10 +309,25 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
   <div class="content">
     <h2>Jak pracujemy</h2>
     <div class="timeline">
-      <div class="tl-item"><h3>Analiza</h3><p>Dogłębny audyt Twojej obecności online. Badamy stronę, social media, konkurencję i rynek.</p></div>
-      <div class="tl-item"><h3>Strategia</h3><p>Tworzymy plan działania oparty na danych z ponad 150 źródeł badawczych. Każda rekomendacja ma twarde podstawy.</p></div>
-      <div class="tl-item"><h3>Wdrożenie</h3><p>Realizujemy strategię krok po kroku. Mierzalne cele, jasne kamienie milowe, transparentna komunikacja.</p></div>
-      <div class="tl-item"><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy postępy, korygujemy strategię, raportujemy wyniki. Ciągłe doskonalenie.</p></div>
+      <div class="tl-item"><h3>Analiza</h3><p>Dogłębny audyt 9 obszarów obecności online. Badamy stronę, social media, konkurencję, AI Search i cały rynek.</p></div>
+      <div class="tl-item"><h3>Strategia</h3><p>Plan działania oparty na danych z ponad 150 źródeł badawczych. Każda rekomendacja ma twarde naukowe podstawy i dowody.</p></div>
+      <div class="tl-item"><h3>Wdrożenie</h3><p>Realizujemy strategię krok po kroku z gotowymi materiałami. Mierzalne cele, jasne kamienie milowe, transparentna komunikacja.</p></div>
+      <div class="tl-item"><h3>Kontrola</h3><p>Re-audyt co 30 dni. Mierzymy postępy, korygujemy strategię, raportujemy wyniki. Ciągłe doskonalenie, nie jednorazowa akcja.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE: DELIVERABLES -->
+<section class="scene scene-deliv" id="dostarczamy">
+  <div class="content">
+    <h2>Co dostarczamy</h2>
+    <div class="deliv-grid">
+      <div class="deliv-card"><div class="num">01</div><h3>Pełny raport z dowodami</h3><p>Źródła badawcze dla każdej rekomendacji</p></div>
+      <div class="deliv-card"><div class="num">02</div><h3>Czysty raport</h3><p>Przejrzysty, zrozumiały dla każdego</p></div>
+      <div class="deliv-card"><div class="num">03</div><h3>Plan krok po kroku</h3><p>Priorytety, terminy, odpowiedzialności</p></div>
+      <div class="deliv-card"><div class="num">04</div><h3>Tabela porównawcza</h3><p>Porównanie z konkurencją w każdym obszarze</p></div>
+      <div class="deliv-card"><div class="num">05</div><h3>Gotowe materiały</h3><p>Emaile, posty, opisy gotowe do użycia</p></div>
+      <div class="deliv-card"><div class="num">06</div><h3>Roadmapa 90 dni</h3><p>Strategiczny plan na 3 miesiące</p></div>
     </div>
   </div>
 </section>
@@ -215,21 +341,21 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
         <h3>Full Audit</h3>
         <div class="price">2 900 zł</div>
         <div class="price-sub">Realizacja: 2-5 dni roboczych</div>
-        <ul><li>Pełny audyt SEO</li><li>Analiza konkurencji</li><li>Raport z rekomendacjami</li><li>Konsultacja strategiczna</li><li>Plan wdrożeniowy</li></ul>
+        <ul><li>Pełny audyt 9 obszarów</li><li>Analiza całej konkurencji</li><li>3 raporty HTML z dowodami</li><li>Gotowe materiały</li><li>Roadmapa 90 dni</li></ul>
         <a href="#kontakt" class="btn-price">Zamów audyt</a>
       </div>
       <div class="pr-card featured">
         <h3>Build from Zero</h3>
         <div class="price">8 900 zł</div>
         <div class="price-sub" style="color:rgba(255,255,255,.3)">Realizacja: 7-14 dni roboczych</div>
-        <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO on-page</li><li>Konfiguracja analityki</li><li>Social media strategia</li><li>AI Search optymalizacja</li></ul>
+        <ul><li>Wszystko z Full Audit</li><li>Projekt i budowa strony</li><li>Optymalizacja SEO on-page</li><li>Social media strategia</li><li>AI Search optymalizacja</li><li>Konfiguracja analityki</li></ul>
         <a href="#kontakt" class="btn-price">Zaczynamy</a>
       </div>
       <div class="pr-card">
         <h3>Re-Audit</h3>
         <div class="price">1 400 zł</div>
         <div class="price-sub">Co 30 dni / cyklicznie</div>
-        <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring pozycji</li></ul>
+        <ul><li>Analiza postępów</li><li>Aktualizacja strategii</li><li>Raport porównawczy</li><li>Korekta działań</li><li>Monitoring AI Search</li></ul>
         <a href="#kontakt" class="btn-price">Subskrybuj</a>
       </div>
     </div>
@@ -240,7 +366,7 @@ nav a:hover,nav a.active{background:#fff;border-color:#fff}
 <section class="scene scene-cta" id="kontakt">
   <div class="content">
     <h2>Gotowy na marketing oparty na danych?</h2>
-    <p>Umów się na bezpłatną konsultację. Pokażemy Ci, co dane mówią o Twojej obecności online.</p>
+    <p>Umów się na bezpłatną konsultację. Pokażemy Ci, co dane mówią o Twojej obecności online i jak zdominować swoją niszę.</p>
     <a href="mailto:kontakt@zautomatyzujsie.pl" class="btn-dark">Napisz do nas</a>
   </div>
 </section>

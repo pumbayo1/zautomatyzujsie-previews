@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Circuit board background element -->
+  <circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/>
+  <circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".2"/>
+  <!-- ZS monogram with data motif -->
+  <!-- Z letter -->
+  <path d="M12 14h12l-12 14h12" stroke="#8b6f47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- S letter -->
+  <path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="#6b5435" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Circuit/data nodes -->
+  <circle cx="12" cy="14" r="2" fill="#8b6f47"/>
+  <circle cx="24" cy="14" r="2" fill="#b89773"/>
+  <circle cx="12" cy="28" r="2" fill="#b89773"/>
+  <circle cx="24" cy="28" r="2" fill="#8b6f47"/>
+  <!-- Connection lines (circuit traces) -->
+  <line x1="24" y1="14" x2="28" y2="17" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+  <line x1="24" y1="28" x2="28" y2="25" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+  <!-- Small data dots -->
+  <circle cx="8" cy="21" r="1.2" fill="#b89773" opacity=".6"/>
+  <circle cx="40" cy="21" r="1.2" fill="#8b6f47" opacity=".6"/>
+  <circle cx="24" cy="6" r="1" fill="#6b5435" opacity=".4"/>
+  <circle cx="24" cy="42" r="1" fill="#6b5435" opacity=".4"/>
+  <!-- Horizontal circuit traces -->
+  <line x1="4" y1="21" x2="8" y2="21" stroke="#b89773" stroke-width=".6" opacity=".4"/>
+  <line x1="40" y1="21" x2="44" y2="21" stroke="#8b6f47" stroke-width=".6" opacity=".4"/>
+  <line x1="24" y1="2" x2="24" y2="6" stroke="#6b5435" stroke-width=".6" opacity=".4"/>
+  <line x1="24" y1="42" x2="24" y2="46" stroke="#6b5435" stroke-width=".6" opacity=".4"/>
+</svg>

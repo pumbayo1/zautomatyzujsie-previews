@@ -12,12 +12,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
 @keyframes glow{0%,100%{box-shadow:0 0 8px rgba(184,151,115,.2)}50%{box-shadow:0 0 20px rgba(184,151,115,.4)}}
 @keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 @keyframes countUp{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-@keyframes scan{0%{top:0}100%{top:100%}}
 
 /* NAV */
 nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;border-bottom:1px solid rgba(184,151,115,.15);position:sticky;top:0;background:rgba(26,26,46,.95);backdrop-filter:blur(12px);z-index:100}
-.logo{font-size:1.3rem;font-weight:800;color:var(--neon);letter-spacing:-0.5px}
-.logo span{color:var(--muted);font-weight:300}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo svg{width:34px;height:34px;flex-shrink:0}
+.logo-text{font-size:1.3rem;font-weight:800;color:var(--neon);letter-spacing:-0.5px}
+.logo-text span{color:var(--muted);font-weight:300}
 nav ul{list-style:none;display:flex;gap:2rem}
 nav a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:400;transition:color .3s;text-transform:uppercase;letter-spacing:1px}
 nav a:hover{color:var(--neon)}
@@ -25,12 +26,25 @@ nav a:hover{color:var(--neon)}
 .status::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green);animation:glow 2s infinite}
 
 /* HERO DASHBOARD */
-.hero{padding:4rem 3rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;min-height:90vh;align-items:center}
+.hero{padding:4rem 3rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;min-height:90vh;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 30% 50%, rgba(184,151,115,.06) 0%, transparent 60%),
+  radial-gradient(ellipse at 70% 30%, rgba(74,124,89,.04) 0%, transparent 50%);z-index:0}
+.hero-left{position:relative;z-index:1}
 .hero-left h1{font-size:3rem;font-weight:800;line-height:1.1;margin-bottom:1rem;background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-left p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:460px;margin-bottom:2rem}
 .btn{display:inline-block;padding:.8rem 2rem;border:1px solid var(--neon);color:var(--neon);text-decoration:none;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;transition:all .3s;position:relative;overflow:hidden}
 .btn:hover{background:var(--neon);color:var(--bg)}
-.hero-right{position:relative}
+.btn-fill{background:var(--neon);color:var(--bg)}
+.btn-fill:hover{background:var(--neon2)}
+.hero-right{position:relative;z-index:1}
+
+/* SECTION COMMON */
+.section-title{font-size:1.8rem;font-weight:300;margin-bottom:.5rem}
+.section-title strong{font-weight:800;color:var(--neon)}
+.section-sub{color:var(--muted);font-size:.9rem;margin-bottom:2.5rem;max-width:600px;line-height:1.6}
+.section-center{text-align:center}
+.section-center .section-sub{margin-left:auto;margin-right:auto}
 
 /* METRIC CARDS */
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:0 3rem 3rem}
@@ -41,35 +55,85 @@ nav a:hover{color:var(--neon)}
 .metric .label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
 .metric .sub{font-size:.75rem;color:var(--green);margin-top:.5rem}
 
+/* AUDIT AREAS - DASHBOARD CARDS */
+.audit-section{padding:4rem 3rem}
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:0 auto}
+.audit-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:1.8rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.audit-card:hover{border-color:var(--neon);transform:translateY(-3px)}
+.audit-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--neon);border-radius:8px 0 0 8px;opacity:0;transition:opacity .3s}
+.audit-card:hover::before{opacity:1}
+.audit-num{font-size:.7rem;color:var(--neon);text-transform:uppercase;letter-spacing:2px;margin-bottom:.6rem;font-weight:600}
+.audit-card h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.audit-card p{font-size:.82rem;color:var(--muted);line-height:1.55}
+.audit-card .audit-detail{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.8rem;color:var(--muted);line-height:1.5;margin-top:0}
+.audit-card.open .audit-detail{max-height:200px;margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(184,151,115,.1)}
+.audit-card .expand-hint{font-size:.7rem;color:var(--neon);opacity:.5;margin-top:.5rem;transition:opacity .3s}
+.audit-card:hover .expand-hint{opacity:1}
+
 /* SERVICES GRID */
-.services{padding:4rem 3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.services h2{grid-column:1/-1;font-size:1.8rem;font-weight:300;color:var(--text);margin-bottom:1rem}
-.services h2 strong{font-weight:800;color:var(--neon)}
-.svc-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:2rem;transition:all .3s;position:relative}
+.services{padding:4rem 3rem}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto;justify-items:center}
+.svc-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:2rem;transition:all .3s;position:relative;width:100%;max-width:360px;text-align:center;cursor:pointer}
 .svc-card:hover{border-color:var(--neon);transform:translateY(-3px)}
-.svc-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--neon);border-radius:8px 0 0 8px;opacity:0;transition:opacity .3s}
+.svc-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:var(--neon);border-radius:0 0 4px 4px;opacity:0;transition:opacity .3s}
 .svc-card:hover::before{opacity:1}
-.svc-icon{width:48px;height:48px;margin-bottom:1rem}
+.svc-icon{width:48px;height:48px;margin:0 auto 1rem}
 .svc-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem;color:var(--text)}
 .svc-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.svc-card .svc-detail{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.8rem;color:var(--muted);line-height:1.5}
+.svc-card.open .svc-detail{max-height:200px;margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(184,151,115,.1)}
+
+/* DELIVERABLES */
+.deliverables{padding:4rem 3rem}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.deliv-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:2rem;text-align:center;transition:all .3s}
+.deliv-card:hover{border-color:var(--neon);transform:translateY(-2px)}
+.deliv-card svg{margin-bottom:.8rem}
+.deliv-card h3{font-size:.95rem;font-weight:600;margin-bottom:.4rem}
+.deliv-card p{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* COMPARISON TABLE */
+.comparison{padding:4rem 3rem}
+.comp-table{max-width:900px;margin:0 auto;border-collapse:collapse;width:100%;background:var(--surface);border-radius:8px;overflow:hidden}
+.comp-table th,.comp-table td{text-align:left;padding:1rem 1.5rem;font-size:.85rem;border-bottom:1px solid rgba(184,151,115,.08)}
+.comp-table th{font-weight:600;color:var(--neon);font-size:.75rem;text-transform:uppercase;letter-spacing:1.5px;background:rgba(184,151,115,.08)}
+.comp-table .us{color:var(--neon);font-weight:500}
+.comp-table .them{color:var(--muted);opacity:.7}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tbody tr{transition:background .2s}
+.comp-table tbody tr:hover{background:rgba(184,151,115,.04)}
+
+/* PRINCIPLES */
+.principles{padding:4rem 3rem}
+.princ-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.princ-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:1.8rem;display:flex;gap:1.2rem;align-items:flex-start;transition:all .3s}
+.princ-card:hover{border-color:var(--neon)}
+.princ-num{font-size:2rem;font-weight:800;color:var(--neon);opacity:.4;min-width:30px;line-height:1}
+.princ-card h3{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+.princ-card p{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* TARGET CLIENTS */
+.target{padding:4rem 3rem}
+.target-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.target-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:1.8rem;text-align:center;transition:all .3s}
+.target-card:hover{border-color:var(--neon);transform:translateY(-2px)}
+.target-card svg{margin-bottom:.6rem}
+.target-card h3{font-size:.9rem;font-weight:600;margin-bottom:.3rem}
+.target-card p{font-size:.78rem;color:var(--muted);line-height:1.5}
 
 /* PROCESS TIMELINE */
 .timeline{padding:4rem 3rem}
-.timeline h2{font-size:1.8rem;font-weight:300;margin-bottom:2.5rem}
-.timeline h2 strong{font-weight:800;color:var(--neon)}
 .tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .tl-grid::before{content:'';position:absolute;top:28px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),var(--green),var(--neon2),var(--neon))}
 .tl-step{text-align:center;padding:0 1rem}
-.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--neon);background:var(--bg);margin:0 auto 1.5rem;position:relative;z-index:1}
+.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--neon);background:var(--bg);margin:0 auto 1.5rem;position:relative;z-index:1;transition:all .3s}
 .tl-step:hover .tl-dot{background:var(--neon);box-shadow:0 0 12px rgba(184,151,115,.5)}
 .tl-step h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
 .tl-step p{font-size:.78rem;color:var(--muted);line-height:1.5}
 
 /* PRICING */
 .pricing{padding:4rem 3rem}
-.pricing h2{font-size:1.8rem;font-weight:300;margin-bottom:2.5rem}
-.pricing h2 strong{font-weight:800;color:var(--neon)}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
 .p-card{background:var(--surface);border:1px solid rgba(184,151,115,.08);border-radius:8px;padding:2.5rem;text-align:center;transition:all .3s}
 .p-card:hover{border-color:var(--neon)}
 .p-card.highlight{border-color:var(--neon);animation:glow 3s infinite}
@@ -96,16 +160,38 @@ footer a{color:var(--neon);text-decoration:none}
   .hero{grid-template-columns:1fr;padding:3rem 1.5rem}
   .hero-left h1{font-size:2rem}
   .metrics{grid-template-columns:1fr;padding:0 1.5rem 2rem}
-  .services,.timeline,.pricing{padding:2rem 1.5rem}
+  .services,.timeline,.pricing,.audit-section,.deliverables,.comparison,.principles,.target{padding:2rem 1.5rem}
   .tl-grid,.price-grid{grid-template-columns:1fr}
+  .audit-grid{grid-template-columns:1fr}
+  .deliv-grid{grid-template-columns:1fr}
+  .princ-grid{grid-template-columns:1fr}
+  .target-grid{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">ZS <span>// dashboard</span></div>
+  <a href="#" class="logo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/>
+      <circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".2"/>
+      <path d="M12 14h12l-12 14h12" stroke="#b89773" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="#8b6f47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="12" cy="14" r="2" fill="#b89773"/>
+      <circle cx="24" cy="14" r="2" fill="#8b6f47"/>
+      <circle cx="12" cy="28" r="2" fill="#8b6f47"/>
+      <circle cx="24" cy="28" r="2" fill="#b89773"/>
+      <line x1="24" y1="14" x2="28" y2="17" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+      <line x1="24" y1="28" x2="28" y2="25" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+      <circle cx="8" cy="21" r="1.2" fill="#b89773" opacity=".6"/>
+      <circle cx="40" cy="21" r="1.2" fill="#8b6f47" opacity=".6"/>
+    </svg>
+    <div class="logo-text">ZS <span>// dashboard</span></div>
+  </a>
   <ul>
+    <li><a href="#audit">Audyt</a></li>
     <li><a href="#uslugi">Usługi</a></li>
     <li><a href="#proces">Proces</a></li>
     <li><a href="#cennik">Cennik</a></li>
@@ -121,31 +207,24 @@ footer a{color:var(--neon);text-decoration:none}
   </div>
   <div class="hero-right">
     <svg width="100%" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Dashboard illustration -->
       <rect x="20" y="20" width="440" height="320" rx="12" fill="#16213e" stroke="#b89773" stroke-width="1" opacity=".8"/>
-      <!-- Grid lines -->
       <line x1="20" y1="100" x2="460" y2="100" stroke="#b89773" stroke-width=".3" opacity=".3"/>
       <line x1="20" y1="180" x2="460" y2="180" stroke="#b89773" stroke-width=".3" opacity=".3"/>
       <line x1="20" y1="260" x2="460" y2="260" stroke="#b89773" stroke-width=".3" opacity=".3"/>
       <line x1="140" y1="20" x2="140" y2="340" stroke="#b89773" stroke-width=".3" opacity=".3"/>
       <line x1="260" y1="20" x2="260" y2="340" stroke="#b89773" stroke-width=".3" opacity=".3"/>
       <line x1="380" y1="20" x2="380" y2="340" stroke="#b89773" stroke-width=".3" opacity=".3"/>
-      <!-- Area chart -->
       <path d="M40 280 L100 220 L160 240 L220 160 L280 180 L340 100 L400 120 L440 80 L440 300 L40 300Z" fill="url(#grad1)" opacity=".3"/>
       <path d="M40 280 L100 220 L160 240 L220 160 L280 180 L340 100 L400 120 L440 80" stroke="#b89773" stroke-width="2" fill="none"/>
-      <!-- Second line -->
       <path d="M40 260 L100 250 L160 230 L220 200 L280 210 L340 170 L400 160 L440 140" stroke="#4a7c59" stroke-width="1.5" fill="none" stroke-dasharray="4 2"/>
-      <!-- Data points with glow -->
       <circle cx="220" cy="160" r="5" fill="#b89773"><animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/></circle>
       <circle cx="340" cy="100" r="5" fill="#b89773"><animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite" begin=".5s"/></circle>
       <circle cx="440" cy="80" r="5" fill="#c08e7d"><animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite" begin="1s"/></circle>
-      <!-- Mini bar chart bottom right -->
       <rect x="360" y="250" width="12" height="30" rx="2" fill="#4a7c59" opacity=".6"/>
       <rect x="378" y="240" width="12" height="40" rx="2" fill="#4a7c59" opacity=".8"/>
       <rect x="396" y="230" width="12" height="50" rx="2" fill="#4a7c59"/>
       <rect x="414" y="245" width="12" height="35" rx="2" fill="#8b6f47"/>
       <rect x="432" y="255" width="12" height="25" rx="2" fill="#8b6f47" opacity=".6"/>
-      <!-- Scan line effect -->
       <rect x="20" y="20" width="440" height="2" fill="#b89773" opacity=".3"><animate attributeName="y" values="20;340;20" dur="6s" repeatCount="indefinite"/></rect>
       <defs><linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b89773" stop-opacity=".4"/><stop offset="100%" stop-color="#b89773" stop-opacity="0"/></linearGradient></defs>
     </svg>
@@ -158,60 +237,250 @@ footer a{color:var(--neon);text-decoration:none}
   <div class="metric"><div class="value">97%</div><div class="label">Satysfakcja klientów</div><div class="sub">Potwierdzone wynikami</div></div>
 </section>
 
+<!-- 9 AUDIT AREAS -->
+<section id="audit" class="audit-section">
+  <div class="section-title">Co <strong>analizujemy</strong></div>
+  <div class="section-sub">Pełny audyt obejmuje 9 obszarów. Kliknij kartę, aby zobaczyć szczegóły.</div>
+  <div class="audit-grid">
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 01</div>
+      <h3>Strona internetowa</h3>
+      <p>Szybkość, mobile, nagłówki, słowa kluczowe</p>
+      <div class="audit-detail">Schema markup, optymalizacja obrazów, dostępność WCAG, Core Web Vitals, struktura URL, meta tagi, wewnętrzne linkowanie.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 02</div>
+      <h3>SEO i pozycje Google</h3>
+      <p>Wszystkie słowa kluczowe, Local Pack, Featured Snippets</p>
+      <div class="audit-detail">Frazy long-tail, analiza SERP, pozycje organiczne vs płatne, trend widoczności, kanibalizacja słów kluczowych.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 03</div>
+      <h3>Google Business Profile</h3>
+      <p>Kategorie, zdjęcia, posty, Q&amp;A</p>
+      <div class="audit-detail">Optymalizacja opisu, częstotliwość postów, jakość zdjęć, kompletność profilu, atrybuty, konkurencja w Local Pack.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 04</div>
+      <h3>Opinie i reputacja</h3>
+      <p>Oceny Google + Facebook, sentyment</p>
+      <div class="audit-detail">Analiza odpowiedzi na opinie, trend ocen, porównanie z konkurencją, strategia pozyskiwania opinii, wykrywanie fałszywych recenzji.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 05</div>
+      <h3>Instagram deep dive</h3>
+      <p>100+ postów, engagement per format, Reels</p>
+      <div class="audit-detail">Analiza hashtagów, optymalne godziny publikacji, porównanie z 5-10 konkurentami, skuteczność Stories, wzrost followersów.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 06</div>
+      <h3>Facebook deep dive</h3>
+      <p>100+ postów, opinie, zaangażowanie</p>
+      <div class="audit-detail">Porównanie z 5-10 konkurentami, analiza reklam, grupy, Marketplace, skuteczność formatów wideo vs tekst vs grafika.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 07</div>
+      <h3>TikTok deep dive</h3>
+      <p>100+ filmów, czas oglądania, wirusowość</p>
+      <div class="audit-detail">Wzorce viralowych treści, porównanie z 5-10 konkurentami, trending sounds, optymalna długość filmów, CTR do profilu.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 08</div>
+      <h3>Widoczność AI Search</h3>
+      <p>ChatGPT, Google AI Mode, Perplexity</p>
+      <div class="audit-detail">Obecność w Claude, Gemini, optymalizacja pod odpowiedzi AI, structured data, E-E-A-T sygnały, cytowania w AI.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+    <div class="audit-card" onclick="this.classList.toggle('open')">
+      <div class="audit-num">Moduł 09</div>
+      <h3>Profil linków zewnętrznych</h3>
+      <p>Autorytet domeny, wzmianki, katalogi</p>
+      <div class="audit-detail">Domain Authority, backlink gap vs konkurencja, toksyczne linki, lokalne katalogi, wzmianki brandowe, strategie link buildingu.</div>
+      <div class="expand-hint">+ kliknij po szczegóły</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
 <section id="uslugi" class="services">
-  <h2>Nasze <strong>moduły</strong></h2>
-  <div class="svc-card">
-    <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M8 38V18l16-10 16 10v20" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M16 38V26h16v12" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="24" cy="22" r="3" stroke="#c08e7d" stroke-width="1.2" fill="none"/></svg>
-    <h3>Audyt SEO</h3>
-    <p>Głęboka analiza techniczna, treściowa i off-page z raportem zawierającym priorytety oraz szacowany wpływ każdej zmiany.</p>
+  <div class="section-center">
+    <div class="section-title">Nasze <strong>moduły</strong></div>
+    <div class="section-sub">Kliknij moduł, aby zobaczyć szczegółowy opis usługi.</div>
   </div>
-  <div class="svc-card">
-    <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M6 18h36" stroke="#b89773" stroke-width="1"/><path d="M14 24h8M14 30h12M30 24h4M30 30h4" stroke="#4a7c59" stroke-width="1" stroke-linecap="round"/></svg>
-    <h3>Budowa stron</h3>
-    <p>Strony projektowane pod konwersję. Szybkie, zoptymalizowane pod SEO, z wbudowaną analityką od pierwszego dnia.</p>
+  <div class="svc-grid">
+    <div class="svc-card" onclick="this.classList.toggle('open')">
+      <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M8 38V18l16-10 16 10v20" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M16 38V26h16v12" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="24" cy="22" r="3" stroke="#c08e7d" stroke-width="1.2" fill="none"/></svg>
+      <h3>Audyt SEO</h3>
+      <p>Głęboka analiza techniczna, treściowa i off-page.</p>
+      <div class="svc-detail">Raport z priorytetami, szacowanym wpływem każdej zmiany, konkretnymi rekomendacjami popartymi badaniami z 2026 roku. Obejmuje wszystkie 9 obszarów audytu.</div>
+    </div>
+    <div class="svc-card" onclick="this.classList.toggle('open')">
+      <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M6 18h36" stroke="#b89773" stroke-width="1"/><path d="M14 24h8M14 30h12M30 24h4M30 30h4" stroke="#4a7c59" stroke-width="1" stroke-linecap="round"/></svg>
+      <h3>Budowa stron</h3>
+      <p>Strony projektowane pod konwersję i SEO.</p>
+      <div class="svc-detail">Szybkie, responsywne strony z wbudowaną analityką. Optymalizacja Core Web Vitals, schema markup, mobile-first design, CMS lub statyczna strona.</div>
+    </div>
+    <div class="svc-card" onclick="this.classList.toggle('open')">
+      <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M24 12v12l8 8" stroke="#c08e7d" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="24" r="2" fill="#b89773"/></svg>
+      <h3>Social Media</h3>
+      <p>Strategia i egzekucja na IG, FB i TikTok.</p>
+      <div class="svc-detail">Analiza 100+ postów per platforma, planowanie treści, harmonogramy, miesięczne raporty efektywności z porównaniem do 5-10 konkurentów.</div>
+    </div>
+    <div class="svc-card" onclick="this.classList.toggle('open')">
+      <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6l18 10v16L24 42 6 32V16z" stroke="#b89773" stroke-width="1.5" fill="none"/><circle cx="24" cy="24" r="5" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="24" cy="24" r="1.5" fill="#c08e7d"/></svg>
+      <h3>AI Search</h3>
+      <p>Widoczność w ChatGPT, Gemini i Perplexity.</p>
+      <div class="svc-detail">Optymalizacja pod AI Overview, Perplexity, Claude i inne LLM-y. Structured data, E-E-A-T, cytowania w odpowiedziach AI.</div>
+    </div>
+    <div class="svc-card" onclick="this.classList.toggle('open')">
+      <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M10 38c0-14 6-24 14-28s14 14 14 28" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M18 38c0-8 3-16 6-18s6 10 6 18" stroke="#4a7c59" stroke-width="1.5" fill="none"/><line x1="6" y1="38" x2="42" y2="38" stroke="#c08e7d" stroke-width="1"/></svg>
+      <h3>Re-audyt co 30 dni</h3>
+      <p>Cykliczny przegląd i korekta strategii.</p>
+      <div class="svc-detail">Pomiar ROI, aktualizacja priorytetów, identyfikacja nowych okazji. Raport z konkretnymi liczbami -- co się zmieniło i dlaczego.</div>
+    </div>
   </div>
-  <div class="svc-card">
-    <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M24 12v12l8 8" stroke="#c08e7d" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="24" r="2" fill="#b89773"/><path d="M36 12l-2 4M12 12l2 4" stroke="#4a7c59" stroke-width="1" stroke-linecap="round"/></svg>
-    <h3>Social Media</h3>
-    <p>Strategia i egzekucja na IG, FB i TikTok. Planowanie treści, harmonogramy publikacji i miesięczne raporty efektywności.</p>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables">
+  <div class="section-center">
+    <div class="section-title">Co <strong>dostajesz</strong></div>
+    <div class="section-sub">Nie sam raport -- kompletny zestaw narzędzi do działania.</div>
   </div>
-  <div class="svc-card">
-    <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6l18 10v16L24 42 6 32V16z" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M24 6v36M6 16l18 10 18-10" stroke="#b89773" stroke-width=".8" opacity=".4"/><circle cx="24" cy="24" r="5" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="24" cy="24" r="1.5" fill="#c08e7d"/></svg>
-    <h3>AI Search</h3>
-    <p>Optymalizacja widoczności w wyszukiwarkach AI. Twoja marka w odpowiedziach ChatGPT, Gemini i Perplexity.</p>
+  <div class="deliv-grid">
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="4" width="28" height="32" rx="3" stroke="#b89773" stroke-width="1.2" fill="none"/><path d="M12 14h16M12 20h12M12 26h14" stroke="#4a7c59" stroke-width="1" stroke-linecap="round"/></svg>
+      <h3>Pełny raport z dowodami</h3>
+      <p>Każda rekomendacja poparta badaniem z liczbami i datami.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="#b89773" stroke-width="1.2" fill="none"/><rect x="10" y="18" width="6" height="8" rx="1" fill="#4a7c59" opacity=".4"/><rect x="18" y="14" width="6" height="12" rx="1" fill="#8b6f47" opacity=".4"/><rect x="26" y="10" width="6" height="16" rx="1" fill="#b89773" opacity=".4"/></svg>
+      <h3>Czysty raport</h3>
+      <p>Prosty język, tabele i wykresy. Zrozumiały bez specjalisty.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 32V16l8-8 8 8v16" stroke="#b89773" stroke-width="1.2" fill="none"/><rect x="17" y="22" width="6" height="10" rx="1" stroke="#4a7c59" stroke-width=".8" fill="none"/></svg>
+      <h3>Plan wdrożenia krok po kroku</h3>
+      <p>Tydzień 1, tydzień 2, miesiąc 1 -- wiesz co robić i kiedy.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="28" rx="3" stroke="#b89773" stroke-width="1.2" fill="none"/><line x1="4" y1="14" x2="36" y2="14" stroke="#b89773" stroke-width=".8"/><line x1="20" y1="6" x2="20" y2="34" stroke="#b89773" stroke-width=".5" opacity=".5"/></svg>
+      <h3>Tabela porównania z konkurencją</h3>
+      <p>Gdzie wygrywasz, gdzie tracisz klientów.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="28" height="28" rx="3" stroke="#b89773" stroke-width="1.2" fill="none"/><path d="M14 18l4 4 8-8" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 28h12" stroke="#b89773" stroke-width="1" stroke-linecap="round"/></svg>
+      <h3>Gotowe materiały</h3>
+      <p>Szablony e-maili, posty social media, opisy GBP.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#b89773" stroke-width="1.2" fill="none"/><path d="M20 10v10l6 6" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="#c08e7d"/></svg>
+      <h3>Plan działania na 90 dni</h3>
+      <p>Mapa drogowa z priorytetami, terminami i celami.</p>
+    </div>
   </div>
-  <div class="svc-card">
-    <svg class="svc-icon" viewBox="0 0 48 48" fill="none"><path d="M10 38c0-14 6-24 14-28s14 14 14 28" stroke="#b89773" stroke-width="1.5" fill="none"/><path d="M18 38c0-8 3-16 6-18s6 10 6 18" stroke="#4a7c59" stroke-width="1.5" fill="none"/><line x1="6" y1="38" x2="42" y2="38" stroke="#c08e7d" stroke-width="1"/></svg>
-    <h3>Re-audyt co 30 dni</h3>
-    <p>Cykliczny przegląd wyników. Mierzymy ROI, aktualizujemy priorytety i identyfikujemy nowe okazje wzrostu.</p>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="comparison">
+  <div class="section-center">
+    <div class="section-title">My vs <strong>typowa agencja</strong></div>
+    <div class="section-sub">Dane, nie hasła reklamowe.</div>
+  </div>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Obszar</th><th>Zautomatyzuj Się</th><th>Typowa agencja</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Źródła</td><td class="us">Badania 2026 z liczbami i datami</td><td class="them">"Best practices"</td></tr>
+      <tr><td>Konkurencja</td><td class="us">Wszyscy konkurenci, 5 grup czynników</td><td class="them">3-5 konkurentów, ogólna analiza</td></tr>
+      <tr><td>Social media</td><td class="us">100+ postów deep dive per platforma</td><td class="them">Analiza powierzchniowa</td></tr>
+      <tr><td>Raporty</td><td class="us">3 raporty HTML + plan wdrożenia</td><td class="them">PDF 5-15 stron</td></tr>
+      <tr><td>Mierzalność</td><td class="us">Re-audyt co 30 dni z liczbami</td><td class="them">"Powinno zadziałać"</td></tr>
+      <tr><td>Ciągłość</td><td class="us">Ciągły cykl 30-dniowy</td><td class="them">Jednorazowy raport</td></tr>
+      <tr><td>AI Search</td><td class="us">Pełna optymalizacja AI Search</td><td class="them">Ignorowane</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 5 PRINCIPLES -->
+<section class="principles">
+  <div class="section-title">Nasze <strong>5 zasad</strong></div>
+  <div class="section-sub">Fundamenty każdego projektu.</div>
+  <div class="princ-grid">
+    <div class="princ-card"><div class="princ-num">1</div><div><h3>Robimy wszystko, co możliwe</h3><p>Celem jest pozycja nr 1. Nie zadowalamy się "wystarczająco dobrze".</p></div></div>
+    <div class="princ-card"><div class="princ-num">2</div><div><h3>Konkurencja rozbita na 5 grup</h3><p>Każdy konkurent analizowany w 5 wymiarach, nie tylko ogólnie.</p></div></div>
+    <div class="princ-card"><div class="princ-num">3</div><div><h3>Social media = Google SEO</h3><p>Taki sam rygor analityczny jak pozycjonowanie w wyszukiwarce.</p></div></div>
+    <div class="princ-card"><div class="princ-num">4</div><div><h3>Wszystko poparte dowodami</h3><p>Każda rekomendacja ma badanie z konkretnymi liczbami i datami.</p></div></div>
+    <div class="princ-card"><div class="princ-num">5</div><div><h3>Twój biznes, Twój głos</h3><p>Treści nie brzmią jak AI. Charakter Twojej marki w każdym materiale.</p></div></div>
+  </div>
+</section>
+
+<!-- TARGET CLIENTS -->
+<section class="target">
+  <div class="section-center">
+    <div class="section-title">Dla kogo <strong>pracujemy</strong></div>
+    <div class="section-sub">Specjalizujemy się w firmach, które chcą rosnąć.</div>
+  </div>
+  <div class="target-grid">
+    <div class="target-card">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M8 30V14l10-8 10 8v16" stroke="#b89773" stroke-width="1.2" fill="none"/><rect x="14" y="22" width="8" height="8" rx="1" stroke="#4a7c59" stroke-width=".8" fill="none"/></svg>
+      <h3>Lokalne firmy usługowe</h3>
+      <p>Salony, kliniki, warsztaty, hydraulicy</p>
+    </div>
+    <div class="target-card">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="6" y="10" width="24" height="18" rx="3" stroke="#b89773" stroke-width="1.2" fill="none"/><path d="M6 16h24" stroke="#b89773" stroke-width=".8"/><rect x="10" y="20" width="6" height="4" rx="1" fill="#4a7c59" opacity=".3"/><rect x="20" y="20" width="6" height="4" rx="1" fill="#8b6f47" opacity=".3"/></svg>
+      <h3>Małe sklepy i marki</h3>
+      <p>E-commerce i lokalne sklepy</p>
+    </div>
+    <div class="target-card">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="12" r="6" stroke="#b89773" stroke-width="1.2" fill="none"/><path d="M8 30c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#b89773" stroke-width="1.2" fill="none"/></svg>
+      <h3>Specjaliści i konsultanci</h3>
+      <p>Prawnicy, lekarze, doradcy</p>
+    </div>
+    <div class="target-card">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 4l3 7h7l-5.5 5 2 7L18 18l-6.5 5 2-7L8 11h7z" stroke="#b89773" stroke-width="1.2" fill="none"/></svg>
+      <h3>Startupy</h3>
+      <p>Szybki wzrost od pierwszego dnia</p>
+    </div>
   </div>
 </section>
 
 <section id="proces" class="timeline">
-  <h2>Nasz <strong>proces</strong></h2>
+  <div class="section-title">Nasz <strong>proces</strong></div>
+  <div class="section-sub">4 etapy do mierzalnych wyników.</div>
   <div class="tl-grid">
     <div class="tl-step"><div class="tl-dot"></div><h3>Skanowanie</h3><p>Zbieramy dane ze 150+ źródeł i analizujemy Twoją obecność online.</p></div>
     <div class="tl-step"><div class="tl-dot"></div><h3>Diagnostyka</h3><p>Identyfikujemy problemy i priorytetyzujemy rekomendacje wg wpływu.</p></div>
-    <div class="tl-step"><div class="tl-dot"></div><h3>Wdrożenie</h3><p>Realizujemy plan działania — od technicznych poprawek po strategię treści.</p></div>
+    <div class="tl-step"><div class="tl-dot"></div><h3>Wdrożenie</h3><p>Realizujemy plan działania -- od technicznych poprawek po strategię treści.</p></div>
     <div class="tl-step"><div class="tl-dot"></div><h3>Monitoring</h3><p>Co 30 dni mierzymy postępy i korygujemy kurs na podstawie danych.</p></div>
   </div>
 </section>
 
 <section id="cennik" class="pricing">
-  <h2>Plany <strong>cenowe</strong></h2>
+  <div class="section-title">Plany <strong>cenowe</strong></div>
+  <div class="section-sub" style="margin-bottom:2.5rem">Trzy opcje dopasowane do Twoich potrzeb.</div>
   <div class="price-grid">
     <div class="p-card">
       <h3>Full Audit</h3>
       <div class="tier-label">Diagnostyka</div>
       <div class="amount">2 900 zł</div>
       <div class="period">jednorazowo</div>
-      <div class="time">2–5 dni roboczych</div>
+      <div class="time">2-5 dni roboczych</div>
       <ul>
-        <li>Kompletny audyt SEO</li>
-        <li>Analiza konkurencji</li>
-        <li>Raport z priorytetami</li>
-        <li>Audyt treści i UX</li>
-        <li>Plan wdrożenia</li>
+        <li>Kompletny audyt 9 obszarów</li>
+        <li>Analiza konkurencji (5 grup)</li>
+        <li>3 raporty HTML z dowodami</li>
+        <li>Plan wdrożenia krok po kroku</li>
+        <li>Gotowe materiały do użycia</li>
+        <li>Plan działania na 90 dni</li>
       </ul>
       <a href="#kontakt" class="btn" style="display:block;text-align:center;margin-top:1rem">Wybierz</a>
     </div>
@@ -220,7 +489,7 @@ footer a{color:var(--neon);text-decoration:none}
       <div class="tier-label">Kompleksowo</div>
       <div class="amount">7 900 zł</div>
       <div class="period">projekt</div>
-      <div class="time">7–14 dni roboczych</div>
+      <div class="time">7-14 dni roboczych</div>
       <ul>
         <li>Strona od podstaw</li>
         <li>SEO on-page</li>
@@ -229,7 +498,7 @@ footer a{color:var(--neon);text-decoration:none}
         <li>AI Search optymalizacja</li>
         <li>Re-audyt 30 dni gratis</li>
       </ul>
-      <a href="#kontakt" class="btn" style="display:block;text-align:center;margin-top:1rem">Wybierz</a>
+      <a href="#kontakt" class="btn btn-fill" style="display:block;text-align:center;margin-top:1rem">Wybierz</a>
     </div>
     <div class="p-card">
       <h3>Re-audyt</h3>
@@ -238,7 +507,7 @@ footer a{color:var(--neon);text-decoration:none}
       <div class="period">miesięcznie</div>
       <div class="time">Co 30 dni</div>
       <ul>
-        <li>Pomiar postępów</li>
+        <li>Pomiar postępów z liczbami</li>
         <li>Aktualizacja strategii</li>
         <li>Raport wyników</li>
         <li>Nowe rekomendacje</li>

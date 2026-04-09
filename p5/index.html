@@ -9,12 +9,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--primary:#8b6f47;--dark:#6b5435;--accent:#b89773;--green:#4a7c59;--rose:#c08e7d;--bg:#faf7f2;--text:#2d2a26;--cream:#f5efe6;--soft-green:#e8f0e4}
 body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
 
 /* NAV */
 nav{padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(250,247,242,.95);backdrop-filter:blur(8px);z-index:100;border-bottom:1px solid rgba(139,111,71,.06)}
-.logo{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:var(--dark)}
-nav ul{list-style:none;display:flex;gap:2rem}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo svg{width:36px;height:36px;flex-shrink:0}
+.logo-text{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:var(--dark)}
+nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
 nav a{text-decoration:none;color:var(--text);font-size:.9rem;transition:color .3s}
 nav a:hover{color:var(--primary)}
 .btn{display:inline-block;padding:.85rem 2rem;background:var(--primary);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;border-radius:50px;transition:all .3s;box-shadow:0 4px 15px rgba(139,111,71,.2)}
@@ -22,11 +23,16 @@ nav a:hover{color:var(--primary)}
 .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary)}
 .btn-outline:hover{background:var(--primary);color:#fff}
 
+/* SECTION COMMON */
+.section-header{text-align:center;max-width:600px;margin:0 auto 3rem}
+.section-header h2{font-family:Georgia,serif;font-size:2.2rem;color:var(--dark);margin-bottom:.6rem}
+.section-header p{font-size:.95rem;color:#7a756f;line-height:1.6}
+
 /* HERO */
 .hero{padding:5rem 3rem 2rem;display:flex;align-items:center;gap:4rem;max-width:1200px;margin:0 auto}
 .hero-text{flex:1}
 .hero-text h1{font-family:Georgia,serif;font-size:3.4rem;line-height:1.15;color:var(--dark);margin-bottom:1.2rem}
-.hero-text h1 em{font-style:normal;color:var(--green);position:relative}
+.hero-text h1 em{font-style:normal;color:var(--primary);position:relative}
 .hero-text p{font-size:1.1rem;line-height:1.75;color:#5a5550;max-width:480px;margin-bottom:2rem}
 .hero-btns{display:flex;gap:1rem}
 .hero-visual{flex:1;display:flex;justify-content:center}
@@ -38,15 +44,58 @@ nav a:hover{color:var(--primary)}
 
 /* SERVICES */
 .services-section{background:var(--cream);padding:4rem 3rem 5rem}
-.section-header{text-align:center;max-width:600px;margin:0 auto 3rem}
-.section-header h2{font-family:Georgia,serif;font-size:2.2rem;color:var(--dark);margin-bottom:.6rem}
-.section-header p{font-size:.95rem;color:#7a756f;line-height:1.6}
 .svc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
 .svc-card{background:#fff;border-radius:20px;padding:2rem;text-align:center;transition:all .3s;box-shadow:0 2px 12px rgba(107,84,53,.04)}
 .svc-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(107,84,53,.1)}
 .svc-card-icon{width:64px;height:64px;margin:0 auto 1rem;background:var(--soft-green);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .svc-card h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--dark);margin-bottom:.5rem}
 .svc-card p{font-size:.85rem;color:#6b6560;line-height:1.65}
+
+/* AUDIT AREAS */
+.audit-section{padding:4rem 3rem 5rem;background:var(--bg)}
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+.audit-card{background:#fff;border-radius:16px;padding:2rem;transition:all .3s;box-shadow:0 2px 10px rgba(107,84,53,.04)}
+.audit-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(107,84,53,.08)}
+.audit-card .num{font-family:Georgia,serif;font-size:1.8rem;color:var(--accent);font-weight:700;margin-bottom:.4rem}
+.audit-card h3{font-family:Georgia,serif;font-size:1.05rem;color:var(--dark);margin-bottom:.4rem}
+.audit-card p{font-size:.82rem;color:#6b6560;line-height:1.6}
+
+/* DELIVERABLES */
+.deliv-section{padding:4rem 3rem;background:var(--cream)}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.deliv-card{background:#fff;border-radius:16px;padding:2rem;text-align:center;transition:all .3s;box-shadow:0 2px 10px rgba(107,84,53,.04)}
+.deliv-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(107,84,53,.08)}
+.deliv-card svg{margin-bottom:.8rem}
+.deliv-card h3{font-family:Georgia,serif;font-size:1rem;color:var(--dark);margin-bottom:.4rem}
+.deliv-card p{font-size:.82rem;color:#6b6560;line-height:1.6}
+
+/* COMPARISON TABLE */
+.comp-section{padding:4rem 3rem;background:var(--bg)}
+.comp-table{max-width:900px;margin:0 auto;border-collapse:collapse;width:100%;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(107,84,53,.04)}
+.comp-table th,.comp-table td{text-align:left;padding:1rem 1.5rem;font-size:.88rem;border-bottom:1px solid rgba(139,111,71,.06)}
+.comp-table th{font-family:Georgia,serif;font-weight:700;color:var(--dark);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;background:var(--cream)}
+.comp-table .us{color:var(--primary);font-weight:600}
+.comp-table .them{color:#8a857f}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tbody tr:hover{background:rgba(139,111,71,.02)}
+
+/* PRINCIPLES */
+.princ-section{padding:4rem 3rem;background:var(--soft-green)}
+.princ-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.princ-card{background:#fff;border-radius:16px;padding:1.8rem;display:flex;gap:1.2rem;align-items:flex-start;box-shadow:0 2px 10px rgba(107,84,53,.04)}
+.princ-card:hover{box-shadow:0 8px 20px rgba(107,84,53,.08)}
+.princ-num{font-family:Georgia,serif;font-size:2rem;font-weight:700;color:var(--accent);min-width:30px;line-height:1}
+.princ-card h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem;color:var(--dark)}
+.princ-card p{font-size:.82rem;color:#6b6560;line-height:1.6}
+
+/* TARGET CLIENTS */
+.target-section{padding:4rem 3rem;background:var(--bg)}
+.target-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.target-card{background:#fff;border-radius:16px;padding:2rem 1.5rem;text-align:center;box-shadow:0 2px 10px rgba(107,84,53,.04);transition:all .3s}
+.target-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(107,84,53,.08)}
+.target-card svg{margin-bottom:.6rem}
+.target-card h3{font-family:Georgia,serif;font-size:.95rem;color:var(--dark);margin-bottom:.3rem}
+.target-card p{font-size:.8rem;color:#6b6560;line-height:1.5}
 
 /* STATS */
 .stats-section{padding:4rem 3rem;background:var(--bg)}
@@ -99,15 +148,36 @@ footer a{color:var(--primary);text-decoration:none}
   .process-steps{grid-template-columns:1fr 1fr;gap:1.5rem}
   .proc-step::after{display:none}
   .pricing-cards{flex-direction:column;align-items:center}
+  .audit-grid{grid-template-columns:1fr}
+  .deliv-grid{grid-template-columns:1fr}
+  .princ-grid{grid-template-columns:1fr}
+  .target-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Zautomatyzuj Się</div>
+  <a href="#" class="logo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="22" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/>
+      <circle cx="24" cy="24" r="16" stroke="#b89773" stroke-width=".5" fill="none" opacity=".2"/>
+      <path d="M12 14h12l-12 14h12" stroke="#8b6f47" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M28 17c4-4 12-1 8 4s-8 3-8 6c0 3 8 6 8 2" stroke="#6b5435" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="12" cy="14" r="2" fill="#8b6f47"/>
+      <circle cx="24" cy="14" r="2" fill="#b89773"/>
+      <circle cx="12" cy="28" r="2" fill="#b89773"/>
+      <circle cx="24" cy="28" r="2" fill="#8b6f47"/>
+      <line x1="24" y1="14" x2="28" y2="17" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+      <line x1="24" y1="28" x2="28" y2="25" stroke="#b89773" stroke-width=".8" opacity=".5"/>
+      <circle cx="8" cy="21" r="1.2" fill="#b89773" opacity=".6"/>
+      <circle cx="40" cy="21" r="1.2" fill="#8b6f47" opacity=".6"/>
+    </svg>
+    <div class="logo-text">Zautomatyzuj Się</div>
+  </a>
   <ul>
     <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#audyt">Audyt</a></li>
     <li><a href="#proces">Jak działamy</a></li>
     <li><a href="#cennik">Cennik</a></li>
     <li><a href="#kontakt" class="btn" style="padding:.5rem 1.4rem;font-size:.82rem">Kontakt</a></li>
@@ -116,7 +186,7 @@ footer a{color:var(--primary);text-decoration:none}
 
 <section class="hero">
   <div class="hero-text">
-    <h1>Marketing, który <em>rośnie</em> razem z Twoim biznesem</h1>
+    <h1>Marketing, który <em>automatyzuje</em> Twój wzrost</h1>
     <p>Łączymy analitykę z kreatywnością. Codziennie przeglądamy ponad 150 źródeł branżowych, abyś Ty mógł rosnąć w oparciu o sprawdzone dane, a nie domysły.</p>
     <div class="hero-btns">
       <a href="#kontakt" class="btn">Zamów bezpłatną konsultację</a>
@@ -125,51 +195,69 @@ footer a{color:var(--primary);text-decoration:none}
   </div>
   <div class="hero-visual">
     <svg width="400" height="360" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Organic plant/growth illustration -->
-      <!-- Pot -->
-      <path d="M140 280 Q140 310 170 320 L230 320 Q260 310 260 280Z" fill="#b89773" opacity=".3"/>
-      <path d="M130 270 L270 270 L260 280 L140 280Z" fill="#8b6f47" opacity=".4"/>
-      <!-- Soil -->
-      <ellipse cx="200" cy="270" rx="70" ry="8" fill="#6b5435" opacity=".2"/>
-      <!-- Main stem -->
-      <path d="M200 270 C200 220 195 180 200 120" stroke="#4a7c59" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <!-- Branches with leaves -->
-      <path d="M200 220 C180 210 160 200 150 185" stroke="#4a7c59" stroke-width="2" fill="none"/>
-      <path d="M150 185 C140 175 135 165 145 160 C155 155 165 165 160 178 C155 185 150 185 150 185" fill="#4a7c59" opacity=".4"/>
-      <path d="M200 190 C220 178 240 172 255 168" stroke="#4a7c59" stroke-width="2" fill="none"/>
-      <path d="M255 168 C268 162 275 155 268 148 C260 142 250 150 248 162 C247 168 255 168 255 168" fill="#4a7c59" opacity=".35"/>
-      <path d="M200 160 C178 148 162 140 152 130" stroke="#4a7c59" stroke-width="2" fill="none"/>
-      <path d="M152 130 C142 120 138 110 148 106 C158 102 164 114 158 126 C155 130 152 130 152 130" fill="#4a7c59" opacity=".3"/>
-      <!-- Top bloom / data flower -->
-      <circle cx="200" cy="100" r="28" fill="#c08e7d" opacity=".15"/>
-      <circle cx="200" cy="100" r="18" fill="#c08e7d" opacity=".25"/>
-      <!-- Data petals -->
-      <ellipse cx="200" cy="72" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(0 200 100)"/>
-      <ellipse cx="224" cy="84" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(72 200 100)"/>
-      <ellipse cx="218" cy="114" rx="8" ry="14" fill="#b89773" opacity=".25" transform="rotate(144 200 100)"/>
-      <ellipse cx="182" cy="114" rx="8" ry="14" fill="#b89773" opacity=".25" transform="rotate(216 200 100)"/>
-      <ellipse cx="176" cy="84" rx="8" ry="14" fill="#b89773" opacity=".3" transform="rotate(288 200 100)"/>
-      <circle cx="200" cy="100" r="8" fill="#8b6f47" opacity=".5"/>
-      <!-- Floating data elements -->
-      <g style="animation:sway 4s ease-in-out infinite">
-        <rect x="280" y="80" width="80" height="36" rx="18" fill="#fff" stroke="#b89773" stroke-width="1" opacity=".9"/>
-        <text x="294" y="96" font-family="Georgia" font-size="10" font-weight="700" fill="#8b6f47">150+</text>
-        <text x="290" y="108" font-family="Lato" font-size="7" fill="#8a857f">źródeł</text>
+      <!-- Automation/Dashboard illustration with warm organic feel -->
+      <!-- Central dashboard frame -->
+      <rect x="60" y="40" width="280" height="200" rx="16" fill="#fff" stroke="#b89773" stroke-width="1.5"/>
+      <rect x="60" y="40" width="280" height="32" rx="16" fill="#f5efe6"/>
+      <circle cx="82" cy="56" r="5" fill="#c08e7d" opacity=".6"/>
+      <circle cx="98" cy="56" r="5" fill="#b89773" opacity=".6"/>
+      <circle cx="114" cy="56" r="5" fill="#4a7c59" opacity=".6"/>
+      <!-- Chart bars inside dashboard -->
+      <rect x="90" y="170" width="22" height="40" rx="4" fill="#b89773" opacity=".4"/>
+      <rect x="120" y="150" width="22" height="60" rx="4" fill="#b89773" opacity=".55"/>
+      <rect x="150" y="130" width="22" height="80" rx="4" fill="#8b6f47" opacity=".7"/>
+      <rect x="180" y="115" width="22" height="95" rx="4" fill="#8b6f47" opacity=".85"/>
+      <rect x="210" y="100" width="22" height="110" rx="4" fill="#6b5435"/>
+      <rect x="240" y="125" width="22" height="85" rx="4" fill="#4a7c59" opacity=".7"/>
+      <rect x="270" y="110" width="22" height="100" rx="4" fill="#4a7c59" opacity=".9"/>
+      <!-- Trend line with smooth curve -->
+      <path d="M101 165 L131 145 L161 125 L191 110 L221 95 L251 120 L281 105" stroke="#c08e7d" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="101" cy="165" r="3.5" fill="#c08e7d"/>
+      <circle cx="191" cy="110" r="3.5" fill="#c08e7d"/>
+      <circle cx="281" cy="105" r="3.5" fill="#c08e7d"/>
+      <!-- Floating data cards around dashboard -->
+      <g>
+        <rect x="10" y="60" width="80" height="44" rx="12" fill="#fff" stroke="#8b6f47" stroke-width="1" opacity=".9">
+          <animate attributeName="y" values="60;52;60" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <text x="26" y="80" font-family="Georgia" font-size="11" font-weight="700" fill="#8b6f47">+34%</text>
+        <text x="18" y="96" font-family="Lato" font-size="7.5" fill="#8a857f">konwersja</text>
       </g>
-      <g style="animation:sway 5s ease-in-out infinite;animation-delay:.5s">
-        <rect x="40" y="120" width="76" height="36" rx="18" fill="#fff" stroke="#4a7c59" stroke-width="1" opacity=".9"/>
-        <text x="56" y="136" font-family="Georgia" font-size="10" font-weight="700" fill="#4a7c59">97%</text>
-        <text x="48" y="148" font-family="Lato" font-size="7" fill="#8a857f">satysfakcji</text>
+      <g>
+        <rect x="310" y="50" width="80" height="44" rx="12" fill="#fff" stroke="#4a7c59" stroke-width="1" opacity=".9">
+          <animate attributeName="y" values="50;58;50" dur="5s" repeatCount="indefinite"/>
+        </rect>
+        <text x="326" y="70" font-family="Georgia" font-size="11" font-weight="700" fill="#4a7c59">150+</text>
+        <text x="320" y="86" font-family="Lato" font-size="7.5" fill="#8a857f">źródeł</text>
       </g>
-      <g style="animation:sway 3.5s ease-in-out infinite;animation-delay:1s">
-        <rect x="290" y="180" width="76" height="36" rx="18" fill="#fff" stroke="#c08e7d" stroke-width="1" opacity=".9"/>
-        <text x="300" y="196" font-family="Georgia" font-size="10" font-weight="700" fill="#c08e7d">+34%</text>
-        <text x="296" y="208" font-family="Lato" font-size="7" fill="#8a857f">konwersja</text>
+      <g>
+        <rect x="300" y="160" width="86" height="44" rx="12" fill="#fff" stroke="#c08e7d" stroke-width="1" opacity=".9">
+          <animate attributeName="y" values="160;168;160" dur="3.5s" repeatCount="indefinite"/>
+        </rect>
+        <text x="316" y="180" font-family="Georgia" font-size="11" font-weight="700" fill="#c08e7d">97%</text>
+        <text x="308" y="196" font-family="Lato" font-size="7.5" fill="#8a857f">satysfakcji</text>
       </g>
-      <!-- Small floating seeds/dots -->
-      <circle cx="120" cy="90" r="3" fill="#b89773" opacity=".3"><animate attributeName="cy" values="90;80;90" dur="3s" repeatCount="indefinite"/></circle>
-      <circle cx="280" cy="140" r="2" fill="#4a7c59" opacity=".3"><animate attributeName="cy" values="140;130;140" dur="4s" repeatCount="indefinite"/></circle>
-      <circle cx="320" cy="230" r="2.5" fill="#c08e7d" opacity=".3"><animate attributeName="cy" values="230;220;230" dur="3.5s" repeatCount="indefinite"/></circle>
+      <!-- Circuit/automation connection lines -->
+      <line x1="90" y1="82" x2="60" y2="82" stroke="#b89773" stroke-width=".8" opacity=".3" stroke-dasharray="3 2"/>
+      <line x1="340" y1="72" x2="310" y2="72" stroke="#4a7c59" stroke-width=".8" opacity=".3" stroke-dasharray="3 2"/>
+      <circle cx="60" cy="82" r="2" fill="#b89773" opacity=".4"/>
+      <circle cx="340" cy="72" r="2" fill="#4a7c59" opacity=".4"/>
+      <!-- Bottom: automation gears/nodes -->
+      <circle cx="140" cy="280" r="20" stroke="#b89773" stroke-width="1" fill="none" opacity=".3"/>
+      <circle cx="140" cy="280" r="8" fill="#b89773" opacity=".15"/>
+      <circle cx="200" cy="300" r="16" stroke="#8b6f47" stroke-width="1" fill="none" opacity=".3"/>
+      <circle cx="200" cy="300" r="6" fill="#8b6f47" opacity=".15"/>
+      <circle cx="260" cy="280" r="20" stroke="#4a7c59" stroke-width="1" fill="none" opacity=".3"/>
+      <circle cx="260" cy="280" r="8" fill="#4a7c59" opacity=".15"/>
+      <line x1="158" y1="286" x2="186" y2="296" stroke="#b89773" stroke-width=".8" opacity=".3"/>
+      <line x1="214" y1="296" x2="242" y2="286" stroke="#8b6f47" stroke-width=".8" opacity=".3"/>
+      <!-- Connect dashboard to automation -->
+      <line x1="140" y1="240" x2="140" y2="260" stroke="#b89773" stroke-width=".8" opacity=".2" stroke-dasharray="3 2"/>
+      <line x1="200" y1="240" x2="200" y2="284" stroke="#8b6f47" stroke-width=".8" opacity=".2" stroke-dasharray="3 2"/>
+      <line x1="260" y1="240" x2="260" y2="260" stroke="#4a7c59" stroke-width=".8" opacity=".2" stroke-dasharray="3 2"/>
+      <!-- Small animated dots -->
+      <circle cx="140" cy="252" r="2" fill="#b89773" opacity=".4"><animate attributeName="cy" values="242;260;242" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="260" cy="252" r="2" fill="#4a7c59" opacity=".4"><animate attributeName="cy" values="242;260;242" dur="4s" repeatCount="indefinite"/></circle>
     </svg>
   </div>
 </section>
@@ -180,8 +268,8 @@ footer a{color:var(--primary);text-decoration:none}
 
 <section id="uslugi" class="services-section">
   <div class="section-header">
-    <h2>Usługi, które rosną z Tobą</h2>
-    <p>Każda usługa oparta na danych z ponad 150 źródeł badawczych, aktualizowanych codziennie.</p>
+    <h2>Usługi oparte na danych</h2>
+    <p>Każda usługa oparta na analizie ponad 150 źródeł badawczych, aktualizowanych codziennie.</p>
   </div>
   <div class="svc-cards">
     <div class="svc-card">
@@ -189,7 +277,7 @@ footer a{color:var(--primary);text-decoration:none}
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 28L12 8l6 10 4-6 6 16" stroke="#4a7c59" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="8" r="2.5" fill="#8b6f47" opacity=".4"/></svg>
       </div>
       <h3>Audyt SEO</h3>
-      <p>Kompletna analiza widoczności z raportem priorytetów i konkretnymi rekomendacjami.</p>
+      <p>Kompletna analiza widoczności z raportem priorytetów i konkretnymi rekomendacjami popartymi badaniami.</p>
     </div>
     <div class="svc-card">
       <div class="svc-card-icon">
@@ -203,21 +291,21 @@ footer a{color:var(--primary);text-decoration:none}
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="2" width="16" height="28" rx="4" stroke="#4a7c59" stroke-width="1.5" fill="none"/><circle cx="16" cy="26" r="1.5" fill="#8b6f47"/><rect x="11" y="8" width="10" height="10" rx="2" fill="#c08e7d" opacity=".2"/><path d="M14 13l3-2v4z" fill="#4a7c59" opacity=".5"/></svg>
       </div>
       <h3>Social media</h3>
-      <p>Strategia i zarządzanie na Instagram, Facebook i TikTok z analizą wyników.</p>
+      <p>Strategia i zarządzanie na Instagram, Facebook i TikTok. Analiza 100+ postów per platforma.</p>
     </div>
     <div class="svc-card">
       <div class="svc-card-icon">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="14" r="10" stroke="#4a7c59" stroke-width="1.5" fill="none"/><path d="M12 14c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#8b6f47" stroke-width="1.5" fill="none"/><circle cx="16" cy="14" r="1.5" fill="#4a7c59"/><path d="M16 24v4M12 27h8" stroke="#b89773" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <h3>AI Search</h3>
-      <p>Twoja firma w odpowiedziach ChatGPT, Gemini i Perplexity.</p>
+      <p>Twoja firma w odpowiedziach ChatGPT, Gemini, Perplexity i Claude.</p>
     </div>
     <div class="svc-card">
       <div class="svc-card-icon">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#4a7c59" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/><path d="M16 8v8l5 5" stroke="#8b6f47" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="#c08e7d"/></svg>
       </div>
       <h3>Re-audyt 30 dni</h3>
-      <p>Cykliczny pomiar postępów i aktualizacja rekomendacji co miesiąc.</p>
+      <p>Cykliczny pomiar postępów, aktualizacja rekomendacji i identyfikacja nowych szans.</p>
     </div>
   </div>
 </section>
@@ -225,6 +313,184 @@ footer a{color:var(--primary);text-decoration:none}
 <div class="wave-divider wave-up">
   <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 0 400 80 600 40S1000 0 1200 40V80H0Z" fill="#f5efe6"/></svg>
 </div>
+
+<!-- 9 AUDIT AREAS -->
+<section id="audyt" class="audit-section">
+  <div class="section-header">
+    <h2>Co analizujemy</h2>
+    <p>Pełny audyt obejmuje 9 kluczowych obszarów. Każdy badany w głąb, z dowodami.</p>
+  </div>
+  <div class="audit-grid">
+    <div class="audit-card">
+      <div class="num">01</div>
+      <h3>Strona internetowa</h3>
+      <p>Szybkość, mobile, nagłówki, słowa kluczowe, schema markup, obrazy, dostępność.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">02</div>
+      <h3>SEO i pozycje Google</h3>
+      <p>Wszystkie słowa kluczowe, Local Pack, Featured Snippets, frazy long-tail.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">03</div>
+      <h3>Google Business Profile</h3>
+      <p>Kategorie, zdjęcia, posty, pytania i odpowiedzi, kompletność profilu.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">04</div>
+      <h3>Opinie i reputacja</h3>
+      <p>Oceny Google + Facebook, analiza sentymentu, jakość odpowiedzi na opinie.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">05</div>
+      <h3>Instagram deep dive</h3>
+      <p>100+ postów, engagement per format, Reels, hashtagi, 5-10 konkurentów.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">06</div>
+      <h3>Facebook deep dive</h3>
+      <p>100+ postów, opinie, zaangażowanie, porównanie z 5-10 konkurentami.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">07</div>
+      <h3>TikTok deep dive</h3>
+      <p>100+ filmów, czas oglądania, wzorce viralowe, 5-10 konkurentów.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">08</div>
+      <h3>Widoczność AI Search</h3>
+      <p>ChatGPT, Google AI Mode, Perplexity, Claude, Gemini.</p>
+    </div>
+    <div class="audit-card">
+      <div class="num">09</div>
+      <h3>Profil linków zewnętrznych</h3>
+      <p>Autorytet domeny, wzmianki, katalogi lokalne i branżowe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 0 400 80 600 40S1000 0 1200 40V80H0Z" fill="#f5efe6"/></svg>
+</div>
+
+<section class="deliv-section">
+  <div class="section-header">
+    <h2>Co dostajesz po analizie</h2>
+    <p>Nie tylko raport -- gotowy zestaw do natychmiastowego działania.</p>
+  </div>
+  <div class="deliv-grid">
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="4" width="28" height="32" rx="4" stroke="#8b6f47" stroke-width="1.2" fill="none"/><path d="M12 14h16M12 20h12M12 26h14" stroke="#b89773" stroke-width="1" stroke-linecap="round"/></svg>
+      <h3>Pełny raport z dowodami</h3>
+      <p>Każda rekomendacja z badaniem, liczbami i datami.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="4" stroke="#8b6f47" stroke-width="1.2" fill="none"/><rect x="10" y="18" width="6" height="8" rx="1" fill="#4a7c59" opacity=".4"/><rect x="18" y="14" width="6" height="12" rx="1" fill="#8b6f47" opacity=".4"/><rect x="26" y="10" width="6" height="16" rx="1" fill="#b89773" opacity=".4"/></svg>
+      <h3>Czysty raport</h3>
+      <p>Prosty język, tabele i wykresy. Zrozumiały bez specjalisty.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 32V16l8-8 8 8v16" stroke="#8b6f47" stroke-width="1.2" fill="none"/><rect x="17" y="22" width="6" height="10" rx="1" stroke="#b89773" stroke-width=".8" fill="none"/></svg>
+      <h3>Plan wdrożenia krok po kroku</h3>
+      <p>Tydzień 1, tydzień 2, miesiąc 1 -- wiesz co i kiedy.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="28" rx="4" stroke="#8b6f47" stroke-width="1.2" fill="none"/><line x1="4" y1="14" x2="36" y2="14" stroke="#b89773" stroke-width=".8"/><line x1="20" y1="6" x2="20" y2="34" stroke="#b89773" stroke-width=".5" opacity=".5"/></svg>
+      <h3>Tabela porównania z konkurencją</h3>
+      <p>Gdzie wygrywasz, gdzie tracisz klientów.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="28" height="28" rx="4" stroke="#8b6f47" stroke-width="1.2" fill="none"/><path d="M14 18l4 4 8-8" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M14 28h12" stroke="#b89773" stroke-width="1" stroke-linecap="round"/></svg>
+      <h3>Gotowe materiały</h3>
+      <p>Szablony e-maili, posty social media, opisy GBP.</p>
+    </div>
+    <div class="deliv-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#8b6f47" stroke-width="1.2" fill="none"/><path d="M20 10v10l6 6" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="#c08e7d"/></svg>
+      <h3>Plan działania na 90 dni</h3>
+      <p>Mapa drogowa z priorytetami i mierzalnymi celami.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider wave-up">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 0 400 80 600 40S1000 0 1200 40V80H0Z" fill="#f5efe6"/></svg>
+</div>
+
+<!-- COMPARISON TABLE -->
+<section class="comp-section">
+  <div class="section-header">
+    <h2>My vs. typowa agencja</h2>
+    <p>Sprawdź, czym się różnimy od standardowego podejścia w branży.</p>
+  </div>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Obszar</th><th>Zautomatyzuj Się</th><th>Typowa agencja</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Źródła</td><td class="us">Badania 2026 z liczbami i datami</td><td class="them">"Best practices"</td></tr>
+      <tr><td>Konkurencja</td><td class="us">Wszyscy konkurenci, 5 grup czynników</td><td class="them">3-5 konkurentów, ogólnie</td></tr>
+      <tr><td>Social media</td><td class="us">100+ postów deep dive per platforma</td><td class="them">Analiza powierzchniowa</td></tr>
+      <tr><td>Raporty</td><td class="us">3 raporty HTML + plan wdrożenia</td><td class="them">PDF 5-15 stron</td></tr>
+      <tr><td>Mierzalność</td><td class="us">Re-audyt co 30 dni z liczbami</td><td class="them">"Powinno zadziałać"</td></tr>
+      <tr><td>Ciągłość</td><td class="us">Ciągły cykl 30-dniowy</td><td class="them">Jednorazowy raport</td></tr>
+      <tr><td>AI Search</td><td class="us">Pełna optymalizacja</td><td class="them">Ignorowane</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- PRINCIPLES -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 80 400 0 600 40S1000 80 1200 40V80H0Z" fill="#e8f0e4"/></svg>
+</div>
+
+<section class="princ-section">
+  <div class="section-header" style="margin-bottom:2rem">
+    <h2>Nasze 5 zasad</h2>
+    <p>Fundamenty, na których opieramy każdy projekt.</p>
+  </div>
+  <div class="princ-grid">
+    <div class="princ-card"><div class="princ-num">1</div><div><h3>Robimy wszystko, co możliwe</h3><p>Celem jest pozycja nr 1. Nie zadowalamy się "wystarczająco dobrze".</p></div></div>
+    <div class="princ-card"><div class="princ-num">2</div><div><h3>Konkurencja rozbita na 5 grup</h3><p>Każdy konkurent analizowany w 5 wymiarach, nie tylko ogólne wrażenie.</p></div></div>
+    <div class="princ-card"><div class="princ-num">3</div><div><h3>Social media jak Google SEO</h3><p>Taki sam rygor analityczny jak pozycjonowanie w Google.</p></div></div>
+    <div class="princ-card"><div class="princ-num">4</div><div><h3>Wszystko poparte dowodami</h3><p>Każda rekomendacja ma badanie z konkretnymi liczbami i datami.</p></div></div>
+    <div class="princ-card"><div class="princ-num">5</div><div><h3>Twój biznes, Twój głos</h3><p>Treści nie brzmią jak AI. Zachowujemy charakter Twojej marki.</p></div></div>
+  </div>
+</section>
+
+<div class="wave-divider wave-up">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0 40C200 80 400 0 600 40S1000 80 1200 40V80H0Z" fill="#e8f0e4"/></svg>
+</div>
+
+<!-- TARGET CLIENTS -->
+<section class="target-section">
+  <div class="section-header">
+    <h2>Dla kogo pracujemy</h2>
+    <p>Specjalizujemy się w firmach, które chcą rosnąć.</p>
+  </div>
+  <div class="target-grid">
+    <div class="target-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 34V14l12-8 12 8v20" stroke="#8b6f47" stroke-width="1.2" fill="none"/><rect x="16" y="24" width="8" height="10" rx="1" stroke="#b89773" stroke-width=".8" fill="none"/></svg>
+      <h3>Lokalne firmy usługowe</h3>
+      <p>Salony, kliniki, warsztaty, hydraulicy</p>
+    </div>
+    <div class="target-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="3" stroke="#8b6f47" stroke-width="1.2" fill="none"/><path d="M6 16h28" stroke="#b89773" stroke-width=".8"/><rect x="10" y="20" width="8" height="4" rx="1" fill="#4a7c59" opacity=".3"/><rect x="22" y="20" width="8" height="4" rx="1" fill="#8b6f47" opacity=".3"/></svg>
+      <h3>Małe sklepy i marki</h3>
+      <p>E-commerce i lokalne sklepy</p>
+    </div>
+    <div class="target-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="14" r="7" stroke="#8b6f47" stroke-width="1.2" fill="none"/><path d="M10 34c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#b89773" stroke-width="1.2" fill="none"/></svg>
+      <h3>Specjaliści i konsultanci</h3>
+      <p>Prawnicy, lekarze, doradcy</p>
+    </div>
+    <div class="target-card">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 4l3 7h7l-5.5 5 2 7L20 18l-6.5 5 2-7L10 11h7z" stroke="#8b6f47" stroke-width="1.2" fill="none"/></svg>
+      <h3>Startupy</h3>
+      <p>Szybki wzrost od pierwszego dnia</p>
+    </div>
+  </div>
+</section>
 
 <section class="stats-section">
   <div class="stats-flex">
@@ -277,11 +543,12 @@ footer a{color:var(--primary);text-decoration:none}
       <div class="freq">jednorazowo</div>
       <div class="timeline">2-5 dni roboczych</div>
       <ul>
-        <li>Kompletny audyt SEO</li>
-        <li>Analiza konkurencji</li>
-        <li>Raport z priorytetami</li>
-        <li>Audyt treści i UX</li>
-        <li>Plan wdrożenia</li>
+        <li>Kompletny audyt 9 obszarów</li>
+        <li>Analiza konkurencji (5 grup)</li>
+        <li>3 raporty HTML z dowodami</li>
+        <li>Plan wdrożenia krok po kroku</li>
+        <li>Gotowe materiały do użycia</li>
+        <li>Plan działania na 90 dni</li>
       </ul>
       <a href="#kontakt" class="btn btn-outline" style="display:block;text-align:center;border-radius:50px">Zamów audyt</a>
     </div>
@@ -308,7 +575,7 @@ footer a{color:var(--primary);text-decoration:none}
       <div class="freq">miesięcznie</div>
       <div class="timeline">Co 30 dni</div>
       <ul>
-        <li>Pomiar postępów</li>
+        <li>Pomiar postępów z liczbami</li>
         <li>Aktualizacja rekomendacji</li>
         <li>Raport z wynikami</li>
         <li>Nowe możliwości wzrostu</li>
