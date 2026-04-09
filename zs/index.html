@@ -33,8 +33,9 @@ a{text-decoration:none;color:inherit}
 .dot-grid{background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
@@ -636,11 +637,15 @@ answer.style.maxHeight=answer.scrollHeight+'px';
 });
 });
 
-// Scroll reveal
+// Scroll reveal - trigger early, generous margin
 const observer=new IntersectionObserver((entries)=>{
 entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+},{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Immediately reveal elements already in viewport
+requestAnimationFrame(()=>{document.querySelectorAll('.reveal').forEach(el=>{
+const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');
+})});
 </script>
 </body>
 </html>
