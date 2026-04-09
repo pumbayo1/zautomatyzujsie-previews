@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zautomatyzuj Si&#281; &mdash; Twoja firma. Widoczna.</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#8b6f47;--dark:#6b5435;--accent:#b89773;
+  --green:#4a7c59;--rose:#c08e7d;
+  --bg:#faf7f2;--cream:#f5efe6;--soft-green:#e8f0e4;
+  --shadow-sm:0 2px 8px rgba(107,84,53,.04);
+  --shadow-md:0 4px 16px rgba(107,84,53,.08);
+  --shadow-lg:0 8px 32px rgba(107,84,53,.1);
+  --radius:18px;--pill:50px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;color:#3d3427;background:var(--bg);line-height:1.7}
+h1,h2,h3,h4{font-family:Georgia,serif;color:var(--dark);line-height:1.3}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(245,239,230,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,84,53,.06);padding:.8rem 2rem}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.nav-logo{font-family:Georgia,serif;font-size:1.35rem;color:var(--dark);font-weight:700;text-decoration:none}
+.nav-links{display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap}
+.nav-links a{text-decoration:none;color:var(--primary);font-size:.92rem;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.btn-pill{display:inline-block;background:var(--primary);color:#fff;padding:.65rem 1.6rem;border-radius:var(--pill);text-decoration:none;font-weight:700;font-size:.92rem;border:none;cursor:pointer;box-shadow:var(--shadow-md);transition:all .25s}
+.btn-pill:hover{background:var(--dark);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-pill-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-pill-outline:hover{background:var(--primary);color:#fff}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-title{text-align:center;font-size:2.2rem;margin-bottom:.6rem}
+.section-sub{text-align:center;color:#7a6b5a;max-width:640px;margin:0 auto 2.5rem;font-size:1.05rem}
+
+/* HERO */
+.hero{background:var(--cream);padding:6rem 2rem 4rem;text-align:center}
+.hero h1{font-size:3rem;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--primary)}
+.hero .subtitle{font-size:1.15rem;color:#6a5c4a;max-width:620px;margin:0 auto 2rem;line-height:1.8}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.stats-bar{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.stat-badge{background:#fff;border-radius:var(--pill);padding:.55rem 1.4rem;font-weight:700;color:var(--dark);box-shadow:var(--shadow-sm);font-size:.92rem}
+.stat-badge span{color:var(--green);font-size:1.1rem}
+
+/* WAVE DIVIDERS */
+.wave-divider{width:100%;line-height:0;overflow:hidden}
+.wave-divider svg{display:block;width:100%;height:60px}
+
+/* CARDS */
+.card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+/* CIRCLE ICONS */
+.circle-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem;flex-shrink:0}
+.circle-icon-cream{background:var(--cream);color:var(--primary)}
+.circle-icon-green{background:var(--soft-green);color:var(--green)}
+
+/* PROBLEM */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
+.solution-box{background:var(--soft-green);border-radius:var(--radius);padding:2rem;text-align:center;border:2px solid rgba(74,124,89,.15)}
+.solution-box h3{color:var(--green)}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.5rem}
+
+/* PROCESS */
+.process-steps{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;position:relative;padding:2rem 0}
+.process-step{text-align:center;flex:1;min-width:200px;max-width:240px;position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;font-family:Georgia,serif;font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;position:relative;z-index:2}
+.process-step:not(:last-child)::after{content:'';position:absolute;top:28px;left:calc(50% + 32px);width:calc(100% - 64px);border-top:3px dotted var(--accent);z-index:1}
+
+/* CASE STUDIES */
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.case-card{background:#fff;border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow-md);transition:transform .25s,box-shadow .25s}
+.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.case-label{display:inline-block;background:var(--soft-green);color:var(--green);font-weight:700;font-size:.75rem;padding:.2rem .7rem;border-radius:var(--pill);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.04em}
+.case-before,.case-after{font-size:.88rem;margin:.25rem 0}
+.case-before{color:#9a8b78}
+.case-after{color:var(--green);font-weight:700}
+.case-time{font-size:.82rem;color:var(--accent);margin-top:.5rem;font-weight:600}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.3rem}
+.price-card{background:#fff;border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .25s,box-shadow .25s;position:relative}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.price-card.featured{border:2px solid var(--green);transform:scale(1.04)}
+.price-card.featured:hover{transform:scale(1.04) translateY(-4px)}
+.featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.78rem;font-weight:700;padding:.3rem 1rem;border-radius:var(--pill)}
+.price-amount{font-family:Georgia,serif;font-size:1.8rem;color:var(--dark);margin:.8rem 0 .3rem}
+.price-desc{font-size:.88rem;color:#7a6b5a}
+
+/* GUARANTEE */
+.guarantee-card{background:#fff;border:2px solid var(--green);border-radius:var(--radius);padding:2.5rem;text-align:center;max-width:700px;margin:0 auto}
+.guarantee-card h2{color:var(--green);margin-bottom:1rem}
+
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{background:#fff;border-radius:var(--radius);margin-bottom:.8rem;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .2s}
+.faq-item:hover{box-shadow:var(--shadow-md)}
+.faq-q{padding:1.2rem 1.6rem;cursor:pointer;font-weight:700;color:var(--dark);display:flex;justify-content:space-between;align-items:center;font-size:1rem}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.6rem;color:#6a5c4a;font-size:.95rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;padding:0 1.6rem 1.2rem}
+
+/* CTA FINAL */
+.cta-final{text-align:center}
+.cta-final h2{font-size:2.4rem;margin-bottom:1rem}
+.cta-final .email-link{color:var(--primary);font-weight:700;font-size:1.05rem}
+.social-links{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem}
+.social-links a{width:48px;height:48px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2rem;color:var(--primary);box-shadow:var(--shadow-sm);transition:all .2s}
+.social-links a:hover{background:var(--primary);color:#fff}
+
+/* FOOTER */
+footer{background:var(--cream);border-radius:var(--radius) var(--radius) 0 0;padding:3rem 2rem 2rem}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem}
+.footer-col h4{margin-bottom:.8rem;font-size:1rem}
+.footer-col a{display:block;color:#7a6b5a;text-decoration:none;font-size:.9rem;margin-bottom:.4rem;transition:color .2s}
+.footer-col a:hover{color:var(--dark)}
+.footer-bottom{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(107,84,53,.08);color:#9a8b78;font-size:.85rem}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:2rem}
+  .process-step:not(:last-child)::after{display:none}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+  .price-card.featured{transform:scale(1)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Zautomatyzuj Si&#281;</a>
+    <div class="nav-links">
+      <a href="#uslugi">Us&#322;ugi</a>
+      <a href="#proces">Jak Dzia&#322;amy</a>
+      <a href="#case-study">Case Study</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt" class="btn-pill">Rozpocznij wsp&oacute;&#322;prac&#281;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Twoja firma. <em>Widoczna.</em></h1>
+    <p class="subtitle">&#321;&#261;czymy sztuczn&#261; inteligencj&#281; z marketingiem cyfrowym, &#380;eby Twoja firma by&#322;a <strong>#1 w Google</strong>, social media i w g&#322;owach klient&oacute;w.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn-pill">Rozpocznij wsp&oacute;&#322;prac&#281;</a>
+      <a href="#uslugi" class="btn-pill btn-pill-outline">Zobacz us&#322;ugi</a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-badge"><span>1089+</span> &zwnj;&#378;r&oacute;de&#322;</div>
+      <div class="stat-badge"><span>543+</span> wniosk&oacute;w</div>
+      <div class="stat-badge"><span>154</span> monitorowanych</div>
+      <div class="stat-badge"><span>#1</span> pozycje</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,20 1440,20 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+</div>
+
+<!-- PROBLEM -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">Czy Twoja firma istnieje w internecie?</h2>
+    <p class="section-sub">Wi&#281;kszo&#347;&#263; ma&#322;ych firm jest niewidoczna online. Sprawd&#378;, czy to tak&#380;e Tw&oacute;j problem.</p>
+    <div class="problem-grid">
+      <div class="card">
+        <div class="circle-icon circle-icon-cream">&#10005;</div>
+        <h3>Brak strony WWW</h3>
+        <p>83% klient&oacute;w szuka firm w Google zanim podejmie decyzj&#281;. Bez strony &mdash; nie istniejesz.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-cream">?</div>
+        <h3>Brak widoczno&#347;ci</h3>
+        <p>Twoja konkurencja jest na pierwszej stronie wynik&oacute;w, a Ty nie. Klienci wybieraj&#261; tych, kt&oacute;rych widz&#261;.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-cream">&#8595;</div>
+        <h3>Social bez efekt&oacute;w</h3>
+        <p>Publikujesz posty, ale nikt ich nie widzi. Brak strategii = brak zasi&#281;gu, brak klient&oacute;w.</p>
+      </div>
+    </div>
+    <div class="solution-box">
+      <h3>Rozwi&#261;zanie?</h3>
+      <p>Kompleksowa analiza Twojej obecno&#347;ci online, plan dzia&#322;ania oparty na danych i wdro&#380;enie, kt&oacute;re przynosi realne efekty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,40 C240,10 480,50 720,30 C960,10 1200,50 1440,30 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+</div>
+
+<!-- SERVICES -->
+<section id="uslugi" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">Co robimy</h2>
+    <p class="section-sub">Kompletny pakiet us&#322;ug, kt&oacute;ry zamienia niewidoczn&#261; firm&#281; w lidera rynku lokalnego.</p>
+    <div class="services-grid">
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#8801;</div>
+        <h3>Pe&#322;na analiza firmy w sieci</h3>
+        <p>Sprawdzamy Twoj&#261; stron&#281;, SEO, social media, wizyt&oacute;wk&#281; Google, opinie i konkurencj&#281;. Otrzymujesz raport z 1089+ &#378;r&oacute;de&#322; danych i konkretnymi wnioskami.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#9675;</div>
+        <h3>Strony WWW od zera</h3>
+        <p>Projektujemy i budujemy nowoczesne strony zoptymalizowane pod SEO, szybko&#347;&#263; i konwersj&#281;. Responsywne, szybkie, z analityk&#261;.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#8981;</div>
+        <h3>Pozycjonowanie SEO i AI&nbsp;Search</h3>
+        <p>Optymalizujemy Twoj&#261; stron&#281; pod Google i nowe wyszukiwarki AI (ChatGPT, Perplexity). Lokalne SEO, tre&#347;ci, link building.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#9632;</div>
+        <h3>Social media &mdash; Twoje i konkurencji</h3>
+        <p>Analizujemy i prowadzimy Twoje profile. Monitorujemy konkurencj&#281;. Tworzymy tre&#347;ci, kt&oacute;re buduj&#261; zasi&#281;g i zaufanie.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#9881;</div>
+        <h3>Re-audyt po wdro&#380;eniu</h3>
+        <p>Po ka&#380;dym wdro&#380;eniu sprawdzamy efekty. Mierzymy wzrosty pozycji, ruchu, zapyta&#324;. Korygujemy strategi&#281; na bie&#380;&#261;co.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#9733;</div>
+        <h3>Sta&#322;e prowadzenie firmy</h3>
+        <p>Miesi&#281;czna opieka nad ca&#322;&#261; obecno&#347;ci&#261; online: SEO, social media, Google Ads, tre&#347;ci, raportowanie. Jeden partner &mdash; pe&#322;na obs&#322;uga.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,0 720,60 1080,20 C1260,5 1380,40 1440,30 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+</div>
+
+<!-- PROCESS -->
+<section id="proces" style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">Jak dzia&#322;amy</h2>
+    <p class="section-sub">Przejrzysty proces w 4 krokach &mdash; od bezp&#322;atnej rozmowy do realnych efekt&oacute;w.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h3>Bezp&#322;atna konsultacja</h3>
+        <p>Rozmawiamy o Twojej firmie, celach i wyzwaniach. Bez zobowi&#261;za&#324;.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h3>Analiza z AI</h3>
+        <p>Nasze algorytmy analizuj&#261; 1089+ &#378;r&oacute;de&#322; danych o Twojej firmie i konkurencji.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h3>Plan dzia&#322;ania</h3>
+        <p>Otrzymujesz szczeg&oacute;&#322;owy plan z priorytetami, kosztami i harmonogramem.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h3>Wdro&#380;enie + Efekty</h3>
+        <p>Realizujemy plan, mierzymy wyniki i optymalizujemy na bie&#380;&#261;co.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C480,55 960,5 1440,40 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+</div>
+
+<!-- CASE STUDIES -->
+<section id="case-study" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">Efekty naszej pracy</h2>
+    <p class="section-sub">Realne wyniki dla realnych firm. Przed i po wsp&oacute;&#322;pracy z nami.</p>
+    <div class="cases-grid">
+      <div class="case-card">
+        <span class="case-label">Edukacja</span>
+        <h3>Zaj&#281;cia dla dzieci Kielce</h3>
+        <p class="case-before">PRZED: 0 stron w indeksie, brak w Maps</p>
+        <p class="case-after">PO: 16 stron zaindeksowanych, #1 w Maps</p>
+        <p class="case-time">7 dni</p>
+      </div>
+      <div class="case-card">
+        <span class="case-label">Uroda</span>
+        <h3>Salon kosmetyczny Warszawa</h3>
+        <p class="case-before">PRZED: s&#322;aby Instagram, 0 fraz w Top 10</p>
+        <p class="case-after">PO: +35% obserwuj&#261;cych IG, 3 frazy w Top 10</p>
+        <p class="case-time">30 dni</p>
+      </div>
+      <div class="case-card">
+        <span class="case-label">Zdrowie</span>
+        <h3>Fizjoterapia Krak&oacute;w</h3>
+        <p class="case-before">PRZED: brak w Maps, ocena 4.2&#9733;</p>
+        <p class="case-after">PO: #6 w Maps, ocena 4.6&#9733;</p>
+        <p class="case-time">21 dni</p>
+      </div>
+      <div class="case-card">
+        <span class="case-label">Edukacja</span>
+        <h3>Szko&#322;a j&#281;zykowa &#321;&oacute;d&#378;</h3>
+        <p class="case-before">PRZED: minimalne zapytania, brak w Maps</p>
+        <p class="case-after">PO: 4x wi&#281;cej zapyta&#324;, #8 w Maps</p>
+        <p class="case-time">14 dni</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,45 C360,15 720,55 1080,25 C1260,15 1380,35 1440,25 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+</div>
+
+<!-- WHY US -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">Dlaczego Zautomatyzuj Si&#281;?</h2>
+    <p class="section-sub">Nie jeste&#347;my kolejn&#261; agencj&#261;. Dzia&#322;amy inaczej.</p>
+    <div class="why-grid">
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#8593;</div>
+        <h3>Dane, nie opinie</h3>
+        <p>Ka&#380;da rekomendacja oparta na analizie 1089+ &#378;r&oacute;de&#322; danych. &#379;adnego zgadywania.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#10022;</div>
+        <h3>Konkurencja na dw&oacute;ch torach</h3>
+        <p>Analizujemy i Twoj&#261; firm&#281;, i konkurencj&#281; &mdash; wiesz dok&#322;adnie, gdzie jeste&#347; i co robi&#263;.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#9678;</div>
+        <h3>Kompletny pakiet</h3>
+        <p>Strona, SEO, social media, Google Ads, tre&#347;ci &mdash; wszystko w jednym miejscu, od jednego zespo&#322;u.</p>
+      </div>
+      <div class="card">
+        <div class="circle-icon circle-icon-green">&#10084;</div>
+        <h3>Bez um&oacute;w</h3>
+        <p>&#379;adnych d&#322;ugoterminowych um&oacute;w. Zostajesz, bo widzisz efekty &mdash; nie dlatego, &#380;e musisz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,55 480,10 720,40 C960,55 1200,15 1440,35 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+</div>
+
+<!-- PRICING -->
+<section id="cennik" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">Ile to kosztuje?</h2>
+    <p class="section-sub">Przejrzyste ceny. &#379;adnych ukrytych koszt&oacute;w.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Konsultacja</h3>
+        <div class="price-amount">0 z&#322;</div>
+        <p class="price-desc">Bezp&#322;atna rozmowa o Twojej firmie i celach. Bez zobowi&#261;za&#324;.</p>
+        <br><a href="#kontakt" class="btn-pill btn-pill-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Um&oacute;w si&#281;</a>
+      </div>
+      <div class="price-card">
+        <h3>Audyt firmy</h3>
+        <div class="price-amount">1 299 z&#322;</div>
+        <p class="price-desc">Pe&#322;na analiza obecno&#347;ci online z raportem i wnioskami.</p>
+        <br><a href="#kontakt" class="btn-pill btn-pill-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-badge">Najpopularniejszy</div>
+        <h3>Audyt + Plan</h3>
+        <div class="price-amount">1 999 z&#322;</div>
+        <p class="price-desc">Analiza + szczeg&oacute;&#322;owy plan dzia&#322;ania z priorytetami i harmonogramem.</p>
+        <br><a href="#kontakt" class="btn-pill" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
+      </div>
+      <div class="price-card">
+        <h3>Budowa od zera</h3>
+        <div class="price-amount">3 499 z&#322;</div>
+        <p class="price-desc">Strona WWW + SEO + wizyt&oacute;wka Google + social media setup.</p>
+        <br><a href="#kontakt" class="btn-pill btn-pill-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
+      </div>
+      <div class="price-card">
+        <h3>Sta&#322;e prowadzenie</h3>
+        <div class="price-amount">od 1 999 z&#322;<small style="font-size:.55em;color:#7a6b5a">/msc</small></div>
+        <p class="price-desc">Miesi&#281;czna opieka: SEO, social media, tre&#347;ci, raporty, optymalizacja.</p>
+        <br><a href="#kontakt" class="btn-pill btn-pill-outline" style="font-size:.85rem;padding:.5rem 1.2rem">Wybieram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C360,50 720,10 1080,40 C1260,50 1380,25 1440,30 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+</div>
+
+<!-- GUARANTEE -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <div class="guarantee-card">
+      <div class="circle-icon circle-icon-green" style="margin:0 auto 1rem;font-size:1.8rem">&#10003;</div>
+      <h2>Realne efekty albo zwrot pieni&#281;dzy</h2>
+      <p style="margin:1rem 0;color:#6a5c4a;line-height:1.8">
+        <strong>Opcja 1:</strong> Je&#347;li po audycie uznasz, &#380;e raport nie daje warto&#347;ci &mdash; zwracamy 100% kwoty.<br>
+        <strong>Opcja 2:</strong> Je&#347;li po wdro&#380;eniu nie zobaczysz mierzalnych wzrost&oacute;w w um&oacute;wionym terminie &mdash; nast&#281;pny miesi&#261;c gratis.
+      </p>
+      <p style="font-weight:700;color:var(--green);font-size:1.1rem;margin-top:1.2rem">Zero ryzyka po Twojej stronie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C480,5 960,55 1440,20 L1440,60 L0,60Z" fill="#f5efe6"/></svg>
+</div>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">Najcz&#281;&#347;ciej zadawane pytania</h2>
+    <p class="section-sub">Odpowiedzi na pytania, kt&oacute;re s&#322;yszymy najcz&#281;&#347;ciej.</p>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Ile trwa audyt firmy?</div><div class="faq-a">Standardowy audyt realizujemy w 3-5 dni roboczych. Otrzymujesz pe&#322;ny raport z wnioskami i rekomendacjami.</div></div>
+      <div class="faq-item"><div class="faq-q">Czy musz&#281; mie&#263; stron&#281; WWW?</div><div class="faq-a">Nie. Je&#347;li nie masz strony, mo&#380;emy j&#261; stworzy&#263; w ramach pakietu &bdquo;Budowa od zera&rdquo;. Audyt obejmuje te&#380; firmy bez strony.</div></div>
+      <div class="faq-item"><div class="faq-q">Co oznacza &bdquo;1089+ &#378;r&oacute;de&#322;&rdquo;?</div><div class="faq-a">Nasze algorytmy AI analizuj&#261; dane z Google, social media, katalog&oacute;w firm, recenzji, forum i wielu innych &#378;r&oacute;de&#322; &mdash; &#322;&#261;cznie ponad 1089.</div></div>
+      <div class="faq-item"><div class="faq-q">Czy podpisuj&#281; d&#322;ug&#261; umow&#281;?</div><div class="faq-a">Nie. Dzia&#322;amy bez d&#322;ugoterminowych um&oacute;w. Mo&#380;esz zrezygnowa&#263; w ka&#380;dym miesi&#261;cu. Zostajesz, bo widzisz efekty.</div></div>
+      <div class="faq-item"><div class="faq-q">Jak szybko widz&#281; efekty?</div><div class="faq-a">Pierwsze efekty (indeksacja, widoczno&#347;&#263; w Maps) cz&#281;sto w 7-14 dni. SEO organiczne to proces 2-3 miesi&#281;cy na trwa&#322;e wyniki.</div></div>
+      <div class="faq-item"><div class="faq-q">Czy obs&#322;ugujecie firmy spoza Polski?</div><div class="faq-a">Tak. Obs&#322;ugujemy firmy dzia&#322;aj&#261;ce na rynku polskim niezale&#380;nie od lokalizacji. Pracujemy zdalnie.</div></div>
+      <div class="faq-item"><div class="faq-q">Co je&#347;li mam ju&#380; agencj&#281; marketingow&#261;?</div><div class="faq-a">Mo&#380;esz zam&oacute;wi&#263; sam audyt &mdash; poka&#380;emy, co Twoja obecna agencja robi dobrze, a co mo&#380;na poprawi&#263;.</div></div>
+      <div class="faq-item"><div class="faq-q">Jak wygl&#261;da bezp&#322;atna konsultacja?</div><div class="faq-a">15-20 minut rozmowy online lub telefonicznie. Poznajemy Twoj&#261; firm&#281;, cele i wyzwania. Bez sprzeda&#380;y na si&#322;&#281;.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,25 C360,55 720,5 1080,35 C1260,48 1380,20 1440,25 L1440,60 L0,60Z" fill="#faf7f2"/></svg>
+</div>
+
+<!-- CTA FINAL -->
+<section id="kontakt" class="cta-final" style="background:var(--bg)">
+  <div class="container">
+    <h2>Gotowy &#380;eby Twoja firma by&#322;a <em style="color:var(--primary)">#1</em>?</h2>
+    <p style="color:#6a5c4a;margin-bottom:2rem;font-size:1.05rem">Um&oacute;w bezp&#322;atn&#261; konsultacj&#281; i sprawd&#378;, co mo&#380;emy zrobi&#263; dla Twojej firmy.</p>
+    <a href="mailto:kontakt@zautomatyzujsie.pl" class="btn-pill" style="font-size:1.05rem;padding:.8rem 2.2rem">Rozpocznij wsp&oacute;&#322;prac&#281;</a>
+    <br><br>
+    <a href="mailto:kontakt@zautomatyzujsie.pl" class="email-link">kontakt@zautomatyzujsie.pl</a>
+    <div class="social-links">
+      <a href="#" title="Facebook">f</a>
+      <a href="#" title="Instagram">&#9737;</a>
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="TikTok">&#9834;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4 style="font-family:Georgia,serif;color:var(--dark)">Zautomatyzuj Si&#281;</h4>
+      <p style="font-size:.9rem;color:#7a6b5a;line-height:1.6">&#321;&#261;czymy AI z marketingiem cyfrowym, &#380;eby Twoja firma by&#322;a widoczna tam, gdzie szukaj&#261; klienci.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Us&#322;ugi</h4>
+      <a href="#uslugi">Analiza firmy</a>
+      <a href="#uslugi">Strony WWW</a>
+      <a href="#uslugi">SEO i AI Search</a>
+      <a href="#uslugi">Social media</a>
+    </div>
+    <div class="footer-col">
+      <h4>Firma</h4>
+      <a href="#proces">Jak dzia&#322;amy</a>
+      <a href="#case-study">Case Study</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:kontakt@zautomatyzujsie.pl">kontakt@zautomatyzujsie.pl</a>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Zautomatyzuj Si&#281;. Wszelkie prawa zastrze&#380;one.</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open')});
+    item.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
