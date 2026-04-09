@@ -119,10 +119,10 @@ a{text-decoration:none;color:inherit}
 .dash-line .arrow{color:var(--accent)}
 .dash-input{margin-top:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 16px;font-family:monospace;font-size:13px;color:rgba(255,255,255,.4);position:relative}
 .dash-response{margin-top:12px;font-family:monospace;font-size:13px;color:rgba(255,255,255,.25);position:relative}
-/* Dashboard feed */
-.dash-feed{height:140px;overflow:hidden;position:relative;margin-bottom:12px}
-.dash-feed-line{font-family:'Courier New',monospace;font-size:12px;color:rgba(255,255,255,.6);padding:4px 0;display:flex;align-items:center;gap:8px;white-space:nowrap;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
-.dash-feed-line.visible{opacity:1;transform:translateY(0)}
+/* Dashboard feed - scrolling terminal */
+.dash-feed-wrap{height:160px;overflow:hidden;position:relative;margin-bottom:12px}
+.dash-feed{transition:transform .4s ease}
+.dash-feed-line{font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,.65);padding:5px 0;display:flex;align-items:center;gap:8px;white-space:nowrap;line-height:1.4}
 .df-status{font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;font-family:'Courier New',monospace}
 .df-status.ok{background:rgba(16,185,129,.15);color:#10B981}
 .df-status.warn{background:rgba(245,158,11,.15);color:#f59e0b}
@@ -392,28 +392,51 @@ Zautomatyzuj Się
 <span>Panel audytu &middot; zautomatyzujsie.com</span>
 </div>
 <div class="dash-title">ANALIZA FIRMY</div>
-<div class="dash-feed" id="dashFeed">
-<div class="dash-feed-line"><span class="df-status ok">OK</span> Szybkość ładowania: First Contentful Paint &lt; 1.5s</div>
+<div class="dash-feed-wrap"><div class="dash-feed" id="dashFeed">
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Inicjalizacja audytu: zautomatyzujsie.com</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Szybkość ładowania: FCP 1.2s, LCP 2.1s</div>
 <div class="dash-feed-line"><span class="df-status ok">OK</span> Mobile-friendly: viewport, responsywność, dotyk</div>
 <div class="dash-feed-line"><span class="df-status warn">!!</span> Schema markup: brak LocalBusiness i FAQPage</div>
 <div class="dash-feed-line"><span class="df-status ok">OK</span> Struktura nagłówków H1-H6: poprawna hierarchia</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> SSL certyfikat: ważny do 2027-03-15</div>
+<div class="dash-feed-line"><span class="df-status warn">!!</span> Obrazy: 4 bez alt-tekstu, 2 &gt; 500KB</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Robots.txt: poprawny, sitemap zadeklarowany</div>
 <div class="dash-feed-line"><span class="df-status scan">~~</span> Skanowanie pozycji Google na 47 fraz kluczowych...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> "fryzjer kraków" → pozycja #3 organic ↑</div>
 <div class="dash-feed-line"><span class="df-status ok">OK</span> Google Maps Local Pack: pozycja #3 na główną frazę</div>
+<div class="dash-feed-line"><span class="df-status warn">!!</span> Featured Snippets: 0 — brak optymalizacji FAQ</div>
 <div class="dash-feed-line"><span class="df-status warn">!!</span> Meta description: za krótki na 3 podstronach</div>
-<div class="dash-feed-line"><span class="df-status scan">~~</span> Analiza Instagram: 127 postów, engagement rate 4.8%</div>
-<div class="dash-feed-line"><span class="df-status ok">OK</span> Facebook: 100+ postów przeanalizowanych, reach +127%</div>
-<div class="dash-feed-line"><span class="df-status scan">~~</span> TikTok deep dive: 89 filmów, avg views 12.4K</div>
-<div class="dash-feed-line"><span class="df-status warn">!!</span> Google Business: brak postów od 45 dni</div>
-<div class="dash-feed-line"><span class="df-status ok">OK</span> Opinie Google: 4.9★ — 89 recenzji, sentyment pozytywny</div>
-<div class="dash-feed-line"><span class="df-status scan">~~</span> Konkurencja Google: 8 firm wyżej, analiza 5 czynników...</div>
-<div class="dash-feed-line"><span class="df-status scan">~~</span> Konkurencja Instagram: 7 profili, min. 100 postów każdy</div>
-<div class="dash-feed-line"><span class="df-status ok">OK</span> AI Search: cytowany w ChatGPT na 2 frazy</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Linki wewnętrzne: 34 linki, struktura poprawna</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Analiza Google Business Profile...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> GBP kategorie: główna + 3 dodatkowe</div>
+<div class="dash-feed-line"><span class="df-status warn">!!</span> GBP posty: brak od 45 dni — spadek widoczności</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> GBP zdjęcia: 23 zdjęcia, jakość dobra</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Opinie Google: 4.9★ — 89 recenzji, 0 bez odpowiedzi</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Deep dive Instagram: analiza 127 postów...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Instagram ER: 4.8% — powyżej średniej branży (2.1%)</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Reels: avg 12.4K views, completion rate 67%</div>
+<div class="dash-feed-line"><span class="df-status warn">!!</span> Hashtagi: 8 powtarzalnych — rotacja zalecana</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Deep dive Facebook: analiza 104 postów...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Facebook reach: +127% vs kwartał poprzedni</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Opinie FB: 4.7★ — 31 recenzji, sentyment pozytywny</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Deep dive TikTok: analiza 89 filmów...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> TikTok avg views: 12.4K, top wideo: 145K</div>
+<div class="dash-feed-line"><span class="df-status warn">!!</span> TikTok częstotliwość: 2x/tyg — rekomendacja 4x</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Analiza konkurencji Google: 8 firm wyżej...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Konkurent #1: słabszy profil linków — szansa</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Konkurent #3: brak schema markup — przewaga</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Konkurencja social: 7 profili IG × 100 postów...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> AI Search ChatGPT: cytowany na 2 z 5 fraz</div>
 <div class="dash-feed-line"><span class="df-status warn">!!</span> Perplexity: brak widoczności — wymaga optymalizacji</div>
-<div class="dash-feed-line"><span class="df-status ok">OK</span> Profil linków: 142 domeny, 0 toksycznych</div>
-<div class="dash-feed-line"><span class="df-status scan">~~</span> Generowanie raportu: pełen z dowodami + czysty + plan...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Google AI Mode: widoczny w 1 zapytaniu</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Profil linków: 142 domeny, DR avg 28, 0 toksycznych</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> NAP spójność: 94% — 2 katalogi do poprawy</div>
+<div class="dash-feed-line"><span class="df-status scan">~~</span> Generowanie raportu pełnego z dowodami...</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Raport czysty: 47 rekomendacji bez żargonu</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Plan wdrożeniowy: 14 kroków, 3 fazy, priorytetyzacja</div>
 <div class="dash-feed-line"><span class="df-status ok">OK</span> Gotowe materiały: 12 postów, 4 maile, opisy GBP</div>
-<div class="dash-feed-line"><span class="df-status ok">OK</span> Plan wdrożeniowy: 14 kroków w 3 fazach, priorytetyzacja</div>
-</div>
+<div class="dash-feed-line"><span class="df-status ok">OK</span> Audyt zakończony. Czas: 4m 32s. Wynik: 78/100</div>
+</div></div>
 <div class="dash-input">zautomatyzujsie.com<span class="dash-cursor"></span></div>
 </div>
 </div>
@@ -831,34 +854,33 @@ requestAnimationFrame(()=>{document.querySelectorAll('.reveal').forEach(el=>{
 const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');
 })});
 
-// Dashboard feed - terminal scroll animation
+// Dashboard feed - continuous scroll, looped
 (function(){
 const feed=document.getElementById('dashFeed');
 if(!feed)return;
-const lines=[...feed.querySelectorAll('.dash-feed-line')];
-let shown=0;
-const maxVisible=5;
-function showNext(){
-if(shown<lines.length){
-lines[shown].classList.add('visible');
-shown++;
-// Hide old lines by scrolling up
-if(shown>maxVisible){
-feed.style.transition='transform .4s ease';
-feed.style.transform='translateY(-'+(shown-maxVisible)*28+'px)';
-}
-}else{
-// Reset and loop
-lines.forEach(l=>l.classList.remove('visible'));
+const wrap=feed.parentElement;
+const lineH=26; // approx line height
+const visibleLines=Math.floor(wrap.offsetHeight/lineH)||6;
+let offset=0;
+// Clone all lines for seamless loop
+const origHTML=feed.innerHTML;
+feed.innerHTML=origHTML+origHTML;
+
+function scrollStep(){
+offset+=lineH;
+const totalOrigH=feed.children.length/2*lineH;
+feed.style.transition='transform .5s ease';
+feed.style.transform='translateY(-'+offset+'px)';
+// When scrolled past original set, jump back seamlessly
+if(offset>=totalOrigH){
+setTimeout(()=>{
 feed.style.transition='none';
+offset=0;
 feed.style.transform='translateY(0)';
-shown=0;
-setTimeout(showNext,500);
-return;
+},550);
 }
-setTimeout(showNext,800+Math.random()*1200);
 }
-setTimeout(showNext,1500);
+setInterval(scrollStep,1200);
 })();
 
 // Brief ticker rotation
