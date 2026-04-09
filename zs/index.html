@@ -95,10 +95,10 @@ a{text-decoration:none;color:inherit}
 /* Brief ticker */
 .brief-ticker{max-width:680px;margin:0 auto 32px;height:44px;overflow:hidden;position:relative}
 .brief-ticker-inner{position:relative;height:100%}
-.brief-line{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;height:44px;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;font-size:14px;color:var(--text);font-family:'Courier New',monospace;letter-spacing:-.01em;font-weight:500}
+.brief-line{position:absolute;top:0;left:0;right:0;display:flex;align-items:flex-start;justify-content:center;gap:10px;min-height:44px;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;font-size:14px;color:var(--text);font-family:'Courier New',monospace;letter-spacing:-.01em;font-weight:500;line-height:1.5;padding:0 20px}
 .brief-line.active{opacity:1;transform:translateY(0)}
-.brief-tag{background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:1px;flex-shrink:0;font-family:'Inter',sans-serif}
-@media(max-width:640px){.brief-ticker{height:60px}.brief-line{font-size:11px;flex-wrap:wrap;text-align:center;justify-content:center;height:60px}}
+.brief-tag{background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:1px;flex-shrink:0;font-family:'Inter',sans-serif;margin-top:2px}
+@media(max-width:640px){.brief-ticker{height:60px}.brief-line{font-size:11px;text-align:left;height:auto;min-height:60px}}
 
 .hero .container{position:relative;z-index:1;text-align:center}
 .hero-badge{margin-bottom:24px}
