@@ -145,6 +145,52 @@ a{text-decoration:none;color:inherit}
 .platform-circle.google{background:#4285f4}.platform-circle.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.platform-circle.fb{background:#1877f2}.platform-circle.tt{background:#000}.platform-circle.ai{background:linear-gradient(135deg,#10a37f,#1a7f5a)}
 .services-visual-code{font-family:monospace;font-size:13px;color:rgba(255,255,255,.5);position:relative;line-height:2}
 
+/* REPORT PREVIEW */
+.report-section{padding:100px 0;background:var(--white)}
+.report-header{text-align:center;margin-bottom:20px}
+.report-header h2{font-size:clamp(32px,4vw,48px);font-weight:800;color:var(--navy);margin-bottom:12px}
+.report-header p{font-size:17px;color:var(--text-sec);max-width:640px;margin:0 auto;line-height:1.7}
+.report-intro{text-align:center;font-size:15px;color:var(--text-sec);max-width:700px;margin:0 auto 48px;line-height:1.7}
+.report-intro strong{color:var(--text)}
+.report-pages{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.report-page{background:#fff;border:1px solid #e5e7eb;border-radius:12px;width:340px;box-shadow:0 8px 40px rgba(10,16,69,.08);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.report-page:hover{transform:translateY(-6px) rotate(-0.5deg);box-shadow:0 16px 60px rgba(10,16,69,.14)}
+.report-page-bar{height:28px;background:var(--navy);display:flex;align-items:center;padding:0 12px;gap:6px}
+.report-page-bar span{width:8px;height:8px;border-radius:50%}
+.report-page-bar span:nth-child(1){background:#ef4444}
+.report-page-bar span:nth-child(2){background:#f59e0b}
+.report-page-bar span:nth-child(3){background:#22c55e}
+.report-page-bar .rp-title{margin-left:8px;font-size:10px;color:rgba(255,255,255,.5);font-family:monospace}
+.report-page-body{padding:24px 20px;font-size:12px;line-height:1.7;color:var(--text)}
+.rp-h1{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px;font-family:'Inter',sans-serif}
+.rp-h2{font-size:13px;font-weight:700;color:var(--navy);margin:14px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--accent);display:inline-block}
+.rp-meta{font-size:10px;color:var(--text-sec);margin-bottom:14px}
+.rp-toc{list-style:none;padding:0}
+.rp-toc li{padding:3px 0;font-size:11px;color:var(--text-sec);display:flex;justify-content:space-between;border-bottom:1px dotted #e5e7eb}
+.rp-toc li span{color:var(--navy);font-weight:600}
+.rp-row{display:flex;justify-content:space-between;padding:4px 0;font-size:11px;border-bottom:1px solid #f0f0f0}
+.rp-row .label{color:var(--text-sec)}
+.rp-row .val{font-weight:700}
+.rp-row .val.green{color:#10B981}
+.rp-row .val.red{color:#ef4444}
+.rp-row .val.orange{color:#f59e0b}
+.rp-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:11px}
+.rp-bar-label{width:80px;color:var(--text-sec);flex-shrink:0}
+.rp-bar{flex:1;height:6px;background:#f0f0f0;border-radius:3px;overflow:hidden}
+.rp-bar-fill{height:100%;border-radius:3px}
+.rp-bar-val{width:36px;text-align:right;font-weight:700;font-size:10px;color:var(--navy)}
+.report-cta{text-align:center}
+.report-cta p{font-size:15px;color:var(--text);font-weight:600;margin-bottom:6px}
+.report-cta .sub{font-size:14px;color:var(--text-sec);font-weight:400;margin-bottom:16px}
+
+/* Report slider - continuous right-to-left marquee */
+.report-slider{overflow:hidden;padding:20px 0;margin-bottom:48px}
+.report-track{display:flex;gap:28px;animation:slideReport 25s linear infinite;width:max-content}
+.report-track:hover{animation-play-state:paused}
+@keyframes slideReport{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+@media(max-width:768px){.report-page{width:300px;min-width:300px}}
+
 /* ERP / WDROŻENIA */
 .erp-section{padding:100px 0;background:var(--white)}
 .erp-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
@@ -327,6 +373,7 @@ Zautomatyzuj Się
 <div class="nav-links">
 <a href="#uslugi">Usługi</a>
 <a href="#metoda">Jak Działamy</a>
+<a href="#raport">Raport</a>
 <a href="#wdrozenia" style="color:var(--accent);font-weight:700">Gotowi na KSeF!</a>
 <a href="#case-study">Case Study</a>
 <a href="#cennik">Cennik</a>
@@ -342,6 +389,7 @@ Zautomatyzuj Się
 <div class="mobile-menu" id="mobileMenu">
 <a href="#uslugi" onclick="closeMenu()">Usługi</a>
 <a href="#metoda" onclick="closeMenu()">Jak Działamy</a>
+<a href="#raport" onclick="closeMenu()">Raport</a>
 <a href="#wdrozenia" onclick="closeMenu()" style="color:var(--accent);font-weight:700">Gotowi na KSeF!</a>
 <a href="#case-study" onclick="closeMenu()">Case Study</a>
 <a href="#cennik" onclick="closeMenu()">Cennik</a>
@@ -545,6 +593,161 @@ analyzing 1089+ sources<br>
 </div>
 </div>
 
+</div>
+</div>
+</section>
+
+<!-- RAPORT PRZYKŁADOWY -->
+<section class="report-section" id="raport">
+<div class="container">
+<div class="report-header reveal">
+<span class="section-badge">Raport</span>
+<h2>Co dokładnie dostajesz?</h2>
+<p>Każdy klient otrzymuje kompletny pakiet raportów. Poniżej przykładowe fragmenty — struktura i jakość są identyczne z tym, co otrzymasz Ty.</p>
+</div>
+<p class="report-intro reveal">Poniżej trzy strony z przykładowego raportu — <strong>spis treści, analiza pozycji w Google i audyt social media</strong>. Nazwy firm zostały zmienione, ale szczegółowość jest realna.</p>
+</div>
+
+<div class="report-slider">
+<div class="report-track">
+
+<!-- Strona 1: Spis treści -->
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html</span></div>
+<div class="report-page-body">
+<div class="rp-h1">Pełny raport analityczny</div>
+<div class="rp-meta">Salon Piękna Anna · Kraków · Data: 04.2026 · Wersja 1.0</div>
+<div class="rp-h2">Spis treści</div>
+<ol class="rp-toc">
+<li>Podsumowanie wykonawcze <span>str. 3</span></li>
+<li>Audyt strony WWW (technika, treść, szybkość) <span>str. 5</span></li>
+<li>Pozycje w Google — 34 frazy kluczowe <span>str. 12</span></li>
+<li>Google Business Profile — pełna analiza <span>str. 18</span></li>
+<li>Opinie i reputacja online <span>str. 22</span></li>
+<li>Instagram — analiza 127 postów <span>str. 26</span></li>
+<li>Facebook — analiza 104 postów <span>str. 34</span></li>
+<li>TikTok — analiza 89 filmów <span>str. 40</span></li>
+<li>Widoczność w wyszukiwarkach AI <span>str. 45</span></li>
+<li>Analiza konkurencji — Google (8 firm) <span>str. 48</span></li>
+<li>Analiza konkurencji — social media (7×3 platformy) <span>str. 58</span></li>
+<li>SWOT i diagnoza kluczowych problemów <span>str. 72</span></li>
+<li>Strategia 90-dniowa z KPI <span>str. 76</span></li>
+<li>Źródła i metodologia badań <span>str. 82</span></li>
+</ol>
+</div>
+</div>
+
+<!-- Strona 2: Pozycje Google -->
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html · str. 12</span></div>
+<div class="report-page-body">
+<div class="rp-h2">3. Pozycje w Google — frazy kluczowe</div>
+<div class="rp-row"><span class="label">Fraza</span><span class="label">Pozycja</span></div>
+<div class="rp-row"><span class="label">salon kosmetyczny kraków</span><span class="val green">#3 ↑</span></div>
+<div class="rp-row"><span class="label">kosmetyczka kraków centrum</span><span class="val green">#5 ↑</span></div>
+<div class="rp-row"><span class="label">makijaż permanentny kraków</span><span class="val orange">#11</span></div>
+<div class="rp-row"><span class="label">mezoterapia kraków cena</span><span class="val green">#7 ↑</span></div>
+<div class="rp-row"><span class="label">peeling kawitacyjny kraków</span><span class="val red">#24</span></div>
+<div class="rp-row"><span class="label">depilacja laserowa kraków</span><span class="val orange">#14</span></div>
+<div class="rp-row"><span class="label">salon urody kraków opinie</span><span class="val green">#4 ↑</span></div>
+<div style="margin-top:10px">
+<div class="rp-bar-row"><span class="rp-bar-label">Top 3</span><div class="rp-bar"><div class="rp-bar-fill" style="width:18%;background:#10B981"></div></div><span class="rp-bar-val">6/34</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Top 10</span><div class="rp-bar"><div class="rp-bar-fill" style="width:44%;background:var(--accent)"></div></div><span class="rp-bar-val">15/34</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Top 20</span><div class="rp-bar"><div class="rp-bar-fill" style="width:71%;background:#f59e0b"></div></div><span class="rp-bar-val">24/34</span></div>
+</div>
+</div>
+</div>
+
+<!-- Strona 3: Social media -->
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html · str. 26</span></div>
+<div class="report-page-body">
+<div class="rp-h2">6. Instagram — analiza 127 postów</div>
+<div class="rp-row"><span class="label">Obserwujący</span><span class="val">2,847</span></div>
+<div class="rp-row"><span class="label">Engagement Rate</span><span class="val green">4.8%</span></div>
+<div class="rp-row"><span class="label">Avg. likes/post</span><span class="val">137</span></div>
+<div class="rp-row"><span class="label">Reels avg. views</span><span class="val">12,400</span></div>
+<div class="rp-row"><span class="label">Najlepszy post</span><span class="val green">2,340 likes</span></div>
+<div class="rp-row"><span class="label">Częstotliwość</span><span class="val orange">3x/tyg</span></div>
+<div class="rp-h2" style="margin-top:12px">Porównanie z konkurencją</div>
+<div class="rp-bar-row"><span class="rp-bar-label">Ty: ER</span><div class="rp-bar"><div class="rp-bar-fill" style="width:80%;background:#10B981"></div></div><span class="rp-bar-val">4.8%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 1</span><div class="rp-bar"><div class="rp-bar-fill" style="width:45%;background:var(--accent)"></div></div><span class="rp-bar-val">2.7%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 2</span><div class="rp-bar"><div class="rp-bar-fill" style="width:52%;background:var(--accent)"></div></div><span class="rp-bar-val">3.1%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 3</span><div class="rp-bar"><div class="rp-bar-fill" style="width:30%;background:#ef4444"></div></div><span class="rp-bar-val">1.8%</span></div>
+</div>
+</div>
+
+<!-- Duplikaty dla seamless loop -->
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html</span></div>
+<div class="report-page-body">
+<div class="rp-h1">Pełny raport analityczny</div>
+<div class="rp-meta">Salon Piękna Anna · Kraków · Data: 04.2026 · Wersja 1.0</div>
+<div class="rp-h2">Spis treści</div>
+<ol class="rp-toc">
+<li>Podsumowanie wykonawcze <span>str. 3</span></li>
+<li>Audyt strony WWW (technika, treść, szybkość) <span>str. 5</span></li>
+<li>Pozycje w Google — 34 frazy kluczowe <span>str. 12</span></li>
+<li>Google Business Profile — pełna analiza <span>str. 18</span></li>
+<li>Opinie i reputacja online <span>str. 22</span></li>
+<li>Instagram — analiza 127 postów <span>str. 26</span></li>
+<li>Facebook — analiza 104 postów <span>str. 34</span></li>
+<li>TikTok — analiza 89 filmów <span>str. 40</span></li>
+<li>Widoczność w wyszukiwarkach AI <span>str. 45</span></li>
+<li>Analiza konkurencji — Google (8 firm) <span>str. 48</span></li>
+<li>Analiza konkurencji — social media (7×3) <span>str. 58</span></li>
+<li>SWOT i diagnoza kluczowych problemów <span>str. 72</span></li>
+<li>Strategia 90-dniowa z KPI <span>str. 76</span></li>
+<li>Źródła i metodologia badań <span>str. 82</span></li>
+</ol>
+</div>
+</div>
+
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html · str. 12</span></div>
+<div class="report-page-body">
+<div class="rp-h2">3. Pozycje w Google — frazy kluczowe</div>
+<div class="rp-row"><span class="label">salon kosmetyczny kraków</span><span class="val green">#3 ↑</span></div>
+<div class="rp-row"><span class="label">kosmetyczka kraków centrum</span><span class="val green">#5 ↑</span></div>
+<div class="rp-row"><span class="label">makijaż permanentny kraków</span><span class="val orange">#11</span></div>
+<div class="rp-row"><span class="label">mezoterapia kraków cena</span><span class="val green">#7 ↑</span></div>
+<div class="rp-row"><span class="label">peeling kawitacyjny kraków</span><span class="val red">#24</span></div>
+<div class="rp-row"><span class="label">depilacja laserowa kraków</span><span class="val orange">#14</span></div>
+<div class="rp-row"><span class="label">salon urody kraków opinie</span><span class="val green">#4 ↑</span></div>
+<div style="margin-top:10px">
+<div class="rp-bar-row"><span class="rp-bar-label">Top 3</span><div class="rp-bar"><div class="rp-bar-fill" style="width:18%;background:#10B981"></div></div><span class="rp-bar-val">6/34</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Top 10</span><div class="rp-bar"><div class="rp-bar-fill" style="width:44%;background:var(--accent)"></div></div><span class="rp-bar-val">15/34</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Top 20</span><div class="rp-bar"><div class="rp-bar-fill" style="width:71%;background:#f59e0b"></div></div><span class="rp-bar-val">24/34</span></div>
+</div>
+</div>
+</div>
+
+<div class="report-page">
+<div class="report-page-bar"><span></span><span></span><span></span><span class="rp-title">raport-pelny.html · str. 26</span></div>
+<div class="report-page-body">
+<div class="rp-h2">6. Instagram — analiza 127 postów</div>
+<div class="rp-row"><span class="label">Obserwujący</span><span class="val">2,847</span></div>
+<div class="rp-row"><span class="label">Engagement Rate</span><span class="val green">4.8%</span></div>
+<div class="rp-row"><span class="label">Avg. likes/post</span><span class="val">137</span></div>
+<div class="rp-row"><span class="label">Reels avg. views</span><span class="val">12,400</span></div>
+<div class="rp-row"><span class="label">Najlepszy post</span><span class="val green">2,340 likes</span></div>
+<div class="rp-row"><span class="label">Częstotliwość</span><span class="val orange">3x/tyg</span></div>
+<div class="rp-h2" style="margin-top:12px">Porównanie z konkurencją</div>
+<div class="rp-bar-row"><span class="rp-bar-label">Ty: ER</span><div class="rp-bar"><div class="rp-bar-fill" style="width:80%;background:#10B981"></div></div><span class="rp-bar-val">4.8%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 1</span><div class="rp-bar"><div class="rp-bar-fill" style="width:45%;background:var(--accent)"></div></div><span class="rp-bar-val">2.7%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 2</span><div class="rp-bar"><div class="rp-bar-fill" style="width:52%;background:var(--accent)"></div></div><span class="rp-bar-val">3.1%</span></div>
+<div class="rp-bar-row"><span class="rp-bar-label">Konkurent 3</span><div class="rp-bar"><div class="rp-bar-fill" style="width:30%;background:#ef4444"></div></div><span class="rp-bar-val">1.8%</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="container">
+<div class="report-cta reveal">
+<p>To nie jest kolejny ogólnikowy raport.</p>
+<p class="sub">Kompletna analiza Twojej firmy, konkurencji i rynku — z krokami opisanymi tak, żebyś mógł je wdrożyć sam lub razem z nami.</p>
+<a href="#kontakt" class="btn btn-primary">Otrzymaj taki raport dla swojej firmy</a>
 </div>
 </div>
 </section>
