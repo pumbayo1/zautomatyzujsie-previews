@@ -61,47 +61,66 @@ a{text-decoration:none;color:inherit}
 .mobile-menu a{display:block;padding:12px 0;font-size:16px;font-weight:500;color:var(--text);border-bottom:1px solid #f0f0f0}
 .mobile-menu .btn{margin-top:16px;width:100%;text-align:center}
 
-/* HERO */
-.hero{padding:120px 0 80px;background:#0a0a1a;position:relative;overflow:hidden}
+/* HERO - light bg like base, with data rain + dashboard backdrop */
+.hero{padding:120px 0 80px;background:linear-gradient(180deg,var(--light-bg) 0%,#fff 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle,#c4c9f0 1px,transparent 1px);background-size:24px 24px;opacity:.4;pointer-events:none}
 
-/* Blue orb behind title */
-.hero-orb{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.18) 0%,rgba(37,99,235,.05) 40%,transparent 70%);border-radius:50%;pointer-events:none;animation:orbPulse 6s ease-in-out infinite;z-index:0}
-@keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
-
-/* Data rain container */
+/* Data rain - light theme version */
 .data-rain{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;justify-content:space-around;overflow:hidden;pointer-events:none;z-index:0}
-.data-column{display:flex;flex-direction:column;gap:14px;animation:rainScroll linear infinite;font-family:'Courier New',monospace;font-size:13px;color:rgba(37,99,235,.2);white-space:nowrap;will-change:transform}
+.data-column{display:flex;flex-direction:column;gap:14px;animation:rainScroll linear infinite;font-family:'Courier New',monospace;font-size:12px;color:rgba(10,16,69,.07);white-space:nowrap;will-change:transform}
 .data-column span{display:block;padding:2px 0}
-.data-column span.bright{color:rgba(37,99,235,.5);animation:dataPulse 3s ease infinite}
+.data-column span.bright{color:rgba(10,16,69,.18);animation:dataPulse 3s ease infinite}
 .dc1{animation-duration:20s}.dc2{animation-duration:17s}.dc3{animation-duration:24s}.dc4{animation-duration:19s}.dc5{animation-duration:26s}.dc6{animation-duration:15s}.dc7{animation-duration:22s}.dc8{animation-duration:18s}.dc9{animation-duration:28s}.dc10{animation-duration:21s}
 @keyframes rainScroll{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
-@keyframes dataPulse{0%,100%{opacity:.2}50%{opacity:.6}}
+@keyframes dataPulse{0%,100%{opacity:.07}50%{opacity:.22}}
 
-/* Scanning line */
-.hero-scanline{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(37,99,235,.3) 30%,rgba(37,99,235,.5) 50%,rgba(37,99,235,.3) 70%,transparent 100%);box-shadow:0 0 12px rgba(37,99,235,.3),0 0 30px rgba(37,99,235,.1);z-index:1;animation:scanMove 8s ease-in-out infinite;pointer-events:none}
+/* Scanning line - more visible, navy colored */
+.hero-scanline{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(10,16,69,.15) 20%,rgba(37,99,235,.4) 50%,rgba(10,16,69,.15) 80%,transparent 100%);box-shadow:0 0 20px rgba(37,99,235,.25),0 0 60px rgba(37,99,235,.08);z-index:1;animation:scanMove 6s ease-in-out infinite;pointer-events:none}
 @keyframes scanMove{0%{top:-2px;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
 
-/* Gradient overlay for readability */
-.hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(10,10,26,.2) 0%,rgba(10,10,26,.4) 40%,rgba(10,10,26,.6) 70%,rgba(10,10,26,.8) 100%);z-index:1;pointer-events:none}
+/* Dashboard backdrop panels - light theme, subtle */
+.hero-dashboard-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;max-width:1300px;display:grid;grid-template-columns:1fr 1fr;gap:20px;opacity:.12;pointer-events:none;z-index:0}
+.dbg-panel{background:var(--navy);border-radius:16px;padding:20px;color:rgba(255,255,255,.9);font-size:12px;overflow:hidden}
+.dbg-panel-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:12px}
+.dbg-bars{display:flex;align-items:flex-end;gap:6px;height:50px;margin-bottom:10px}
+.dbg-bar{flex:1;border-radius:3px 3px 0 0;transform-origin:bottom;transform:scaleY(0);animation:growBar 2s ease forwards}
+.dbg-bar:nth-child(1){height:35%;background:#2563eb;animation-delay:.5s}
+.dbg-bar:nth-child(2){height:55%;background:#2563eb;animation-delay:.7s}
+.dbg-bar:nth-child(3){height:45%;background:#2563eb;animation-delay:.9s}
+.dbg-bar:nth-child(4){height:75%;background:#10B981;animation-delay:1.1s}
+.dbg-bar:nth-child(5){height:60%;background:#10B981;animation-delay:1.3s}
+.dbg-bar:nth-child(6){height:85%;background:#10B981;animation-delay:1.5s}
+.dbg-bar:nth-child(7){height:70%;background:#10B981;animation-delay:1.7s}
+.dbg-bar:nth-child(8){height:92%;background:#10B981;animation-delay:1.9s}
+@keyframes growBar{to{transform:scaleY(1)}}
+.dbg-row{display:flex;justify-content:space-between;font-family:monospace;font-size:11px;margin-bottom:6px}
+.dbg-row .label{color:rgba(255,255,255,.4)}
+.dbg-row .val{color:#10B981;font-weight:700}
+.dbg-progress{height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-bottom:8px;overflow:hidden}
+.dbg-progress-fill{height:100%;border-radius:3px;transform-origin:left;transform:scaleX(0);animation:fillProg 2.5s ease forwards}
+.dbg-progress-fill.p1{width:72%;background:#2563eb;animation-delay:1s}
+.dbg-progress-fill.p2{width:88%;background:#10B981;animation-delay:1.3s}
+.dbg-progress-fill.p3{width:56%;background:#2563eb;animation-delay:1.6s}
+.dbg-progress-fill.p4{width:94%;background:#10B981;animation-delay:1.9s}
+@keyframes fillProg{to{transform:scaleX(1)}}
 
 .hero .container{position:relative;z-index:2;text-align:center}
 .hero-badge{margin-bottom:24px}
-.hero-badge .pill{background:rgba(37,99,235,.12);color:rgba(255,255,255,.7);border:1px solid rgba(37,99,235,.2)}
-.hero h1{font-size:clamp(48px,7vw,80px);font-weight:800;line-height:1.08;color:#fff;margin-bottom:20px;letter-spacing:-0.03em}
-.hero-sub{font-size:18px;line-height:1.7;color:rgba(255,255,255,.6);max-width:640px;margin:0 auto 36px}
-.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
-.hero-ctas .btn-hero-primary{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:700;font-size:18px;cursor:pointer;border:none;padding:16px 36px;background:#2563eb;color:#fff;transition:all .25s;box-shadow:0 4px 24px rgba(37,99,235,.35)}
-.hero-ctas .btn-hero-primary:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,99,235,.5)}
-.hero-ctas .btn-hero-outline{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:18px;cursor:pointer;background:transparent;color:#fff;padding:16px 36px;border:2px solid rgba(255,255,255,.3);transition:all .25s}
-.hero-ctas .btn-hero-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero h1{font-size:clamp(48px,7vw,80px);font-weight:800;line-height:1.08;color:var(--navy);margin-bottom:20px;letter-spacing:-0.03em}
+.hero-sub{font-size:18px;line-height:1.7;color:var(--text-sec);max-width:640px;margin:0 auto 36px}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.hero-ctas .btn-hero-primary{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:700;font-size:18px;cursor:pointer;border:none;padding:16px 36px;background:var(--navy);color:#fff;transition:all .25s;box-shadow:0 4px 20px rgba(10,16,69,.25)}
+.hero-ctas .btn-hero-primary:hover{background:#0d1257;transform:translateY(-2px);box-shadow:0 8px 32px rgba(10,16,69,.35)}
+.hero-ctas .btn-hero-outline{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:18px;cursor:pointer;background:transparent;color:var(--navy);padding:16px 36px;border:2px solid var(--navy);transition:all .25s}
+.hero-ctas .btn-hero-outline:hover{background:var(--navy);color:#fff}
 
 /* Hero stats */
 .hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:60px}
 .hero-stat{text-align:center}
-.hero-stat .stat-num{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:#fff;letter-spacing:-0.02em}
-.hero-stat .stat-desc{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px}
+.hero-stat .stat-num{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--navy);letter-spacing:-0.02em}
+.hero-stat .stat-desc{font-size:13px;color:var(--text-sec);margin-top:4px}
 
-@media(max-width:960px){.hero{padding:80px 0 60px}.data-column:nth-child(n+7){display:none}}
+@media(max-width:960px){.hero{padding:80px 0 60px}.data-column:nth-child(n+7){display:none}.hero-dashboard-bg{display:none}}
 @media(max-width:640px){.hero-stats{gap:24px}.hero-ctas{flex-direction:column;align-items:center}.hero-ctas .btn-hero-primary,.hero-ctas .btn-hero-outline{width:100%;max-width:320px;text-align:center}.data-column:nth-child(n+5){display:none}}
 
 /* DASHBOARD MOCKUP */
@@ -341,17 +360,33 @@ Zautomatyzuj Się
 </div>
 </div>
 
-<!-- Blue orb -->
-<div class="hero-orb"></div>
+<!-- Dashboard backdrop panels -->
+<div class="hero-dashboard-bg">
+<div class="dbg-panel">
+<div class="dbg-panel-title">Search Console · Widoczność</div>
+<div class="dbg-bars"><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div><div class="dbg-bar"></div></div>
+<div class="dbg-row"><span class="label">Kliknięcia</span><span class="val">2,847</span></div>
+<div class="dbg-row"><span class="label">Wyświetlenia</span><span class="val">18,420</span></div>
+<div class="dbg-row"><span class="label">Pozycja średnia</span><span class="val">4.2</span></div>
+</div>
+<div class="dbg-panel">
+<div class="dbg-panel-title">Social Media · Analiza</div>
+<div class="dbg-row"><span class="label">Instagram ER</span><span class="val">4.8%</span></div>
+<div class="dbg-progress"><div class="dbg-progress-fill p1"></div></div>
+<div class="dbg-row"><span class="label">Facebook reach</span><span class="val">+127%</span></div>
+<div class="dbg-progress"><div class="dbg-progress-fill p2"></div></div>
+<div class="dbg-row"><span class="label">TikTok views</span><span class="val">45.2K</span></div>
+<div class="dbg-progress"><div class="dbg-progress-fill p3"></div></div>
+<div class="dbg-row"><span class="label">Google Reviews</span><span class="val">4.9★</span></div>
+<div class="dbg-progress"><div class="dbg-progress-fill p4"></div></div>
+</div>
+</div>
 
 <!-- Scanning line -->
 <div class="hero-scanline"></div>
 
-<!-- Gradient overlay -->
-<div class="hero-overlay"></div>
-
 <div class="container">
-<div class="hero-badge"><span class="pill">Marketing oparty na danych &middot; 2026</span></div>
+<div class="hero-badge"><span class="pill">Marketing oparty na danych · 2026</span></div>
 <h1 class="reveal">Zautomatyzuj Si&#281;.</h1>
 <p class="hero-sub reveal">&#321;&#261;czymy najnowsze badania z marketingiem cyfrowym, &#380;eby Twoja firma by&#322;a widoczna w Google, social media i w g&#322;owach klient&oacute;w.</p>
 <div class="hero-ctas reveal">
