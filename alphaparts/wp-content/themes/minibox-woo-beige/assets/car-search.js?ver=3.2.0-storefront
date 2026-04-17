@@ -1,0 +1,111 @@
+(function () {
+  const root = document.querySelector('.ap-car-search');
+  if (!root) return;
+
+  const byCarForm = root.querySelector('.ap-car-byCar');
+  const byVinForm = root.querySelector('.ap-car-byVin');
+
+  // Tab switching
+  root.querySelectorAll('.ap-car-tab').forEach((t) => {
+    t.addEventListener('click', () => {
+      root.querySelectorAll('.ap-car-tab').forEach((x) => {
+        x.classList.remove('is-active');
+        x.setAttribute('aria-selected', 'false');
+      });
+      t.classList.add('is-active');
+      t.setAttribute('aria-selected', 'true');
+      const mode = t.dataset.mode;
+      byCarForm.style.display = mode === 'byCar' ? '' : 'none';
+      byVinForm.style.display = mode === 'byVin' ? '' : 'none';
+    });
+  });
+
+  // Cascading selects
+  const api = '/wp-json/alphaparts/v1';
+  const makeSel = byCarForm.querySelector('.ap-make');
+  const modelSel = byCarForm.querySelector('.ap-model');
+  const yearSel = byCarForm.querySelector('.ap-year');
+
+  const setOptions = (sel, items, placeholder) => {
+    sel.innerHTML = '';
+    const opt0 = document.createElement('option');
+    opt0.value = '';
+    opt0.textContent = placeholder;
+    sel.appendChild(opt0);
+    items.forEach((v) => {
+      const o = document.createElement('option');
+      o.value = v;
+      o.textContent = v;
+      sel.appendChild(o);
+    });
+  };
+
+  makeSel.addEventListener('change', async () => {
+    const make = makeSel.value;
+    modelSel.disabled = true;
+    yearSel.disabled = true;
+    setOptions(modelSel, [], 'Wybierz model');
+    setOptions(yearSel, [], 'Dowolny rok');
+    if (!make) return;
+    try {
+      const r = await fetch(`${api}/models?make=${encodeURIComponent(make)}`);
+      const models = await r.json();
+      setOptions(modelSel, models, 'Wybierz model');
+      modelSel.disabled = false;
+    } catch (e) {}
+  });
+
+  modelSel.addEventListener('change', async () => {
+    const make = makeSel.value;
+    const model = modelSel.value;
+    yearSel.disabled = true;
+    setOptions(yearSel, [], 'Dowolny rok');
+    if (!make || !model) return;
+    try {
+      const r = await fetch(`${api}/years?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`);
+      const years = await r.json();
+      setOptions(yearSel, years, 'Dowolny rok');
+      yearSel.disabled = false;
+    } catch (e) {}
+  });
+
+  // VIN decode
+  const vinInput = byVinForm.querySelector('.ap-vin-input');
+  const vinBtn = byVinForm.querySelector('.ap-vin-decode');
+  const vinResult = byVinForm.querySelector('.ap-vin-result');
+  const vinStatus = byVinForm.querySelector('.ap-vin-status');
+  const vinSubmit = byVinForm.querySelector('.ap-car-submit');
+
+  const decodeVin = async () => {
+    const vin = (vinInput.value || '').trim().toUpperCase();
+    vinInput.value = vin;
+    if (vin.length !== 17) {
+      vinStatus.textContent = 'VIN musi mieć dokładnie 17 znaków (masz ' + vin.length + ').';
+      vinStatus.style.color = '#b91c1c';
+      vinResult.hidden = true;
+      vinSubmit.disabled = true;
+      return;
+    }
+    try {
+      const r = await fetch(`${api}/vin?vin=${encodeURIComponent(vin)}`);
+      const d = await r.json();
+      const makeSlot = vinResult.querySelector('[data-slot="make"]');
+      const yearSlot = vinResult.querySelector('[data-slot="year"]');
+      makeSlot.textContent = 'Marka: ' + (d.make || 'nieznana');
+      yearSlot.textContent = 'Rok: ' + (d.year || 'nieznany');
+      vinResult.hidden = false;
+      vinStatus.textContent = d.make ? 'Rozpoznano pojazd' : 'VIN poprawny, marka nierozpoznana (zbyt szeroka baza WMI)';
+      vinStatus.style.color = d.make ? '#15803d' : '#b45309';
+      vinSubmit.disabled = false;
+    } catch (e) {
+      vinStatus.textContent = 'Błąd dekodowania VIN.';
+      vinStatus.style.color = '#b91c1c';
+    }
+  };
+
+  vinBtn.addEventListener('click', decodeVin);
+  vinInput.addEventListener('input', () => {
+    vinInput.value = vinInput.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, '');
+    if (vinInput.value.length === 17) decodeVin();
+  });
+})();

@@ -1,0 +1,59 @@
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  const selector = '.minibox-hero, .features-card, .features-header, .minibox-shop, .dark-card, .mb-trust, .woocommerce ul.products li.product';
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.classList.add('mb-aos');
+    el.style.setProperty('--mb-aos-delay', (i % 4) * 60 + 'ms');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('mb-aos-in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+
+  document.querySelectorAll('.mb-aos').forEach((el) => io.observe(el));
+
+  // Counter animation for features-stat h2
+  const countFrom = (el) => {
+    const text = (el.textContent || '').trim();
+    const m = text.match(/^(-?\d+)/);
+    if (!m) return;
+    const target = parseInt(m[1], 10);
+    const suffix = text.slice(m[1].length);
+    const start = 0;
+    const dur = 1100;
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(start + (target - start) * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { countFrom(e.target); cio.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.features-stat h2').forEach((el) => cio.observe(el));
+
+  // Mobile sidebar accordion: toggle .is-open on widget title click when viewport is narrow
+  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+  document.querySelectorAll('.mb-shop-sidebar .mb-widget').forEach((w) => {
+    if (w.classList.contains('mb-widget-cats')) w.classList.add('is-open');
+    const title = w.querySelector('.mb-widget-title');
+    if (!title) return;
+    title.addEventListener('click', (e) => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      w.classList.toggle('is-open');
+    });
+  });
+})();
